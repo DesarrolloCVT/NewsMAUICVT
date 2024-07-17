@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMM_Posicionamiento"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMM_Posicionamiento">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Padding="20">
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="POSICIONAMIENTO SMM"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:TextEdit
+                        x:Name="txt_origen"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        Completed="Txt_origen_Completed"
+                        IsLabelFloating="False"
+                        Keyboard="Numeric"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="N° Pallet" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Label
+                        x:Name="lblError"
+                        IsVisible="False"
+                        Text=""
+                        TextColor="Red" />
+                </StackLayout>
+                <StackLayout />
+                <StackLayout x:Name="LayoutOrigen" Padding="40,0,20,0">
+                    <Label
+                        x:Name="lbl_codproducto"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                    <Label
+                        x:Name="lbl_producto"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                    <Label
+                        x:Name="lbl_lote"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                    <Label
+                        x:Name="lbl_cantidad"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                    <Label
+                        x:Name="lbl_sitio"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                    <Label
+                        x:Name="lbl_ubicacion"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:TextEdit
+                        x:Name="txt_destino"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        Completed="Txt_destino_Completed"
+                        IsLabelFloating="False"
+                        Keyboard="Numeric"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Destino" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Label
+                        x:Name="lblError2"
+                        IsVisible="False"
+                        Text=""
+                        TextColor="Red" />
+                </StackLayout>
+                <StackLayout x:Name="LayoutDestinoExistente" Padding="40,0,20,0">
+                    <Label
+                        x:Name="lbl_sitio_nuevo"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                    <Label
+                        x:Name="lbl_ubicacion_nueva"
+                        FontSize="Small"
+                        HorizontalOptions="Start"
+                        Text=""
+                        TextColor="Red"
+                        VerticalOptions="Start" />
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Button
+                        x:Name="btn_generar"
+                        BackgroundColor="#00b33c"
+                        Clicked="Btn_generar_Clicked"
+                        CornerRadius="5"
+                        FlexLayout.AlignSelf="Stretch"
+                        HorizontalOptions="CenterAndExpand"
+                        Padding="10"
+                        Text="ASIGNAR"
+                        TextColor="White"
+                        WidthRequest="300" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

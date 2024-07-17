@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             x:Class="NewsMauiCVT.Views.Posicionamiento">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label Text="POSICIONAMIENTO" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Margin="25,0" Padding="10">
+                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txt_origen" Completed="Txt_origen_Completed" IsLabelFloating="False" 
+                              BorderColor="Green" LabelColor="Green"                                
+                     Keyboard="Numeric" >
+                </dxe:TextEdit>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label x:Name="lblConfirm" Text="" IsVisible="False" TextColor="Red" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label x:Name="lblError" Text="" IsVisible="False" TextColor="Red" />
+            </StackLayout>
+            <StackLayout Padding="40,0,20,0" x:Name="LayoutOrigen">
+                <Label Text="" 
+                       x:Name="lbl_codproducto"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+                <Label Text="" 
+                       x:Name="lbl_producto"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+                <Label Text="" 
+                       x:Name="lbl_lote"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+                <Label Text="" 
+                       x:Name="lbl_cantidad"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+                <Label Text="" 
+                       x:Name="lbl_sitio"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+                <Label Text="" 
+                       x:Name="lbl_ubicacion"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red"/>
+            </StackLayout>
+            <StackLayout Margin="25,0" Padding="10">
+                <dxe:TextEdit LabelText="Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_destino" Completed="Txt_destino_Completed" IsLabelFloating="False" 
+                              BorderColor="Green" LabelColor="Green" Keyboard="Numeric" >
+                </dxe:TextEdit>
+            </StackLayout>
+            <StackLayout Padding="40,0,20,0" x:Name="LayoutDestinoExistente">
+                <Label Text=""
+                       x:Name="lbl_sitio_nuevo"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+                <Label Text="" 
+                       x:Name="lbl_ubicacion_nueva"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Small" 
+                       TextColor="Blue"/>
+            </StackLayout>
+            <StackLayout Margin="25,0" Padding="10">
+                <dxe:TextEdit LabelText="Confirma Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_ConfirmaDestino" Completed="Txt_ConfirmaDestino_Completed" 
+                      IsLabelFloating="False" BorderColor="Green" LabelColor="Green"                                
+                     Keyboard="Numeric" >
+                </dxe:TextEdit>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

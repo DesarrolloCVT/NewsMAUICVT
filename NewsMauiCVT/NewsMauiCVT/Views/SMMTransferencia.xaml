@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMMTransferencia"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMMTransferencia">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="TRANSFERENCIA MAYORISTA"
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Padding="10">
+                <Button
+                    x:Name="btn_Nuevo"
+                    BackgroundColor="#00b33c"
+                    Clicked="btn_Nuevo_Clicked"
+                    CornerRadius="5"
+                    FlexLayout.AlignSelf="Stretch"
+                    HorizontalOptions="CenterAndExpand"
+                    Padding="10"
+                    Text="NUEVA TRANSFERENCIA"
+                    TextColor="White"
+                    WidthRequest="250" />
+            </StackLayout>
+            <StackLayout x:Name="stReanudar" Margin="0,10,0,0">
+                <Grid
+                    x:Name="GvGrid"
+                    ColumnSpacing="2"
+                    RowSpacing="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout>
+                        <dxe:TextEdit
+                            x:Name="txtFolioTransferencia"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="5,0,0,0"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            ClearIconVisibility="Never"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="Folio Transferencia"
+                            Text="" />
+                    </StackLayout>
+                    <Button
+                        x:Name="btn_Reanudar"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="#F80C09"
+                        Clicked="btn_Reanudar_Clicked"
+                        CornerRadius="5"
+                        FlexLayout.AlignSelf="Stretch"
+                        HorizontalOptions="CenterAndExpand"
+                        Padding="2"
+                        Text="REANUDAR"
+                        TextColor="White"
+                        WidthRequest="100" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

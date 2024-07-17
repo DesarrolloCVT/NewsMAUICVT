@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             x:Class="NewsMauiCVT.Views.SMM_TansferenciaDetalle"
+             Title="SMM_TansferenciaDetalle">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Margin="25">
+                    <Label FontAttributes="Bold" Text="DETALLE TRANSFERENCIA" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
+                </StackLayout>
+                <StackLayout Margin="25,0,25,20" >
+                    <dxe:TextEdit LabelText="N° PALLET" LabelFontSize="15"  BoxHeight="50" x:Name="txtNPallet" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Completed="txtNPallet_Completed">
+                    </dxe:TextEdit>
+                </StackLayout>
+                <StackLayout>
+                    <Grid ColumnSpacing="6" RowSpacing="6" Margin="5" x:Name="GvGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <dxe:TextEdit LabelText="bodega" LabelFontSize="10"  BoxHeight="50" x:Name="lblBodega" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="0" Grid.Column="0" IsReadOnly="True" 
+               ClearIconVisibility="Never">
+                        </dxe:TextEdit>
+                        <dxe:TextEdit LabelText="lote" LabelFontSize="10"  BoxHeight="50" x:Name="lblLote" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="0" Grid.Column="1" IsReadOnly="True" TextFontSize="15"
+              ClearIconVisibility="Never">
+                        </dxe:TextEdit>
+                        <dxe:TextEdit LabelText="Cantidad" LabelFontSize="10"  BoxHeight="50" x:Name="lblCantidad" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="1" Grid.Column="0" IsReadOnly="True"
+              ClearIconVisibility="Never">
+                        </dxe:TextEdit>
+                        <dxe:TextEdit LabelText="Posicion" LabelFontSize="10"  BoxHeight="50" x:Name="lblPosicion" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="1" Grid.Column="1" IsReadOnly="True"
+              ClearIconVisibility="Never">
+                        </dxe:TextEdit>
+                        <dxe:TextEdit LabelText="Codigo Ubicacion" LabelFontSize="10"  BoxHeight="50" x:Name="lblCodUbicacion" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="2" Grid.Column="0" IsReadOnly="True"
+              ClearIconVisibility="Never">
+                        </dxe:TextEdit>
+                        <dxe:TextEdit LabelText="CodProd" LabelFontSize="10"  BoxHeight="50" x:Name="lblCodPro" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="2" Grid.Column="1" IsReadOnly="True" TextFontSize="15"
+              ClearIconVisibility="Never">
+                        </dxe:TextEdit>
+                    </Grid>
+                    <StackLayout Margin="5">
+                        <dxe:TextEdit LabelText="Producto" LabelFontSize="10"  BoxHeight="50" x:Name="lblProducto" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="3" Grid.Column="0" IsReadOnly="True" TextFontSize="13">
+                        </dxe:TextEdit>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Margin="20,10,20,10">
+                    <StackLayout Margin="25,0">
+                        <dxc:DXButton  
+                            Content="Guardar Bulto"
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            x:Name="btnGuardarDetalle"
+                            HeightRequest="60"
+                            PressedBackgroundColor="MediumSeaGreen"
+                            BackgroundColor="DarkBlue"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            PressedBorderColor="DarkOrange"
+                            Icon="Guardar"
+                            ShowIcon="True"
+                            Clicked="btnGuardarDetalle_Clicked">
+                        </dxc:DXButton>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Margin="20,10,20,50">
+                    <StackLayout Margin="25,0">
+                        <dxc:DXButton  
+                            Content="Ver Bultos Cargados"
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            x:Name="btnVerRegistro"
+                            HeightRequest="80"
+                            PressedBackgroundColor="MediumSeaGreen"
+                            BackgroundColor="CadetBlue"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            PressedBorderColor="DarkOrange"
+                            Icon="Buscar"
+                            ShowIcon="True"
+                            Clicked="btnVerRegistro_Clicked">
+                        </dxc:DXButton>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Margin="20,10,20,50">
+                    <StackLayout Margin="25,0">
+                        <dxc:DXButton  
+                            Content="Terminar "
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            x:Name="btnSalir"
+                            HeightRequest="80" 
+                            PressedBackgroundColor="MediumSeaGreen"
+                            BackgroundColor="Red"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            PressedBorderColor="DarkOrange"
+                            Icon="off" ShowIcon="True"
+                            Clicked="btnSalir_Clicked" >
+                        </dxc:DXButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

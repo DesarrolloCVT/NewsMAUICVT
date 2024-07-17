@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMM_Picking_Consolidado"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="SMM_Picking_Consolidado">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="0,40,5,0">
+                <Label
+                    x:Name="lblPick"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    Text=""
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Padding="5">
+                <Label
+                    x:Name="lblPick1"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    Text=""
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Padding="55,0,60,0">
+                <Entry
+                    x:Name="txt_pallet"
+                    Completed="Txt_pallet_Completed"
+                    Placeholder="Codigo" />
+                <Label
+                    x:Name="lblError1"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout Padding="5">
+                <Label
+                    x:Name="lblProducto"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    Text=""
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Padding="5">
+                <Label
+                    x:Name="lblProducto1"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    Text=""
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Padding="55,0,60,0">
+                <Entry
+                    x:Name="txt_cantidad"
+                    Completed="Txt_cantidad_Completed"
+                    Keyboard="Numeric"
+                    Placeholder="Cantidad" />
+                <Label
+                    x:Name="lblError2"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout Padding="10">
+                <Button
+                    x:Name="btn_agregar"
+                    BackgroundColor="#00b33c"
+                    Clicked="Btn_agregar_Clicked"
+                    CornerRadius="5"
+                    FlexLayout.AlignSelf="Stretch"
+                    HorizontalOptions="CenterAndExpand"
+                    IsEnabled="False"
+                    Padding="10"
+                    Text="AGREGAR"
+                    TextColor="White"
+                    WidthRequest="250" />
+            </StackLayout>
+            <StackLayout Padding="40">
+                <Button
+                    x:Name="btn_Terminar"
+                    BackgroundColor="Red"
+                    Clicked="Btn_Terminar_Clicked"
+                    CornerRadius="5"
+                    FlexLayout.AlignSelf="Stretch"
+                    HorizontalOptions="CenterAndExpand"
+                    Padding="10"
+                    Text="TERMINAR PICKING"
+                    TextColor="White"
+                    WidthRequest="250" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

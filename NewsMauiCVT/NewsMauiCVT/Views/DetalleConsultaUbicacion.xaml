@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             x:Class="NewsMauiCVT.Views.DetalleConsultaUbicacion">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Margin="0,20,0,20">
+                    <Label HorizontalTextAlignment="Center" FontSize="Medium" x:Name="lblCantPallets" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Margin="20,10,20,20">
+                    <StackLayout Margin="25,0">
+                        <dxc:DXButton 
+                            Content="Ver Resumen"
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            x:Name="btnVerRegistro"
+                            HeightRequest="60"
+                            PressedBackgroundColor="MediumSeaGreen"
+                            BackgroundColor="CadetBlue"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            PressedBorderColor="DarkOrange"
+                            Icon="Buscar" 
+                            ShowIcon="True"
+                            Clicked="BtnResumen_Clicked">
+                        </dxc:DXButton>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout>
+                        <dxg:DataGridView x:Name="GvData">
+                            <dxg:DataGridView.ColumnHeaderAppearance>
+                                <dxg:ColumnHeaderAppearance BackgroundColor="#3399ff" FontSize="12" FontColor="White" FontAttributes="Bold" />
+                            </dxg:DataGridView.ColumnHeaderAppearance>
+                            <dxg:DataGridView.CellAppearance>
+                                <dxg:CellAppearance Padding="5" BackgroundColor="#333333" BorderColor="#515151" FontSize="14" FontColor="White" 
+                                               SelectionColor="#f78a09" SelectionFontColor="Black"/>
+                            </dxg:DataGridView.CellAppearance>
+                        </dxg:DataGridView>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

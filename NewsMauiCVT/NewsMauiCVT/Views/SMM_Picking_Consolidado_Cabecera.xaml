@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+             x:Class="NewsMauiCVT.Views.SMM_Picking_Consolidado_Cabecera"
+             Title="SMM_Picking_Consolidado_Cabecera">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="PIKING SMM" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+                </StackLayout>
+                <Grid ColumnSpacing="2" RowSpacing="10" Margin="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="70"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Fecha Consolidado" TextColor="Black" FontSize="Medium" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <DatePicker x:Name="FConsolidado" DateSelected="FConsolidado_DateSelected" Format="dd/MM/yyyy" Grid.Row="0" Grid.Column="0"></DatePicker>
+                    <Picker x:Name="cboDpto" Title="DEPARTAMENTOS" TitleColor="Red" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Picker.Items>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+                <StackLayout  Padding="50,5,50,5" >
+                    <Button Text="Buscar" x:Name="btnBuscar" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand"  TextColor="White" Clicked="BtnBuscar_Clicked"/>
+                </StackLayout>
+                <StackLayout Margin="0,10,0,0">
+                    <StackLayout>
+                        <dxg:DataGridView x:Name="GvData" RowHeight="150">
+                            <dxg:DataGridView.ColumnHeaderAppearance>
+                                <dxg:ColumnHeaderAppearance BackgroundColor="#3399ff" 
+                   FontSize="12" FontColor="White" FontAttributes="Bold" />
+                            </dxg:DataGridView.ColumnHeaderAppearance>
+                            <dxg:DataGridView.CellAppearance>
+                                <dxg:CellAppearance 
+                                    Padding="5"
+                                    BackgroundColor="#333333"
+                                    BorderColor="#515151"
+                                    FontSize="14"
+                                    FontColor="White"
+                                    SelectionColor="#f78a09"
+                                    SelectionFontColor="Black"/>
+                            </dxg:DataGridView.CellAppearance>
+                        </dxg:DataGridView>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout  Padding="50,5,50,5" >
+                    <Button Text="Pickear" x:Name="btnPikear" BackgroundColor="OrangeRed"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand"  TextColor="White" Clicked="BtnPikear_Clicked" IsEnabled="False"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

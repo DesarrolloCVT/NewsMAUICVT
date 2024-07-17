@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMMArmadoPedido"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMMArmadoPedido">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="medición de armado de pedidos"
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:TextEdit
+                    x:Name="txtNPedido"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    IsLabelFloating="False"
+                    Keyboard="Numeric"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="N° Pedido" />
+            </StackLayout>
+            <StackLayout Padding="10">
+                <Button
+                    x:Name="btn_Crear"
+                    BackgroundColor="#1C39F1"
+                    Clicked="btn_Crear_Clicked"
+                    CornerRadius="5"
+                    FlexLayout.AlignSelf="Stretch"
+                    HorizontalOptions="CenterAndExpand"
+                    Padding="10"
+                    Text="BUSCAR"
+                    TextColor="White"
+                    WidthRequest="250" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

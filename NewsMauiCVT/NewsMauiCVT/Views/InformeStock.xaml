@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.InformeStock"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+    Title="InformeStock">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Padding="0,10,0,10">
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="FEFO"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:TextEdit
+                        x:Name="txtCodProd"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Cod. Producto"
+                        MaxCharacterCount="9"
+                        MaxCharacterCountOverflowMode="LimitInput" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:ComboBoxEdit
+                        x:Name="cboBodega"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DisplayMember="Supportive_Description"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="True"
+                        IsLabelFloating="True"
+                        ItemsSource="{Binding}"
+                        LabelColor="Green"
+                        LabelText="Bodega"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        TextFontSize="15"
+                        ValueMember="Supportive_Description">
+                        <dxe:ComboBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Padding="10"
+                                        Text="{Binding Supportive_Description}" />
+                                </Grid>
+                            </DataTemplate>
+                        </dxe:ComboBoxEdit.ItemTemplate>
+                    </dxe:ComboBoxEdit>
+                    <Label
+                        x:Name="lblError"
+                        IsVisible="False"
+                        Text=""
+                        TextColor="Red" />
+                </StackLayout>
+                <StackLayout Margin="25,10">
+                    <dxc:DXButton
+                        x:Name="btnBuscar"
+                        BackgroundColor="CadetBlue"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="BtnBuscar_Clicked"
+                        Content="Buscar"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="65"
+                        Icon="Buscar"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        ShowIcon="True" />
+                </StackLayout>
+                <StackLayout>
+                    <dxg:DataGridView x:Name="GvData">
+                        <dxg:DataGridView.ColumnHeaderAppearance>
+                            <dxg:ColumnHeaderAppearance
+                                BackgroundColor="#3399ff"
+                                FontAttributes="Bold"
+                                FontColor="White"
+                                FontSize="12" />
+                        </dxg:DataGridView.ColumnHeaderAppearance>
+                        <dxg:DataGridView.CellAppearance>
+                            <dxg:CellAppearance
+                                BackgroundColor="#333333"
+                                BorderColor="#515151"
+                                FontColor="White"
+                                FontSize="14"
+                                Padding="5"
+                                SelectionColor="#f78a09"
+                                SelectionFontColor="Black" />
+                        </dxg:DataGridView.CellAppearance>
+                    </dxg:DataGridView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

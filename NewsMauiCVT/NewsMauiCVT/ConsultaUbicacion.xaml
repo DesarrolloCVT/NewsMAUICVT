@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             x:Class="NewsMauiCVT.ConsultaUbicacion"
+             Title="ConsultaUbicacion">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="25">
+                <Label Text="Consulta Ubicacion" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Margin="25,0" Padding="10">
+                <dxe:TextEdit LabelText="UBICACION" LabelFontSize="15"  BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
+                        IsLabelFloating="False" BorderColor="Green" LabelColor="Green">
+                </dxe:TextEdit>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label x:Name="lblError" Text="" IsVisible="False" TextColor="Red" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMM_TransferenciaBultosCargados"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+    Title="SMM_TransferenciaBultosCargados">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Margin="10">
+                <Grid
+                    x:Name="GvGrid"
+                    ColumnSpacing="6"
+                    RowSpacing="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <dxe:TextEdit
+                        x:Name="lblBodega"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        ClearIconVisibility="Never"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="N° Pallet" />
+
+                    <dxc:DXButton
+                        x:Name="btnQuitar"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="Red"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnQuitar_Clicked"
+                        Content="Quitar"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        Icon="close"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        ShowIcon="True" />
+                </Grid>
+            </StackLayout>
+            <StackLayout>
+                <dxg:DataGridView x:Name="GvData">
+                    <dxg:DataGridView.ColumnHeaderAppearance>
+                        <dxg:ColumnHeaderAppearance
+                            BackgroundColor="#3399ff"
+                            FontAttributes="Bold"
+                            FontColor="White"
+                            FontSize="12" />
+                    </dxg:DataGridView.ColumnHeaderAppearance>
+                    <dxg:DataGridView.CellAppearance>
+                        <dxg:CellAppearance
+                            BackgroundColor="#333333"
+                            BorderColor="#515151"
+                            FontColor="White"
+                            FontSize="14"
+                            Padding="5"
+                            SelectionColor="#f78a09"
+                            SelectionFontColor="Black" />
+                    </dxg:DataGridView.CellAppearance>
+                </dxg:DataGridView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

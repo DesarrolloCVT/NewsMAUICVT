@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
+
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <Label
+                    FlexLayout.AlignSelf="End"
+                    FontAttributes="Bold"
+                    FontSize="10"
+                    Text="versión 2.7.6.2023"
+                    TextColor="#3399ff" />
+                <StackLayout>
+                    <Image
+                        BackgroundColor="Transparent"
+                        FlexLayout.AlignSelf="Center"
+                        Source="logocvt.png" />
+                </StackLayout>
+                <StackLayout HorizontalOptions="Center">
+                    <Label
+                        FlexLayout.AlignSelf="Center"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        Text="Iniciar Sesión"
+                        TextColor="#3399ff" />
+                </StackLayout>
+                <StackLayout Margin="25,0" Padding="10">
+                    <dx:TextEdit
+                        x:Name="txtUsuario"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        EndIcon="user"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="USUARIO" />
+                </StackLayout>
+                <StackLayout Margin="25,0" Padding="10">
+                    <dx:PasswordEdit
+                        x:Name="txtContraseña"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        ClearIconVisibility="Auto"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="CONTRASEÑA"
+                        MaxCharacterCount="6"
+                        MaxCharacterCountOverflowMode="LimitInput" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <Button
+                        x:Name="loging"
+                        BackgroundColor="#3399ff"
+                        BorderColor="Black"
+                        Clicked="Loging_ClickedAsync"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        Text="INICIAR" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

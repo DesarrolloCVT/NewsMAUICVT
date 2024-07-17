@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMM_Recepcion"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMM_Recepcion">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Padding="20">
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="RECEPCION MAYORISTA"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Button
+                        x:Name="btn_Nuevo"
+                        BackgroundColor="#00b33c"
+                        Clicked="Btn_Nuevo_Clicked"
+                        CornerRadius="5"
+                        FlexLayout.AlignSelf="Stretch"
+                        HorizontalOptions="CenterAndExpand"
+                        Padding="10"
+                        Text="NUEVA RECEPCION"
+                        TextColor="White"
+                        WidthRequest="250" />
+                </StackLayout>
+                <StackLayout x:Name="stNuevo" Padding="20,0,20,0">
+                    <Picker
+                        x:Name="cboOC"
+                        Title="N° Orden de Compra"
+                        TitleColor="Red">
+                        <Picker.Items />
+                    </Picker>
+                    <dxe:TextEdit
+                        x:Name="txtNFactura"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        IsLabelFloating="False"
+                        Keyboard="Numeric"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="N° Factura" />
+                    <StackLayout>
+                        <dxe:ComboBoxEdit
+                            x:Name="cboBodegaResp"
+                            BorderColor="Green"
+                            ClearIconVisibility="Auto"
+                            DropDownSelectedItemBackgroundColor="GreenYellow"
+                            FilterComparisonType="CurrentCultureIgnoreCase"
+                            FilterCondition="Contains"
+                            IsFilterEnabled="True"
+                            IsLabelFloating="True"
+                            LabelColor="Green"
+                            LabelText="Bodega"
+                            ReserveBottomTextLine="True"
+                            ReturnType="Next"
+                            TextFontSize="15">
+                            <dxe:ComboBoxEdit.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </x:Array>
+                            </dxe:ComboBoxEdit.ItemsSource>
+                        </dxe:ComboBoxEdit>
+                    </StackLayout>
+                    <dxe:MultilineEdit
+                        x:Name="txtComentarios"
+                        BorderColor="Green"
+                        BoxHeight="60"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Comentarios"
+                        Text="" />
+                    <StackLayout Padding="10">
+                        <Button
+                            x:Name="btn_Crear"
+                            BackgroundColor="#1C39F1"
+                            Clicked="Btn_Crear_Clicked"
+                            CornerRadius="5"
+                            FlexLayout.AlignSelf="Stretch"
+                            HorizontalOptions="CenterAndExpand"
+                            Padding="10"
+                            Text="CREAR"
+                            TextColor="White"
+                            WidthRequest="250" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Button
+                        x:Name="btn_ReanudarRecep"
+                        BackgroundColor="#F80C09"
+                        Clicked="Btn_ReanudarRecep_Clicked"
+                        CornerRadius="5"
+                        FlexLayout.AlignSelf="Stretch"
+                        HorizontalOptions="CenterAndExpand"
+                        Padding="10"
+                        Text="REANUDAR RECEPCION"
+                        TextColor="White"
+                        WidthRequest="250" />
+                </StackLayout>
+                <StackLayout x:Name="stReanudar">
+                    <Grid
+                        x:Name="GvGrid"
+                        Margin="10,0,10,0"
+                        ColumnSpacing="2"
+                        RowSpacing="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Entry
+                            x:Name="txtFolioRecepcion"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Keyboard="Numeric"
+                            Placeholder="Folio Recepcion" />
+                        <Button
+                            x:Name="btn_Reanudar"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BackgroundColor="#F80C09"
+                            Clicked="Btn_Reanudar_Clicked"
+                            CornerRadius="5"
+                            FlexLayout.AlignSelf="Stretch"
+                            HorizontalOptions="CenterAndExpand"
+                            Padding="2"
+                            Text="REANUDAR"
+                            TextColor="White"
+                            WidthRequest="100" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout>
+                    <Label
+                        x:Name="lblError"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="False"
+                        Text=""
+                        TextColor="Red" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

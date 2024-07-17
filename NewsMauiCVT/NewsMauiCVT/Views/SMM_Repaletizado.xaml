@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMM_Repaletizado"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMM_Repaletizado">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="REPALETIZADO SMM"
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:TextEdit
+                    x:Name="txtPosicion"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    Completed="TxtPosicion_Completed"
+                    IsLabelFloating="False"
+                    Keyboard="Numeric"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="N° Pallet" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label
+                    x:Name="lblError"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout x:Name="LayoutOrigen" Padding="40,0,20,0">
+                <Label
+                    x:Name="lbl_codproducto"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lbl_producto"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lbl_lote"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lbl_cantidad"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lblBodega"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:ComboBoxEdit
+                    x:Name="picker"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="True"
+                    IsLabelFloating="True"
+                    LabelColor="Green"
+                    LabelText="Tipo Repaletizado"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    SelectionChanged="Picker_SelectedIndexChanged"
+                    TextFontSize="15">
+                    <dxe:ComboBoxEdit.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>NUEVO</x:String>
+                            <x:String>EXISTENTE</x:String>
+                        </x:Array>
+                    </dxe:ComboBoxEdit.ItemsSource>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Padding="40,0,90,0">
+                <Entry
+                    x:Name="txt_destino"
+                    Completed="Txt_destino_Completed"
+                    IsVisible="False"
+                    Keyboard="Numeric"
+                    Placeholder="Destino" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label
+                    x:Name="lblError2"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout x:Name="LayoutDestinoExistente" Padding="40,0,20,0">
+                <Label
+                    x:Name="lbl_dcodproducto"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lbl_dproducto"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lbl_dlote"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lbl_dcantidad"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+                <Label
+                    x:Name="lbl_dBodega"
+                    FontSize="Small"
+                    HorizontalOptions="Start"
+                    Text=""
+                    TextColor="Red"
+                    VerticalOptions="Start" />
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:TextEdit
+                    x:Name="txt_cantidad"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    Completed="Txt_cantidad_Completed"
+                    IsLabelFloating="False"
+                    Keyboard="Numeric"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="Cantidad a Repaletizar" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label
+                    x:Name="lblError3"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout Padding="10">
+                <Button
+                    x:Name="btn_generar"
+                    BackgroundColor="#00b33c"
+                    Clicked="Btn_generar_Clicked"
+                    CornerRadius="5"
+                    FlexLayout.AlignSelf="Stretch"
+                    HorizontalOptions="CenterAndExpand"
+                    Padding="10"
+                    Text="GENERAR"
+                    TextColor="White"
+                    WidthRequest="300" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

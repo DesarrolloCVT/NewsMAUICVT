@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMauiCVT.Views.Revision_Extintor_DatosCab"
+             Title="Revision_Extintor_DatosCab">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label Text="Check Equipo Extinción de Fuego" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Padding="10"></StackLayout>
+            <Grid ColumnSpacing="10" RowSpacing="10" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblNExtintor" Text="N° Extintor"  Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
+                <Entry Placeholder="" x:Name="txtNExtintor" Keyboard="Numeric"  Grid.Row="0" Grid.Column="0"  Completed="TxtNExtintor_Completed" MaxLength="9"/>
+                <Label x:Name="lblUbicacion" Text="Ubicacion"   Grid.Row="0" Grid.Column="1" FontAttributes="Bold"/>
+                <Entry Placeholder="" x:Name="txtUbicacion" Grid.Row="0" Grid.Column="1" Completed="TxtUbicacion_Completed"/>
+                <Label x:Name="lblPeso" Text="Peso Extintor(Kg)"   Grid.Row="1" Grid.Column="0" FontAttributes="Bold"/>
+                <Entry Placeholder="" x:Name="txtPesoExtintor" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" Completed="TxtPesoExtintor_Completed"/>
+                <Label x:Name="lblvigencia" Text="Vigencia Recarga"   Grid.Row="1" Grid.Column="1" FontAttributes="Bold"/>
+                <DatePicker x:Name="vRecarga" DateSelected="VRecarga_DateSelected" Format="dd/MM/yyyy"  Grid.Row="1" Grid.Column="1"></DatePicker>
+                <Label x:Name="lblTipoAgente" Text="Tipo de Agente Extintor"   Grid.Row="2" Grid.Column="0" FontAttributes="Bold" Grid.ColumnSpan="2"/>
+                <Entry Placeholder="" x:Name="txtTipoAgente" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Completed="TxtTipoAgente_Completed"/>
+            </Grid>
+            <StackLayout Padding="55,0,60,0">
+                <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red" />
+            </StackLayout>
+            <StackLayout Padding="10">
+                <Button Text="GENERAR" TextColor="White" x:Name="btn_generar" IsEnabled="False" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand" Clicked="Btn_generar_Clicked"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

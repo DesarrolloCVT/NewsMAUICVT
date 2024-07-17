@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.ActualizaTipoPallet"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="ActualizaTipoPallet">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="Cambia Tipo de Pallet"
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout Margin="25,0" Padding="10">
+                <dxe:TextEdit
+                    x:Name="txt_pallet"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    Completed="TxtNPallet_Completed"
+                    IsLabelFloating="False"
+                    Keyboard="Numeric"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="N° Pallet" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Label
+                    x:Name="lblError"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:ComboBoxEdit
+                    x:Name="cboTipoPallet"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="Supportive_Description"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="True"
+                    IsLabelFloating="True"
+                    ItemsSource="{Binding}"
+                    LabelColor="Green"
+                    LabelText="Tipo Pallet"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    SelectionChanged="CboTipoPallet_SelectedIndexChanged"
+                    TextFontSize="15"
+                    ValueMember="Supportive_Description">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding Supportive_Description}" />
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="20,20">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btn_generar"
+                        BackgroundColor="Green"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="Btn_generar_Clicked"
+                        Content="GENERAR"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="80"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

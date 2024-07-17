@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMMOrdenDeVentaDetalle"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    Title="SMMOrdenDeVentaDetalle">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Margin="25">
+                <Label
+                    x:Name="lblFolioOrden"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text=""
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Margin="10,0,10,15">
+                <dxe:ComboBoxEdit
+                    x:Name="cboProducto"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="NombrePro"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="True"
+                    IsLabelFloating="True"
+                    ItemsSource="{Binding}"
+                    LabelColor="Green"
+                    LabelText="PRODUCTO"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    SelectionChanged="cboProducto_SelectionChanged"
+                    TextFontSize="11"
+                    ValueMember="Codigo">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding Codigo}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    Text="{Binding NombrePro}" />
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Padding="0,0,0,10">
+                <Grid
+                    x:Name="GvGrid"
+                    ColumnSpacing="1"
+                    RowSpacing="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <dxe:TextEdit
+                        x:Name="txtCantidad"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="25,0"
+                        BorderColor="Green"
+                        BoxHeight="65"
+                        ClearIconVisibility="Auto"
+                        Completed="txtCantidad_Completed"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Cantidad"
+                        ReserveBottomTextLine="True"
+                        Text=""
+                        TextFontAttributes="Bold" />
+                    <dxe:TextEdit
+                        x:Name="txtPorcDesc"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="25,0"
+                        BorderColor="Green"
+                        BoxHeight="65"
+                        ClearIconVisibility="Auto"
+                        Completed="txtPorcDesc_Completed"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="% Descuento"
+                        ReserveBottomTextLine="True"
+                        Text=""
+                        TextFontAttributes="Bold" />
+                </Grid>
+            </StackLayout>
+            <StackLayout Margin="20,10,20,10">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btnGuardarDetalle"
+                        BackgroundColor="DarkBlue"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnGuardarDetalle_Clicked"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="80"
+                        Icon="Guardar"
+                        ShowIcon="True"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="Guardar Detalle" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="20,10,20,50">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btnVerRegistro"
+                        BackgroundColor="CadetBlue"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnVerRegistro_Clicked"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="80"
+                        Icon="Buscar"
+                        ShowIcon="True"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="Ver Registro Orden" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="20,10,20,50">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btnSalir"
+                        BackgroundColor="Red"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnSalir_Clicked"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="80"
+                        Icon="off"
+                        ShowIcon="True"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="Salir" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

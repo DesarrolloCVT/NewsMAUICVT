@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMM_ExhibicionSala"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMM_ExhibicionSala">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Padding="20">
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="EXHIBICION SALA"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:ComboBoxEdit
+                        x:Name="cboPasillo"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="True"
+                        IsLabelFloating="True"
+                        LabelColor="Green"
+                        LabelText="Pasillo"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionChanged="CboPasillo_SelectedIndexChanged"
+                        TextFontSize="15">
+                        <dxe:ComboBoxEdit.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Pasillo 1</x:String>
+                                <x:String>Pasillo 2</x:String>
+                                <x:String>Pasillo 3</x:String>
+                                <x:String>Pasillo 4</x:String>
+                                <x:String>Pasillo 5</x:String>
+                                <x:String>Pasillo 6</x:String>
+                                <x:String>Pasillo 7</x:String>
+                                <x:String>Pasillo 8</x:String>
+                                <x:String>Pasillo 9</x:String>
+                                <x:String>Pasillo 10</x:String>
+                                <x:String>Refrigerado</x:String>
+                                <x:String>Congelado</x:String>
+                                <x:String>Agricola</x:String>
+                                <x:String>Pasillo 21</x:String>
+                                <x:String>Pasillo 22</x:String>
+                                <x:String>Pasillo 23</x:String>
+                                <x:String>Pasillo 24</x:String>
+                                <x:String>Pasillo 25</x:String>
+                                <x:String>Picking</x:String>
+                                <x:String>Merma</x:String>
+                            </x:Array>
+                        </dxe:ComboBoxEdit.ItemsSource>
+                    </dxe:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:ComboBoxEdit
+                        x:Name="cboColumna"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="True"
+                        IsLabelFloating="True"
+                        LabelColor="Green"
+                        LabelText="Columna"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionChanged="CboColumna_SelectedIndexChanged"
+                        TextFontSize="15">
+                        <dxe:ComboBoxEdit.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>1</x:String>
+                                <x:String>2</x:String>
+                                <x:String>3</x:String>
+                                <x:String>4</x:String>
+                                <x:String>5</x:String>
+                                <x:String>6</x:String>
+                                <x:String>7</x:String>
+                                <x:String>8</x:String>
+                                <x:String>9</x:String>
+                                <x:String>10</x:String>
+                                <x:String>11</x:String>
+                                <x:String>12</x:String>
+                                <x:String>13</x:String>
+                                <x:String>14</x:String>
+                                <x:String>15</x:String>
+                            </x:Array>
+                        </dxe:ComboBoxEdit.ItemsSource>
+                    </dxe:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:ComboBoxEdit
+                        x:Name="cboNivel"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="True"
+                        IsLabelFloating="True"
+                        LabelColor="Green"
+                        LabelText="Nivel"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionChanged="CboNivel_SelectedIndexChanged"
+                        TextFontSize="15">
+                        <dxe:ComboBoxEdit.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>1</x:String>
+                                <x:String>2</x:String>
+                                <x:String>3</x:String>
+                                <x:String>4</x:String>
+                                <x:String>5</x:String>
+                            </x:Array>
+                        </dxe:ComboBoxEdit.ItemsSource>
+                    </dxe:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:TextEdit
+                        x:Name="txtCodBarra"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        Completed="TxtCodBarra_Completed"
+                        IsLabelFloating="False"
+                        Keyboard="Numeric"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Codigo" />
+                    <Label
+                        x:Name="lblError2"
+                        IsVisible="False"
+                        Text=""
+                        TextColor="Red" />
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Label
+                        x:Name="lblProducto"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:ComboBoxEdit
+                        x:Name="cboCantCaras"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="True"
+                        IsLabelFloating="True"
+                        LabelColor="Green"
+                        LabelText="Cantidad de Caras"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionChanged="CboCantCaras_SelectedIndexChanged"
+                        TextFontSize="15">
+                        <dxe:ComboBoxEdit.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>1</x:String>
+                                <x:String>2</x:String>
+                                <x:String>3</x:String>
+                                <x:String>4</x:String>
+                                <x:String>5</x:String>
+                            </x:Array>
+                        </dxe:ComboBoxEdit.ItemsSource>
+                    </dxe:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Button
+                        x:Name="btn_agregar"
+                        BackgroundColor="#00b33c"
+                        Clicked="Btn_agregar_Clicked"
+                        CornerRadius="5"
+                        FlexLayout.AlignSelf="Stretch"
+                        HorizontalOptions="CenterAndExpand"
+                        Padding="10"
+                        Text="AGREGAR"
+                        TextColor="White"
+                        WidthRequest="250" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsMauiCVT", "NewsMauiCVT\NewsMauiCVT.csproj", "{0BB06711-0CA5-426C-96BB-626DEF56E400}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{46A6C488-A18C-4FE3-9AE1-24051BB8F5B8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BB06711-0CA5-426C-96BB-626DEF56E400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB06711-0CA5-426C-96BB-626DEF56E400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB06711-0CA5-426C-96BB-626DEF56E400}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0BB06711-0CA5-426C-96BB-626DEF56E400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB06711-0CA5-426C-96BB-626DEF56E400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB06711-0CA5-426C-96BB-626DEF56E400}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {236DFC25-9EF1-4DCE-8577-A9F1AB0FD2B7}
+	EndGlobalSection
+EndGlobal

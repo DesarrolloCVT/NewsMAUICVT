@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMMCreaCliente"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMMCreaCliente">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Padding="0,0,0,10">
+            <StackLayout Margin="25">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text="CREAR NUEVO CLIENTE"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <Grid
+                    x:Name="GvGrid"
+                    ColumnSpacing="1"
+                    RowSpacing="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <dxe:TextEdit
+                        x:Name="txtRut"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="25,0,0,0"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        ClearIconVisibility="Auto"
+                        IsLabelFloating="False"
+                        Keyboard="Numeric"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="RUT"
+                        MaxCharacterCount="8"
+                        MaxCharacterCountOverflowMode="LimitInput"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionStart="0"
+                        Text=""
+                        TextFontAttributes="Bold" />
+                    <dxe:TextEdit
+                        x:Name="txtDigito"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="70,0,25,0"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        BoxMinWidth="10"
+                        ClearIconVisibility="Auto"
+                        Completed="txtRut_Completed"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Digito"
+                        MaxCharacterCount="1"
+                        MaxCharacterCountOverflowMode="LimitInput"
+                        ReturnType="Next"
+                        Text=""
+                        TextFontAttributes="Bold" />
+                </Grid>
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <dxe:TextEdit
+                    x:Name="txtNomCliente"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    ClearIconVisibility="Auto"
+                    Completed="txtNomCliente_Completed"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="NOMBRE CLIENTE"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <dxe:TextEdit
+                    x:Name="txtTelefono"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    ClearIconVisibility="Auto"
+                    Completed="txtTelefono_Completed"
+                    IsLabelFloating="False"
+                    Keyboard="Telephone"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="TELEFONO"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <dxe:TextEdit
+                    x:Name="txtCorreo"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    ClearIconVisibility="Auto"
+                    Completed="txtCorreo_Completed"
+                    IsLabelFloating="False"
+                    Keyboard="Email"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="CORREO"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <dxe:MultilineEdit
+                    x:Name="txtRazonSocial"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="70"
+                    ClearIconVisibility="Auto"
+                    Completed="txtRazonSocial_Completed"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="RAZON SOCIAL"
+                    ReturnType="Next"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <dxe:MultilineEdit
+                    x:Name="txtGiro"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="70"
+                    ClearIconVisibility="Auto"
+                    Completed="txtGiro_Completed"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="GIRO"
+                    ReturnType="Next"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <dxe:MultilineEdit
+                    x:Name="txtDirFact"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="90"
+                    ClearIconVisibility="Auto"
+                    Completed="txtDirFact_Completed"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="DIRECCION FACTURACION"
+                    ReturnType="Next"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="0,0,0,10">
+                <dxe:MultilineEdit
+                    x:Name="txtDirDesp"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="90"
+                    ClearIconVisibility="Auto"
+                    Completed="txtDirDesp_Completed"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="DIRECCION DESPACHO"
+                    ReturnType="Next"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="20,20">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btnUbicacion"
+                        BackgroundColor="red"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnUbicacion_Clicked"
+                        Content="¿Agregar Ubicación ?(optativo)"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="80"
+                        Icon="location"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        ShowIcon="True" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="20,20">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btnGuarda"
+                        BackgroundColor="DarkBlue"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnGuardaCliente_Clicked"
+                        Content="Guardar Cliente"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="80"
+                        Icon="guardar"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        ShowIcon="True" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

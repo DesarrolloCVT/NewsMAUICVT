@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMauiCVT.Views.ControlFosfina">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="REGISTRO CONTROL FOSFINA" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+                </StackLayout>
+                <StackLayout Padding="55,0,60,0" >
+                    <StackLayout>
+                        <TimePicker  x:Name="hora" Format="HH:mm"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="55,0,60,0">
+                    <Label Text="F.Fumigacion" HorizontalTextAlignment="Center"  TextColor="Black"/>
+                    <DatePicker x:Name="FFumi" Format="dd/MM/yyyy" DateSelected="FFumi_DateSelected"></DatePicker>
+                </StackLayout>
+                <StackLayout Padding="55,0,60,0">
+                    <Entry Placeholder="Bodega" x:Name="txt_Bodega" Completed="Txt_Bodega_Completed"/>
+                </StackLayout>
+                <StackLayout Padding="55,0,60,0">
+                    <Entry Placeholder="Mayor a 0,24 ppm" x:Name="txt_MayorPP" Completed="Txt_MayorPP_Completed"/>
+                </StackLayout>
+                <StackLayout Padding="55,0,60,0">
+                    <Picker x:Name="cboA1" SelectedIndexChanged="CboA1_SelectedIndexChanged"
+                            Title="A1/A2"             
+                            TitleColor="Red">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>A1</x:String>
+                                <x:String>A2</x:String>
+                                <x:String>N/A</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </StackLayout>
+                <StackLayout Padding="55,0,60,0">
+                    <Entry Placeholder="Distancia Fumigacion(mts)" x:Name="txt_Distancia" Completed="Txt_Distancia_Completed"/>
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Button Text="AGREGAR" TextColor="White" x:Name="btn_agregar" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="250" Padding="10" 
+                            FlexLayout.AlignSelf="Stretch" IsEnabled="False" HorizontalOptions="CenterAndExpand" Clicked="Btn_agregar_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

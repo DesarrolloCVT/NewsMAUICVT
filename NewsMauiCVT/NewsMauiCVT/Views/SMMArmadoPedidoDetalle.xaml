@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="NewsMauiCVT.Views.SMMArmadoPedidoDetalle"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    Title="SMMArmadoPedidoDetalle">
+    <!--ContentPage.BindingContext>
+        <ViewModel:TestCapturaViewModel />
+    </ContentPage.BindingContext-->
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="5">
+                <Label
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    Text="Pedido N°"
+                    TextColor="Black" />
+                <Label
+                    x:Name="lblPedido"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    Text=""
+                    TextColor="Black" />
+            </StackLayout>
+            <StackLayout>
+                <Button
+                    Margin="35"
+                    BackgroundColor="Teal"
+                    Command="{Binding ButtonCommand}"
+                    CornerRadius="20"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    Text="Scanner con telefono"
+                    TextColor="White" />
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:TextEdit
+                    x:Name="txt_CodBarr"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    ClearIconVisibility="Never"
+                    Completed="txt_CodBarr_Completed"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="Codigo"
+                    Text="{Binding Result}" />
+                <Label
+                    x:Name="lblError"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout Margin="50,0">
+                <Label
+                    x:Name="lblError2"
+                    IsVisible="False"
+                    Text=""
+                    TextColor="Red" />
+            </StackLayout>
+            <StackLayout x:Name="lblDatosProd" IsVisible="False">
+                <Label
+                    x:Name="lblDescripion"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text=""
+                    TextColor="Black" />
+                <Grid
+                    x:Name="GvGrid"
+                    Margin="10,10,10,10"
+                    ColumnSpacing="6"
+                    RowSpacing="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        x:Name="lblCodProducto"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                    <Label
+                        x:Name="lblCantSolicitada"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                    <Label
+                        x:Name="lblSku"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                </Grid>
+            </StackLayout>
+            <StackLayout
+                x:Name="lblIngresos"
+                Margin="10,0,10,0"
+                IsVisible="False">
+                <StackLayout Padding="5,5,5,5">
+                    <dxe:ComboBoxEdit
+                        x:Name="cboNombreRepo"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DisplayMember="Nombre"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="True"
+                        IsLabelFloating="True"
+                        ItemsSource="{Binding}"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="NOMBRE ARMADOR"
+                        ReserveBottomTextLine="True"
+                        TextFontSize="20"
+                        ValueMember="IdReponedor">
+                        <dxe:ComboBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Label Padding="5" Text="{Binding Nombre}" />
+                                </Grid>
+                            </DataTemplate>
+                        </dxe:ComboBoxEdit.ItemTemplate>
+                    </dxe:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout>
+                    <Grid
+                        x:Name="GvGrid2"
+                        Margin="5,0,5,0"
+                        ColumnSpacing="2"
+                        RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <dxe:TextEdit
+                            x:Name="txtDia"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtDia_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="Dia venc." />
+                        <dxe:TextEdit
+                            x:Name="txtMes"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtMes_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="Mes venc." />
+                        <dxe:TextEdit
+                            x:Name="txtAno"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtAno_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="año venc." />
+                    </Grid>
+                </StackLayout>
+                <StackLayout>
+                    <Grid
+                        x:Name="GvGridDatos"
+                        Margin="5,0,5,0"
+                        ColumnSpacing="2"
+                        RowSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0">
+                            <dxe:ComboBoxEdit
+                                x:Name="cboCantCorr"
+                                BorderColor="Green"
+                                ClearIconVisibility="Auto"
+                                DropDownSelectedItemBackgroundColor="GreenYellow"
+                                IsLabelFloating="True"
+                                LabelColor="Green"
+                                LabelFontSize="15"
+                                LabelText="Cant.Correcta"
+                                ReserveBottomTextLine="True"
+                                TextFontSize="15">
+                                <dxe:ComboBoxEdit.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>1</x:String>
+                                        <x:String>0</x:String>
+                                    </x:Array>
+                                </dxe:ComboBoxEdit.ItemsSource>
+                            </dxe:ComboBoxEdit>
+                        </StackLayout>
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <dxe:ComboBoxEdit
+                                x:Name="cboVenCorrecto"
+                                BorderColor="Green"
+                                ClearIconVisibility="Auto"
+                                DropDownSelectedItemBackgroundColor="GreenYellow"
+                                IsLabelFloating="True"
+                                LabelColor="Green"
+                                LabelFontSize="15"
+                                LabelText="Venc.Correcto"
+                                ReserveBottomTextLine="True"
+                                TextFontSize="15">
+                                <dxe:ComboBoxEdit.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>1</x:String>
+                                        <x:String>0</x:String>
+                                    </x:Array>
+                                </dxe:ComboBoxEdit.ItemsSource>
+                            </dxe:ComboBoxEdit>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="0">
+                            <dxe:ComboBoxEdit
+                                x:Name="cboEtiqueta"
+                                BorderColor="Green"
+                                ClearIconVisibility="Auto"
+                                DropDownSelectedItemBackgroundColor="GreenYellow"
+                                IsLabelFloating="True"
+                                LabelColor="Green"
+                                LabelFontSize="15"
+                                LabelText="Etiqueta"
+                                ReserveBottomTextLine="True"
+                                TextFontSize="15">
+                                <dxe:ComboBoxEdit.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>1</x:String>
+                                        <x:String>0</x:String>
+                                    </x:Array>
+                                </dxe:ComboBoxEdit.ItemsSource>
+                            </dxe:ComboBoxEdit>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <dxe:ComboBoxEdit
+                                x:Name="cboEnfilado"
+                                BorderColor="Green"
+                                ClearIconVisibility="Auto"
+                                DropDownSelectedItemBackgroundColor="GreenYellow"
+                                IsLabelFloating="True"
+                                LabelColor="Green"
+                                LabelFontSize="15"
+                                LabelText="Enfilado"
+                                ReserveBottomTextLine="True"
+                                TextFontSize="15">
+                                <dxe:ComboBoxEdit.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>1</x:String>
+                                        <x:String>0</x:String>
+                                    </x:Array>
+                                </dxe:ComboBoxEdit.ItemsSource>
+                            </dxe:ComboBoxEdit>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Grid.Column="0">
+                            <dxe:ComboBoxEdit
+                                x:Name="cboEstibado"
+                                BorderColor="Green"
+                                ClearIconVisibility="Auto"
+                                DropDownSelectedItemBackgroundColor="GreenYellow"
+                                IsLabelFloating="True"
+                                LabelColor="Green"
+                                LabelFontSize="15"
+                                LabelText="Estibado"
+                                ReserveBottomTextLine="True"
+                                TextFontSize="15">
+                                <dxe:ComboBoxEdit.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>1</x:String>
+                                        <x:String>0</x:String>
+                                    </x:Array>
+                                </dxe:ComboBoxEdit.ItemsSource>
+                            </dxe:ComboBoxEdit>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2" Grid.Column="1">
+                            <dxe:ComboBoxEdit
+                                x:Name="cboCondPallet"
+                                BorderColor="Green"
+                                ClearIconVisibility="Auto"
+                                DropDownSelectedItemBackgroundColor="GreenYellow"
+                                IsLabelFloating="True"
+                                LabelColor="Green"
+                                LabelFontSize="15"
+                                LabelText="Cond.Pallet"
+                                ReserveBottomTextLine="True"
+                                TextFontSize="15">
+                                <dxe:ComboBoxEdit.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>1</x:String>
+                                        <x:String>0</x:String>
+                                    </x:Array>
+                                </dxe:ComboBoxEdit.ItemsSource>
+                            </dxe:ComboBoxEdit>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Margin="0,0,0,50">
+                    <StackLayout Margin="25,0">
+                        <dxc:DXButton
+                            x:Name="btn_agregar"
+                            BackgroundColor="DarkBlue"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            Clicked="btn_agregar_Clicked"
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            HeightRequest="80"
+                            Icon="guardar"
+                            ShowIcon="True"
+                            PressedBackgroundColor="MediumSeaGreen"
+                            PressedBorderColor="DarkOrange"
+                            Content="GUARDAR" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

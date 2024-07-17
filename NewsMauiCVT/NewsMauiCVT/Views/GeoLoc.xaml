@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.GeoLoc"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="GeoLoc">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Margin="25">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text="Busqueda de coordenadas en su localizacion, recuerde mantener su GPS encendido"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Margin="20,0">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="loging"
+                        BackgroundColor="DarkBlue"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btn_clicked"
+                        Content="Buscar"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        ShowIcon="True" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="10">
+                <dxe:TextEdit
+                    x:Name="lblLong"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    ClearIconVisibility="Never"
+                    IsEnabled="False"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="Longitud"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="10">
+                <dxe:TextEdit
+                    x:Name="lblLat"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    ClearIconVisibility="Never"
+                    IsEnabled="False"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="Latitud"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="10">
+                <dxe:TextEdit
+                    x:Name="lblAlt"
+                    Margin="25,0"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    ClearIconVisibility="Never"
+                    IsEnabled="False"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="15"
+                    LabelText="Altitud"
+                    Text=""
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="40,0">
+                <dxc:DXButton
+                    x:Name="Mapa"
+                    BackgroundColor="Green"
+                    BorderColor="Black"
+                    BorderThickness="2"
+                    Clicked="Mapa_Clicked"
+                    Content="Ver mapa"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    HeightRequest="70"
+                    IsVisible="True"
+                    PressedBackgroundColor="MediumSeaGreen"
+                    PressedBorderColor="DarkOrange" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             x:Class="NewsMauiCVT.Views.SMM_ConfirmaPalletTransfer"
+             Title="SMM_ConfirmaPalletTransfer">
+    
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label Text="CONFIRMA PALLET EN TRANSFERENCIA SMM" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:TextEdit LabelText="Folio Transferencia " LabelFontSize="15"  BoxHeight="50" x:Name="txtFolioTransfer" Completed="txtFolioTransfer_Completed" 
+                      IsLabelFloating="False" BorderColor="Green" LabelColor="Green"                               
+                     Keyboard="Numeric">
+                </dxe:TextEdit>
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txtNPallet" Completed="txtNPallet_Completed" 
+                      IsLabelFloating="False" BorderColor="Green" LabelColor="Green"                               
+                     Keyboard="Numeric" IsVisible="false">
+                </dxe:TextEdit>
+            </StackLayout>
+            <StackLayout Margin="25,0">
+                <Grid ColumnSpacing="2" RowSpacing="6" Margin="5,0,5,0" x:Name="GvGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="" x:Name="lbl_codproducto" HorizontalOptions="Start" VerticalOptions="Start" FontSize="Small" TextColor="Red" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="" x:Name="lbl_producto" HorizontalOptions="Start" VerticalOptions="Start" FontSize="Small" TextColor="Red" Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="" x:Name="lbl_Cantidad" HorizontalOptions="Start" VerticalOptions="Start" FontSize="Small" TextColor="Red" Grid.Row="1" Grid.Column="0"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout Margin="20,20">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton  
+                        Content="GUARDAR"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        x:Name="btn_agregar"
+                        HeightRequest="80" 
+                        PressedBackgroundColor="MediumSeaGreen"
+                        BackgroundColor="DarkBlue"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        PressedBorderColor="DarkOrange"
+                        Icon="guardar" 
+                        IsVisible="True"
+                        Clicked="btn_agregar_Clicked"
+                        IsEnabled="False">
+                    </dxc:DXButton>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="20,10,20,50">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton  
+                        Content="Terminar" 
+                        CornerRadius="20" 
+                        FontAttributes="Bold" 
+                        x:Name="btnSalir" 
+                        HeightRequest="80"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        BackgroundColor="Red"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        PressedBorderColor="DarkOrange"
+                        Icon="off"
+                        ShowIcon="True"
+                        Clicked="btnSalir_Clicked" 
+                        IsEnabled="False"
+                        IsVisible="False">
+                    </dxc:DXButton>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

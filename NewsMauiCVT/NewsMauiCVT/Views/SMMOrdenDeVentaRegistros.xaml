@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMMOrdenDeVentaRegistros"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+    Title="SMMOrdenDeVentaRegistros">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Margin="25">
+                <Label
+                    x:Name="lblFolioOrden"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text=""
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Margin="20,10,20,20">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btnSalir"
+                        BackgroundColor="Green"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnSalir_Clicked"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        Icon="volver"
+                        ShowIcon="True"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="Volver" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout Margin="25,0,150,10" VerticalOptions="Fill">
+                    <dxe:TextEdit
+                        x:Name="txtSubtotal"
+                        BorderColor="Green"
+                        ClearIconVisibility="Never"
+                        IsLabelFloating="False"
+                        IsReadOnly="True"
+                        LabelColor="Green"
+                        LabelText="SUBTOTAL"
+                        Text="" />
+                </StackLayout>
+                <StackLayout Margin="25,0,150,10" VerticalOptions="Fill">
+                    <dxe:TextEdit
+                        x:Name="txtTotalImp"
+                        BorderColor="Green"
+                        ClearIconVisibility="Never"
+                        IsLabelFloating="False"
+                        IsReadOnly="True"
+                        LabelColor="Green"
+                        LabelText="TOTAL IMPUESTO"
+                        Text="" />
+                </StackLayout>
+                <StackLayout Margin="25,0,150,10" VerticalOptions="Fill">
+                    <dxe:TextEdit
+                        x:Name="txtTotal"
+                        BorderColor="Green"
+                        ClearIconVisibility="Never"
+                        IsLabelFloating="False"
+                        IsReadOnly="True"
+                        LabelColor="Green"
+                        LabelText="TOTAL"
+                        Text="" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="0,0,0,25">
+                <StackLayout>
+                    <dxg:DataGridView x:Name="GvData">
+                        <dxg:DataGridView.ColumnHeaderAppearance>
+                            <dxg:ColumnHeaderAppearance
+                                BackgroundColor="#3399ff"
+                                FontAttributes="Bold"
+                                FontColor="White"
+                                FontSize="12" />
+                        </dxg:DataGridView.ColumnHeaderAppearance>
+                        <dxg:DataGridView.CellAppearance>
+                            <dxg:CellAppearance
+                                BackgroundColor="#333333"
+                                BorderColor="#515151"
+                                FontColor="White"
+                                FontSize="14"
+                                Padding="5"
+                                SelectionColor="#f78a09"
+                                SelectionFontColor="Black" />
+                        </dxg:DataGridView.CellAppearance>
+                    </dxg:DataGridView>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

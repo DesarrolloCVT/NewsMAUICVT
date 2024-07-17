@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMM_ConsultaProducto"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMM_ConsultaProducto">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Padding="20">
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        Text="CONSULTA PRODUCTO"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:TextEdit
+                        x:Name="txt_pallet"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        Completed="Txt_pallet_Completed"
+                        IsLabelFloating="False"
+                        Keyboard="Numeric"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Codigo" />
+                    <Label
+                        x:Name="lblError2"
+                        IsVisible="False"
+                        Text=""
+                        TextColor="Red" />
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Label
+                        x:Name="lblProducto"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                </StackLayout>
+                <Grid
+                    x:Name="GvGrid"
+                    Margin="10,0,10,0"
+                    ColumnSpacing="6"
+                    RowSpacing="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        x:Name="lblPrecio"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                    <Label
+                        x:Name="lblUM"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                    <Label
+                        x:Name="lblCantUM"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                    <Label
+                        x:Name="lblGrupArt"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                    <Label
+                        x:Name="lblUnidades"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                </Grid>
+                <StackLayout Padding="10">
+                    <Label
+                        x:Name="lblEstado"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text="" />
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Button
+                        x:Name="btn_Limpiar"
+                        BackgroundColor="#00b33c"
+                        Clicked="Btn_Limpiar_Clicked"
+                        CornerRadius="5"
+                        FlexLayout.AlignSelf="Stretch"
+                        HorizontalOptions="CenterAndExpand"
+                        Padding="10"
+                        Text="LIMPIAR"
+                        TextColor="White"
+                        WidthRequest="250" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMMDetalleRecepcion"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    Title="SMMDetalleRecepcion">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Padding="5">
+                    <Label
+                        FontSize="Small"
+                        HorizontalTextAlignment="Center"
+                        Text="Recepcion Folio"
+                        TextColor="Black" />
+                    <Label
+                        x:Name="lblFolioRecepcion"
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout Margin="25,0">
+                    <dxe:TextEdit
+                        x:Name="txt_CodProducto"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        ClearIconVisibility="Never"
+                        Completed="Txt_CodProducto_Completed"
+                        IsLabelFloating="False"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Codigo" />
+                    <Label
+                        x:Name="lblError"
+                        IsVisible="False"
+                        Text=""
+                        TextColor="Red" />
+                </StackLayout>
+                <StackLayout x:Name="lblDatosProd" IsVisible="False">
+                    <Label
+                        x:Name="lblDescripion"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text=""
+                        TextColor="Black" />
+                    <Grid
+                        x:Name="GvGrid"
+                        Margin="10,10,10,10"
+                        ColumnSpacing="6"
+                        RowSpacing="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            x:Name="lblCodProducto"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text=""
+                            TextColor="Black" />
+                        <Label
+                            x:Name="lblCosto"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text=""
+                            TextColor="Black" />
+                        <Label
+                            x:Name="lblCantSolicitada"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text=""
+                            TextColor="Black" />
+                        <Label
+                            x:Name="lblSku"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text=""
+                            TextColor="Black" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout
+                    x:Name="lblIngresos"
+                    Margin="10,0,10,0"
+                    IsVisible="False">
+                    <Grid
+                        x:Name="GvDatoElab"
+                        Margin="5,0,5,0"
+                        ColumnSpacing="2"
+                        RowSpacing="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <dxe:TextEdit
+                            x:Name="txtDiaElab"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtDiaElab_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="Dia Elab." />
+                        <dxe:TextEdit
+                            x:Name="txtMesElab"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtMesElab_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="Mes Elab." />
+                        <dxe:TextEdit
+                            x:Name="txtAnoElab"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtAnoElab_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="año Elab." />
+                    </Grid>
+                </StackLayout>
+                <StackLayout
+                    x:Name="lblIngresos2"
+                    Margin="10,0,10,0"
+                    IsVisible="False">
+                    <Grid
+                        x:Name="GvDatosVenc"
+                        Margin="5,0,5,0"
+                        ColumnSpacing="2"
+                        RowSpacing="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <dxe:TextEdit
+                            x:Name="txtDiaVenc"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtDiaVenc_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="Dia Venc." />
+                        <dxe:TextEdit
+                            x:Name="txtMesVenc"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtMesVenc_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="Mes Venc." />
+                        <dxe:TextEdit
+                            x:Name="txtAnoVenc"
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            Completed="txtAnoVenc_Completed"
+                            IsLabelFloating="False"
+                            Keyboard="Numeric"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="año Venc." />
+                    </Grid>
+                    <dxe:TextEdit
+                        x:Name="txt_cantidad"
+                        BorderColor="Green"
+                        BoxHeight="50"
+                        IsLabelFloating="False"
+                        Keyboard="Numeric"
+                        LabelColor="Green"
+                        LabelFontSize="15"
+                        LabelText="Cantidad" />
+                </StackLayout>
+                <StackLayout Padding="10">
+                    <Button Text="GUARDAR" TextColor="White" x:Name="btn_Guardar" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="250" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand" IsVisible="False" Clicked="Btn_Guardar_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

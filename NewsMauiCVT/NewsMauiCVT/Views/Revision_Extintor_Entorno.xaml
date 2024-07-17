@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMauiCVT.Views.Revision_Extintor_Entorno"
+             Title="Revision_Extintor_Entorno">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Padding="20">
+                <Label Text="" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black" x:Name="lblFolioEntorno"/>
+            </StackLayout>
+            <StackLayout Padding="10"></StackLayout>
+            <Grid ColumnSpacing="10" RowSpacing="10" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblPregunta" Text="1. ¿Se encuentra anclado a la pared (altura max. 1,30 mts)?"  Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
+                <Picker x:Name="cboRespEntorno" TitleColor="Red" Grid.Row="1" Grid.Column="0">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>SI</x:String>
+                            <x:String>NO</x:String>
+                            <x:String>N/A</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Entry Placeholder="Observación" x:Name="txtComentariosEntorno" Grid.Row="2" Grid.Column="0"/>
+            </Grid>
+            <StackLayout Padding="55,0,60,0">
+                <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red" />
+            </StackLayout>
+            <StackLayout Padding="10">
+                <Button Text="Sigiente" TextColor="White" x:Name="btn_generarEntorno"  BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand" Clicked="Btn_generarEntorno_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

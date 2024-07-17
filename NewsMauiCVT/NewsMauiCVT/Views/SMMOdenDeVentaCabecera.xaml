@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsMauiCVT.Views.SMMOdenDeVentaCabecera"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+    Title="SMMOdenDeVentaCabecera">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Padding="0,0,0,10">
+            <StackLayout Margin="25">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    Text="ORDEN DE VENTAS"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Margin="10,0,10,15">
+                <dxe:ComboBoxEdit
+                    x:Name="cboCliente"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="NombreCliente"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="True"
+                    IsLabelFloating="True"
+                    ItemsSource="{Binding}"
+                    LabelColor="Green"
+                    LabelText="RUT CLIENTE"
+                    ReserveBottomTextLine="True"
+                    SelectionChanged="ComboBoxEdit_SelectionChanged"
+                    TextFontAttributes="Bold"
+                    TextFontSize="15"
+                    ValueMember="RutCliente">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding RutCliente}" />
+                                <Label
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    Text="{Binding NombreCliente}" />
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="10,0,10,15">
+                <dxe:ComboBoxEdit
+                    x:Name="cboDirDespacho"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="Direccion"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="True"
+                    IsLabelFloating="True"
+                    LabelColor="Green"
+                    LabelText="DIRECCION DESPACHO"
+                    ReserveBottomTextLine="True"
+                    SelectionChanged="cboDirDespacho_SelectionChanged"
+                    TextFontAttributes="Bold"
+                    TextFontSize="15"
+                    ValueMember="Direccion">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding Direccion}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="10,0,10,15">
+                <dxe:ComboBoxEdit
+                    x:Name="cboDirFact"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="DireccionFac"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="True"
+                    IsLabelFloating="True"
+                    LabelColor="Green"
+                    LabelText="DIRECCION FACTURACION"
+                    ReserveBottomTextLine="True"
+                    SelectionChanged="cboDirFact_SelectionChanged"
+                    TextFontAttributes="Bold"
+                    TextFontSize="15"
+                    ValueMember="DireccionFac">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding DireccionFac}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="10,0,10,15">
+                <dxe:DateEdit
+                    x:Name="dteFechEntrega"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DateChanged="DateEdit_DateChanged"
+                    DisplayFormat="dd-MM-yyyy"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelText="FECHA ENTREGA"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    TextFontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Margin="20,20,0,25">
+                <StackLayout Margin="25,0">
+                    <dxc:DXButton
+                        x:Name="btnCrearOrden"
+                        BackgroundColor="DarkBlue"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btnCrearOrden_Clicked"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="80"
+                        Icon="Guardar"
+                        ShowIcon="True"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="Guardar y Crear" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
