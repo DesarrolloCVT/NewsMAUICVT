@@ -11,14 +11,13 @@ using System.Threading.Tasks;
 using NewsMauiCVT.Platforms.Android;
 using AndroidApp = Android.App.Application;
 
-[assembly: Dependency(typeof(GetSSIDAndroid))]
 namespace NewsMauiCVT.Platforms.Android
 {   
     public class GetSSIDAndroid : IGetSSID
     {
         public string GetSSID()
         {
-            WifiManager wifiManager = (WifiManager)AndroidApp.Context.GetSystemService(Context.WifiService);
+            WifiManager? wifiManager = AndroidApp.Context.GetSystemService(Context.WifiService) as WifiManager;
             WifiInfo currentWifi = wifiManager.ConnectionInfo;
             try
             {   
@@ -37,7 +36,6 @@ namespace NewsMauiCVT.Platforms.Android
             catch (Exception e) 
             {
                 Console.WriteLine(e.ToString());
-                System.Diagnostics.Debug.WriteLine(e);
                 return currentWifi.SSID;
             }
         }
