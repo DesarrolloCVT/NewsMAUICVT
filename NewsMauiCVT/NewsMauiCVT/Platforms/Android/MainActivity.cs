@@ -24,6 +24,7 @@ namespace NewsMauiCVT
             Android.Manifest.Permission.ManageExternalStorage,
             Android.Manifest.Permission.ReadExternalStorage,
             Android.Manifest.Permission.WriteExternalStorage,
+            Android.Manifest.Permission.AccessNetworkState
         };
 
         protected override void OnCreate(Bundle bundle)

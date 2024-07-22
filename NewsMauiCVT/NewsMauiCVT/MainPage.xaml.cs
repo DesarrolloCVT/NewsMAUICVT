@@ -2,6 +2,8 @@
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Views;
 using Newtonsoft.Json;
+using System.Text;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 
 namespace NewsMauiCVT
@@ -35,69 +37,76 @@ namespace NewsMauiCVT
                     }
                     string usuario = txtUsuario.Text.ToLower();
                     string clave = txtContraseña.Text.ToLower();
-                    HttpClient ClientHttp = new()
+
+                    try
                     {
-                        BaseAddress = new Uri("http://wsintranet.cvt.local/")
-                    };
-
-                    //para Consultar
-                    var rested = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave);//.Result;
-                    var rest = rested.Result;
-
-                    if (rest.IsSuccessStatusCode)
-                    {
-                        var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                        var listado = JsonConvert.DeserializeObject<int>(resultadoStr);
-
-                        if (listado != 0)
+                        HttpClient ClientHttp = new()
                         {
-                            try
-                            {
-                                DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
-                                var rest2 = ClientHttp.GetAsync("api/Usuario?idUser=" + listado).Result;
-                                var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
-                                List<UsuarioClass> du = JsonConvert.DeserializeObject<List<UsuarioClass>>(resultadoStr2);
+                            BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                        };
 
-                                //if (du.Count != 0) { }
-                                foreach (var d in du)
+                        //para Consultar
+                        var rested = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave);//.Result;
+                        //var rest = rested.Result;
+                        var rest = rested.Result;
+
+                        if (rest.IsSuccessStatusCode)
+                        {
+                            var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                            var listado = JsonConvert.DeserializeObject<int>(resultadoStr);
+
+                            if (listado != 0)
+                            {
+                                try
                                 {
-                                    App.Iduser = listado;
-                                    App.UserSistema = d.UsuarioSistema;
-                                    App.NombreUsuario = d.NombreUsuario.ToString();
-                                    App.idPerfil = d.IdPerfilMovile;
-                                    // App.vali = true;
+                                    DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                                    var rest2 = ClientHttp.GetAsync("api/Usuario?idUser=" + listado).Result;
+                                    var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
+                                    List<UsuarioClass> du = JsonConvert.DeserializeObject<List<UsuarioClass>>(resultadoStr2);
+
+                                    //if (du.Count != 0) { }
+                                    foreach (var d in du)
+                                    {
+                                        App.Iduser = listado;
+                                        App.UserSistema = d.UsuarioSistema;
+                                        App.NombreUsuario = d.NombreUsuario.ToString();
+                                        App.idPerfil = d.IdPerfilMovile;
+                                        // App.vali = true;
+                                    }
+
+                                    await Navigation.PushAsync(new PageMain());
+                                    txtUsuario.Text = string.Empty;
+                                    txtContraseña.Text = string.Empty;
+                                }
+                                catch
+                                {
+                                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                    await DisplayAlert("Alerta", "No tiene los perfiles necesarios para poder acceder a esta APP", "OK");
+                                    txtUsuario.Text = string.Empty;
+                                    txtContraseña.Text = string.Empty;
+                                    txtUsuario.Focus();
+                                    loging.IsEnabled = true;
                                 }
 
-                                await Navigation.PushAsync(new PageMain());
-                                txtUsuario.Text = string.Empty;
-                                txtContraseña.Text = string.Empty;
-                            }
-                            catch
-                            {
-                                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                await DisplayAlert("Alerta", "No tiene los perfiles necesarios para poder acceder a esta APP", "OK");
-                                txtUsuario.Text = string.Empty;
-                                txtContraseña.Text = string.Empty;
-                                txtUsuario.Focus();
-                                loging.IsEnabled = true;
                             }
 
                         }
+                        else
+                        {
+                            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                            await DisplayAlert("Alerta", "Usuario o Contraseña No Existen ", "Aceptar");
+                            txtUsuario.Text = string.Empty;
+                            txtContraseña.Text = string.Empty;
+                            txtUsuario.Focus();
+                            loging.IsEnabled = true;
 
+
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                        await DisplayAlert("Alerta", "Usuario o Contraseña No Existen ", "Aceptar");
-                        txtUsuario.Text = string.Empty;
-                        txtContraseña.Text = string.Empty;
-                        txtUsuario.Focus();
-                        loging.IsEnabled = true;
-
-
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
                     }
-                    //}
-
                 }
                 else
                 {
