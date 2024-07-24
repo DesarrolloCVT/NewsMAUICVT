@@ -27,7 +27,8 @@ namespace NewsMauiCVT.Datos
                 if (rest2.IsSuccessStatusCode)
                 {
                     var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                    DataTable dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr);
+                    DataTable dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
+                                throw new InvalidOperationException();
                     if (resultadoStr.Equals("[]"))
                     {
                         Estado = 0;
@@ -56,7 +57,8 @@ namespace NewsMauiCVT.Datos
                 var rest2 = ClientHttp.GetAsync("api/Produccion?Idpos=" + idpos).Result;
 
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch
             {
@@ -80,7 +82,8 @@ namespace NewsMauiCVT.Datos
                 var rest2 = ClientHttp.GetAsync("api/Produccion?NumPosicion=" + idpos).Result;
 
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch
             {

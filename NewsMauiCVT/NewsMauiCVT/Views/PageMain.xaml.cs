@@ -61,7 +61,6 @@ public partial class PageMain : FlyoutPage
             {
                 if (tr.TituloMenu.Equals(t.title))
                 {
-
                     options1.Add(t);
                 }
             }
@@ -86,8 +85,6 @@ public partial class PageMain : FlyoutPage
             {
                 await Navigation.PopToRootAsync();
                 Application.Current.Quit();
-
-
             }
             else
             {

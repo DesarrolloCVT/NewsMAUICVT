@@ -54,15 +54,21 @@
                         MaxCharacterCountOverflowMode="LimitInput" />
                 </StackLayout>
                 <StackLayout Margin="25,0">
-                    <Button
-                        x:Name="loging"
+                    <dx:DXButton  
+                        Content="INICIAR" 
+                        CornerRadius="20" 
+                        FontAttributes="Bold" 
+                        x:Name="loging" 
+                        HeightRequest="50"  
+                        Clicked="Loging_ClickedAsync" 
+                        PressedBackgroundColor="MediumSeaGreen"
                         BackgroundColor="#3399ff"
                         BorderColor="Black"
-                        Clicked="Loging_ClickedAsync"
-                        CornerRadius="20"
-                        FontAttributes="Bold"
-                        HeightRequest="50"
-                        Text="INICIAR" />
+                        BorderThickness="2"
+                        PressedBorderColor="DarkOrange"
+                        Icon="enter" 
+                        ShowIcon="True">
+                    </dx:DXButton>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

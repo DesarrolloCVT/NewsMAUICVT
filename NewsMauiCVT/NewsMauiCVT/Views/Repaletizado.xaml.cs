@@ -5,17 +5,17 @@ using System.Net.Http;
 
 namespace NewsMauiCVT.Views;
 
+[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class Repaletizado : ContentPage
 {
 	public Repaletizado()
 	{
-		InitializeComponent();
         InitializeComponent();
         btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
         LayoutOrigen.IsVisible = false;
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         ClearComponent();
@@ -39,7 +39,8 @@ public partial class Repaletizado : ContentPage
             if (rest2.IsSuccessStatusCode)
             {
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr);
+                List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr) ??
+                                throw new InvalidOperationException();
                 if (dt.Count() == 0)
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
@@ -55,7 +56,8 @@ public partial class Repaletizado : ContentPage
                         LayoutOrigen.IsVisible = true;
                         var rest = ClientHttp.GetAsync("api/Produccion/" + p.ArticleProvider_Id).Result;
                         var resultadoStr2 = rest.Content.ReadAsStringAsync().Result;
-                        List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2);
+                        List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2) ??
+                                throw new InvalidOperationException();
                         foreach (var a in ap)
                         {
                             lbl_codproducto.Text = "Cod.Producto: " + a.ArticleProvider_CodClient;
@@ -67,7 +69,8 @@ public partial class Repaletizado : ContentPage
                         int idSite = JsonConvert.DeserializeObject<int>(resultadoStr3);
                         var rest4 = ClientHttp.GetAsync("api/Bodega?siteid=" + idSite).Result;
                         var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
-                        string vBodega = JsonConvert.DeserializeObject<string>(resultadoStr4);
+                        string vBodega = JsonConvert.DeserializeObject<string>(resultadoStr4) ??
+                                throw new InvalidOperationException();
 
                         lblBodega.Text = "Bodega: " + vBodega;
                         lbl_lote.Text = "Lote: " + p.Package_Lot;
@@ -140,7 +143,8 @@ public partial class Repaletizado : ContentPage
             if (rest2.IsSuccessStatusCode)
             {
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr);
+                List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr) ??
+                                throw new InvalidOperationException();
                 if (dt.Count() == 0)
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
@@ -156,7 +160,8 @@ public partial class Repaletizado : ContentPage
                         LayoutDestinoExistente.IsVisible = true;
                         var rest = ClientHttp.GetAsync("api/Produccion/" + p.ArticleProvider_Id).Result;
                         var resultadoStr2 = rest.Content.ReadAsStringAsync().Result;
-                        List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2);
+                        List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2) ??
+                                throw new InvalidOperationException();
 
                         foreach (var a in ap)
                         {
@@ -168,7 +173,8 @@ public partial class Repaletizado : ContentPage
                         int idSite = JsonConvert.DeserializeObject<int>(resultadoStr3);
                         var rest4 = ClientHttp.GetAsync("api/Bodega?siteid=" + idSite).Result;
                         var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
-                        string vBodega = JsonConvert.DeserializeObject<string>(resultadoStr4);
+                        string vBodega = JsonConvert.DeserializeObject<string>(resultadoStr4) ??
+                                throw new InvalidOperationException();
 
                         lbl_dBodega.Text = "Bodega: " + vBodega;
                         lbl_dlote.Text = "Lote: " + p.Package_Lot;
@@ -311,7 +317,8 @@ public partial class Repaletizado : ContentPage
                                     if (rest4.IsSuccessStatusCode)
                                     {
                                         var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
-                                        string NumPallet = JsonConvert.DeserializeObject<string>(resultadoStr4);
+                                        string NumPallet = JsonConvert.DeserializeObject<string>(resultadoStr4) ??
+                                throw new InvalidOperationException();
 
                                         #region AccTipoPallet
                                         DatosTipoPallet dTip = new DatosTipoPallet();
@@ -399,7 +406,7 @@ public partial class Repaletizado : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)

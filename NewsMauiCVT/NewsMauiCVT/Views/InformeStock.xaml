@@ -75,7 +75,7 @@
                         CornerRadius="20"
                         FontAttributes="Bold"
                         HeightRequest="65"
-                        Icon="Buscar"
+                        Icon="buscar"
                         PressedBackgroundColor="MediumSeaGreen"
                         PressedBorderColor="DarkOrange"
                         ShowIcon="True" />

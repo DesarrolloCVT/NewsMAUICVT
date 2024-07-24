@@ -36,7 +36,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/OrdenDeVentaSMM?Rutcli=" + RutCliente).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ret = JsonConvert.DeserializeObject<string>(resultadoStr);
+                ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ret;
@@ -67,7 +68,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/OrdenDeVentaSMM").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMClienteOrdenDeVentas>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMClienteOrdenDeVentas>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -82,7 +84,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/OrdenDeVentaSMM?CodCliente=" + CodCliente).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMDireccionOrdenDeVentas>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMDireccionOrdenDeVentas>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -96,7 +99,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/OrdenDeVentaSMM?DirClienteFactura=" + DirClienteFactura).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMDireccionFactOrdenVentas>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMDireccionFactOrdenVentas>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -127,7 +131,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/OrdenDeVentaDetalleSMM").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMProductosOrdenDeVenta>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMProductosOrdenDeVenta>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -162,7 +167,8 @@ namespace NewsMauiCVT.Datos
                 var rest2 = ClientHttp.GetAsync("api/OrdenDeVentaDetalleSMM?idFolio=" + idFolio).Result;
 
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch
             {
@@ -185,7 +191,8 @@ namespace NewsMauiCVT.Datos
                 var rest2 = ClientHttp.GetAsync("api/OrdenDeVentaDetalleSMM?idOrdendeVenta=" + idOrdendeVenta).Result;
 
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<TotalesOrden>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<TotalesOrden>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch
             {

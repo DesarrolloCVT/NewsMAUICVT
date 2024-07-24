@@ -18,7 +18,7 @@ public partial class SMM_TomaInventario : ContentPage
         lblError3.IsVisible = false;
 
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -250,7 +250,7 @@ public partial class SMM_TomaInventario : ContentPage
                             int idBod = Convert.ToInt32(dTi.ValidaBodegaSMM(txt_Bodega.SelectedItem.ToString()));
                             int iduser = App.Iduser;
                             string fecha = txtAno.Text + "-" + txtMes.Text + "-" + txtDia.Text;
-                            string ubPasillo = cboPasillo.SelectedItem.ToString();
+                            string ubPasillo = cboPasillo.SelectedItem.ToString() ?? throw new InvalidOperationException();
 
                             bool rest = dTi.insertaInventario(idinv, dn14, codPro, cant, idBod, iduser, ubPasillo, fecha, CantxEmp, CantBs, TpEmpaq);
                             if (rest == true)
@@ -300,7 +300,7 @@ public partial class SMM_TomaInventario : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
 

@@ -14,7 +14,7 @@ public partial class SMM_Recepcion : ContentPage
         cargaDatos();
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();

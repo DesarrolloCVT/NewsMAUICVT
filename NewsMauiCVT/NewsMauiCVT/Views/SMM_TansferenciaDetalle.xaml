@@ -90,7 +90,7 @@
                             BorderColor="Black"
                             BorderThickness="2"
                             PressedBorderColor="DarkOrange"
-                            Icon="Buscar"
+                            Icon="buscar"
                             ShowIcon="True"
                             Clicked="btnVerRegistro_Clicked">
                         </dxc:DXButton>

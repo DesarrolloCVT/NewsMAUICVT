@@ -2,19 +2,23 @@
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Views;
 using Newtonsoft.Json;
-using System.Text;
-using System.Net.Http;
+using Plugin.Maui.Audio;
 using System.Text.RegularExpressions;
 
 namespace NewsMauiCVT
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage 
     {
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+        readonly IAudioManager audioManager;
+        IAudioPlayer audioPlayer;
 
+        public MainPage(IAudioManager audioManager)
+        {
+            this.audioManager = audioManager;
+            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+            txtUsuario.Focus();
+        }
         private async void Loging_ClickedAsync(object sender, EventArgs e)
         {
             using (UserDialogs.Instance.Loading("Verificando Datos"))
@@ -40,67 +44,73 @@ namespace NewsMauiCVT
 
                     try
                     {
-                        HttpClient ClientHttp = new()
+                        /*HttpClient ClientHttp = new()
                         {
                             BaseAddress = new Uri("http://wsintranet.cvt.local/")
-                        };
+                        };*/
 
-                        //para Consultar
-                        var rested = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave);//.Result;
-                        //var rest = rested.Result;
-                        var rest = rested.Result;
-
-                        if (rest.IsSuccessStatusCode)
+                        HttpClient ClientHttp = new HttpClient();
+                        ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                        try
                         {
-                            var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                            var listado = JsonConvert.DeserializeObject<int>(resultadoStr);
+                            //para Consultar
+                            var rest = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave).Result;
 
-                            if (listado != 0)
+                            if (rest.IsSuccessStatusCode)
                             {
-                                try
-                                {
-                                    DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
-                                    var rest2 = ClientHttp.GetAsync("api/Usuario?idUser=" + listado).Result;
-                                    var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
-                                    List<UsuarioClass> du = JsonConvert.DeserializeObject<List<UsuarioClass>>(resultadoStr2);
+                                var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                                var listado = JsonConvert.DeserializeObject<int>(resultadoStr);
 
-                                    //if (du.Count != 0) { }
-                                    foreach (var d in du)
+                                if (listado != 0)
+                                {
+                                    try
                                     {
-                                        App.Iduser = listado;
-                                        App.UserSistema = d.UsuarioSistema;
-                                        App.NombreUsuario = d.NombreUsuario.ToString();
-                                        App.idPerfil = d.IdPerfilMovile;
-                                        // App.vali = true;
+                                        audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("Correcto.mp3"));
+                                        audioPlayer.Play();
+                                        //DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                                        var rest2 = ClientHttp.GetAsync("api/Usuario?idUser=" + listado).Result;
+                                        var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
+                                        List<UsuarioClass> du = JsonConvert.DeserializeObject<List<UsuarioClass>>(resultadoStr2) ??
+                                    throw new InvalidOperationException();
+
+                                        //if (du.Count != 0) { }
+                                        foreach (var d in du)
+                                        {
+                                            App.Iduser = listado;
+                                            App.UserSistema = d.UsuarioSistema;
+                                            App.NombreUsuario = d.NombreUsuario.ToString();
+                                            App.idPerfil = d.IdPerfilMovile;
+                                            // App.vali = true;
+                                        }
+                                        await Navigation.PushAsync(new PageMain());
+                                        txtUsuario.Text = string.Empty;
+                                        txtContraseña.Text = string.Empty;
                                     }
-
-                                    await Navigation.PushAsync(new PageMain());
-                                    txtUsuario.Text = string.Empty;
-                                    txtContraseña.Text = string.Empty;
+                                    catch
+                                    {
+                                        //DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                        await DisplayAlert("Alerta", "No tiene los perfiles necesarios para poder acceder a esta APP", "OK");
+                                        txtUsuario.Text = string.Empty;
+                                        txtContraseña.Text = string.Empty;
+                                        txtUsuario.Focus();
+                                        loging.IsEnabled = true;
+                                    }
                                 }
-                                catch
-                                {
-                                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                    await DisplayAlert("Alerta", "No tiene los perfiles necesarios para poder acceder a esta APP", "OK");
-                                    txtUsuario.Text = string.Empty;
-                                    txtContraseña.Text = string.Empty;
-                                    txtUsuario.Focus();
-                                    loging.IsEnabled = true;
-                                }
-
                             }
-
-                        }
-                        else
+                            else
+                            {
+                                //DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                await DisplayAlert("Alerta", "Usuario o Contraseña No Existen ", "Aceptar");
+                                txtUsuario.Text = string.Empty;
+                                txtContraseña.Text = string.Empty;
+                                txtUsuario.Focus();
+                                loging.IsEnabled = true;
+                            }
+                        } catch (AggregateException ex)
                         {
-                            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                            await DisplayAlert("Alerta", "Usuario o Contraseña No Existen ", "Aceptar");
-                            txtUsuario.Text = string.Empty;
-                            txtContraseña.Text = string.Empty;
-                            txtUsuario.Focus();
-                            loging.IsEnabled = true;
-
-
+                            Console.WriteLine("1_AggregateException!!!!!!: " + ex.StackTrace);
+                            Console.WriteLine("2_AggregateException!!!!!!: " + ex.InnerException);
+                            Console.WriteLine("2_AggregateException!!!!!!: " + ex.InnerException.Message);
                         }
                     }
                     catch (Exception ex)
@@ -110,7 +120,7 @@ namespace NewsMauiCVT
                 }
                 else
                 {
-                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    //pendencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                     await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
                     loging.IsEnabled = true;
                 }

@@ -35,7 +35,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMArmadoPedido?Orden=" + nOrden + "&bcdCode=" + CodBarraProd).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ret = JsonConvert.DeserializeObject<List<SMMProductoArmadoPedido>>(resultadoStr);
+                ret = JsonConvert.DeserializeObject<List<SMMProductoArmadoPedido>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ret;
@@ -51,7 +52,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMArmadoPedido?nOrden=" + nOrden + "&CodProducto=" + CodProducto + "&CodBar=" + CodBar + "&Umedida=" + Umedida + "&Cant=" + Cant + "&fechIng=" + Fvenc + "&IdVeri=" + IdVeri + "&cantC=" + cantC + "&VenC=" + VenC + "&EtiqC=" + EtiqC + "&EnfC=" + EnfC + "&EstC=" + EstC + "&CondPC=" + CondPC).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ret = JsonConvert.DeserializeObject<string>(resultadoStr);
+                ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ret;

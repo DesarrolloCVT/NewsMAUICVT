@@ -26,7 +26,8 @@ namespace NewsMauiCVT.Datos
 
                 var rest = ClientHttp.GetAsync("api/TrazabilidadPallet?NumPallet=" + npallet).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<List<TrazabilidadPaletClass>>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<List<TrazabilidadPaletClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
 
 
             }
@@ -52,7 +53,8 @@ namespace NewsMauiCVT.Datos
 
                 var rest = ClientHttp.GetAsync("api/TrazabilidadPallet?NPallet=" + npallet).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch
             {

@@ -17,26 +17,18 @@ namespace NewsMauiCVT.Platforms.Android
     {
         public string GetSSID()
         {
-            WifiManager? wifiManager = AndroidApp.Context.GetSystemService(Context.WifiService) as WifiManager;
+            WifiManager wifiManager = AndroidApp.Context.GetSystemService(Context.WifiService) as WifiManager;
             WifiInfo currentWifi = wifiManager.ConnectionInfo;
-            try
-            {   
-                if (currentWifi != null)
-                {
-                    String wifiSSID = currentWifi.SSID;
-                    return wifiSSID;
-                    // Now you have the SSID!
-                }
-                else
-                {
-                    Console.WriteLine("El valor de currentWifi es: " + currentWifi.SSID);
-                    return "NULL";
-                }
-            }
-            catch (Exception e) 
+            if (currentWifi != null)
             {
-                Console.WriteLine(e.ToString());
-                return currentWifi.SSID;
+                String wifiSSID = currentWifi.SSID ??
+                                throw new InvalidOperationException();
+                return wifiSSID;
+                // Now you have the SSID!
+            }
+            else
+            {
+                return "NULL";
             }
         }
     }

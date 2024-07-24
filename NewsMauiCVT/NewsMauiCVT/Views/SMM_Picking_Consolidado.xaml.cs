@@ -18,7 +18,7 @@ public partial class SMM_Picking_Consolidado : ContentPage
         lblPick1.Text = "Departamento: " + App.DptoConsolidado.ToString();
         txt_pallet.Focus();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -178,7 +178,7 @@ public partial class SMM_Picking_Consolidado : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     private async void Btn_Terminar_Clicked(object sender, EventArgs e)

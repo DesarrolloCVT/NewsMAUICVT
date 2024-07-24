@@ -15,7 +15,7 @@ public partial class SMM_ExhibicionSala : ContentPage
         btn_agregar.IsEnabled = false;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -132,7 +132,8 @@ public partial class SMM_ExhibicionSala : ContentPage
             {
                 string CodPro = dti.TraeCodProducti(txtCodBarra.Text);
 
-                string pasi = cboPasillo.SelectedItem.ToString();
+                string pasi = cboPasillo.SelectedItem.ToString() ??
+                                throw new InvalidOperationException();
                 int col = Convert.ToInt32(cboColumna.SelectedItem);
                 int niv = Convert.ToInt32(cboNivel.SelectedItem);
                 string cBar = txtCodBarra.Text;

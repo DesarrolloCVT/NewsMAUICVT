@@ -12,7 +12,7 @@ public partial class SMM_TansferenciaDetalle : ContentPage
         _foliTrans = FolioTrans;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -25,7 +25,7 @@ public partial class SMM_TansferenciaDetalle : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     private void btnGuardarDetalle_Clicked(object sender, EventArgs e)
@@ -150,7 +150,7 @@ public partial class SMM_TansferenciaDetalle : ContentPage
         var res = await DisplayAlert("Message", "Desea Terminar de ingresar Bultos?", "SI", "NO");
         if (res)
         {
-            Navigation.PopToRootAsync(true);
+            await Navigation.PopToRootAsync(true);
 
         }
         else

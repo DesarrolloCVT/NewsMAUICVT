@@ -60,7 +60,8 @@ namespace NewsMauiCVT.Datos
 
                 var rest = ClientHttp.GetAsync("api/PikingConsolidadoSMM?fecha=" + fecha + "&dpto=" + dpto).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
+                                throw new InvalidOperationException();
 
             }
             catch
@@ -81,7 +82,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PikingConsolidadoSMM").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMDepartamentos>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMDepartamentos>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;

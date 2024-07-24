@@ -4,6 +4,7 @@ using DevExpress.Maui.Editors;
 using Controls.UserDialogs.Maui;
 using Microsoft.Extensions.Logging;
 using DevExpress.Maui;
+using Plugin.Maui.Audio;
 
 namespace NewsMauiCVT
 {
@@ -47,6 +48,9 @@ namespace NewsMauiCVT
                 .UseDevExpressDataGrid()
                 .UseDevExpressEditors();
 #endif
+
+            builder.Services.AddSingleton(AudioManager.Current);
+            builder.Services.AddTransient<MainPage> ();
 
             return builder.Build();
         }

@@ -6,7 +6,7 @@ public partial class GeoLoc : ContentPage
     {
         InitializeComponent();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -43,6 +43,6 @@ public partial class GeoLoc : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 }

@@ -12,7 +12,7 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
         CargaDatosDpto();
 
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -59,7 +59,8 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
 
 
             string fecha = FConsolidado.Date.Year + "-" + FConsolidado.Date.Month + "-" + FConsolidado.Date.Day;
-            string Depa = cboDpto.SelectedItem.ToString();
+            string Depa = cboDpto.SelectedItem.ToString() ??
+                                throw new InvalidOperationException();
             DataTable dt = tp.DetallePickingSMM(fecha, Depa);
 
 
@@ -109,6 +110,6 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 }

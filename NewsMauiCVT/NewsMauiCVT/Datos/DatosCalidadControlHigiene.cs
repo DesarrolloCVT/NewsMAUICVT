@@ -26,7 +26,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/ControlHigiene/listaMonitor").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<PersonalClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<PersonalClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch (Exception ex)
             {
@@ -36,7 +37,7 @@ namespace NewsMauiCVT.Datos
         }
         public List<PersonalClass> ListaPerdonalFull()
         {
-            int rs = 1;
+            //int rs = 1;
             List<PersonalClass> ls = new List<PersonalClass>();
             try
             {
@@ -44,7 +45,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/ControlHigiene/listaPersonal").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<PersonalClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<PersonalClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch (Exception ex)
             {
@@ -55,7 +57,7 @@ namespace NewsMauiCVT.Datos
 
         public List<AreaClass> ListaAreas()
         {
-            int rs = 1;
+            //int rs = 1;
             List<AreaClass> ls = new List<AreaClass>();
             try
             {
@@ -63,7 +65,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/ControlHigiene/listaArea").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<AreaClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<AreaClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch (Exception ex)
             {
@@ -76,9 +79,6 @@ namespace NewsMauiCVT.Datos
 
         {
             string res = "-1";
-
-
-
             string url = "http://wsintranet.cvt.local/api/ControlHigiene/PostControl";
             WebRequest oRequest = WebRequest.Create(url);
             oRequest.ContentType = "application/json; charset=utf-8";

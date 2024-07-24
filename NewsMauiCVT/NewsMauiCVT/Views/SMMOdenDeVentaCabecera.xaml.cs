@@ -2,7 +2,6 @@ using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 
 namespace NewsMauiCVT.Views;
-
 public partial class SMMOdenDeVentaCabecera : ContentPage
 {
     public SMMOdenDeVentaCabecera()
@@ -10,7 +9,7 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
         InitializeComponent();
         cargaDatos();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         cboCliente.SelectedIndex = -1;
@@ -22,7 +21,7 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     void cargaDatos()
@@ -33,7 +32,7 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
             DatosSMMOrdenDeVenta ti = new DatosSMMOrdenDeVenta();
             List<SMMClienteOrdenDeVentas> lt = ti.TraeClientesOrden();
 
-            List<Cli> nl = new List<Cli>();
+            List<Cli> nl = [];
 
             foreach (var t in lt)
             {
@@ -68,7 +67,8 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
 
     private void ComboBoxEdit_SelectionChanged(object sender, EventArgs e)
     {
-        string dat = cboCliente.SelectedValue.ToString();
+        string dat = cboCliente.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
 
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
@@ -113,7 +113,8 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
 
     private void cboDirDespacho_SelectionChanged(object sender, EventArgs e)
     {
-        string dat2 = cboCliente.SelectedValue.ToString();
+        string dat2 = cboCliente.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
 
 
         var ACC = Connectivity.NetworkAccess;
@@ -205,9 +206,12 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
-                string DatCliente = cboCliente.SelectedValue.ToString();
-                string DireccionDespacho = cboDirDespacho.SelectedValue.ToString();
-                string DireccionFacturacion = cboDirFact.SelectedValue.ToString();
+                string DatCliente = cboCliente.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                string DireccionDespacho = cboDirDespacho.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                string DireccionFacturacion = cboDirFact.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
                 string fecha = dteFechEntrega.Date.Value.Day + "-" + dteFechEntrega.Date.Value.Month + "-" + dteFechEntrega.Date.Value.Year;
 
                 DatosSMMOrdenDeVenta ov = new DatosSMMOrdenDeVenta();

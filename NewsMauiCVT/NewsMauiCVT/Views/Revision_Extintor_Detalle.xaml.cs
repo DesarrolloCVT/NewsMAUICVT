@@ -17,7 +17,7 @@ public partial class Revision_Extintor_Detalle : ContentPage
         _idReg = res;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -115,6 +115,6 @@ public partial class Revision_Extintor_Detalle : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 }

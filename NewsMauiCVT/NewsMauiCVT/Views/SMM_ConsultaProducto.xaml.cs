@@ -13,7 +13,7 @@ public partial class SMM_ConsultaProducto : ContentPage
         txt_pallet.Focus();
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();

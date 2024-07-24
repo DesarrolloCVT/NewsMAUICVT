@@ -38,7 +38,8 @@ namespace NewsMauiCVT.Datos
 
                 var rest = ClientHttp.GetAsync("api/ConsultaProductosSMM?NumBarra=" + nBarra).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<List<ValidadorProductosSMMClass>>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<List<ValidadorProductosSMMClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
 
 
             }

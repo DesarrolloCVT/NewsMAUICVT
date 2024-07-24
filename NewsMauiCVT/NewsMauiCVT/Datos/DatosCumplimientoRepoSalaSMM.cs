@@ -23,7 +23,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMCumplRepoSala").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMReponedoresClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMReponedoresClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch (Exception ex)
             {
@@ -42,7 +43,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMCumplRepoSala?idNVerificado=" + idNVerificado + "&Verificador=" + Verificador + "&CodProd=" + CodProd + "&CodBar=" + CodBar + "&dispo=" + dispo + "&limp=" + limp + "&fefo=" + fefo + "&fleje=" + fleje + "&fechVenc=" + fechVenc).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ret = JsonConvert.DeserializeObject<string>(resultadoStr);
+                ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ret;

@@ -11,7 +11,7 @@ public partial class SMMTransferencia : ContentPage
 
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         txtFolioTransferencia.Text = string.Empty;
@@ -22,7 +22,7 @@ public partial class SMMTransferencia : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     private void btn_Nuevo_Clicked(object sender, EventArgs e)

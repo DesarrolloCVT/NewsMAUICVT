@@ -1,13 +1,15 @@
-﻿namespace NewsMauiCVT
+﻿using Plugin.Maui.Audio;
+
+namespace NewsMauiCVT
 {
     public partial class App : Application
     {
+        readonly IAudioManager audioManager;
         public App()
         {
             InitializeComponent();
-
-            //MainPage = new AppShell();
-            MainPage = new NavigationPage(new MainPage());
+            DevExpress.Maui.DataGrid.Initializer.Init();
+            MainPage = new NavigationPage(new MainPage(audioManager));
         }
 
         public static int Iduser { get; set; }

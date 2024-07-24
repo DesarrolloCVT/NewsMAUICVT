@@ -2,7 +2,7 @@
 <FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsMauiCVT.Views.PageMain">
-    <FlyoutPage>
+    <FlyoutPage.Flyout>
         <ContentPage Title="MasterPage">
             <Grid BackgroundColor="Transparent">
                 <Grid.RowDefinitions>
@@ -33,5 +33,5 @@
                 </StackLayout>
             </Grid>
         </ContentPage>
-    </FlyoutPage>
+    </FlyoutPage.Flyout>
 </FlyoutPage>

@@ -10,7 +10,7 @@ public partial class Calidad_ControlHigiene : ContentPage
         InitializeComponent();
         cargaDatos();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         cboMonitor.SelectedIndex = -1;
@@ -82,7 +82,7 @@ public partial class Calidad_ControlHigiene : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
     private void btn_agregar_Clicked(object sender, EventArgs e)
     {

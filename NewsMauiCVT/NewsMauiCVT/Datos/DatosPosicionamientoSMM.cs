@@ -20,7 +20,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?NumeroPalletPos=" + SSCC).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<ListProdTranferSMMClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<ListProdTranferSMMClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -34,7 +35,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?SSCC=" + SSCC).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMPackageClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMPackageClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -64,7 +66,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?idLayout=" + codLay).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ret = JsonConvert.DeserializeObject<string>(resultadoStr);
+                ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ret;
@@ -79,7 +82,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?idPosicion=" + codLay).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ret = JsonConvert.DeserializeObject<string>(resultadoStr);
+                ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ret;

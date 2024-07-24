@@ -12,7 +12,7 @@ public partial class ActualizaTipoPallet : ContentPage
         InitializeComponent();
         btn_generar.IsEnabled = false;
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();

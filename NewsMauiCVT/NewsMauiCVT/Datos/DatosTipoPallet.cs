@@ -20,7 +20,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Supportive").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<TipoPalletClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<TipoPalletClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -62,7 +63,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Supportive?Pk=" + pk).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ret = JsonConvert.DeserializeObject<string>(resultadoStr);
+                ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ret;

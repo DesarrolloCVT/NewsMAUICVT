@@ -13,7 +13,7 @@ public partial class TomaInventarioFilm : ContentPage
         InitializeComponent();
         cargaDatos();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -47,7 +47,8 @@ public partial class TomaInventarioFilm : ContentPage
                 DatosTipoPallet dTip = new DatosTipoPallet();
 
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                List<TomaInventarioClass> dt = JsonConvert.DeserializeObject<List<TomaInventarioClass>>(resultadoStr);
+                List<TomaInventarioClass> dt = JsonConvert.DeserializeObject<List<TomaInventarioClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
                 List<TipoPalletClass> dt2 = dTip.ListaTipoPallet();
 
                 List<FolPall> fl = new List<FolPall>();
@@ -419,7 +420,7 @@ public partial class TomaInventarioFilm : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     //private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)

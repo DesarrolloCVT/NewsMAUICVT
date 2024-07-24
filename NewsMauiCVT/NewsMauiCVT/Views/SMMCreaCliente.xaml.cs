@@ -14,7 +14,7 @@ public partial class SMMCreaCliente : ContentPage
         txtRut.SetSelection(0, 0);
 
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();

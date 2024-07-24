@@ -20,7 +20,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/CapturaProductos?codbarr=" + codbarr).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<ProductosCapturaCod>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<ProductosCapturaCod>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;

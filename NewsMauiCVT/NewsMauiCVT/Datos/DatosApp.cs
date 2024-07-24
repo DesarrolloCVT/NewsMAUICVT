@@ -10,24 +10,25 @@ namespace NewsMauiCVT.Datos
 {
     internal class DatosApp
     {
-        public string TraeVersion(string? vers)
+        public string TraeVersion(string vers)
         {
             string Vers = "0.0.0";
             try
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                };
 
                 var rest2 = ClientHttp.GetAsync("api/DatosAPP?idAPP=" + 1).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                Vers = JsonConvert.DeserializeObject<string>(resultadoStr);
+                Vers = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch (Exception ex)
             {
                 string mns = ex.Message;
-
             }
-
             return vers;
         }
 
@@ -40,9 +41,7 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Usuario?idPerfilUsuario=" + idperfil).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
                 ls = JsonConvert.DeserializeObject<List<MenuClass>>(resultadoStr);
-#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
             }
             catch { }
             return ls;

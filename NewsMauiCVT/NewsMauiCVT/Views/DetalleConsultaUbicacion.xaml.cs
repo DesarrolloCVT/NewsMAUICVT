@@ -16,7 +16,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
         //activity.IsRunning = false;
         //activity.IsVisible = false;
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         //vCArga.IsVisible = false;
@@ -63,7 +63,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
             //activity.IsEnabled = true;
             //activity.IsRunning = true;
             //activity.IsVisible = true;
-            Navigation.PushAsync(new ResumenConsultaUbicacion(_iposid) { Title = "Volver" });
+            await Navigation.PushAsync(new ResumenConsultaUbicacion(_iposid) { Title = "Volver" });
         }
 
     }

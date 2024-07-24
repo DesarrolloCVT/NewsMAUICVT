@@ -23,7 +23,8 @@ namespace NewsMauiCVT.Datos
 
                 var rest = ClientHttp.GetAsync("api/TomaInventarioFilm?bobin=" + bobin).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<List<ProductoInventarioFilm>>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<List<ProductoInventarioFilm>>(resultadoStr) ??
+                    throw new InvalidOperationException();
             }
             catch
             {

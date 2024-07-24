@@ -17,7 +17,7 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
 
 
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         cboProducto.SelectedIndex = -1;
@@ -70,7 +70,7 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     private void btnGuardarDetalle_Clicked(object sender, EventArgs e)
@@ -93,7 +93,8 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
             if (ACC == NetworkAccess.Internet)
             {
                 int idOrdenVenta = _folio;
-                string codProducto = cboProducto.SelectedValue.ToString();
+                string codProducto = cboProducto.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
                 int CantidadOrden = Convert.ToInt32(txtCantidad.Text);
                 int PorcDescuento = txtPorcDesc.Text.Equals("") ? 0 : Convert.ToInt32(txtPorcDesc.Text);
 
@@ -172,7 +173,7 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
         var res = await DisplayAlert("Message", "Desea Terminar ?", "SI", "NO");
         if (res)
         {
-            Navigation.PopToRootAsync(true);
+            await Navigation.PopToRootAsync(true);
 
         }
         else

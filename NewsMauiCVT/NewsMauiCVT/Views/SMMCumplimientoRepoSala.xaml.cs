@@ -15,7 +15,7 @@ public partial class SMMCumplimientoRepoSala : ContentPage
 
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -264,10 +264,14 @@ public partial class SMMCumplimientoRepoSala : ContentPage
                             int v_Verificador = App.Iduser;
                             string v_CodProd = codPro;
                             string v_CodBar = txtCodigo.Text;
-                            string v_dispo = cboDispo.SelectedIndex == -1 ? "0" : cboDispo.SelectedValue.ToString();
-                            string v_limp = cboLimpieza.SelectedIndex == -1 ? "0" : cboLimpieza.SelectedValue.ToString();
-                            string v_fefo = CboFefo.SelectedIndex == -1 ? "0" : CboFefo.SelectedValue.ToString();
-                            string v_fleje = CboFleje.SelectedIndex == -1 ? "0" : CboFleje.SelectedValue.ToString();
+                            string v_dispo = cboDispo.SelectedIndex == -1 ? "0" : cboDispo.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                            string v_limp = cboLimpieza.SelectedIndex == -1 ? "0" : cboLimpieza.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                            string v_fefo = CboFefo.SelectedIndex == -1 ? "0" : CboFefo.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                            string v_fleje = CboFleje.SelectedIndex == -1 ? "0" : CboFleje.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
                             string v_fechVenc = txtAno.Text + "-" + txtMes.Text + "-" + txtDia.Text;
 
                             DatosCumplimientoRepoSalaSMM cum = new DatosCumplimientoRepoSalaSMM();
@@ -325,7 +329,7 @@ public partial class SMMCumplimientoRepoSala : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
 }

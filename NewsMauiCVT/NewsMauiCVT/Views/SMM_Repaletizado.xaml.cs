@@ -12,7 +12,7 @@ public partial class SMM_Repaletizado : ContentPage
         LayoutDestinoExistente.IsVisible = false;
         LayoutOrigen.IsVisible = false;
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -331,6 +331,6 @@ public partial class SMM_Repaletizado : ContentPage
     }
     protected override bool OnBackButtonPressed()
     { //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 }

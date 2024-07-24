@@ -14,7 +14,7 @@ public partial class Posicionamiento : ContentPage
         LayoutOrigen.IsVisible = false;
         txt_origen.Focus();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         ClearComponent();
@@ -42,7 +42,8 @@ public partial class Posicionamiento : ContentPage
                 if (rest.IsSuccessStatusCode)
                 {
                     var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                    List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr);
+                    List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr) ??
+                                throw new InvalidOperationException();
                     if (dt.Count() == 0)
                     {
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
@@ -65,7 +66,8 @@ public partial class Posicionamiento : ContentPage
                             if (rest2.IsSuccessStatusCode)
                             {
                                 var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
-                                List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2);
+                                List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2) ??
+                                throw new InvalidOperationException();
 
                                 foreach (var a in ap)
                                 {
@@ -76,7 +78,8 @@ public partial class Posicionamiento : ContentPage
                                 //ObtieneInfoLayout
                                 var rest3 = ClientHttp.GetAsync("api/Bodega?CodLayoutInfo=" + layID).Result;
                                 var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
-                                List<LayoutClass> ly = JsonConvert.DeserializeObject<List<LayoutClass>>(resultadoStr3);
+                                List<LayoutClass> ly = JsonConvert.DeserializeObject<List<LayoutClass>>(resultadoStr3) ??
+                                throw new InvalidOperationException();
 
                                 foreach (var l in ly)
                                 {
@@ -85,7 +88,8 @@ public partial class Posicionamiento : ContentPage
                                     //ObtieneNombreCortoSitio
                                     var rest4 = ClientHttp.GetAsync("api/Bodega?siteid=" + l.Site_Id).Result;
                                     var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
-                                    string NombreCortoSitio = JsonConvert.DeserializeObject<string>(resultadoStr4);
+                                    string NombreCortoSitio = JsonConvert.DeserializeObject<string>(resultadoStr4) ??
+                                throw new InvalidOperationException();
 
 
                                     lbl_sitio.Text = "Sitio: " + NombreCortoSitio;
@@ -134,7 +138,8 @@ public partial class Posicionamiento : ContentPage
                     LayoutDestinoExistente.IsVisible = true;
 
                     var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                    List<LayoutClass> ly = JsonConvert.DeserializeObject<List<LayoutClass>>(resultadoStr);
+                    List<LayoutClass> ly = JsonConvert.DeserializeObject<List<LayoutClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
 
                     foreach (var l in ly)
                     {
@@ -143,7 +148,8 @@ public partial class Posicionamiento : ContentPage
                         //NombreCortoSitio
                         var rest2 = ClientHttp.GetAsync("api/Bodega?siteid=" + l.Site_Id).Result;
                         var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
-                        string NombreCortoSitio = JsonConvert.DeserializeObject<string>(resultadoStr2);
+                        string NombreCortoSitio = JsonConvert.DeserializeObject<string>(resultadoStr2) ??
+                                throw new InvalidOperationException();
 
                         lbl_sitio_nuevo.Text = "Sitio: " + NombreCortoSitio;
                     }
@@ -210,7 +216,7 @@ public partial class Posicionamiento : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     private void Txt_ConfirmaDestino_Completed(object sender, EventArgs e)

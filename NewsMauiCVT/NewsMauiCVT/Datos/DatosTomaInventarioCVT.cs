@@ -22,7 +22,8 @@ namespace NewsMauiCVT.Datos
 
                 var rest = ClientHttp.GetAsync("api/TomaInventario?PalletInv=" + nPallet).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                dt = JsonConvert.DeserializeObject<List<ProductoInventarioCVT>>(resultadoStr);
+                dt = JsonConvert.DeserializeObject<List<ProductoInventarioCVT>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch
             {

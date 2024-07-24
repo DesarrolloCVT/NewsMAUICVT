@@ -12,7 +12,7 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
         InitializeComponent();
         txtFolioTransfer.Focus();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -122,7 +122,7 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
 
     protected override bool OnBackButtonPressed()
     { //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 
     private void btn_agregar_Clicked(object sender, EventArgs e)

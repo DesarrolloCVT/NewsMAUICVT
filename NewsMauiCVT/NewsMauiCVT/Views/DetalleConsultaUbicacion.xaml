@@ -23,7 +23,7 @@
                             BorderColor="Black"
                             BorderThickness="2"
                             PressedBorderColor="DarkOrange"
-                            Icon="Buscar" 
+                            Icon="buscar" 
                             ShowIcon="True"
                             Clicked="BtnResumen_Clicked">
                         </dxc:DXButton>

@@ -20,7 +20,7 @@ public partial class SMMDetalleRecepcion : ContentPage
 
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -131,7 +131,7 @@ public partial class SMMDetalleRecepcion : ContentPage
 
                     string cant = txt_cantidad.Text.Replace(".", ",");
                     DateTime fv;
-                    DateTime fAct;
+                    //DateTime fAct;
                     int Tdias = 0;
                     int idPack = 0;
 

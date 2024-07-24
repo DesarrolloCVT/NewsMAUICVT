@@ -20,7 +20,7 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
         lblPedido.Text = Convert.ToString(_folio);
         txt_CodBarr.Focus();
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
 
         base.OnAppearing();
@@ -210,12 +210,18 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
                         string v_fecha = txtAno.Text + "-" + txtMes.Text + "-" + txtDia.Text;
                         int v_idNVerificado = Convert.ToInt32(cboNombreRepo.SelectedValue);
                         //int v_idUserReg = App.Iduser;
-                        string v_CantCo = cboCantCorr.SelectedIndex == -1 ? "0" : cboCantCorr.SelectedValue.ToString();
-                        string v_venCo = cboVenCorrecto.SelectedIndex == -1 ? "0" : cboVenCorrecto.SelectedValue.ToString();
-                        string v_etiqCo = cboEtiqueta.SelectedIndex == -1 ? "0" : cboEtiqueta.SelectedValue.ToString();
-                        string v_enfiCo = cboEnfilado.SelectedIndex == -1 ? "0" : cboEnfilado.SelectedValue.ToString();
-                        string v_estiCo = cboEstibado.SelectedIndex == -1 ? "0" : cboEstibado.SelectedValue.ToString();
-                        string v_ConPallCo = cboCondPallet.SelectedIndex == -1 ? "0" : cboCondPallet.SelectedValue.ToString();
+                        string v_CantCo = cboCantCorr.SelectedIndex == -1 ? "0" : cboCantCorr.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                        string v_venCo = cboVenCorrecto.SelectedIndex == -1 ? "0" : cboVenCorrecto.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                        string v_etiqCo = cboEtiqueta.SelectedIndex == -1 ? "0" : cboEtiqueta.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                        string v_enfiCo = cboEnfilado.SelectedIndex == -1 ? "0" : cboEnfilado.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                        string v_estiCo = cboEstibado.SelectedIndex == -1 ? "0" : cboEstibado.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
+                        string v_ConPallCo = cboCondPallet.SelectedIndex == -1 ? "0" : cboCondPallet.SelectedValue.ToString() ??
+                                throw new InvalidOperationException();
                         //int v_Verificador = App.Iduser;
 
                         DatosSMM_ArmadoPedido ar = new DatosSMM_ArmadoPedido();

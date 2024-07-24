@@ -77,7 +77,7 @@ public partial class SMM_TransferenciaCabecera : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
     private void cboBodega_SelectionChanged(object sender, EventArgs e)
     {
@@ -88,18 +88,15 @@ public partial class SMM_TransferenciaCabecera : ContentPage
     {
         int res = Convert.ToInt32(cboBodegaDestino.SelectedValue.ToString());
         int res2 = Convert.ToInt32(cboBodega.SelectedValue.ToString());
-        if (res != null)
+        if (res == res2)
         {
-            if (res == res2)
-            {
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                DisplayAlert("Alerta", "Bodegas iguales favor verificar", "Aceptar");
-            }
-            else
-            {
+            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            DisplayAlert("Alerta", "Bodegas iguales favor verificar", "Aceptar");
+        }
+        else
+        {
 
-                cboEntidad.Focus();
-            }
+            cboEntidad.Focus();
         }
     }
 

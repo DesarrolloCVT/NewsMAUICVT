@@ -23,7 +23,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/RepaletizadoSMM?pkg=" + Npallet).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                ls = JsonConvert.DeserializeObject<List<SMMPackageClass>>(resultadoStr);
+                ls = JsonConvert.DeserializeObject<List<SMMPackageClass>>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return ls;
@@ -39,7 +40,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/RepaletizadoSMM?itemCod=" + itemC).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                res = JsonConvert.DeserializeObject<string>(resultadoStr);
+                res = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return res;
@@ -70,7 +72,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/RepaletizadoSMM?siteid=" + site).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                res = JsonConvert.DeserializeObject<string>(resultadoStr);
+                res = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return res;
@@ -117,7 +120,8 @@ namespace NewsMauiCVT.Datos
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/RepaletizadoSMM?Origen=" + Origen + "&Cantidad=" + Cantidad + "&user=" + user).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                res = JsonConvert.DeserializeObject<string>(resultadoStr);
+                res = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                                throw new InvalidOperationException();
             }
             catch { }
             return res;

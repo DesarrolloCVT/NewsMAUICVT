@@ -14,7 +14,7 @@ public partial class Revision_Extintor_Entorno : ContentPage
         cboRespEntorno.SelectedIndex = 0;
         _idRegistro = idRegExtintor;
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         cboRespEntorno.SelectedIndex = 0;
@@ -82,6 +82,6 @@ public partial class Revision_Extintor_Entorno : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
 }
