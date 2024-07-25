@@ -5,6 +5,7 @@ using Controls.UserDialogs.Maui;
 using Microsoft.Extensions.Logging;
 using DevExpress.Maui;
 using Plugin.Maui.Audio;
+using NewsMauiCVT.Model;
 
 namespace NewsMauiCVT
 {
@@ -51,6 +52,7 @@ namespace NewsMauiCVT
 
             builder.Services.AddSingleton(AudioManager.Current);
             builder.Services.AddTransient<MainPage> ();
+            builder.Services.AddTransient<IAudioController>();
 
             return builder.Build();
         }

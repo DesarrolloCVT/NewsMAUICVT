@@ -4,12 +4,11 @@ namespace NewsMauiCVT
 {
     public partial class App : Application
     {
-        readonly IAudioManager audioManager;
         public App()
         {
             InitializeComponent();
             DevExpress.Maui.DataGrid.Initializer.Init();
-            MainPage = new NavigationPage(new MainPage(audioManager));
+            MainPage = new NavigationPage(new MainPage());
         }
 
         public static int Iduser { get; set; }

@@ -9,7 +9,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
     public DetalleConsultaUbicacion(string idPosicion)
     {
         InitializeComponent();
-        cargadatos(idPosicion);
+        Cargadatos(idPosicion);
         _iposid = idPosicion;
         //vCArga.IsVisible = false;
         //activity.IsEnabled = false;
@@ -25,7 +25,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
         //activity.IsVisible = false;
     }
 
-    void cargadatos(string idPosicion)
+    private async void Cargadatos(string idPosicion)
     {
         DatosConsultaUbicacion dCu = new DatosConsultaUbicacion();
         var ACC = Connectivity.NetworkAccess;
@@ -50,7 +50,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
 

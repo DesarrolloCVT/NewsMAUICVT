@@ -8,7 +8,7 @@ public partial class Calidad_ControlHigiene : ContentPage
     public Calidad_ControlHigiene()
     {
         InitializeComponent();
-        cargaDatos();
+        CargaDatos();
     }
     protected override void OnAppearing()
     {
@@ -26,10 +26,12 @@ public partial class Calidad_ControlHigiene : ContentPage
         txtAccionCorrectiva.Text = string.Empty;
         CboEstUniforme.SelectedIndex = -1;
         cboHeridaExpuesta.SelectedIndex = -1;
+        
     }
-    void cargaDatos()
+    private async void CargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
+
         if (ACC == NetworkAccess.Internet)
         {
             DatosCalidadControlHigiene ti = new DatosCalidadControlHigiene();
@@ -70,7 +72,7 @@ public partial class Calidad_ControlHigiene : ContentPage
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
     public class CVTtipoContrato
@@ -84,8 +86,8 @@ public partial class Calidad_ControlHigiene : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return false;
     }
-    private void btn_agregar_Clicked(object sender, EventArgs e)
-    {
+    private async void btn_agregar_Clicked(object sender, EventArgs e)
+    {   
         int v_IdMonitor = cboMonitor.SelectedIndex == -1 ? 0 : Convert.ToInt32(cboMonitor.SelectedValue);
         int v_IdArea = cboArea.SelectedIndex == -1 ? 0 : Convert.ToInt32(cboArea.SelectedValue);
         string v_tipoContrato = cboTipoContraro.SelectedIndex == -1 ? "0" : cboTipoContraro.SelectedValue.ToString();
@@ -194,18 +196,18 @@ public partial class Calidad_ControlHigiene : ContentPage
                     CboEstUniforme.SelectedIndex = -1;
                     cboHeridaExpuesta.SelectedIndex = -1;
                     cboPersona.Focus();
-                    DisplayAlert("Alerta", "Registrado", "Aceptar");
+                    await DisplayAlert("Alerta", "Registrado", "Aceptar");
                 }
                 else
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                    DisplayAlert("Alerta", "Error al Registrar favor verificar", "Aceptar");
+                    await DisplayAlert("Alerta", "Error al Registrar favor verificar", "Aceptar");
                 }
             }
             else
             {
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+                await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
         }
     }

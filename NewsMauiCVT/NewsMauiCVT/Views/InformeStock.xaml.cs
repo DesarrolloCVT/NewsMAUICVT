@@ -10,7 +10,7 @@ public partial class InformeStock : ContentPage
     public InformeStock()
     {
         InitializeComponent();
-        cargaDatos();
+        CargaDatos();
         lblError.IsVisible = false;
         lblError.Text = string.Empty;
     }
@@ -24,7 +24,7 @@ public partial class InformeStock : ContentPage
         txtCodProd.Text = string.Empty;
     }
 
-    void cargaDatos()
+    void CargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)

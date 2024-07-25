@@ -1,18 +1,20 @@
 using NewsMauiCVT.Model;
 using Newtonsoft.Json;
+using Plugin.Maui.Audio;
 using System.Net.Http;
 
 namespace NewsMauiCVT.Views;
 
 public partial class Posicionamiento : ContentPage
 {
-	public Posicionamiento()
+    public Posicionamiento()
 	{
         InitializeComponent();
         //btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
         LayoutOrigen.IsVisible = false;
         txt_origen.Focus();
+        audioManager = new AudioManager();
     }
     protected override void OnAppearing()
     {
@@ -24,8 +26,9 @@ public partial class Posicionamiento : ContentPage
         lblError2.IsVisible = false;
     }
 
-    private void Txt_origen_Completed(object sender, EventArgs e)
+    private async void Txt_origen_Completed(object sender, EventArgs e)
     {
+        var playerIncorrecto = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("terran-error.mp3"));
         lblConfirm.Text = string.Empty;
         lblConfirm.IsVisible = false;
         var ACC = Connectivity.NetworkAccess;
@@ -46,7 +49,7 @@ public partial class Posicionamiento : ContentPage
                                 throw new InvalidOperationException();
                     if (dt.Count() == 0)
                     {
-                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                        playerIncorrecto.Play();
                         lblError.IsVisible = true;
                         lblError.Text = "N° de pallet no existe";
                         txt_origen.Text = string.Empty;
@@ -109,8 +112,8 @@ public partial class Posicionamiento : ContentPage
         }
         else
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            playerIncorrecto.Play();
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
 
     }

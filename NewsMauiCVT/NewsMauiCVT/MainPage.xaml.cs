@@ -2,19 +2,15 @@
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Views;
 using Newtonsoft.Json;
-using Plugin.Maui.Audio;
 using System.Text.RegularExpressions;
 
 namespace NewsMauiCVT
 {
     public partial class MainPage : ContentPage 
     {
-        readonly IAudioManager audioManager;
-        IAudioPlayer audioPlayer;
 
-        public MainPage(IAudioManager audioManager)
-        {
-            this.audioManager = audioManager;
+        public MainPage()
+        {   
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             txtUsuario.Focus();
@@ -44,13 +40,13 @@ namespace NewsMauiCVT
 
                     try
                     {
-                        /*HttpClient ClientHttp = new()
+                        HttpClient ClientHttp = new()
                         {
                             BaseAddress = new Uri("http://wsintranet.cvt.local/")
-                        };*/
+                        };
 
-                        HttpClient ClientHttp = new HttpClient();
-                        ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                        /*HttpClient ClientHttp = new HttpClient();
+                        ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");*/
                         try
                         {
                             //para Consultar
@@ -64,10 +60,7 @@ namespace NewsMauiCVT
                                 if (listado != 0)
                                 {
                                     try
-                                    {
-                                        audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("Correcto.mp3"));
-                                        audioPlayer.Play();
-                                        //DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                                    {   
                                         var rest2 = ClientHttp.GetAsync("api/Usuario?idUser=" + listado).Result;
                                         var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
                                         List<UsuarioClass> du = JsonConvert.DeserializeObject<List<UsuarioClass>>(resultadoStr2) ??
@@ -82,13 +75,15 @@ namespace NewsMauiCVT
                                             App.idPerfil = d.IdPerfilMovile;
                                             // App.vali = true;
                                         }
+                                        DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
                                         await Navigation.PushAsync(new PageMain());
                                         txtUsuario.Text = string.Empty;
                                         txtContraseña.Text = string.Empty;
+                                        
                                     }
                                     catch
                                     {
-                                        //DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                                         await DisplayAlert("Alerta", "No tiene los perfiles necesarios para poder acceder a esta APP", "OK");
                                         txtUsuario.Text = string.Empty;
                                         txtContraseña.Text = string.Empty;
@@ -99,7 +94,7 @@ namespace NewsMauiCVT
                             }
                             else
                             {
-                                //DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                                 await DisplayAlert("Alerta", "Usuario o Contraseña No Existen ", "Aceptar");
                                 txtUsuario.Text = string.Empty;
                                 txtContraseña.Text = string.Empty;
@@ -108,19 +103,20 @@ namespace NewsMauiCVT
                             }
                         } catch (AggregateException ex)
                         {
-                            Console.WriteLine("1_AggregateException!!!!!!: " + ex.StackTrace);
-                            Console.WriteLine("2_AggregateException!!!!!!: " + ex.InnerException);
-                            Console.WriteLine("2_AggregateException!!!!!!: " + ex.InnerException.Message);
+                            Console.WriteLine("StackTrace Exception: " + ex.StackTrace);
+                            Console.WriteLine("InnerException: " + ex.InnerException);
+                            Console.WriteLine("InnerException.Message: " + ex.InnerException.Message);
                         }
                     }
                     catch (Exception ex)
                     {
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                         System.Diagnostics.Debug.WriteLine(ex.Message);
                     }
                 }
                 else
                 {
-                    //pendencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                     await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
                     loging.IsEnabled = true;
                 }

@@ -1,7 +1,6 @@
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using Newtonsoft.Json;
-using System.Net.Http;
 
 namespace NewsMauiCVT.Views;
 
@@ -24,7 +23,7 @@ public partial class ActualizaTipoPallet : ContentPage
         lblError.IsVisible = false;
         lblError.Text = string.Empty;
     }
-    private void TxtNPallet_Completed(object sender, EventArgs e)
+    private async void TxtNPallet_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
@@ -47,8 +46,10 @@ public partial class ActualizaTipoPallet : ContentPage
             }
             else
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                };
 
                 //verifica numero palllet
                 var rest = ClientHttp.GetAsync("api/TomaInventario?NumPallet=" + Convert.ToInt32(txt_pallet.Text)).Result;
@@ -104,7 +105,7 @@ public partial class ActualizaTipoPallet : ContentPage
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
     public class TipoPall

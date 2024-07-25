@@ -8,7 +8,7 @@ namespace NewsMauiCVT.Views;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class Repaletizado : ContentPage
 {
-	public Repaletizado()
+    public Repaletizado()
 	{
         InitializeComponent();
         btn_generar.IsEnabled = false;
@@ -26,7 +26,7 @@ public partial class Repaletizado : ContentPage
         lblError2.IsVisible = false;
         lblError3.IsVisible = false;
     }
-    private void TxtPosicion_Completed(object sender, EventArgs e)
+    private async void TxtPosicion_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
@@ -87,7 +87,7 @@ public partial class Repaletizado : ContentPage
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)

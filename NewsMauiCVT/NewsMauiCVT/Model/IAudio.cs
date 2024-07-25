@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Maui.Audio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace NewsMauiCVT.Model
 {
-    public interface IAudio
+    public interface IAudio : IAudioManager
     {
-        void PlayAudioFile(string fileName);
+        public async void PlayAudioFile(string fileName)
+        {
+            CreatePlayer(await FileSystem.OpenAppPackageFileAsync(fileName));
+        }
     }
 }
