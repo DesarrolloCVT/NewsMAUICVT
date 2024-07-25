@@ -14,7 +14,6 @@ public partial class Posicionamiento : ContentPage
         LayoutDestinoExistente.IsVisible = false;
         LayoutOrigen.IsVisible = false;
         txt_origen.Focus();
-        audioManager = new AudioManager();
     }
     protected override void OnAppearing()
     {
@@ -28,7 +27,6 @@ public partial class Posicionamiento : ContentPage
 
     private async void Txt_origen_Completed(object sender, EventArgs e)
     {
-        var playerIncorrecto = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("terran-error.mp3"));
         lblConfirm.Text = string.Empty;
         lblConfirm.IsVisible = false;
         var ACC = Connectivity.NetworkAccess;
@@ -49,7 +47,7 @@ public partial class Posicionamiento : ContentPage
                                 throw new InvalidOperationException();
                     if (dt.Count() == 0)
                     {
-                        playerIncorrecto.Play();
+                        DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
                         lblError.IsVisible = true;
                         lblError.Text = "N° de pallet no existe";
                         txt_origen.Text = string.Empty;
@@ -112,7 +110,7 @@ public partial class Posicionamiento : ContentPage
         }
         else
         {
-            playerIncorrecto.Play();
+            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
 
@@ -167,7 +165,7 @@ public partial class Posicionamiento : ContentPage
                     }
                     else
                     {
-                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                        DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
                         // btn_generar.IsEnabled = false;
                         txt_destino.Text = string.Empty;
                         txt_destino.Focus();
@@ -184,7 +182,7 @@ public partial class Posicionamiento : ContentPage
         }
         else
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
 
 
@@ -227,20 +225,20 @@ public partial class Posicionamiento : ContentPage
         if (txt_destino.Text != txt_ConfirmaDestino.Text)
         {
 
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Destinos no son iguales favor verificar", "Aceptar");
             txt_ConfirmaDestino.Focus();
             txt_ConfirmaDestino.Text = string.Empty;
         }
         else if (txt_origen.Text.Equals(string.Empty))
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese un n° de Pallet", "Aceptar");
             txt_origen.Focus();
         }
         else if (txt_destino.Text.Equals(string.Empty))
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese Destino", "Aceptar");
             txt_destino.Focus();
         }
@@ -275,7 +273,7 @@ public partial class Posicionamiento : ContentPage
 
                 if (oks == true)
                 {
-                    DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                    DependencyService.Get<Model.IAudio>().PlayAudioFile("Correcto.mp3");
                     //  DisplayAlert("Alerta", "Registrado", "Aceptar");
                     lblConfirm.IsVisible = true;
                     lblConfirm.Text = "Registrado";
@@ -283,13 +281,13 @@ public partial class Posicionamiento : ContentPage
                 }
                 else
                 {
-                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
                     DisplayAlert("Alerta", "Error al Registrar Verificar", "Aceptar");
                 }
             }
             else
             {
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
                 DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
         }

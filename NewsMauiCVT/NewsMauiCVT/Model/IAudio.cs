@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace NewsMauiCVT.Model
 {
-    public interface IAudio : IAudioManager
+    internal interface IAudio
     {
-        public async void PlayAudioFile(string fileName)
-        {
-            CreatePlayer(await FileSystem.OpenAppPackageFileAsync(fileName));
-        }
+        void PlayAudioFile(string name);
     }
 }

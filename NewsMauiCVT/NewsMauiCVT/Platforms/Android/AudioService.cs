@@ -1,32 +1,29 @@
-﻿using Android.Media;
+﻿using Android.AdServices.AdIds;
+using Android.Media;
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Platforms.Android;
+using Plugin.Maui.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IAudio = NewsMauiCVT.Model.IAudio;
 
-[assembly: Dependency(typeof(AudioService))]
+
 namespace NewsMauiCVT.Platforms.Android
-{
+{   
     public class AudioService : IAudio
     {
-
+        private readonly IAudioManager audioManager;
         public AudioService()
         {
+            audioManager = new Plugin.Maui.Audio.AudioManager();
         }
-
-        public void PlayAudioFile(string fileName)
+        public async void PlayAudioFile(string fileName)
         {
-            var player = new MediaPlayer();
-            var fd = global::Android.App.Application.Context.Assets.OpenFd(fileName);
-            player.Prepared += (s, e) =>
-            {
-                player.Start();
-            };
-            player.SetDataSource(fd.FileDescriptor, fd.StartOffset, fd.Length);
-            player.Prepare();
+            var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync(fileName));
+            audioPlayer.Play();
         }
     }
 }

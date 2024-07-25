@@ -5,6 +5,7 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMM_ConsultaProducto : ContentPage
 {
+    string codigoRecibido;
     public SMM_ConsultaProducto()
     {
         InitializeComponent();
@@ -13,9 +14,13 @@ public partial class SMM_ConsultaProducto : ContentPage
         txt_pallet.Focus();
     }
 
+    public SMM_ConsultaProducto(string cod) :this()
+    {
+        codigoRecibido = cod;
+    }
+
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
         txt_pallet.Focus();
         lblError2.Text = string.Empty;
@@ -27,6 +32,7 @@ public partial class SMM_ConsultaProducto : ContentPage
         lblCantUM.Text = string.Empty;
         lblGrupArt.Text = string.Empty;
         lblEstado.Text = string.Empty;
+        txt_pallet.Text = codigoRecibido;
     }
     private void Txt_pallet_Completed(object sender, EventArgs e)
     {
@@ -101,4 +107,11 @@ public partial class SMM_ConsultaProducto : ContentPage
         lblUnidades.Text = string.Empty;
         txt_pallet.Focus();
     }
+
+    private void Btn_Escanear_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    
 }

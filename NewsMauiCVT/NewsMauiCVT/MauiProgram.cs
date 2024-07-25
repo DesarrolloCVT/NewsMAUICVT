@@ -38,8 +38,8 @@ namespace NewsMauiCVT
                         fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                         fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     })
-                .UseDevExpressEditors();
-
+                .UseDevExpressEditors()
+                .UseBarcodeReader();
 #if DEBUG
     		builder.Logging.AddDebug();
             builder.UseMauiApp<App>()
@@ -52,7 +52,6 @@ namespace NewsMauiCVT
 
             builder.Services.AddSingleton(AudioManager.Current);
             builder.Services.AddTransient<MainPage> ();
-            builder.Services.AddTransient<IAudioController>();
 
             return builder.Build();
         }

@@ -12,6 +12,7 @@ namespace NewsMauiCVT
             : base(handle, ownership)
         {
             DependencyService.Register<IGetSSID, GetSSIDAndroid>();
+            DependencyService.Register<IAudio, AudioService>();
         }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();

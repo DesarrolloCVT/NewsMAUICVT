@@ -9,6 +9,9 @@ namespace NewsMauiCVT
             InitializeComponent();
             DevExpress.Maui.DataGrid.Initializer.Init();
             MainPage = new NavigationPage(new MainPage());
+
+            Application.Current.UserAppTheme = AppTheme.Light;
+            this.RequestedThemeChanged += (s, e) => { Application.Current.UserAppTheme = AppTheme.Light; };
         }
 
         public static int Iduser { get; set; }

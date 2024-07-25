@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using AndroidX.AppCompat.App;
 using Controls.UserDialogs.Maui;
 
 namespace NewsMauiCVT
@@ -29,9 +30,7 @@ namespace NewsMauiCVT
 
         protected override void OnCreate(Bundle bundle)
         {
-
             base.OnCreate(bundle);
-
             RequestPermissions(Permission, ResqId);
             //DevExpress.Mobile.Forms.Init();
             DevExpress.Maui.DataGrid.Initializer.Init();

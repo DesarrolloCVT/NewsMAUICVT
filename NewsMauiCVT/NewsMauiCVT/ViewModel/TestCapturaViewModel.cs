@@ -9,6 +9,7 @@ using System.Windows.Input;
 using ZXing;
 using ZXing.Net.Maui;
 using DevExpress.Maui.Core.Internal;
+using NewsMauiCVT.Views;
 
 namespace NewsMauiCVT.ViewModel
 {
@@ -25,25 +26,50 @@ namespace NewsMauiCVT.ViewModel
                 OnPropertyChanged(nameof(Result));
             }
         }
-
-        public Command<ZXing.Result> ButtonCommand { get; private set; }
-
-        //public ICommand ButtonCommand { get; private set; }
+        public ICommand ButtonCommand { get; private set; }
 
         public TestCapturaViewModel() 
         {
-            //ButtonCommand = new Command<ZXing.Result>((x) => OnButtomCommand(x), (x) => true);
-            //ButtonCommand = new Command(OnButtomCommand); 
+            ButtonCommand = new Command(OnButtomCommand);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        { 
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private void OnButtomCommand()
         {
-            //CodigoQr = paramResultado.Text;
+            var page = new CapturaCodigos { Title = "SCANNER" };
+            var closeItem = new ToolbarItem { Text = "CERRAR" };
+            closeItem.Clicked += (object sender, EventArgs e) =>
+            {
+                page.IsScanning = false;
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.Navigation.PopModalAsync();
+                });
+            };
+            page.ToolbarItems.Add(closeItem);
+            page.OnScanResult += (result) =>
+            {
+                page.IsScanning = false;
+
+                MainThread.BeginInvokeOnMainThread(() => {
+                    Application.Current.MainPage.Navigation.PopModalAsync();
+                    if (string.IsNullOrEmpty(result.Text))
+                    {
+                        Result = "Codigo no valido en Scanner";
+                    }
+                    else
+                    {
+                        Result = $"{result.Text}";
+                    }
+                });
+            };
         }
 
         #region ##Old Code##

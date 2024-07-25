@@ -155,6 +155,9 @@
 	  <MauiXaml Update="Views\Calidad_ControlHigiene.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CapturaCodigos.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ControlFosfina.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
