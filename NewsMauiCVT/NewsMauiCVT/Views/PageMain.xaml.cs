@@ -79,7 +79,6 @@ public partial class PageMain : FlyoutPage
         }
         else if (option.page == null || option.title == "Cerrar Sesión")
         {
-
             var result = await DisplayAlert("Confirmar", "Estas seguro de cerrar sesión", "SI", "NO");
             if (result)
             {

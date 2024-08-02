@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dx="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              x:Class="NewsMauiCVT.Views.Posicionamiento">
     <ScrollView VerticalOptions="FillAndExpand">
@@ -11,8 +12,23 @@
             <StackLayout Margin="25,0" Padding="10">
                 <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txt_origen" Completed="Txt_origen_Completed" IsLabelFloating="False" 
                               BorderColor="Green" LabelColor="Green"                                
-                     Keyboard="Numeric" >
+                     Keyboard="Numeric">
                 </dxe:TextEdit>
+                <dx:DXButton 
+                    Margin="25"
+                    x:Name="btn_escanear"
+                    BackgroundColor="Green"
+                    BorderColor="Black"
+                    BorderThickness="2"
+                    IsEnabled="False"
+                    IsVisible="False"
+                    Clicked="Btn_escanear_Clicked"
+                    Content="ESCANEAR CODIGO"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    PressedBackgroundColor="MediumSeaGreen"
+                    PressedBorderColor="DarkOrange" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
                 <Label x:Name="lblConfirm" Text="" IsVisible="False" TextColor="Red" />

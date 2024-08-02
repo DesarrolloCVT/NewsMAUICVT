@@ -75,11 +75,12 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
 	  <WarningLevel>5</WarningLevel>
 	  <Debugger>Xamarin</Debugger>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 	
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\logo.png" Color="White" ForegroundScale="0.6" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -87,6 +88,9 @@
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		<MauiImage Update="Resources\Images\hamburger.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -99,8 +103,14 @@
 	  <EmbeddedResource Remove="Views\SMM_Posicionamiento.xaml" />
 	  <EmbeddedResource Remove="Views\SMM_Repaletizado.xaml" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Remove="Resources\Images\hamburger.png" />
+	  <None Remove="Resources\Images\menu_hamburger.png" />
+	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
 		<PackageReference Include="Controls.UserDialogs.Maui" Version="1.5.4" />
 		<PackageReference Include="DevExpress.Maui.Controls" Version="24.1.3" />
 		<PackageReference Include="DevExpress.Maui.Core" Version="24.1.3" />
@@ -111,13 +121,14 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.71" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.71" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Plugin.Maui.Audio" Version="3.0.0" />
 		<PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
+		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
@@ -152,10 +163,10 @@
 	  <MauiXaml Update="Views\ActualizaTipoPallet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calidad_ControlHigiene.xaml">
+	  <MauiXaml Update="Views\BarcodePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CapturaCodigos.xaml">
+	  <MauiXaml Update="Views\Calidad_ControlHigiene.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ControlFosfina.xaml">

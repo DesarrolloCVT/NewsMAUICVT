@@ -14,21 +14,13 @@ public partial class SMMTrazabilidadPallet : ContentPage
     }
 
     protected override void OnAppearing()
-    {
+    {   
         base.OnAppearing();
         ClearComponent();
         txtNPallet.Focus();
         lblError.IsVisible = false;
         GvData.IsVisible = false;
-
     }
-
-
-    //private void BtnBuscar_Clicked(object sender, EventArgs e)
-    //{ 
-
-    //}
-
     void ClearComponent()
     {
 
@@ -147,23 +139,17 @@ public partial class SMMTrazabilidadPallet : ContentPage
                         }
                     }
                 }
-
             }
             else
             {
-
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                 await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
         }
-
-
     }
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
         return false;
     }
-
-
 }

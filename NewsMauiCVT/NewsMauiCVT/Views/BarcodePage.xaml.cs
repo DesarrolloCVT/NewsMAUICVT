@@ -1,17 +1,27 @@
-using DevExpress.Maui.Core.Internal;
-using ZXing;
-using ZXing.Net.Maui;
 using ZXing.Net.Maui.Controls;
+using ZXing.Net.Maui;
 
 namespace NewsMauiCVT.Views;
 
-public partial class CapturaCodigos : ContentPage
+public partial class BarcodePage : ContentPage
 {
+    public static bool _flag;
+    public static string _codigoDeBarras;
 
-    public static readonly BindableProperty IsScanningProperty = BindableProperty.Create("IsScanning", typeof(bool), typeof(CapturaCodigos), false);
-    public delegate void ScanResultDelegate(Result result);
-
-    public CapturaCodigos()
+    public bool Flag
+    {
+        get => _flag;
+        set => _flag = value;
+    }
+    public static string CodigoDeBarras
+    {
+        get => _codigoDeBarras;
+        set
+        {
+            _codigoDeBarras = value;
+        }
+    }
+    public BarcodePage()
 	{
 		InitializeComponent();
         barcodeView.Options = new BarcodeReaderOptions
@@ -21,38 +31,34 @@ public partial class CapturaCodigos : ContentPage
             Multiple = true
         };
     }
-
-    public bool IsScanning
-    {
-        get
-        {
-            return (bool)GetValue(IsScanningProperty);
-        }
-        set
-        {
-            SetValue(IsScanningProperty, value);
-        }
+    public string Set_txt_Barcode()
+    {   
+        return CodigoDeBarras;
     }
-
-    public event ScanResultDelegate OnScanResult;
-
-    protected async void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
+    public void CleanData()
     {
+        Flag = false;
+        CodigoDeBarras = string.Empty;
+    }
+    protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
+    {
+        Flag = true;
         foreach (var barcode in e.Results)
             Console.WriteLine($"Barcodes: {barcode.Format} -> {barcode.Value}");
 
         var first = e.Results?.FirstOrDefault();
         if (first is not null)
         {
+            CodigoDeBarras = first.Value;
             Dispatcher.Dispatch(() =>
             {
                 // Update BarcodeGeneratorView
                 barcodeGenerator.ClearValue(BarcodeGeneratorView.ValueProperty);
                 barcodeGenerator.Format = first.Format;
                 barcodeGenerator.Value = first.Value;
-
                 // Update Label
                 ResultLabel.Text = $"Barcodes: {first.Format} -> {first.Value}";
+                Application.Current?.MainPage?.Navigation.PopModalAsync();
             });
         }
     }

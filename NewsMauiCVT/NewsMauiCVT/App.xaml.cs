@@ -1,6 +1,4 @@
-﻿using Plugin.Maui.Audio;
-
-namespace NewsMauiCVT
+﻿namespace NewsMauiCVT
 {
     public partial class App : Application
     {

@@ -7,7 +7,7 @@ namespace NewsMauiCVT.Views;
 public partial class TrazabilidadPallet : ContentPage
 {
     public TrazabilidadPallet()
-    {
+    {   
         InitializeComponent();
         lblError.Text = string.Empty;
         lblError.IsVisible = false;
@@ -16,16 +16,30 @@ public partial class TrazabilidadPallet : ContentPage
     }
     protected override void OnAppearing()
     {
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        BarcodePage barcodePage = new BarcodePage();
+        #endregion
+        txtNPallet.Text = "";
         base.OnAppearing();
         ClearComponent();
         txtNPallet.Focus();
         lblError.IsVisible = false;
         GvData.IsVisible = false;
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        if(barcodePage.Flag)
+        {
+            txtNPallet.Text = barcodePage.Set_txt_Barcode();
+            barcodePage.CleanData();
+        }
+        if (DeviceInfo.Model != "MC33")
+        {
+            btn_escanear.IsVisible = true;
+            btn_escanear.IsEnabled = true;
+        }
+        #endregion
     }
-
     void ClearComponent()
     {
-
         lblPallet.Text = string.Empty;
         lblLote.Text = string.Empty;
         lblCantidad.Text = string.Empty;
@@ -114,14 +128,32 @@ public partial class TrazabilidadPallet : ContentPage
         }
         else
         {
-
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
     protected override bool OnBackButtonPressed()
     {
+        txtNPallet.Text = string.Empty;
         //return true to prevent back, return false to just do something before going back. 
         return false;
     }
+    #region Código para cargar página de Scan BarCode desde el teléfono.
+    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    {
+#if ANDROID
+        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
+        if (imm != null)
+        {
+            var activity = Platform.CurrentActivity;
+            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
+            imm.HideSoftInputFromWindow(wToken, 0);
+        }
+#endif
+        Application.Current?.MainPage?.Navigation
+            .PushModalAsync(new NavigationPage(new BarcodePage())
+            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
+
+    }
+    #endregion
 }

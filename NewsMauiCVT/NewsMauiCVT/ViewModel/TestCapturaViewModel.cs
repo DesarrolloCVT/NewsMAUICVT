@@ -10,6 +10,9 @@ using ZXing;
 using ZXing.Net.Maui;
 using DevExpress.Maui.Core.Internal;
 using NewsMauiCVT.Views;
+using BarcodeFormat = ZXing.Net.Maui.BarcodeFormat;
+using ZXing.Net.Maui.Controls;
+using System.Reflection.Emit;
 
 namespace NewsMauiCVT.ViewModel
 {
@@ -42,34 +45,66 @@ namespace NewsMauiCVT.ViewModel
 
         private void OnButtomCommand()
         {
-            var page = new CapturaCodigos { Title = "SCANNER" };
-            var closeItem = new ToolbarItem { Text = "CERRAR" };
-            closeItem.Clicked += (object sender, EventArgs e) =>
-            {
-                page.IsScanning = false;
-
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    Application.Current.MainPage.Navigation.PopModalAsync();
-                });
+            var scanPage = new ContentPage() 
+            {   
+                Title = "SCANNER"
             };
-            page.ToolbarItems.Add(closeItem);
-            page.OnScanResult += (result) =>
-            {
-                page.IsScanning = false;
 
-                MainThread.BeginInvokeOnMainThread(() => {
+            var cameraBarcodeReaderView = new CameraBarcodeReaderView
+            {
+                HorizontalOptions =  LayoutOptions.Fill,
+                VerticalOptions = LayoutOptions.Fill
+            };
+
+            var listado = new List<BarcodeFormat> 
+            { 
+                BarcodeFormat.QrCode,
+                BarcodeFormat.Code128,
+                BarcodeFormat.Ean13,
+                BarcodeFormat.Code39,
+                BarcodeFormat.Aztec,
+                BarcodeFormat.Code93,
+                BarcodeFormat.DataMatrix,
+                BarcodeFormat.Ean8,
+                BarcodeFormat.MaxiCode,
+                BarcodeFormat.Imb,
+                BarcodeFormat.Itf,
+                BarcodeFormat.Msi,
+                BarcodeFormat.Pdf417,
+                BarcodeFormat.Plessey,
+                BarcodeFormat.Rss14,
+                BarcodeFormat.UpcEanExtension
+            };
+            cameraBarcodeReaderView.IsTorchOn = true;
+            scanPage.Content = cameraBarcodeReaderView;
+
+            cameraBarcodeReaderView.CameraLocation = CameraLocation.Rear;
+
+            cameraBarcodeReaderView.BarcodesDetected += (sender, e) =>
+            {
+                var first = e.Results?.FirstOrDefault();
+                if (first is null)
+                {
+                    return;
+                }
+
+                scanPage.Dispatcher.Dispatch(() => {
                     Application.Current.MainPage.Navigation.PopModalAsync();
-                    if (string.IsNullOrEmpty(result.Text))
+                    if (string.IsNullOrEmpty(first.ToString()))
                     {
                         Result = "Codigo no valido en Scanner";
                     }
                     else
                     {
-                        Result = $"{result.Text}";
+                        Result = $"{first.ToString()}";
                     }
                 });
             };
+
+            Application.Current.MainPage.Navigation
+            .PushModalAsync(
+                new NavigationPage(scanPage) { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue },
+                true);
         }
 
         #region ##Old Code##

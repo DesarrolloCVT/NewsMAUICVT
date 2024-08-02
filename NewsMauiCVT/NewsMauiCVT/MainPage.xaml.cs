@@ -22,9 +22,7 @@ namespace NewsMauiCVT
                 await Task.Delay(10);
                 var ssid = DependencyService.Get<IGetSSID>().GetSSID();
                 string sd = Regex.Replace(ssid, @"[^\w\d]", string.Empty);
-
                 loging.IsEnabled = false;
-
 
                 //UserDialogs.Instance.HideLoading();
 
@@ -44,14 +42,10 @@ namespace NewsMauiCVT
                         {
                             BaseAddress = new Uri("http://wsintranet.cvt.local/")
                         };
-
-                        /*HttpClient ClientHttp = new HttpClient();
-                        ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");*/
                         try
                         {
                             //para Consultar
                             var rest = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave).Result;
-
                             if (rest.IsSuccessStatusCode)
                             {
                                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;

@@ -2,13 +2,15 @@ using NewsMauiCVT.Model;
 using Newtonsoft.Json;
 using Plugin.Maui.Audio;
 using System.Net.Http;
+using ZXing.Net.Maui;
+using ZXing.Net.Maui.Controls;
 
 namespace NewsMauiCVT.Views;
 
 public partial class Posicionamiento : ContentPage
 {
     public Posicionamiento()
-	{
+	{   
         InitializeComponent();
         //btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
@@ -17,14 +19,24 @@ public partial class Posicionamiento : ContentPage
     }
     protected override void OnAppearing()
     {
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        BarcodePage barcodePage = new BarcodePage();
+        #endregion
         base.OnAppearing();
         ClearComponent();
         lblError.Text = string.Empty;
         lblError2.Text = string.Empty;
         lblError.IsVisible = false;
         lblError2.IsVisible = false;
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        txt_origen.Text += barcodePage.Set_txt_Barcode();
+        if (DeviceInfo.Model != "MC33")
+        {
+            btn_escanear.IsVisible = true;
+            btn_escanear.IsEnabled = true;
+        }
+        #endregion
     }
-
     private async void Txt_origen_Completed(object sender, EventArgs e)
     {
         lblConfirm.Text = string.Empty;
@@ -100,7 +112,6 @@ public partial class Posicionamiento : ContentPage
                                 lblError.IsVisible = false;
                                 lblError.Text = string.Empty;
                             }
-
                         }
                         txt_destino.Focus();
                     }
@@ -113,9 +124,7 @@ public partial class Posicionamiento : ContentPage
             DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
-
     }
-
     private void Txt_destino_Completed(object sender, EventArgs e)
     {
 
@@ -124,7 +133,6 @@ public partial class Posicionamiento : ContentPage
         {
             try
             {
-
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
 
@@ -161,7 +169,6 @@ public partial class Posicionamiento : ContentPage
                         txt_ConfirmaDestino.IsVisible = true;
                         // this.btn_generar.Focus();
                         //  Btn_generar_Clicked(sender, e);
-
                     }
                     else
                     {
@@ -174,9 +181,7 @@ public partial class Posicionamiento : ContentPage
                         lblError2.Text = "No se puede ingresar en este destino";
                         lblError2.IsVisible = true;
                     }
-
                 }
-
             }
             catch { }
         }
@@ -184,15 +189,10 @@ public partial class Posicionamiento : ContentPage
         {
             DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
-
-
         }
-
     }
-
     void ClearComponent()
     {
-
         txt_origen.Text = string.Empty;
         txt_origen.Focus();
         lbl_codproducto.Text = string.Empty;
@@ -210,21 +210,16 @@ public partial class Posicionamiento : ContentPage
         LayoutOrigen.IsVisible = false;
         LayoutDestinoExistente.IsVisible = false;
         //  btn_generar.IsEnabled = false;
-
-
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
         return false;
     }
-
     private void Txt_ConfirmaDestino_Completed(object sender, EventArgs e)
     {
         if (txt_destino.Text != txt_ConfirmaDestino.Text)
         {
-
             DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Destinos no son iguales favor verificar", "Aceptar");
             txt_ConfirmaDestino.Focus();
@@ -255,12 +250,10 @@ public partial class Posicionamiento : ContentPage
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                 int staffID = JsonConvert.DeserializeObject<int>(resultadoStr);
 
-
                 //ObtienePackageIdPosicionamiento
                 var rest2 = ClientHttp.GetAsync("api/Posicionamiento?NumPallet=" + txt_origen.Text).Result;
                 var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
                 int Package_Id = JsonConvert.DeserializeObject<int>(resultadoStr2);
-
 
                 //ActualizaLayoutPackage
                 var rest3 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&layoutid=" + Convert.ToInt32(txt_destino.Text)).Result;
@@ -292,4 +285,22 @@ public partial class Posicionamiento : ContentPage
             }
         }
     }
+    #region Código para cargar página de Scan BarCode desde el teléfono.
+    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    {
+#if ANDROID
+        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
+        if (imm != null)
+        {
+            var activity = Platform.CurrentActivity;
+            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
+            imm.HideSoftInputFromWindow(wToken, 0);
+        }
+#endif
+        Application.Current?.MainPage?.Navigation
+            .PushModalAsync(new NavigationPage(new BarcodePage())
+            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
+
+    }
+    #endregion
 }
