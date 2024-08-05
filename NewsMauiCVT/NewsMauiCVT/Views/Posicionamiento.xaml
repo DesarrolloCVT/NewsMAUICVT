@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:dx="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              x:Class="NewsMauiCVT.Views.Posicionamiento">
     <ScrollView VerticalOptions="FillAndExpand">
@@ -14,7 +14,7 @@
                               BorderColor="Green" LabelColor="Green"                                
                      Keyboard="Numeric">
                 </dxe:TextEdit>
-                <dx:DXButton 
+                <dxc:DXButton 
                     Margin="25"
                     x:Name="btn_escanear"
                     BackgroundColor="Green"

@@ -9,6 +9,7 @@ public partial class InformeStock : ContentPage
 {
     public InformeStock()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         CargaDatos();
         lblError.IsVisible = false;
@@ -23,7 +24,6 @@ public partial class InformeStock : ContentPage
         cboBodega.SelectedIndex = -1;
         txtCodProd.Text = string.Empty;
     }
-
     void CargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
@@ -40,9 +40,7 @@ public partial class InformeStock : ContentPage
             cboBodega.BindingContext = bod;
         }
     }
-
     public class bodeg { public string Supportive_Description { get; set; } }
-
     private async void BtnBuscar_Clicked(object sender, EventArgs e)
     {
         using (UserDialogs.Instance.Loading("Cargando"))
@@ -111,6 +109,6 @@ public partial class InformeStock : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

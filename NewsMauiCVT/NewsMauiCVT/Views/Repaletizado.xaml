@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
              x:Class="NewsMauiCVT.Views.Repaletizado"
              Title="Repaletizado">
     <ScrollView VerticalOptions="FillAndExpand">
@@ -147,6 +148,21 @@
             </StackLayout>
             <StackLayout Padding="10">
                 <Button Text="GENERAR" TextColor="White" x:Name="btn_generar" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand" Clicked="Btn_generar_Clicked"   />
+                <dxc:DXButton 
+                    Margin="25"
+                    x:Name="btn_escanear"
+                    BackgroundColor="Green"
+                    BorderColor="Black"
+                    BorderThickness="2"
+                    IsEnabled="False"
+                    IsVisible="False"
+                    Clicked="Btn_escanear_Clicked"
+                    Content="ESCANEAR CODIGO"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    PressedBackgroundColor="MediumSeaGreen"
+                    PressedBorderColor="DarkOrange" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

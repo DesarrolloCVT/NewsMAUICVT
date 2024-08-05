@@ -7,7 +7,8 @@ namespace NewsMauiCVT.Views;
 public partial class TrazabilidadPallet : ContentPage
 {
     public TrazabilidadPallet()
-    {   
+    {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         lblError.Text = string.Empty;
         lblError.IsVisible = false;
@@ -15,26 +16,26 @@ public partial class TrazabilidadPallet : ContentPage
         GvData.IsVisible = false;
     }
     protected override void OnAppearing()
-    {
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        BarcodePage barcodePage = new BarcodePage();
-        #endregion
-        txtNPallet.Text = "";
+    {   
         base.OnAppearing();
         ClearComponent();
         txtNPallet.Focus();
         lblError.IsVisible = false;
         GvData.IsVisible = false;
         #region Código para cargar página de Scan BarCode desde el teléfono.
-        if(barcodePage.Flag)
-        {
-            txtNPallet.Text = barcodePage.Set_txt_Barcode();
-            barcodePage.CleanData();
-        }
+        BarcodePage barcodePage = new BarcodePage();
+        #endregion
+        #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
             btn_escanear.IsVisible = true;
             btn_escanear.IsEnabled = true;
+            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
+            {
+                txtNPallet.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.SetFlag(); // -> Set Flag => False.
+
+            }
         }
         #endregion
     }
@@ -51,8 +52,9 @@ public partial class TrazabilidadPallet : ContentPage
         lblEstado.Text = string.Empty;
         GvData.IsVisible = false;
 
+        txtNPallet.Text = string.Empty;
+        txtNPallet.Text = "";
     }
-
     private void TxtNPallet_Completed(object sender, EventArgs e)
     {
 
@@ -132,14 +134,7 @@ public partial class TrazabilidadPallet : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-    protected override bool OnBackButtonPressed()
-    {
-        txtNPallet.Text = string.Empty;
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-    #region Código para cargar página de Scan BarCode desde el teléfono.
-    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    private void OnKeyDown()
     {
 #if ANDROID
         var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
@@ -150,10 +145,21 @@ public partial class TrazabilidadPallet : ContentPage
             imm.HideSoftInputFromWindow(wToken, 0);
         }
 #endif
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        OnKeyDown();
+        //return true to prevent back, return false to just do something before going back. 
+        return false;
+    }
+    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    {
+        BarcodePage barcodePage = new BarcodePage();
+        barcodePage.Flag = true;
+
+        OnKeyDown();
         Application.Current?.MainPage?.Navigation
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
-
     }
-    #endregion
 }

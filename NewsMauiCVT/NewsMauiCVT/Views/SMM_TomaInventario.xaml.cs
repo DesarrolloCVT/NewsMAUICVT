@@ -8,6 +8,7 @@ public partial class SMM_TomaInventario : ContentPage
 {
     public SMM_TomaInventario()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
         lblError.Text = string.Empty;
@@ -63,12 +64,10 @@ public partial class SMM_TomaInventario : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     public class FolioSMM
     {
         public string FolioInvSMM { get; set; }
     }
-
     private void CboFolio_SelectedIndexChanged(object sender, EventArgs e)
     {
         txt_Bodega.Focus();
@@ -114,7 +113,6 @@ public partial class SMM_TomaInventario : ContentPage
     {
         txt_pallet.Focus();
     }
-
     private async void Txt_pallet_Completed(object sender, EventArgs e)
     {
         DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
@@ -163,7 +161,6 @@ public partial class SMM_TomaInventario : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Txt_cantidad_Completed(object sender, EventArgs e)
     {
         if (txt_cantidad.Text.Equals(string.Empty))
@@ -181,7 +178,6 @@ public partial class SMM_TomaInventario : ContentPage
             lblError3.IsVisible = false;
         }
     }
-
     private void Btn_agregar_Clicked(object sender, EventArgs e)
     {
         if (cboFolio.SelectedIndex == -1)
@@ -300,16 +296,12 @@ public partial class SMM_TomaInventario : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
-
-
-
     private void Fvenci_DateSelected(object sender, DateChangedEventArgs e)
     {
         txt_cantidad.Focus();
     }
-
     private async void txtDia_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
@@ -326,7 +318,6 @@ public partial class SMM_TomaInventario : ContentPage
         }
         else { txtMes.Focus(); }
     }
-
     private async void txtMes_Completed(object sender, EventArgs e)
     {
 
@@ -344,7 +335,6 @@ public partial class SMM_TomaInventario : ContentPage
         }
         else { txtAno.Focus(); }
     }
-
     private async void txtAno_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))

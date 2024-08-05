@@ -10,7 +10,7 @@ namespace NewsMauiCVT.Views;
 public partial class Posicionamiento : ContentPage
 {
     public Posicionamiento()
-	{   
+	{
         InitializeComponent();
         //btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
@@ -29,11 +29,16 @@ public partial class Posicionamiento : ContentPage
         lblError.IsVisible = false;
         lblError2.IsVisible = false;
         #region Código para cargar página de Scan BarCode desde el teléfono.
-        txt_origen.Text += barcodePage.Set_txt_Barcode();
         if (DeviceInfo.Model != "MC33")
         {
             btn_escanear.IsVisible = true;
             btn_escanear.IsEnabled = true;
+            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
+            {
+                txt_origen.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.SetFlag(); // -> Set Flag => False.
+                barcodePage.CodigoDetectado = false;
+            }
         }
         #endregion
     }
@@ -211,11 +216,6 @@ public partial class Posicionamiento : ContentPage
         LayoutDestinoExistente.IsVisible = false;
         //  btn_generar.IsEnabled = false;
     }
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
     private void Txt_ConfirmaDestino_Completed(object sender, EventArgs e)
     {
         if (txt_destino.Text != txt_ConfirmaDestino.Text)
@@ -285,8 +285,7 @@ public partial class Posicionamiento : ContentPage
             }
         }
     }
-    #region Código para cargar página de Scan BarCode desde el teléfono.
-    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    private void OnKeyDown()
     {
 #if ANDROID
         var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
@@ -297,10 +296,21 @@ public partial class Posicionamiento : ContentPage
             imm.HideSoftInputFromWindow(wToken, 0);
         }
 #endif
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        OnKeyDown();
+        //return true to prevent back, return false to just do something before going back. 
+        return false;
+    }
+    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    {
+        BarcodePage barcodePage = new BarcodePage();
+        barcodePage.Flag = true;
+
+        OnKeyDown();
         Application.Current?.MainPage?.Navigation
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
-
     }
-    #endregion
 }

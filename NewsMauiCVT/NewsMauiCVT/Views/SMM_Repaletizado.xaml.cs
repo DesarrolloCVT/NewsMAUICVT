@@ -11,10 +11,13 @@ public partial class SMM_Repaletizado : ContentPage
         btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
         LayoutOrigen.IsVisible = false;
+        txtPosicion.Focus();
     }
     protected override void OnAppearing()
     {
-
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        BarcodePage barcodePage = new BarcodePage();
+        #endregion
         base.OnAppearing();
         ClearComponent();
         lblError.Text = string.Empty;
@@ -23,8 +26,20 @@ public partial class SMM_Repaletizado : ContentPage
         lblError.IsVisible = false;
         lblError2.IsVisible = false;
         lblError3.IsVisible = false;
-    }
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        if (DeviceInfo.Model != "MC33")
+        {
+            btn_escanear.IsVisible = true;
+            btn_escanear.IsEnabled = true;
+            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
+            {
+                txtPosicion.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.SetFlag(); // -> Set Flag => False.
 
+            }
+        }
+        #endregion
+    }
     private void TxtPosicion_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -312,7 +327,6 @@ public partial class SMM_Repaletizado : ContentPage
         btn_generar.IsEnabled = false;
 
     }
-
     private void Txt_cantidad_Completed(object sender, EventArgs e)
     {
         if (String.IsNullOrWhiteSpace(txt_cantidad.Text))
@@ -329,8 +343,32 @@ public partial class SMM_Repaletizado : ContentPage
             lblError3.Text = string.Empty;
         }
     }
+    private void OnKeyDown()
+    {
+#if ANDROID
+        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
+        if (imm != null)
+        {
+            var activity = Platform.CurrentActivity;
+            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
+            imm.HideSoftInputFromWindow(wToken, 0);
+        }
+#endif
+    }
     protected override bool OnBackButtonPressed()
-    { //return true to prevent back, return false to just do something before going back. 
+    { 
+        OnKeyDown();
+        //return true to prevent back, return false to just do something before going back. 
         return false;
+    }
+    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    {
+        BarcodePage barcodePage = new BarcodePage();
+        barcodePage.Flag = true;
+
+        OnKeyDown();
+        Application.Current?.MainPage?.Navigation
+            .PushModalAsync(new NavigationPage(new BarcodePage())
+            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
     }
 }

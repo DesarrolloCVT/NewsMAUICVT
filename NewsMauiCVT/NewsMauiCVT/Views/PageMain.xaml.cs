@@ -10,7 +10,6 @@ public partial class PageMain : FlyoutPage
         NavigationPage.SetHasNavigationBar(this, false);
         myPageMain();
     }
-
     public void myPageMain()
     {
         Detail = new NavigationPage(new MenuPruebas() { Title = "Menú" });

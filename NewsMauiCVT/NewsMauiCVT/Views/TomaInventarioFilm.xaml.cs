@@ -10,6 +10,7 @@ public partial class TomaInventarioFilm : ContentPage
     int v_lay = 0;
     public TomaInventarioFilm()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
     }
@@ -103,7 +104,6 @@ public partial class TomaInventarioFilm : ContentPage
             txt_pallet.IsEnabled = true;
         }
     }
-
     private void Txt_pallet_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -186,8 +186,6 @@ public partial class TomaInventarioFilm : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
-
     private void Txt_cantidad_Completed(object sender, EventArgs e)
     {
         //Valida que solo se ingresen numeros
@@ -209,7 +207,6 @@ public partial class TomaInventarioFilm : ContentPage
         }
 
     }
-
     private async void Txt_ubicacion_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -280,7 +277,6 @@ public partial class TomaInventarioFilm : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     void ClearComponent()
     {
         txt_pallet.Text = string.Empty;
@@ -295,7 +291,6 @@ public partial class TomaInventarioFilm : ContentPage
         txt_ubicacion.IsEnabled = false;
         txt_pallet.Focus();
     }
-
     private void Btn_agregar_Clicked(object sender, EventArgs e)
     {
         if (txt_pallet.Text.Equals(string.Empty))
@@ -420,9 +415,8 @@ public partial class TomaInventarioFilm : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
-
     //private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)
     //{
 

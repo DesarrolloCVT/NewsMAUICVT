@@ -7,23 +7,38 @@ public partial class BarcodePage : ContentPage
 {
     public static bool _flag;
     public static string _codigoDeBarras;
+    public static bool _codigoDetectado;
 
+    public bool CodigoDetectado
+    {
+        get => _codigoDetectado; 
+        set 
+        {
+            _codigoDetectado = value;
+            OnPropertyChanged(nameof(CodigoDetectado));
+        } 
+    }
     public bool Flag
     {
         get => _flag;
-        set => _flag = value;
+        set
+        {
+            _flag = value;
+            OnPropertyChanged(nameof(Flag));
+        }
     }
-    public static string CodigoDeBarras
+    public string CodigoDeBarras
     {
         get => _codigoDeBarras;
         set
         {
             _codigoDeBarras = value;
+            OnPropertyChanged(nameof(CodigoDeBarras));
         }
     }
     public BarcodePage()
 	{
-		InitializeComponent();
+        InitializeComponent();
         barcodeView.Options = new BarcodeReaderOptions
         {
             Formats = BarcodeFormats.All,
@@ -35,20 +50,19 @@ public partial class BarcodePage : ContentPage
     {   
         return CodigoDeBarras;
     }
-    public void CleanData()
+    public void SetFlag()
     {
         Flag = false;
-        CodigoDeBarras = string.Empty;
     }
     protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
-    {
-        Flag = true;
+    {   
         foreach (var barcode in e.Results)
             Console.WriteLine($"Barcodes: {barcode.Format} -> {barcode.Value}");
 
         var first = e.Results?.FirstOrDefault();
         if (first is not null)
         {
+            CodigoDetectado = true;
             CodigoDeBarras = first.Value;
             Dispatcher.Dispatch(() =>
             {
@@ -56,7 +70,7 @@ public partial class BarcodePage : ContentPage
                 barcodeGenerator.ClearValue(BarcodeGeneratorView.ValueProperty);
                 barcodeGenerator.Format = first.Format;
                 barcodeGenerator.Value = first.Value;
-                // Update Label
+
                 ResultLabel.Text = $"Barcodes: {first.Format} -> {first.Value}";
                 Application.Current?.MainPage?.Navigation.PopModalAsync();
             });
@@ -69,5 +83,11 @@ public partial class BarcodePage : ContentPage
     void TorchButton_Clicked(object sender, EventArgs e)
     {
         barcodeView.IsTorchOn = !barcodeView.IsTorchOn;
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        BarcodePage barcodePage = new BarcodePage();
+        barcodePage.CodigoDetectado = false;
+        return false;
     }
 }
