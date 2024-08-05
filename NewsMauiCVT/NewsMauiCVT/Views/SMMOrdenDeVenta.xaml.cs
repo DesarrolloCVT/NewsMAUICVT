@@ -7,26 +7,23 @@ public partial class SMMOrdenDeVenta : ContentPage
 {
     public SMMOrdenDeVenta()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-
     }
     protected override void OnAppearing()
     {
         base.OnAppearing();
         txtFolio.Text = string.Empty;
     }
-
     private void btnCreaCliente_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SMMCreaCliente { Title = "Finalizar" });
 
     }
-
     private void btnOrdenCab_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SMMOdenDeVentaCabecera { Title = "Finalizar" });
     }
-
     private void btnReanuda_Clicked(object sender, EventArgs e)
     {
         if (txtFolio.Text.Equals(string.Empty))
@@ -61,11 +58,9 @@ public partial class SMMOrdenDeVenta : ContentPage
             }
         }
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
-
 }

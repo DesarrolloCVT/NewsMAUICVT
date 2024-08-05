@@ -7,6 +7,7 @@ public partial class SMM_Repaletizado : ContentPage
 {
     public SMM_Repaletizado()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
@@ -89,7 +90,6 @@ public partial class SMM_Repaletizado : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
     {
         var picker = (Picker)sender;
@@ -115,7 +115,6 @@ public partial class SMM_Repaletizado : ContentPage
 
         }
     }
-
     private void Txt_destino_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -191,7 +190,6 @@ public partial class SMM_Repaletizado : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Btn_generar_Clicked(object sender, EventArgs e)
     {
         int selectedIndex = picker.SelectedIndex;
@@ -355,12 +353,6 @@ public partial class SMM_Repaletizado : ContentPage
         }
 #endif
     }
-    protected override bool OnBackButtonPressed()
-    { 
-        OnKeyDown();
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
     private void Btn_escanear_Clicked(object sender, EventArgs e)
     {
         BarcodePage barcodePage = new BarcodePage();
@@ -370,5 +362,11 @@ public partial class SMM_Repaletizado : ContentPage
         Application.Current?.MainPage?.Navigation
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        OnKeyDown();
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

@@ -7,10 +7,10 @@ public partial class SMM_TransferenciaCabecera : ContentPage
 {
     public SMM_TransferenciaCabecera()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
     }
-
     void cargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
@@ -54,7 +54,6 @@ public partial class SMM_TransferenciaCabecera : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     public class Bodegas
     {
         public string idBodega { get; set; }
@@ -62,28 +61,19 @@ public partial class SMM_TransferenciaCabecera : ContentPage
 
 
     }
-
     public class Entidad
     {
         public int idEntidad { get; set; }
         public string NomEntidad { get; set; }
     }
-
     public class folios
     {
         public int folioSoli { get; set; }
-    }
-
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
     }
     private void cboBodega_SelectionChanged(object sender, EventArgs e)
     {
         cboBodegaDestino.Focus();
     }
-
     private void cboBodegaDestino_SelectionChanged(object sender, EventArgs e)
     {
         int res = Convert.ToInt32(cboBodegaDestino.SelectedValue.ToString());
@@ -99,17 +89,14 @@ public partial class SMM_TransferenciaCabecera : ContentPage
             cboEntidad.Focus();
         }
     }
-
     private void cboEntidad_SelectionChanged(object sender, EventArgs e)
     {
         txtFolioEntidad.Focus();
     }
-
     private void cboFolioSoli_SelectionChanged(object sender, EventArgs e)
     {
         txtComentarios.Focus();
     }
-
     private void btnCrearOrden_Clicked(object sender, EventArgs e)
     {
         if (cboBodega.SelectedValue == null)
@@ -174,5 +161,10 @@ public partial class SMM_TransferenciaCabecera : ContentPage
             }
 
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return false;
     }
 }

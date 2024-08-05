@@ -7,29 +7,19 @@ public partial class SMMTransferencia : ContentPage
 {
     public SMMTransferencia()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-
     }
-
     protected override void OnAppearing()
     {
         base.OnAppearing();
         txtFolioTransferencia.Text = string.Empty;
 
-    }
-
-
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-
+    }    
     private void btn_Nuevo_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SMM_TransferenciaCabecera { Title = "Finalizar" });
     }
-
     private async void btn_Reanudar_Clicked(object sender, EventArgs e)
     {
         if (txtFolioTransferencia.Text.Equals(string.Empty))
@@ -65,5 +55,10 @@ public partial class SMMTransferencia : ContentPage
                 await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

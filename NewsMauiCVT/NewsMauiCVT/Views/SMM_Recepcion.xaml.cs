@@ -8,12 +8,12 @@ public partial class SMM_Recepcion : ContentPage
 {
     public SMM_Recepcion()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         stNuevo.IsVisible = false;
         stReanudar.IsVisible = false;
         cargaDatos();
     }
-
     protected override void OnAppearing()
     {
 
@@ -27,7 +27,6 @@ public partial class SMM_Recepcion : ContentPage
         cboBodegaResp.SelectedIndex = -1;
         txtFolioRecepcion.Text = string.Empty;
     }
-
     void cargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
@@ -48,7 +47,6 @@ public partial class SMM_Recepcion : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Btn_Nuevo_Clicked(object sender, EventArgs e)
     {
         stNuevo.IsVisible = true;
@@ -57,7 +55,6 @@ public partial class SMM_Recepcion : ContentPage
         btn_ReanudarRecep.IsEnabled = true;
 
     }
-
     private void Btn_ReanudarRecep_Clicked(object sender, EventArgs e)
     {
         stReanudar.IsVisible = true;
@@ -66,7 +63,6 @@ public partial class SMM_Recepcion : ContentPage
         btn_ReanudarRecep.IsEnabled = false;
         txtFolioRecepcion.Focus();
     }
-
     private async void Btn_Crear_Clicked(object sender, EventArgs e)
     {
 
@@ -124,7 +120,6 @@ public partial class SMM_Recepcion : ContentPage
 
 
     }
-
     private void Btn_Reanudar_Clicked(object sender, EventArgs e)
     {
         if (txtFolioRecepcion.Text.Equals(string.Empty))
@@ -158,5 +153,10 @@ public partial class SMM_Recepcion : ContentPage
                 DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

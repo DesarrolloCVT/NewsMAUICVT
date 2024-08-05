@@ -8,10 +8,10 @@ public partial class SMM_TansferenciaDetalle : ContentPage
     int _foliTrans = 0;
     public SMM_TansferenciaDetalle(int FolioTrans)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         _foliTrans = FolioTrans;
     }
-
     protected override void OnAppearing()
     {
 
@@ -22,12 +22,6 @@ public partial class SMM_TansferenciaDetalle : ContentPage
 
 
     }
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-
     private void btnGuardarDetalle_Clicked(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -91,7 +85,6 @@ public partial class SMM_TansferenciaDetalle : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private async void txtNPallet_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -139,12 +132,10 @@ public partial class SMM_TansferenciaDetalle : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private async void btnVerRegistro_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new SMM_TransferenciaBultosCargados(_foliTrans) { Title = "Finalizar" });
     }
-
     private async void btnSalir_Clicked(object sender, EventArgs e)
     {
         var res = await DisplayAlert("Message", "Desea Terminar de ingresar Bultos?", "SI", "NO");
@@ -158,5 +149,10 @@ public partial class SMM_TansferenciaDetalle : ContentPage
 
             txtNPallet.Focus();
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

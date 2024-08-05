@@ -8,9 +8,9 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
 {
     public SMM_Picking_Consolidado_Cabecera()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         CargaDatosDpto();
-
     }
     protected override void OnAppearing()
     {
@@ -41,13 +41,11 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void FConsolidado_DateSelected(object sender, DateChangedEventArgs e)
     {
 
         cboDpto.Focus();
     }
-
     private void BtnBuscar_Clicked(object sender, EventArgs e)
     {
         DatosPickingConsolidadoSMM tp = new DatosPickingConsolidadoSMM();
@@ -98,7 +96,6 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void BtnPikear_Clicked(object sender, EventArgs e)
     {
         string fecha = FConsolidado.Date.Year + "-" + FConsolidado.Date.Month + "-" + FConsolidado.Date.Day;
@@ -110,6 +107,6 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

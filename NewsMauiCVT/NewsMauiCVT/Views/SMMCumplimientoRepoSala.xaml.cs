@@ -8,13 +8,12 @@ public partial class SMMCumplimientoRepoSala : ContentPage
 {
     public SMMCumplimientoRepoSala()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
         txtCodigo.Focus();
         GvGridDatos.IsVisible = false;
-
     }
-
     protected override void OnAppearing()
     {
 
@@ -34,7 +33,6 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         btn_agregar.IsEnabled = false;
         txtCodigo.Focus();
     }
-
     void cargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
@@ -58,7 +56,6 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         }
         txtCodigo.Focus();
     }
-
     private async void Button_Clicked(object sender, EventArgs e)
     {
         DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
@@ -102,7 +99,6 @@ public partial class SMMCumplimientoRepoSala : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private async void txtCodigo_Completed(object sender, EventArgs e)
     {
         DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
@@ -147,12 +143,10 @@ public partial class SMMCumplimientoRepoSala : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void cboNombreRepo_SelectionChanged(object sender, EventArgs e)
     {
         txtDia.Focus();
     }
-
     private async void txtDia_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
@@ -169,7 +163,6 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         }
         else { txtMes.Focus(); }
     }
-
     private async void txtMes_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtMes.Text) > 12 || (txtMes.Text.Equals("") || Convert.ToInt32(txtMes.Text) == 0))
@@ -190,7 +183,6 @@ public partial class SMMCumplimientoRepoSala : ContentPage
 
         }
     }
-
     private async void txtAno_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
@@ -212,22 +204,18 @@ public partial class SMMCumplimientoRepoSala : ContentPage
             btn_agregar.IsEnabled = true;
         }
     }
-
     private void cboDispo_SelectionChanged(object sender, EventArgs e)
     {
         //cboLimpieza.Focus();
     }
-
     private void cboLimpieza_SelectionChanged(object sender, EventArgs e)
     {
         //CboFefo.Focus();
     }
-
     private void CboFefo_SelectionChanged(object sender, EventArgs e)
     {
         //CboFleje.Focus();
     }
-
     private void btn_agregar_Clicked(object sender, EventArgs e)
     {
         try
@@ -325,11 +313,9 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         }
         txtCodigo.Focus();
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
-
 }

@@ -14,6 +14,7 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
     int _CantidadOC = 0;
     public SMMArmadoPedidoDetalle(int FolioArm)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
         _folio = FolioArm;
@@ -57,7 +58,6 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
 
         txt_CodBarr.Focus();
     }
-
     private void txt_CodBarr_Completed(object sender, EventArgs e)
     {
 
@@ -109,7 +109,6 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private async void txtDia_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
@@ -126,7 +125,6 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
         }
         else { txtMes.Focus(); }
     }
-
     private async void txtMes_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtMes.Text) > 12 || (txtMes.Text.Equals("") || Convert.ToInt32(txtMes.Text) == 0))
@@ -147,7 +145,6 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
 
         }
     }
-
     private async void txtAno_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
@@ -169,12 +166,10 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
             btn_agregar.IsEnabled = true;
         }
     }
-
     private void cboCantCorr_SelectionChanged(object sender, EventArgs e)
     {
 
     }
-
     private void btn_agregar_Clicked(object sender, EventArgs e)
     {
 
@@ -269,5 +264,10 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
             lblError2.Text = ex.Message + " " + "contactar al administrador";
             lblError2.Focus();
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

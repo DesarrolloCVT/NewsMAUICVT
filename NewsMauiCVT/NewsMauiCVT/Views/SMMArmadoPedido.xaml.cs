@@ -7,6 +7,7 @@ public partial class SMMArmadoPedido : ContentPage
 {
     public SMMArmadoPedido()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
     protected override void OnAppearing()
@@ -16,8 +17,6 @@ public partial class SMMArmadoPedido : ContentPage
 
         txtNPedido.Text = string.Empty;
     }
-
-
     private void btn_Crear_Clicked(object sender, EventArgs e)
     {
         if (txtNPedido.Text.Equals(string.Empty))
@@ -52,11 +51,9 @@ public partial class SMMArmadoPedido : ContentPage
             }
         }
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
-
 }

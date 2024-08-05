@@ -11,12 +11,12 @@ public partial class Revision_Extintor_Detalle : ContentPage
     int _nPreg = 0;
     public Revision_Extintor_Detalle(int res)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         lblFolio.Text = "Check del Extintor Folio :" + res.ToString();
         cboResp.SelectedIndex = 0;
         _idReg = res;
     }
-
     protected override void OnAppearing()
     {
 
@@ -26,7 +26,6 @@ public partial class Revision_Extintor_Detalle : ContentPage
         cboResp.SelectedIndex = 0;
         _nPreg = 0;
     }
-
     private void Btn_generar_Clicked(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -111,10 +110,9 @@ public partial class Revision_Extintor_Detalle : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

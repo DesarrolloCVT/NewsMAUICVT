@@ -13,13 +13,13 @@ public partial class SMMDetalleRecepcion : ContentPage
     decimal _CantidadOC = 0;
     public SMMDetalleRecepcion(int folio)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         _folio = folio;
         lblFolioRecepcion.Text = Convert.ToString(_folio);
         txt_CodProducto.Focus();
 
     }
-
     protected override void OnAppearing()
     {
 
@@ -38,8 +38,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         //txt_CodProducto.Focus();
 
     }
-
-
     private void Txt_CodProducto_Completed(object sender, EventArgs e)
     {
 
@@ -93,7 +91,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         }
 
     }
-
     private void Btn_Guardar_Clicked(object sender, EventArgs e)
     {
 
@@ -387,7 +384,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         }
         else { txtMesElab.Focus(); }
     }
-
     private async void txtMesElab_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtMesElab.Text) > 12 || (txtMesElab.Text.Equals("") || Convert.ToInt32(txtMesElab.Text) == 0))
@@ -404,7 +400,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         }
         else { txtAnoElab.Focus(); }
     }
-
     private async void txtAnoElab_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtAnoElab.Text) > DateTime.Now.Year)
@@ -421,7 +416,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         }
         else { txtDiaVenc.Focus(); }
     }
-
     private async void txtDiaVenc_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtDiaVenc.Text) > 31 || (txtDiaVenc.Text.Equals("") || Convert.ToInt32(txtDiaVenc.Text) == 0))
@@ -438,7 +432,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         }
         else { txtMesVenc.Focus(); }
     }
-
     private async void txtMesVenc_Completed(object sender, EventArgs e)
     {
 
@@ -456,7 +449,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         }
         else { txtAnoVenc.Focus(); }
     }
-
     private async void txtAnoVenc_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtAnoVenc.Text) < DateTime.Now.Year || txtAnoVenc.Text.Equals(""))
@@ -472,5 +464,10 @@ public partial class SMMDetalleRecepcion : ContentPage
             txtAnoVenc.Focus();
         }
         else { txt_cantidad.Focus(); }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

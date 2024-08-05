@@ -293,11 +293,6 @@ public partial class SMM_TomaInventario : ContentPage
             }
         }
     }
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return true;
-    }
     private void Fvenci_DateSelected(object sender, DateChangedEventArgs e)
     {
         txt_cantidad.Focus();
@@ -350,5 +345,10 @@ public partial class SMM_TomaInventario : ContentPage
             txtAno.Focus();
         }
         else { txt_cantidad.Focus(); }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

@@ -7,10 +7,10 @@ public partial class Revision_Extintor_DatosCab : ContentPage
 {
     public Revision_Extintor_DatosCab()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         txtNExtintor.Focus();
     }
-
     protected override void OnAppearing()
     {
 
@@ -23,32 +23,26 @@ public partial class Revision_Extintor_DatosCab : ContentPage
 
         txtNExtintor.Focus();
     }
-
     private void TxtNExtintor_Completed(object sender, EventArgs e)
     {
         txtUbicacion.Focus();
     }
-
     private void TxtUbicacion_Completed(object sender, EventArgs e)
     {
         txtPesoExtintor.Focus();
     }
-
     private void TxtPesoExtintor_Completed(object sender, EventArgs e)
     {
         vRecarga.Focus();
     }
-
     private void VRecarga_DateSelected(object sender, DateChangedEventArgs e)
     {
         txtTipoAgente.Focus();
     }
-
     private void TxtTipoAgente_Completed(object sender, EventArgs e)
     {
         btn_generar.IsEnabled = true;
     }
-
     private void Btn_generar_Clicked(object sender, EventArgs e)
     {
 
@@ -112,10 +106,9 @@ public partial class Revision_Extintor_DatosCab : ContentPage
             }
         }
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

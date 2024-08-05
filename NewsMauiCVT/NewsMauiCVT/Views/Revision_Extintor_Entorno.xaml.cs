@@ -9,6 +9,7 @@ public partial class Revision_Extintor_Entorno : ContentPage
     int _nPregunta = 0;
     public Revision_Extintor_Entorno(int idRegExtintor)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         lblFolioEntorno.Text = "Check del Entorno Folio :" + idRegExtintor.ToString();
         cboRespEntorno.SelectedIndex = 0;
@@ -78,10 +79,9 @@ public partial class Revision_Extintor_Entorno : ContentPage
             Navigation.PopAsync(true);
         }
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

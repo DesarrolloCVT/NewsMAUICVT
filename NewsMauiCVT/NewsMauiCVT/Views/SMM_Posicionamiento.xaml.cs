@@ -7,6 +7,7 @@ public partial class SMM_Posicionamiento : ContentPage
 {
     public SMM_Posicionamiento()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
@@ -15,7 +16,6 @@ public partial class SMM_Posicionamiento : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
         ClearComponent();
         lblError.Text = string.Empty;
@@ -23,10 +23,8 @@ public partial class SMM_Posicionamiento : ContentPage
         lblError.IsVisible = false;
         lblError2.IsVisible = false;
     }
-
     void ClearComponent()
     {
-
         txt_origen.Text = string.Empty;
         txt_origen.Focus();
         lbl_codproducto.Text = string.Empty;
@@ -45,7 +43,6 @@ public partial class SMM_Posicionamiento : ContentPage
 
 
     }
-
     private void Txt_origen_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -98,7 +95,6 @@ public partial class SMM_Posicionamiento : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Txt_destino_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -147,7 +143,6 @@ public partial class SMM_Posicionamiento : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Btn_generar_Clicked(object sender, EventArgs e)
     {
         if (txt_origen.Text.Equals(string.Empty))
@@ -205,10 +200,9 @@ public partial class SMM_Posicionamiento : ContentPage
 
 
     }
-
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

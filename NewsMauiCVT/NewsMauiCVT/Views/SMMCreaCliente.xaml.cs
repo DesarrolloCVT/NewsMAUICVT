@@ -8,7 +8,7 @@ public partial class SMMCreaCliente : ContentPage
 {
     public SMMCreaCliente()
     {
-
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         txtRut.Focus();
         txtRut.SetSelection(0, 0);
@@ -158,7 +158,6 @@ public partial class SMMCreaCliente : ContentPage
 
 
     }
-
     private void txtRut_Completed(object sender, EventArgs e)
     {
         //   var ACC = Connectivity.NetworkAccess;
@@ -179,7 +178,6 @@ public partial class SMMCreaCliente : ContentPage
             txtNomCliente.Focus();
         }
     }
-
     private void txtNomCliente_Completed(object sender, EventArgs e)
     {
 
@@ -217,7 +215,6 @@ public partial class SMMCreaCliente : ContentPage
             txtCorreo.Focus();
         }
     }
-
     private void txtCorreo_Completed(object sender, EventArgs e)
     {
         bool isEmail = Regex.IsMatch(txtCorreo.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
@@ -238,7 +235,6 @@ public partial class SMMCreaCliente : ContentPage
             txtRazonSocial.Focus();
         }
     }
-
     private void txtRazonSocial_Completed(object sender, EventArgs e)
     {
         if (txtRazonSocial.Text.Equals(string.Empty))
@@ -257,7 +253,6 @@ public partial class SMMCreaCliente : ContentPage
             txtGiro.Focus();
         }
     }
-
     private void txtGiro_Completed(object sender, EventArgs e)
     {
         if (txtGiro.Text.Equals(string.Empty))
@@ -276,7 +271,6 @@ public partial class SMMCreaCliente : ContentPage
             txtDirFact.Focus();
         }
     }
-
     private void txtDirFact_Completed(object sender, EventArgs e)
     {
         if (txtGiro.Text.Equals(string.Empty))
@@ -295,7 +289,6 @@ public partial class SMMCreaCliente : ContentPage
             txtDirDesp.Focus();
         }
     }
-
     private void txtDirDesp_Completed(object sender, EventArgs e)
     {
         if (txtDirDesp.Text.Equals(string.Empty))
@@ -314,7 +307,6 @@ public partial class SMMCreaCliente : ContentPage
             btnGuarda.Focus();
         }
     }
-
     private async void btnUbicacion_Clicked(object sender, EventArgs e)
     {
         var location = await Geolocation.GetLastKnownLocationAsync();
@@ -332,5 +324,9 @@ public partial class SMMCreaCliente : ContentPage
         }
         else { await DisplayAlert("Confirmar", "Active GPS", "OK"); }
     }
-
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
+    }
 }

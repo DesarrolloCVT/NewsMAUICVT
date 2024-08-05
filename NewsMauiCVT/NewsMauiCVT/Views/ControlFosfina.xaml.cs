@@ -6,37 +6,32 @@ public partial class ControlFosfina : ContentPage
 {
     public ControlFosfina()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
-
     private void FFumi_DateSelected(object sender, DateChangedEventArgs e)
     {
         txt_Bodega.Focus();
 
     }
-
     private void Txt_Bodega_Completed(object sender, EventArgs e)
     {
         txt_MayorPP.Focus();
     }
-
     private void Txt_MayorPP_Completed(object sender, EventArgs e)
     {
         cboA1.Focus();
     }
-
     private void CboA1_SelectedIndexChanged(object sender, EventArgs e)
     {
         txt_Distancia.Focus();
     }
-
     private void Txt_Distancia_Completed(object sender, EventArgs e)
     {
         btn_agregar.Focus();
         btn_agregar.IsEnabled = true;
 
     }
-
     private async void Btn_agregar_Clicked(object sender, EventArgs e)
     {
         string hr = hora.Time.ToString();
@@ -114,6 +109,6 @@ public partial class ControlFosfina : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

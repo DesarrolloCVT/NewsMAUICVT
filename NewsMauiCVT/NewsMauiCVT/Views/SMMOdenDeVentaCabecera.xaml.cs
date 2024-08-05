@@ -6,6 +6,7 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
 {
     public SMMOdenDeVentaCabecera()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
     }
@@ -17,13 +18,6 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
         cboDirFact.SelectedIndex = -1;
         dteFechEntrega.Date = null;
     }
-
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-
     void cargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
@@ -53,9 +47,6 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
-
-
     public class Cli
     {
         public string RutCliente { get; set; }
@@ -63,8 +54,6 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
 
 
     }
-
-
     private void ComboBoxEdit_SelectionChanged(object sender, EventArgs e)
     {
         string dat = cboCliente.SelectedValue.ToString() ??
@@ -102,15 +91,11 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
         }
 
     }
-
     public class Direcciones
     {
         public string RutCliente { get; set; }
         public string Direccion { get; set; }
-
-
     }
-
     private void cboDirDespacho_SelectionChanged(object sender, EventArgs e)
     {
         string dat2 = cboCliente.SelectedValue.ToString() ??
@@ -148,7 +133,6 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     public class DireccionesFac
     {
         public string RutCliente { get; set; }
@@ -162,16 +146,12 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
         cboDirFact.ErrorText = string.Empty;
         dteFechEntrega.Focus();
     }
-
-
     private void DateEdit_DateChanged(object sender, EventArgs e)
     {
-
         dteFechEntrega.HasError = false;
         dteFechEntrega.ErrorText = string.Empty;
         btnCrearOrden.Focus();
     }
-
     private void btnCrearOrden_Clicked(object sender, EventArgs e)
     {
         if (cboCliente.SelectedIndex == -1)
@@ -234,5 +214,10 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
             }
         }
 
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

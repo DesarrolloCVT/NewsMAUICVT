@@ -9,6 +9,7 @@ public partial class SMM_Picking_Consolidado : ContentPage
     int _CantidadConsoli = 0;
     public SMM_Picking_Consolidado()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         DateTime FConsolidado = Convert.ToDateTime(App.Fconsoli);
         string fecha = FConsolidado.Date.Day + " - " + FConsolidado.Date.Month + " - " + FConsolidado.Date.Year;
@@ -35,12 +36,10 @@ public partial class SMM_Picking_Consolidado : ContentPage
         lblProducto1.Text = string.Empty;
 
     }
-
     private void FConsolidado_DateSelected(object sender, DateChangedEventArgs e)
     {
         txt_pallet.Focus();
     }
-
     private void Txt_pallet_Completed(object sender, EventArgs e)
     {
 
@@ -101,7 +100,6 @@ public partial class SMM_Picking_Consolidado : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Txt_cantidad_Completed(object sender, EventArgs e)
     {
         if (txt_pallet.Text.Equals(string.Empty) || txt_pallet.Text.Equals("0"))
@@ -119,7 +117,6 @@ public partial class SMM_Picking_Consolidado : ContentPage
         }
         else { btn_agregar.IsEnabled = true; }
     }
-
     private void Btn_agregar_Clicked(object sender, EventArgs e)
     {
 
@@ -174,13 +171,6 @@ public partial class SMM_Picking_Consolidado : ContentPage
             }
         }
     }
-
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-
     private async void Btn_Terminar_Clicked(object sender, EventArgs e)
     {
         var result = await DisplayAlert("Confirmar", "Estas seguro de Terminar", "SI", "NO");
@@ -197,5 +187,10 @@ public partial class SMM_Picking_Consolidado : ContentPage
         {
             await Navigation.PushAsync(new PageMain());
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

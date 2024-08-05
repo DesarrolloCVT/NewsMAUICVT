@@ -9,11 +9,11 @@ public partial class SMM_TransferenciaBultosCargados : ContentPage
     int _fol = 0;
     public SMM_TransferenciaBultosCargados(int FolioTransFer)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargadatos(FolioTransFer);
         _fol = FolioTransFer;
     }
-
     private void btnQuitar_Clicked(object sender, EventArgs e)
     {
         DatosTransferenciaSMM tr = new DatosTransferenciaSMM();
@@ -51,7 +51,6 @@ public partial class SMM_TransferenciaBultosCargados : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     void cargadatos(int idFolio)
     {
         DatosTransferenciaSMM tr = new DatosTransferenciaSMM();
@@ -102,6 +101,9 @@ public partial class SMM_TransferenciaBultosCargados : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
-
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return false;
+    }
 }

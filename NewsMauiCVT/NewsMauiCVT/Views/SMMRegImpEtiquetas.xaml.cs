@@ -6,9 +6,9 @@ namespace NewsMauiCVT.Views;
 public partial class SMMRegImpEtiquetas : ContentPage
 {
     string v_CodigoProducto = "";
-
     public SMMRegImpEtiquetas()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
     protected override void OnAppearing()
@@ -68,7 +68,6 @@ public partial class SMMRegImpEtiquetas : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void btn_agregar_Clicked(object sender, EventArgs e)
     {
         if (txt_pallet.Text.Equals(string.Empty))
@@ -129,6 +128,6 @@ public partial class SMMRegImpEtiquetas : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

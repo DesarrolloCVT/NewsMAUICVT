@@ -9,10 +9,10 @@ public partial class SMMTrazabilidadPallet : ContentPage
 {
     public SMMTrazabilidadPallet()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         txtNPallet.Focus();
     }
-
     protected override void OnAppearing()
     {   
         base.OnAppearing();
@@ -35,7 +35,6 @@ public partial class SMMTrazabilidadPallet : ContentPage
         lblEstado.Text = string.Empty;
         //GvDatos.IsVisible = false;
     }
-
     private async void txtNPallet_Completed(object sender, EventArgs e)
     {
         using (UserDialogs.Instance.Loading("Cargando"))
@@ -150,6 +149,6 @@ public partial class SMMTrazabilidadPallet : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

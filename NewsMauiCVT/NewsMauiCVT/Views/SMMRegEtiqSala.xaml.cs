@@ -9,6 +9,7 @@ public partial class SMMRegEtiqSala : ContentPage
     string v_nomProd = "";
     public SMMRegEtiqSala()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
 
@@ -25,7 +26,6 @@ public partial class SMMRegEtiqSala : ContentPage
         txtAno.Text = string.Empty;
 
     }
-
     private async void txtDia_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
@@ -42,7 +42,6 @@ public partial class SMMRegEtiqSala : ContentPage
         }
         else { txtMes.Focus(); }
     }
-
     private async void txtMes_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtMes.Text) > 12 || (txtMes.Text.Equals("") || Convert.ToInt32(txtMes.Text) == 0))
@@ -59,7 +58,6 @@ public partial class SMMRegEtiqSala : ContentPage
         }
         else { txtAno.Focus(); }
     }
-
     private async void txtAno_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
@@ -76,7 +74,6 @@ public partial class SMMRegEtiqSala : ContentPage
         }
         else { btn_agregar.IsEnabled = true; }
     }
-
     private async void txt_pallet_Completed(object sender, EventArgs e)
     {
         DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
@@ -128,12 +125,10 @@ public partial class SMMRegEtiqSala : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void txt_cantidad_Completed(object sender, EventArgs e)
     {
         txtDia.Focus();
     }
-
     private void btn_agregar_Clicked(object sender, EventArgs e)
     {
         if (txt_pallet.Text.Equals(string.Empty))
@@ -196,7 +191,6 @@ public partial class SMMRegEtiqSala : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
-
 }

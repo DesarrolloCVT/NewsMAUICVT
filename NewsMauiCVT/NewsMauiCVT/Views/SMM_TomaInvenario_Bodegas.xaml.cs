@@ -9,6 +9,7 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
 
     public SMM_TomaInvenario_Bodegas()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         CargaDatos();
         //lblError.Text = string.Empty;
@@ -23,7 +24,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
         lblError5.IsVisible = false;
         cboFolio.Focus();
     }
-
     protected override void OnAppearing()
     {
 
@@ -52,7 +52,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
         txtAno.Text = string.Empty;
 
     }
-
     void CargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
@@ -75,13 +74,10 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     public class FolioSMM
     {
         public string FolioInvSMM { get; set; }
     }
-
-
     private void CboFolio_SelectedIndexChanged(object sender, EventArgs e)
     {
         txt_Npallet.Focus();
@@ -188,7 +184,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
     {
         txt_cantidad.Focus();
     }
-
     private void Txt_cantidad_Completed(object sender, EventArgs e)
     {
         if (txt_cantidad.Text.Equals(string.Empty))
@@ -206,7 +201,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
             lblError3.IsVisible = false;
         }
     }
-
     private void Btn_agregar_Clicked(object sender, EventArgs e)
     {
         if (cboFolio.SelectedIndex == -1)
@@ -352,7 +346,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
             }
         }
     }
-
     private void Txt_Ubicacion_Completed(object sender, EventArgs e)
     {
         DatosSMM_TomaInventario SmmDt = new DatosSMM_TomaInventario();
@@ -391,7 +384,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
         }
 
     }
-
     private async void txtDia_Completed(object sender, EventArgs e)
     {
 
@@ -411,7 +403,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
 
 
     }
-
     private async void txtMes_Completed(object sender, EventArgs e)
     {
 
@@ -432,7 +423,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
 
 
     }
-
     private async void txtAno_Completed(object sender, EventArgs e)
     {
         if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
@@ -452,7 +442,6 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
-
 }

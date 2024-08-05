@@ -8,17 +8,16 @@ public partial class SMM_ConsultaProducto : ContentPage
     string codigoRecibido;
     public SMM_ConsultaProducto()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         lblError2.Text = string.Empty;
         lblError2.IsVisible = false;
         txt_pallet.Focus();
     }
-
     public SMM_ConsultaProducto(string cod) :this()
     {
         codigoRecibido = cod;
     }
-
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -92,7 +91,6 @@ public partial class SMM_ConsultaProducto : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void Btn_Limpiar_Clicked(object sender, EventArgs e)
     {
         lblError2.Text = string.Empty;
@@ -107,11 +105,13 @@ public partial class SMM_ConsultaProducto : ContentPage
         lblUnidades.Text = string.Empty;
         txt_pallet.Focus();
     }
-
     private void Btn_Escanear_Clicked(object sender, EventArgs e)
     {
 
     }
-
-    
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
+    }
 }

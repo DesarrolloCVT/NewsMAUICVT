@@ -7,6 +7,7 @@ public partial class SMM_ExhibicionSala : ContentPage
 {
     public SMM_ExhibicionSala()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         lblError2.IsVisible = false;
         lblError2.Text = string.Empty;
@@ -14,7 +15,6 @@ public partial class SMM_ExhibicionSala : ContentPage
         cboPasillo.Focus();
         btn_agregar.IsEnabled = false;
     }
-
     protected override void OnAppearing()
     {
 
@@ -31,22 +31,18 @@ public partial class SMM_ExhibicionSala : ContentPage
         cboPasillo.Focus();
         btn_agregar.IsEnabled = false;
     }
-
     private void CboPasillo_SelectedIndexChanged(object sender, EventArgs e)
     {
         cboColumna.Focus();
     }
-
     private void CboColumna_SelectedIndexChanged(object sender, EventArgs e)
     {
         cboNivel.Focus();
     }
-
     private void CboNivel_SelectedIndexChanged(object sender, EventArgs e)
     {
         txtCodBarra.Focus();
     }
-
     private void TxtCodBarra_Completed(object sender, EventArgs e)
     {
         DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
@@ -87,13 +83,11 @@ public partial class SMM_ExhibicionSala : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void CboCantCaras_SelectedIndexChanged(object sender, EventArgs e)
     {
         btn_agregar.Focus();
         btn_agregar.IsEnabled = true;
     }
-
     private void Btn_agregar_Clicked(object sender, EventArgs e)
     {
 
@@ -169,5 +163,10 @@ public partial class SMM_ExhibicionSala : ContentPage
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

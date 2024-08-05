@@ -9,6 +9,7 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
 
     public SMM_ConfirmaPalletTransfer()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         txtFolioTransfer.Focus();
     }
@@ -24,7 +25,6 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
         txtFolioTransfer.Text = string.Empty;
 
     }
-
     private async void txtFolioTransfer_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -57,7 +57,6 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
 
         }
     }
-
     private async void txtNPallet_Completed(object sender, EventArgs e)
     {
 
@@ -118,13 +117,7 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
 
         }
 
-    }
-
-    protected override bool OnBackButtonPressed()
-    { //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-
+    }    
     private void btn_agregar_Clicked(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
@@ -156,7 +149,6 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private void btnSalir_Clicked(object sender, EventArgs e)
     {
         txtNPallet.IsVisible = false;
@@ -166,5 +158,9 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
         txtFolioTransfer.Focus();
         txtFolioTransfer.Text = string.Empty;
         btn_agregar.IsEnabled = false;
+    }
+    protected override bool OnBackButtonPressed()
+    { //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

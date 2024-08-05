@@ -7,6 +7,7 @@ public partial class Calidad_ControlHigiene : ContentPage
 {
     public Calidad_ControlHigiene()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         CargaDatos();
     }
@@ -80,11 +81,6 @@ public partial class Calidad_ControlHigiene : ContentPage
         public string tipoCont { get; set; }
         public string NombreCont { get; set; }
 
-    }
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
     }
     private async void btn_agregar_Clicked(object sender, EventArgs e)
     {   
@@ -235,5 +231,10 @@ public partial class Calidad_ControlHigiene : ContentPage
     private void cboHeridaExpuesta_SelectionChanged(object sender, EventArgs e)
     {
         cboHeridaExpuesta.Focus();
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return false;
     }
 }

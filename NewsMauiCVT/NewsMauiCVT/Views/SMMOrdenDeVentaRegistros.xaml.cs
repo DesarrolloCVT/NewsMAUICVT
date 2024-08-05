@@ -9,12 +9,12 @@ public partial class SMMOrdenDeVentaRegistros : ContentPage
     int _folio = 0;
     public SMMOrdenDeVentaRegistros(int folio)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargadatos(folio);
         lblFolioOrden.Text = "Orden N°:" + folio.ToString();
         _folio = folio;
     }
-
     void cargadatos(int idFolio)
     {
         DatosSMMOrdenDeVenta dCu = new DatosSMMOrdenDeVenta();
@@ -77,14 +77,13 @@ public partial class SMMOrdenDeVentaRegistros : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-
     private void btnSalir_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SMMOrdenDeVentaDetalle(_folio));
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

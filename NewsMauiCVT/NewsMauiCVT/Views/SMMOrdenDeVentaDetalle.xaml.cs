@@ -9,9 +9,9 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
     int _folio = 0;
     public SMMOrdenDeVentaDetalle(int folio)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
-
         _folio = folio;
         lblFolioOrden.Text = "ORDEN DE VENTA N°" + _folio;
 
@@ -30,7 +30,6 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
         txtCantidad.HasError = false;
         txtCantidad.ErrorText = string.Empty;
     }
-
     void cargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
@@ -58,21 +57,11 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
 
         }
     }
-
     public class Product
     {
         public string Codigo { get; set; }
         public string NombrePro { get; set; }
-
-
     }
-
-    protected override bool OnBackButtonPressed()
-    {
-        //return true to prevent back, return false to just do something before going back. 
-        return false;
-    }
-
     private void btnGuardarDetalle_Clicked(object sender, EventArgs e)
     {
         if (cboProducto.SelectedIndex == -1)
@@ -133,26 +122,22 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
 
         }
     }
-
     private void cboProducto_SelectionChanged(object sender, EventArgs e)
     {
         txtCantidad.Focus();
         cboProducto.HasError = false;
         cboProducto.ErrorText = string.Empty;
     }
-
     private void txtCantidad_Completed(object sender, EventArgs e)
     {
         txtPorcDesc.Focus();
         txtCantidad.HasError = false;
         txtCantidad.ErrorText = string.Empty;
     }
-
     private void txtPorcDesc_Completed(object sender, EventArgs e)
     {
         btnGuardarDetalle.Focus();
     }
-
     private async void btnVerRegistro_Clicked(object sender, EventArgs e)
     {
         using (UserDialogs.Instance.Loading("Cargando"))
@@ -167,7 +152,6 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
         }
 
     }
-
     private async void btnSalir_Clicked(object sender, EventArgs e)
     {
         var res = await DisplayAlert("Message", "Desea Terminar ?", "SI", "NO");
@@ -182,5 +166,10 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
             cboProducto.Focus();
         }
 
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return false;
     }
 }
