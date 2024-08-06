@@ -7,11 +7,12 @@ public partial class PageMain : FlyoutPage
 	public PageMain()
 	{
         InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, false);
+        NavigationPage.SetHasNavigationBar(this, true);
         myPageMain();
     }
     public void myPageMain()
     {
+        Console.WriteLine("Llamando a myPageMain");
         Detail = new NavigationPage(new MenuPruebas() { Title = "Menú" });
 
         DatosApp dpp = new DatosApp();

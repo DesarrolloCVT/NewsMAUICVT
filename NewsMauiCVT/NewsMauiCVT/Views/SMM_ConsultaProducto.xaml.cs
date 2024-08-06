@@ -20,6 +20,9 @@ public partial class SMM_ConsultaProducto : ContentPage
     }
     protected override void OnAppearing()
     {
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        BarcodePage barcodePage = new BarcodePage();
+        #endregion
         base.OnAppearing();
         txt_pallet.Focus();
         lblError2.Text = string.Empty;
@@ -32,6 +35,19 @@ public partial class SMM_ConsultaProducto : ContentPage
         lblGrupArt.Text = string.Empty;
         lblEstado.Text = string.Empty;
         txt_pallet.Text = codigoRecibido;
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        if (DeviceInfo.Model != "MC33")
+        {
+            btn_Escanear.IsVisible = true;
+            btn_Escanear.IsEnabled = true;
+            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
+            {
+                txt_pallet.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.SetFlag(); // -> Set Flag => False.
+                barcodePage.CodigoDetectado = false;
+            }
+        }
+        #endregion
     }
     private void Txt_pallet_Completed(object sender, EventArgs e)
     {
@@ -104,14 +120,32 @@ public partial class SMM_ConsultaProducto : ContentPage
         lblEstado.Text = string.Empty;
         lblUnidades.Text = string.Empty;
         txt_pallet.Focus();
-    }
-    private void Btn_Escanear_Clicked(object sender, EventArgs e)
+    }    
+    private void OnKeyDown()
     {
-
+#if ANDROID
+        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
+        if (imm != null)
+        {
+            var activity = Platform.CurrentActivity;
+            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
+            imm.HideSoftInputFromWindow(wToken, 0);
+        }
+#endif
     }
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void Btn_Escanear_Clicked(object sender, EventArgs e)
+    {
+        BarcodePage barcodePage = new BarcodePage();
+        barcodePage.Flag = true;
+
+        OnKeyDown();
+        Application.Current?.MainPage?.Navigation
+            .PushModalAsync(new NavigationPage(new BarcodePage())
+            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
     }
 }

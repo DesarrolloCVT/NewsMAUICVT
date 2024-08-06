@@ -7,15 +7,30 @@ public partial class TestCapturaCodeCam : ContentPage
 {
     public TestCapturaCodeCam()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
     protected override void OnAppearing()
     {
-
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        BarcodePage barcodePage = new BarcodePage();
+        #endregion
         base.OnAppearing();
         lblProducto.Text = string.Empty;
         lblCodPro.Text = string.Empty;
-
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        if (DeviceInfo.Model != "MC33")
+        {
+            btn_escanear.IsVisible = true;
+            btn_escanear.IsEnabled = true;
+            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
+            {
+                txtCodigo.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.SetFlag(); // -> Set Flag => False.
+                barcodePage.CodigoDetectado = false;
+            }
+        }
+        #endregion
     }
     private void Button_Clicked(object sender, EventArgs e)
     {
@@ -53,10 +68,31 @@ public partial class TestCapturaCodeCam : ContentPage
         }
 
     }
-
+    private void OnKeyDown()
+    {
+#if ANDROID
+        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
+        if (imm != null)
+        {
+            var activity = Platform.CurrentActivity;
+            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
+            imm.HideSoftInputFromWindow(wToken, 0);
+        }
+#endif
+    }
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
+    }
+    private void Button_Scanner_Clicked(object sender, EventArgs e)
+    {
+        BarcodePage barcodePage = new BarcodePage();
+        barcodePage.Flag = true;
+
+        OnKeyDown();
+        Application.Current?.MainPage?.Navigation
+            .PushModalAsync(new NavigationPage(new BarcodePage())
+            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
     }
 }

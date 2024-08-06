@@ -8,7 +8,6 @@ public partial class TrazabilidadPallet : ContentPage
 {
     public TrazabilidadPallet()
     {
-        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         lblError.Text = string.Empty;
         lblError.IsVisible = false;

@@ -8,9 +8,9 @@
         <ScrollView>
             <StackLayout>
                 <StackLayout Padding="20">
-                    <Label Text="PIKING SMM" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+                    <Label Text="PICKING SMM" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
                 </StackLayout>
-                <Grid ColumnSpacing="2" RowSpacing="10" Margin="10,0,10,0">
+                <Grid ColumnSpacing="2" RowSpacing="30" Margin="10,0,10,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"></RowDefinition>
                         <RowDefinition Height="60"></RowDefinition>
@@ -20,13 +20,13 @@
                         <ColumnDefinition Width="70"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Text="Fecha Consolidado" TextColor="Black" FontSize="Medium" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-                    <DatePicker x:Name="FConsolidado" DateSelected="FConsolidado_DateSelected" Format="dd/MM/yyyy" Grid.Row="0" Grid.Column="0"></DatePicker>
-                    <Picker x:Name="cboDpto" Title="DEPARTAMENTOS" TitleColor="Red" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <DatePicker Margin = "0,35,0,0" x:Name="FConsolidado" DateSelected="FConsolidado_DateSelected" Format="dd/MM/yyyy" Grid.Row="0" Grid.Column="0"></DatePicker>
+                    <Picker Margin="0,0,0,0" x:Name="cboDpto" Title="DEPARTAMENTOS" TitleColor="Red" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                         <Picker.Items>
                         </Picker.Items>
                     </Picker>
                 </Grid>
-                <StackLayout  Padding="50,5,50,5" >
+                <StackLayout  Padding="50,20,50,20" >
                     <Button Text="Buscar" x:Name="btnBuscar" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand"  TextColor="White" Clicked="BtnBuscar_Clicked"/>
                 </StackLayout>
                 <StackLayout Margin="0,10,0,0">
@@ -49,7 +49,7 @@
                         </dxg:DataGridView>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout  Padding="50,5,50,5" >
+                <StackLayout  Padding="50,15,50,15" >
                     <Button Text="Pickear" x:Name="btnPikear" BackgroundColor="OrangeRed"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand"  TextColor="White" Clicked="BtnPikear_Clicked" IsEnabled="False"/>
                 </StackLayout>
             </StackLayout>

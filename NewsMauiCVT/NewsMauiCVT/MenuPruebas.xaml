@@ -9,6 +9,7 @@
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
+                <Button ImageSource="hamburger.png" Opacity="0.4"  HeightRequest="50" Clicked="HandleHamburgerClick" HorizontalOptions="Start" BackgroundColor="White" />
                 <StackLayout Margin="0,20,0,25">
                     <Label Text="Bienvenido!" HorizontalTextAlignment="Center" FontSize="Large"/>
                     <Label HorizontalTextAlignment="Center" FontSize="Large" x:Name="lblNombre" FontAttributes="Bold"></Label>
@@ -22,7 +23,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Text="Consulta Ubicacion" ContentLayout="Top,0" ImageSource="consultaposicion.png" BackgroundColor="Orange" CornerRadius="30" x:Name="bntConsultaUbicacion" FontAttributes="Bold" Clicked="BntConsultaUbicacion_Clicked" Grid.Row="0" Grid.Column="0"  />
+                    <Button Text="Consulta Ubicacion" ContentLayout="Top,0" ImageSource="consultaposicion.png" BackgroundColor="Orange" CornerRadius="30" x:Name="bntConsultaUbicacion" FontAttributes="Bold" Clicked="BntConsultaUbicacion_Clicked" Grid.Row="0" Grid.Column="0" />
                     <Button Text="Posicionamiento"  ContentLayout="Top,0" ImageSource="posicionamientio.png" BackgroundColor="#1561E8" CornerRadius="30" x:Name="btnPosicionamiento" FontAttributes="Bold" Clicked="BtnPosicionamiento_Clicked" Grid.Row="0" Grid.Column="1"/>
                     <Button Text="Trazabilidad Pallet"  ContentLayout="Top,0" ImageSource="tomainventario.png" BackgroundColor="#2CB4FD" CornerRadius="30" x:Name="bntTomaInventario" FontAttributes="Bold" Clicked="BntTomaInventario_Clicked" Grid.Row="1" Grid.Column="0" />
                     <Button Text="Repaletizado" ContentLayout="Top,0" ImageSource="repalletizado.png" BackgroundColor="#4DCA0B" CornerRadius="30" x:Name="btnRepaletizado" FontAttributes="Bold" Clicked="BtnRepaletizado_Clicked" Grid.Row="1" Grid.Column="1"/>

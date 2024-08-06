@@ -10,6 +10,7 @@ public partial class ConsultaUbicacion : ContentPage
 {
     public ConsultaUbicacion()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         txtPosicion.Focus();
     }
@@ -19,7 +20,6 @@ public partial class ConsultaUbicacion : ContentPage
         ClearComponent();
         lblError.IsVisible = false;
     }
-
     void ClearComponent()
     {
         txtPosicion.Text = string.Empty;
@@ -27,7 +27,6 @@ public partial class ConsultaUbicacion : ContentPage
         lblError.Text = string.Empty;
         lblError.IsVisible = false;
     }
-
     private async void TxtPosicion_Completed(object sender, EventArgs e)
     {
         using (UserDialogs.Instance.Loading("Cargando"))
@@ -95,6 +94,6 @@ public partial class ConsultaUbicacion : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

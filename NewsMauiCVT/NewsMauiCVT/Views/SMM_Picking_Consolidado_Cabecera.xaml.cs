@@ -54,44 +54,52 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-
-
             string fecha = FConsolidado.Date.Year + "-" + FConsolidado.Date.Month + "-" + FConsolidado.Date.Day;
-            string Depa = cboDpto.SelectedItem.ToString() ??
-                                throw new InvalidOperationException();
-            DataTable dt = tp.DetallePickingSMM(fecha, Depa);
-
-
-            if (dt.Rows.Count != 0)
+            try
             {
-                GvData.IsVisible = true;
-                GvData.ItemsSource = dt;
+                if (string.IsNullOrEmpty(cboDpto.SelectedItem.ToString()))
+                {
+                    Console.WriteLine("Null response: Departamento no seleccionado");
+                }
+                else
+                {
+                    string Depa = cboDpto.SelectedItem.ToString() ??
+                                    throw new InvalidOperationException();
+                    DataTable dt = tp.DetallePickingSMM(fecha, Depa);
 
-                GvData.Columns["CodProducto"].Caption = "CodProducto";
-                GvData.Columns["Producto"].Caption = "Producto";
-                GvData.Columns["DeptoVentas"].IsVisible = false;
-                GvData.Columns["FechaEntrega"].IsVisible = false;
-                //GvData.RowHeight = 150;
-                //GvData.ColumnsAutoWidth = true;
-                GvData.Columns["CantidadSolicitada"].Caption = "Cant.Soli";
-                GvData.Columns["CantidadPikear"].Caption = "Cant.Pendiente";
-                //GvDa+lta.Columns["Package_SSCC"].IsVisible = false;
+                    if (dt.Rows.Count != 0)
+                    {
+                        GvData.IsVisible = true;
+                        GvData.ItemsSource = dt;
+
+                        GvData.Columns["CodProducto"].Caption = "CodProducto";
+                        GvData.Columns["Producto"].Caption = "Producto";
+                        GvData.Columns["DeptoVentas"].IsVisible = false;
+                        GvData.Columns["FechaEntrega"].IsVisible = false;
+                        //GvData.RowHeight = 150;
+                        //GvData.ColumnsAutoWidth = true;
+                        GvData.Columns["CantidadSolicitada"].Caption = "Cant.Soli";
+                        GvData.Columns["CantidadPikear"].Caption = "Cant.Pendiente";
+                        //GvDa+lta.Columns["Package_SSCC"].IsVisible = false;
 
 
-                btnPikear.IsEnabled = true;
+                        btnPikear.IsEnabled = true;
+                    }
+                    else
+                    {
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                        DisplayAlert("Alerta", "No se encontraron Datos", "Aceptar");
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                DisplayAlert("Alerta", "No se encontraron Datos", "Aceptar");
+                DisplayAlert("¡Error!", "Seleccione una Fecha y Departamento válidos.", "Ok");
+                Console.WriteLine(ex.ToString());
             }
-
-
-
         }
         else
         {
-
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }

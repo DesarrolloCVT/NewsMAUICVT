@@ -116,7 +116,7 @@
                 </StackLayout>
                 <StackLayout Padding="10">
                     <Button
-                        x:Name="btn_Escanear_Clicked"
+                        x:Name="btn_Escanear"
                         BackgroundColor="#00b33c"
                         Clicked="Btn_Escanear_Clicked"
                         CornerRadius="5"

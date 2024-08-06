@@ -293,7 +293,7 @@
             <StackLayout Margin="50,0">
                 <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red" />
             </StackLayout>
-            <StackLayout Margin="0,0,0,50">
+            <StackLayout Margin="0,25,0,50">
                 <StackLayout Margin="25,0">
                     <dxc:DXButton  
                         Content="GUARDAR"
