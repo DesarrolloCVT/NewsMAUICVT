@@ -16,9 +16,10 @@ public partial class SMMCumplimientoRepoSala : ContentPage
     }
     protected override void OnAppearing()
     {
-
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        BarcodePage barcodePage = new BarcodePage();
+        #endregion
         base.OnAppearing();
-
         lblProducto.Text = string.Empty;
         lblError2.Text = string.Empty;
         cboNombreRepo.SelectedIndex = -1;
@@ -32,6 +33,19 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         CboFleje.SelectedIndex = -1;
         btn_agregar.IsEnabled = false;
         txtCodigo.Focus();
+        #region Código para cargar página de Scan BarCode desde el teléfono.
+        if (DeviceInfo.Model != "MC33")
+        {
+            btn_escanear.IsVisible = true;
+            btn_escanear.IsEnabled = true;
+            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
+            {
+                txtCodigo.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.SetFlag(); // -> Set Flag => False.
+                barcodePage.CodigoDetectado = false;
+            }
+        }
+        #endregion
     }
     void cargaDatos()
     {
@@ -149,59 +163,80 @@ public partial class SMMCumplimientoRepoSala : ContentPage
     }
     private async void txtDia_Completed(object sender, EventArgs e)
     {
-        if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
+        try
         {
-            using (UserDialogs.Instance.Alert("ingrese dia correcto"))
+            if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
             {
-                await Task.Delay(5);
+                using (UserDialogs.Instance.Alert("ingrese dia correcto"))
+                {
+                    await Task.Delay(5);
 
 
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                await DisplayAlert("Alerta", "ingrese dia", "Aceptar");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    await DisplayAlert("Alerta", "ingrese dia", "Aceptar");
+                }
+                txtDia.Focus();
             }
-            txtDia.Focus();
+            else { txtMes.Focus(); }
         }
-        else { txtMes.Focus(); }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
     }
     private async void txtMes_Completed(object sender, EventArgs e)
     {
-        if (Convert.ToInt32(txtMes.Text) > 12 || (txtMes.Text.Equals("") || Convert.ToInt32(txtMes.Text) == 0))
+        try
         {
-            using (UserDialogs.Instance.Alert("ingrese mes correcto"))
+            if (Convert.ToInt32(txtMes.Text) > 12 || (txtMes.Text.Equals("") || Convert.ToInt32(txtMes.Text) == 0))
             {
-                await Task.Delay(5);
+                using (UserDialogs.Instance.Alert("ingrese mes correcto"))
+                {
+                    await Task.Delay(5);
 
 
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                await DisplayAlert("Alerta", "ingrese mes correcto", "Aceptar");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    await DisplayAlert("Alerta", "ingrese mes correcto", "Aceptar");
+                }
+                txtMes.Focus();
             }
-            txtMes.Focus();
-        }
-        else
-        {
-            txtAno.Focus();
+            else
+            {
+                txtAno.Focus();
 
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
         }
     }
     private async void txtAno_Completed(object sender, EventArgs e)
     {
-        if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
+        try
         {
-            using (UserDialogs.Instance.Alert("ingrese año correcto"))
+            if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
             {
-                await Task.Delay(5);
+                using (UserDialogs.Instance.Alert("ingrese año correcto"))
+                {
+                    await Task.Delay(5);
 
 
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                await DisplayAlert("Alerta", "ingrese año correcto", "Aceptar");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    await DisplayAlert("Alerta", "ingrese año correcto", "Aceptar");
 
+                }
+                txtAno.Focus();
             }
-            txtAno.Focus();
+            else
+            {
+                GvGridDatos.IsVisible = true;
+                btn_agregar.IsEnabled = true;
+            }
         }
-        else
+        catch (Exception ex)
         {
-            GvGridDatos.IsVisible = true;
-            btn_agregar.IsEnabled = true;
+            Console.WriteLine(ex.ToString());
         }
     }
     private void cboDispo_SelectionChanged(object sender, EventArgs e)
@@ -313,9 +348,32 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         }
         txtCodigo.Focus();
     }
+    private void OnKeyDown()
+    {
+#if ANDROID
+        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
+        if (imm != null)
+        {
+            var activity = Platform.CurrentActivity;
+            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
+            imm.HideSoftInputFromWindow(wToken, 0);
+        }
+#endif
+    }
     protected override bool OnBackButtonPressed()
     {
+        OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    {
+        BarcodePage barcodePage = new BarcodePage();
+        barcodePage.Flag = true;
+
+        OnKeyDown();
+        Application.Current?.MainPage?.Navigation
+            .PushModalAsync(new NavigationPage(new BarcodePage())
+            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
     }
 }

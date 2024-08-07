@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Margin="25">
-                <Label Text="Consulta Ubicacion" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+                <Label Text="CONSULTA UBICACION" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
                 <dxe:TextEdit LabelText="UBICACION" LabelFontSize="15"  BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 

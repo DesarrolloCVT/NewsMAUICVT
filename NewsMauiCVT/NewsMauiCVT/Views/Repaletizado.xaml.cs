@@ -10,6 +10,7 @@ public partial class Repaletizado : ContentPage
 {
     public Repaletizado()
 	{
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
@@ -444,7 +445,7 @@ public partial class Repaletizado : ContentPage
     {
         OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
     private void Btn_escanear_Clicked(object sender, EventArgs e)
     {   

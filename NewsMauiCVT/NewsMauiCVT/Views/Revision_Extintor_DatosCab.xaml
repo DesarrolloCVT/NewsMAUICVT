@@ -6,7 +6,7 @@
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="20">
-                <Label Text="Check Equipo Extinción de Fuego" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+                <Label Text="CHECK EQUIPO EXTINCION DE FUEGO" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
             <StackLayout Padding="10"></StackLayout>
             <Grid ColumnSpacing="10" RowSpacing="10" Margin="10,0,10,0">
@@ -20,15 +20,15 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="lblNExtintor" Text="N° Extintor"  Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
-                <Entry Placeholder="" x:Name="txtNExtintor" Keyboard="Numeric"  Grid.Row="0" Grid.Column="0"  Completed="TxtNExtintor_Completed" MaxLength="9"/>
+                <Entry Placeholder="" x:Name="txtNExtintor" Keyboard="Numeric"  Grid.Row="0" Grid.Column="0"  Completed="TxtNExtintor_Completed" MaxLength="9" Margin="0,10,0,0"/>
                 <Label x:Name="lblUbicacion" Text="Ubicacion"   Grid.Row="0" Grid.Column="1" FontAttributes="Bold"/>
-                <Entry Placeholder="" x:Name="txtUbicacion" Grid.Row="0" Grid.Column="1" Completed="TxtUbicacion_Completed"/>
+                <Entry Placeholder="" x:Name="txtUbicacion" Grid.Row="0" Grid.Column="1" Completed="TxtUbicacion_Completed" Margin="0,10,0,0"/>
                 <Label x:Name="lblPeso" Text="Peso Extintor(Kg)"   Grid.Row="1" Grid.Column="0" FontAttributes="Bold"/>
-                <Entry Placeholder="" x:Name="txtPesoExtintor" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" Completed="TxtPesoExtintor_Completed"/>
+                <Entry Placeholder="" x:Name="txtPesoExtintor" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" Completed="TxtPesoExtintor_Completed" Margin="0,10,0,0"/>
                 <Label x:Name="lblvigencia" Text="Vigencia Recarga"   Grid.Row="1" Grid.Column="1" FontAttributes="Bold"/>
-                <DatePicker x:Name="vRecarga" DateSelected="VRecarga_DateSelected" Format="dd/MM/yyyy"  Grid.Row="1" Grid.Column="1"></DatePicker>
+                <DatePicker x:Name="vRecarga" DateSelected="VRecarga_DateSelected" Format="dd/MM/yyyy"  Grid.Row="1" Grid.Column="1" Margin="0,15,0,0"></DatePicker>
                 <Label x:Name="lblTipoAgente" Text="Tipo de Agente Extintor"   Grid.Row="2" Grid.Column="0" FontAttributes="Bold" Grid.ColumnSpan="2"/>
-                <Entry Placeholder="" x:Name="txtTipoAgente" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Completed="TxtTipoAgente_Completed"/>
+                <Entry Placeholder="" x:Name="txtTipoAgente" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Completed="TxtTipoAgente_Completed" Margin="0,10,0,0"/>
             </Grid>
             <StackLayout Padding="55,0,60,0">
                 <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red" />

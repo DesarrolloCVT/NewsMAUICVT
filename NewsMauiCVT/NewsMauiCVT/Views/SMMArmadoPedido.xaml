@@ -11,7 +11,7 @@
                 <Label
                     FontSize="Large"
                     HorizontalTextAlignment="Center"
-                    Text="medición de armado de pedidos"
+                    Text="MEDICION DE ARMADO DE PEDIDOS"
                     TextColor="Black" />
             </StackLayout>
             <StackLayout Margin="25,0">

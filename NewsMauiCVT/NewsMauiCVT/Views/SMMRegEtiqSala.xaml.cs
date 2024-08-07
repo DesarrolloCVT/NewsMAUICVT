@@ -28,51 +28,73 @@ public partial class SMMRegEtiqSala : ContentPage
     }
     private async void txtDia_Completed(object sender, EventArgs e)
     {
-        if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
+        try
         {
-            using (UserDialogs.Instance.Alert("ingrese dia correcto"))
+            if (Convert.ToInt32(txtDia.Text) > 31 || (txtDia.Text.Equals("") || Convert.ToInt32(txtDia.Text) == 0))
             {
-                await Task.Delay(5);
+                using (UserDialogs.Instance.Alert("ingrese dia correcto"))
+                {
+                    await Task.Delay(5);
 
 
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                await DisplayAlert("Alerta", "ingrese dia", "Aceptar");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    await DisplayAlert("Alerta", "ingrese dia", "Aceptar");
+                }
+                //txtDia.Focus();
             }
-            //txtDia.Focus();
+            else { txtMes.Focus(); }
         }
-        else { txtMes.Focus(); }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
     }
     private async void txtMes_Completed(object sender, EventArgs e)
     {
-        if (Convert.ToInt32(txtMes.Text) > 12 || (txtMes.Text.Equals("") || Convert.ToInt32(txtMes.Text) == 0))
+        try
         {
-            using (UserDialogs.Instance.Alert("ingrese mes correcto"))
+            if (Convert.ToInt32(txtMes.Text) > 12 || (txtMes.Text.Equals("") || Convert.ToInt32(txtMes.Text) == 0))
             {
-                await Task.Delay(5);
+                using (UserDialogs.Instance.Alert("ingrese mes correcto"))
+                {
+                    await Task.Delay(5);
 
 
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                await DisplayAlert("Alerta", "ingrese mes correcto", "Aceptar");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    await DisplayAlert("Alerta", "ingrese mes correcto", "Aceptar");
+                }
+                //txtMes.Focus();
             }
-            //txtMes.Focus();
+            else { txtAno.Focus(); }
         }
-        else { txtAno.Focus(); }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
     private async void txtAno_Completed(object sender, EventArgs e)
     {
-        if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
+        try
         {
-            using (UserDialogs.Instance.Alert("ingrese año correcto"))
+            if (Convert.ToInt32(txtAno.Text) < DateTime.Now.Year || txtAno.Text.Equals(""))
             {
-                await Task.Delay(5);
+                using (UserDialogs.Instance.Alert("ingrese año correcto"))
+                {
+                    await Task.Delay(5);
 
 
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                await DisplayAlert("Alerta", "ingrese año correcto", "Aceptar");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    await DisplayAlert("Alerta", "ingrese año correcto", "Aceptar");
+                }
+                //txtAno.Focus();
             }
-            //txtAno.Focus();
+            else { btn_agregar.IsEnabled = true; }
         }
-        else { btn_agregar.IsEnabled = true; }
+        catch (Exception ex)
+        {
+
+        }
     }
     private async void txt_pallet_Completed(object sender, EventArgs e)
     {

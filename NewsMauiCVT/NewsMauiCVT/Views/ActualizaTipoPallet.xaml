@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    NavigationPage.HasBackButton="False"
     Title="ActualizaTipoPallet">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
@@ -13,7 +12,7 @@
                 <Label
                     FontSize="Large"
                     HorizontalTextAlignment="Center"
-                    Text="Cambia Tipo de Pallet"
+                    Text="CAMBIA TIPO DE PALLET"
                     TextColor="Black" />
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">

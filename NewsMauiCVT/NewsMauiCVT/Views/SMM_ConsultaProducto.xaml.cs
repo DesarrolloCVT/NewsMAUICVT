@@ -135,6 +135,7 @@ public partial class SMM_ConsultaProducto : ContentPage
     }
     protected override bool OnBackButtonPressed()
     {
+        OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }

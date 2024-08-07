@@ -15,60 +15,62 @@
                     FontSize="10"
                     Text="versión 2.7.6.2023"
                     TextColor="#3399ff" />
-                <StackLayout>
-                    <Image
+                <StackLayout Margin="0,50,0,0">
+                    <Image        
                         BackgroundColor="Transparent"
                         FlexLayout.AlignSelf="Center"
                         Source="logocvt.png" />
                 </StackLayout>
-                <StackLayout HorizontalOptions="Center">
-                    <Label
-                        FlexLayout.AlignSelf="Center"
-                        FontAttributes="Bold"
-                        FontSize="25"
-                        Text="Iniciar Sesión"
-                        TextColor="#3399ff" />
-                </StackLayout>
-                <StackLayout Margin="25,0" Padding="10">
-                    <dx:TextEdit
-                        x:Name="txtUsuario"
-                        BorderColor="Green"
-                        BoxHeight="50"
-                        EndIcon="user"
-                        IsLabelFloating="False"
-                        LabelColor="Green"
-                        LabelFontSize="15"
-                        LabelText="USUARIO" />
-                </StackLayout>
-                <StackLayout Margin="25,0" Padding="10">
-                    <dx:PasswordEdit
-                        x:Name="txtContraseña"
-                        BorderColor="Green"
-                        BoxHeight="50"
-                        ClearIconVisibility="Auto"
-                        IsLabelFloating="False"
-                        LabelColor="Green"
-                        LabelFontSize="15"
-                        LabelText="CONTRASEÑA"
-                        MaxCharacterCount="6"
-                        MaxCharacterCountOverflowMode="LimitInput" />
-                </StackLayout>
-                <StackLayout Margin="25,0">
-                    <dx:DXButton  
-                        Content="INICIAR" 
-                        CornerRadius="20" 
-                        FontAttributes="Bold" 
-                        x:Name="loging" 
-                        HeightRequest="50"  
-                        Clicked="Loging_ClickedAsync" 
-                        PressedBackgroundColor="MediumSeaGreen"
-                        BackgroundColor="#3399ff"
-                        BorderColor="Black"
-                        BorderThickness="2"
-                        PressedBorderColor="DarkOrange"
-                        Icon="enter" 
-                        ShowIcon="True">
-                    </dx:DXButton>
+                <StackLayout x:Name="SlStackLayout">
+                    <StackLayout HorizontalOptions="Center">
+                        <Label
+                            FlexLayout.AlignSelf="Center"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Text="Iniciar Sesión"
+                            TextColor="#3399ff" />
+                    </StackLayout>
+                    <StackLayout Margin="25,0" Padding="10,0,0,20">
+                        <dx:TextEdit
+                            x:Name="txtUsuario"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            EndIcon="user"
+                            IsLabelFloating="False"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="USUARIO" />
+                    </StackLayout>
+                    <StackLayout Margin="25,0" Padding="10,0,0,20">
+                        <dx:PasswordEdit
+                            x:Name="txtContraseña"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            ClearIconVisibility="Auto"
+                            IsLabelFloating="False"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="CONTRASEÑA"
+                            MaxCharacterCount="6"
+                            MaxCharacterCountOverflowMode="LimitInput" />
+                    </StackLayout>
+                    <StackLayout Margin="25,0" Padding="10,0,0,20">
+                        <dx:DXButton  
+                            Content="INICIAR" 
+                            CornerRadius="20" 
+                            FontAttributes="Bold" 
+                            x:Name="loging" 
+                            HeightRequest="50"  
+                            Clicked="Loging_ClickedAsync" 
+                            PressedBackgroundColor="MediumSeaGreen"
+                            BackgroundColor="#3399ff"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            PressedBorderColor="DarkOrange"
+                            Icon="enter" 
+                            ShowIcon="True">
+                        </dx:DXButton>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

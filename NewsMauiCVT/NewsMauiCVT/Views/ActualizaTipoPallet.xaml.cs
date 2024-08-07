@@ -8,6 +8,7 @@ public partial class ActualizaTipoPallet : ContentPage
 {
     public ActualizaTipoPallet()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         btn_generar.IsEnabled = false;
         txt_pallet.Focus();

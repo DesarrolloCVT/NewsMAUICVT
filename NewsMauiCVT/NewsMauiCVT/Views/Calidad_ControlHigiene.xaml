@@ -8,7 +8,7 @@
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="10">
-                <Label Text="Control Higiene Personal"  HorizontalTextAlignment="Center"  TextColor="Black" FontSize="Title" FontAttributes="Bold"/>
+                <Label Text="Control Higiene Personal"  HorizontalTextAlignment="Center"  TextColor="Black" FontSize="Large"/>
             </StackLayout>
             <StackLayout Padding="5,5,5,0">
                 <dxe:ComboBoxEdit ItemsSource="{Binding}"

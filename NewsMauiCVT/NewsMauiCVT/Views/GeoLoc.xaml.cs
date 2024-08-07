@@ -4,6 +4,7 @@ public partial class GeoLoc : ContentPage
 {
     public GeoLoc()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
     protected override void OnAppearing()
@@ -15,7 +16,6 @@ public partial class GeoLoc : ContentPage
         lblLong.Text = string.Empty;
         lblAlt.Text = string.Empty;
     }
-
     public async void btn_clicked(object sender, System.EventArgs e)
     {
         lblLat.Text = string.Empty;
@@ -43,6 +43,6 @@ public partial class GeoLoc : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

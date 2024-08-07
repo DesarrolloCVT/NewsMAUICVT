@@ -12,8 +12,16 @@ namespace NewsMauiCVT
         public MainPage()
         {   
             InitializeComponent();
+            SetMobileScreen();
             NavigationPage.SetHasNavigationBar(this, false);
             txtUsuario.Focus();
+        }
+        private void SetMobileScreen()
+        {
+            if (!(DeviceInfo.Model == "MC33"))
+            {
+                SlStackLayout.VerticalOptions = LayoutOptions.CenterAndExpand;
+            }
         }
         private async void Loging_ClickedAsync(object sender, EventArgs e)
         {

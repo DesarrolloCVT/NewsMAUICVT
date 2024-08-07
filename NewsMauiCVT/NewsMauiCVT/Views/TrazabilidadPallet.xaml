@@ -14,7 +14,7 @@
                     <Label
                         FontSize="Large"
                         HorizontalTextAlignment="Center"
-                        Text="Trazabilidad Pallet"
+                        Text="TRAZABILIDAD PALLET"
                         TextColor="Black" />
                 </StackLayout>
                 <StackLayout Margin="25,0" Padding="10">

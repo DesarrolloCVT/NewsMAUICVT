@@ -18,7 +18,7 @@
                 CornerRadius="20"
                 FontSize="Medium"
                 HeightRequest="60"
-                Text="Click scanner"
+                Text="Escanear Código"
                 Clicked="Button_Scanner_Clicked"
                 TextColor="White" />
             <dxe:TextEdit

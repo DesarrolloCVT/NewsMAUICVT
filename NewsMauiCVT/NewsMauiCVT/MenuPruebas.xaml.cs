@@ -51,26 +51,23 @@ public partial class MenuPruebas : ContentPage
     }
     private void SetMobileScreen()
     {
-#if ANDROID
-        GvGrid.VerticalOptions = LayoutOptions.Center;
-#endif
-
+        if (!(DeviceInfo.Model == "MC33"))
+        {
+            GvGrid.VerticalOptions = LayoutOptions.CenterAndExpand;
+        }
     }
     private void BntConsultaUbicacion_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new ConsultaUbicacion() { Title = "Volver" });
     }
-
     private void BtnPosicionamiento_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new Posicionamiento() { Title = "Volver" });
     }
-
     private void BtnRepaletizado_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new Repaletizado() { Title = "Volver" });
     }
-
     private void BntTomaInventario_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new TrazabilidadPallet() { Title = "Volver" });

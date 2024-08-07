@@ -8,6 +8,7 @@ public partial class TrazabilidadPallet : ContentPage
 {
     public TrazabilidadPallet()
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         lblError.Text = string.Empty;
         lblError.IsVisible = false;
@@ -149,7 +150,7 @@ public partial class TrazabilidadPallet : ContentPage
     {
         OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
     private void Btn_escanear_Clicked(object sender, EventArgs e)
     {

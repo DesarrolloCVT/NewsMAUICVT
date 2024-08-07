@@ -353,6 +353,12 @@ public partial class SMM_Repaletizado : ContentPage
         }
 #endif
     }
+    protected override bool OnBackButtonPressed()
+    {
+        OnKeyDown();
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
+    }
     private void Btn_escanear_Clicked(object sender, EventArgs e)
     {
         BarcodePage barcodePage = new BarcodePage();
@@ -362,11 +368,5 @@ public partial class SMM_Repaletizado : ContentPage
         Application.Current?.MainPage?.Navigation
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
-    }
-    protected override bool OnBackButtonPressed()
-    {
-        OnKeyDown();
-        //return true to prevent back, return false to just do something before going back. 
-        return true;
     }
 }

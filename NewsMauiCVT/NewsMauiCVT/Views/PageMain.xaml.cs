@@ -7,12 +7,11 @@ public partial class PageMain : FlyoutPage
 	public PageMain()
 	{
         InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, true);
+        NavigationPage.SetHasNavigationBar(this, false);
         myPageMain();
     }
     public void myPageMain()
     {
-        Console.WriteLine("Llamando a myPageMain");
         Detail = new NavigationPage(new MenuPruebas() { Title = "Menú" });
 
         DatosApp dpp = new DatosApp();
@@ -45,11 +44,11 @@ public partial class PageMain : FlyoutPage
                 new Option{ page=new SMMOrdenDeVenta(){Title="Menú"},title="SMM Orden de Ventas", detail="Creacion de Ordenes de Ventas"},
                 new Option{ page=new SMMTrazabilidadPallet(){Title="Menú"},title="SMM Trazabilidad Pallet", detail="Trazabilidad Pallet SMM"},
                 new Option{ page=new SMM_ConfirmaPalletTransfer(){Title="Menú"},title="SMM Confirma Pallet", detail="Confirma Pallet en Transferencia"},
-                new Option{ page=new  SMMCumplimientoRepoSala(){Title="Menú"},title="SMM Cumplimiento Reposicion Sala", detail="Ingreso medición de cumplimiento de reposición en la sala"},
-                new Option{ page=new  SMMArmadoPedido(){Title="Menú"},title="SMM Medición armado de pedidos", detail="Ingreso medición armado de pedidos"},
-                new Option{ page=new  SMMRegImpEtiquetas(){Title="Menú"},title="SMM Registro Imp.Etiquetas", detail="Ingreso de productos para impresion etiquetas de precios"},
-                new Option{ page=new  SMMRegEtiqSala(){Title="Menú"},title="SMM Registro Etiquetas pallet sala", detail="ingreso de productos para impresion de etiquetas para sala de ventas"},
-                new Option{ page=new  Calidad_ControlHigiene(){Title="Menú"},title="Control Higiene", detail="Registro Control Higiene Personal"}
+                new Option{ page=new SMMCumplimientoRepoSala(){Title="Menú"},title="SMM Cumplimiento Reposicion Sala", detail="Ingreso medición de cumplimiento de reposición en la sala"},
+                new Option{ page=new SMMArmadoPedido(){Title="Menú"},title="SMM Medición armado de pedidos", detail="Ingreso medición armado de pedidos"},
+                new Option{ page=new SMMRegImpEtiquetas(){Title="Menú"},title="SMM Registro Imp.Etiquetas", detail="Ingreso de productos para impresion etiquetas de precios"},
+                new Option{ page=new SMMRegEtiqSala(){Title="Menú"},title="SMM Registro Etiquetas pallet sala", detail="ingreso de productos para impresion de etiquetas para sala de ventas"},
+                new Option{ page=new Calidad_ControlHigiene(){Title="Menú"},title="Control Higiene", detail="Registro Control Higiene Personal"}
         };  
         List<Option> options1 = new List<Option>();
 
