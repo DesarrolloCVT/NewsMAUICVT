@@ -20,7 +20,9 @@ namespace NewsMauiCVT
         {
             if (!(DeviceInfo.Model == "MC33"))
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 SlStackLayout.VerticalOptions = LayoutOptions.CenterAndExpand;
+#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
         private async void Loging_ClickedAsync(object sender, EventArgs e)
@@ -78,7 +80,7 @@ namespace NewsMauiCVT
                                             // App.vali = true;
                                         }
                                         DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
-                                        await Navigation.PushAsync(new PageMain(), true);
+                                        await Navigation.PushAsync(new PageMain());
                                         txtUsuario.Text = string.Empty;
                                         txtContraseña.Text = string.Empty;
                                         

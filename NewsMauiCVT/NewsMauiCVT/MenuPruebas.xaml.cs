@@ -53,7 +53,9 @@ public partial class MenuPruebas : ContentPage
     {
         if (!(DeviceInfo.Model == "MC33"))
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             GvGrid.VerticalOptions = LayoutOptions.CenterAndExpand;
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
     private void BntConsultaUbicacion_Clicked(object sender, EventArgs e)
@@ -79,6 +81,8 @@ public partial class MenuPruebas : ContentPage
     }
     private void HandleHamburgerClick(object sender, EventArgs e)
     {
+        PageMain page = new PageMain();
+     
         Console.WriteLine("Menu presionado");
     }
 }

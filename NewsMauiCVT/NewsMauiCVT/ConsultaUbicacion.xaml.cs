@@ -96,4 +96,8 @@ public partial class ConsultaUbicacion : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
+    private void HandleHamburgerClick(object sender, EventArgs e)
+    {
+        Console.WriteLine("Boton Menu");
+    }
 }

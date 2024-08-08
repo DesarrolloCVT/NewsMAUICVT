@@ -21,8 +21,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ImageCell TextColor="#3399ff" DetailColor="#AED6FF"
-                                Text="{Binding title}"
-                                Detail="{Binding detail}">
+                                    Text="{Binding title}"
+                                    Detail="{Binding detail}">
                                 </ImageCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

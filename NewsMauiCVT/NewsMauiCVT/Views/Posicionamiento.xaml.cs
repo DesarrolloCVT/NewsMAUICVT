@@ -1,9 +1,5 @@
 using NewsMauiCVT.Model;
 using Newtonsoft.Json;
-using Plugin.Maui.Audio;
-using System.Net.Http;
-using ZXing.Net.Maui;
-using ZXing.Net.Maui.Controls;
 
 namespace NewsMauiCVT.Views;
 
@@ -313,5 +309,9 @@ public partial class Posicionamiento : ContentPage
         Application.Current?.MainPage?.Navigation
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
+    }
+    private void HandleHamburgerClick(object sender, EventArgs e)
+    {
+        Console.WriteLine("Boton Menu");
     }
 }

@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
-                <Button ImageSource="hamburger.png" Opacity="0.4"  HeightRequest="50" Clicked="HandleHamburgerClick" HorizontalOptions="Start" BackgroundColor="White" />
+                <Button IsVisible="true" ImageSource="hamburger.png" Opacity="0.4"  HeightRequest="50" Clicked="HandleHamburgerClick" HorizontalOptions="Start" BackgroundColor="White" />
                 <StackLayout Margin="0,20,0,25">
                     <Label Text="Bienvenido!" HorizontalTextAlignment="Center" FontSize="Large"/>
                     <Label HorizontalTextAlignment="Center" FontSize="Large" x:Name="lblNombre" FontAttributes="Bold"></Label>

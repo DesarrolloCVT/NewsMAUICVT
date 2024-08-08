@@ -72,7 +72,7 @@ public partial class PageMain : FlyoutPage
     {
         var option = e.SelectedItem as Option;
         if (option.page != null)
-        {
+        {   
             IsPresented = false;
             Detail = new NavigationPage(option.page);
         }
