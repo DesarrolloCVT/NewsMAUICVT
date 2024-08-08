@@ -175,6 +175,12 @@
 	  <MauiXaml Update="Views\DetalleConsultaUbicacion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\FlyoutMenuPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\FlyoutPagePrincipal.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\GeoLoc.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

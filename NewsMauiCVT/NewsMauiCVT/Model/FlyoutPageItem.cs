@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace NewsMauiCVT.Model
 {
-    public class Option
+    public class FlyoutPageItem
     {
         public string title { get; set; }
         public string detail { get; set; }
-        //public ImageSource image { get; set; }
-        public Page page { get; set; }
+        public Type TargetType { get; set; }
     }
 }

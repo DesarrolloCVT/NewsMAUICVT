@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             NavigationPage.HasBackButton="false"
              x:Class="NewsMauiCVT.MenuPruebas"
              Title="MenuPruebas">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
-                <Button IsVisible="true" ImageSource="hamburger.png" Opacity="0.4"  HeightRequest="50" Clicked="HandleHamburgerClick" HorizontalOptions="Start" BackgroundColor="White" />
                 <StackLayout Margin="0,20,0,25">
                     <Label Text="Bienvenido!" HorizontalTextAlignment="Center" FontSize="Large"/>
                     <Label HorizontalTextAlignment="Center" FontSize="Large" x:Name="lblNombre" FontAttributes="Bold"></Label>

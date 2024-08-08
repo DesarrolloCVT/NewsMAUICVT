@@ -1,4 +1,6 @@
-﻿namespace NewsMauiCVT
+﻿using NewsMauiCVT.Views;
+
+namespace NewsMauiCVT
 {
     public partial class App : Application
     {

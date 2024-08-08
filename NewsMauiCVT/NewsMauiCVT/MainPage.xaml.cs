@@ -80,7 +80,8 @@ namespace NewsMauiCVT
                                             // App.vali = true;
                                         }
                                         DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
-                                        await Navigation.PushAsync(new PageMain());
+                                        //await Navigation.PushAsync(new PageMain());
+                                        await Navigation.PushAsync(new FlyoutPagePrincipal());
                                         txtUsuario.Text = string.Empty;
                                         txtContraseña.Text = string.Empty;
                                         

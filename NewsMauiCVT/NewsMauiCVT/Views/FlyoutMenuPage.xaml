@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMauiCVT.Views.FlyoutMenuPage"
+             xmlns:local="clr-namespace:NewsMauiCVT.Views"
+             xmlns:local1="clr-namespace:NewsMauiCVT.Model"
+             Title="FlyoutMenuPage"
+             Padding="0,40,0,0"
+             IconImageSource="hamburger.png">
+    
+    <CollectionView x:Name="collectionView"
+                    x:FieldModifier="public"
+                    SelectionMode="Single">
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type local1:FlyoutPageItem}">
+                <local1:FlyoutPageItem title="Posicionamiento"
+                               detail="Posicionamiento Pallets"
+                               TargetType="{x:Type local:Posicionamiento}"/>
+                <local1:FlyoutPageItem title="Control Higiene"
+                                       detail="Registro Control Higiene Personal"
+                                       TargetType="{x:Type local:Calidad_ControlHigiene}"/>
+                <local1:FlyoutPageItem title="Cambia Tipo Pallet"
+                               detail="Cambia el Tipo de Pallet"
+                               TargetType="{x:Type local:ActualizaTipoPallet}"/>
+                <local1:FlyoutPageItem title="Repaletizado"
+                                       detail="Repaletizado"
+                                       TargetType="{x:Type local:Repaletizado}"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid BackgroundColor="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1"
+                           Text="{Binding title}"
+                           FontSize="15"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"/>
+                    <Label Grid.Column="1"
+                           Padding="0,30,0,0"
+                           Text="{Binding detail}"
+                           FontSize="10"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

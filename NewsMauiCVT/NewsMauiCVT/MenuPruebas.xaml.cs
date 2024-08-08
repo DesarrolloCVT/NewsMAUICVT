@@ -7,7 +7,6 @@ public partial class MenuPruebas : ContentPage
 {
 	public MenuPruebas()
 	{
-        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         btnPosicionamiento.IsVisible = false;
         bntConsultaUbicacion.IsVisible = false;
@@ -81,8 +80,6 @@ public partial class MenuPruebas : ContentPage
     }
     private void HandleHamburgerClick(object sender, EventArgs e)
     {
-        PageMain page = new PageMain();
-     
         Console.WriteLine("Menu presionado");
     }
 }
