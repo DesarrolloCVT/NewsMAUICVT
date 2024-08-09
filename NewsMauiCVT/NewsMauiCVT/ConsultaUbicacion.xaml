@@ -6,7 +6,7 @@
              Title="ConsultaUbicacion">
     <ContentPage.Content>
         <StackLayout>
-            <Button IsVisible="true" ImageSource="hamburger.png" Opacity="0.4"  HeightRequest="50" Clicked="HandleHamburgerClick" HorizontalOptions="Start" BackgroundColor="White" />
+            <!--Button IsVisible="true" ImageSource="hamburger.png" Opacity="0.4"  HeightRequest="50" Clicked="HandleHamburgerClick" HorizontalOptions="Start" BackgroundColor="White" /-->
             <StackLayout Margin="25">
                 <Label Text="CONSULTA UBICACION" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>

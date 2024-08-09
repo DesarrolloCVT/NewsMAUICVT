@@ -237,7 +237,7 @@
                 </Grid>
             </StackLayout>
             <StackLayout Margin="0,0,0,50">
-                <StackLayout Margin="25,0">
+                <StackLayout Margin="25,25">
                     <dxc:DXButton
                         x:Name="btn_agregar"
                         BackgroundColor="DarkBlue"

@@ -156,7 +156,7 @@
                         IsFilterEnabled="True"
                         IsLabelFloating="True"
                         LabelColor="Green"
-                        LabelText="Cantidad de Caras"
+                        LabelText="Cantidad de caras"
                         ReserveBottomTextLine="True"
                         ReturnType="Next"
                         SelectionChanged="CboCantCaras_SelectedIndexChanged"

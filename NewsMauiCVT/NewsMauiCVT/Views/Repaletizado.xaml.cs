@@ -424,10 +424,11 @@ public partial class Repaletizado : ContentPage
     private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)
     {
         txt_cantidad.Focus();
+        Console.WriteLine("Llamado: CboTipoPallet_SelectedIndexChanged");
     }
     private void cboProducto_SelectionChanged(object sender, EventArgs e)
     {
-
+        Console.WriteLine("Llamado: cboProducto_SelectionChanged");
     }
     private void OnKeyDown()
     {

@@ -12,7 +12,7 @@ public partial class PageMain : FlyoutPage
     }
     public void myPageMain()
     {
-        Detail = new NavigationPage(new MenuPruebas() { Title = "Menú" });
+        Detail = new NavigationPage(new MenuPruebas() { Title = "Menú"});
 
         DatosApp dpp = new DatosApp();
         List<MenuClass> mn = dpp.TraeMenu(App.idPerfil);

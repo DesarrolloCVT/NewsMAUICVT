@@ -310,8 +310,4 @@ public partial class Posicionamiento : ContentPage
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
     }
-    private void HandleHamburgerClick(object sender, EventArgs e)
-    {
-        Console.WriteLine("Boton Menu");
-    }
 }

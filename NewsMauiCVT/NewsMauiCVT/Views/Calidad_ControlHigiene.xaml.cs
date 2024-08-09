@@ -235,6 +235,6 @@ public partial class Calidad_ControlHigiene : ContentPage
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
 }

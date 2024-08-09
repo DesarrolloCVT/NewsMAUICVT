@@ -8,7 +8,7 @@
     Title="NewsMauiCVT">
 
     <ShellContent
-        Title="Home"
+        FlyoutIcon="hamburger.png"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
