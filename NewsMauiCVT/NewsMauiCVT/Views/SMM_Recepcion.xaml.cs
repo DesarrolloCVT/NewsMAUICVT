@@ -16,8 +16,11 @@ public partial class SMM_Recepcion : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
+    }
+    void ClearComponent()
+    {
         stNuevo.IsVisible = false;
         stReanudar.IsVisible = false;
         btn_Nuevo.IsEnabled = true;

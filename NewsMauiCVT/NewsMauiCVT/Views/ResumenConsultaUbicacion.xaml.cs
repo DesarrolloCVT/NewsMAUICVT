@@ -12,7 +12,6 @@ public partial class ResumenConsultaUbicacion : ContentPage
         cargadatos(idpos);
         //string g = idpos;
     }
-
     void cargadatos(string idPosicion)
     {
         DatosConsultaUbicacion dCu = new DatosConsultaUbicacion();

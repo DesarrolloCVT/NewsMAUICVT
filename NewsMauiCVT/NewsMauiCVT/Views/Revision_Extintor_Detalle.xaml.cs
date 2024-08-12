@@ -6,7 +6,6 @@ namespace NewsMauiCVT.Views;
 public partial class Revision_Extintor_Detalle : ContentPage
 
 {
-
     int _idReg = 0;
     int _nPreg = 0;
     public Revision_Extintor_Detalle(int res)
@@ -22,7 +21,6 @@ public partial class Revision_Extintor_Detalle : ContentPage
 
         base.OnAppearing();
         //btn_generar.IsEnabled = false;
-
         cboResp.SelectedIndex = 0;
         _nPreg = 0;
     }
@@ -31,18 +29,14 @@ public partial class Revision_Extintor_Detalle : ContentPage
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-
             DatosExtintores dEx = new DatosExtintores();
-
             int idRegistro = _idReg;
             string resp = cboResp.SelectedItem.ToString();
             string obser = txtComentarios.Text;
             string pregunta = lblPregunta.Text;
 
-
             int res = dEx.insertaNuevoDetalle(idRegistro, resp, obser, pregunta);
             //_nPreg++;
-
             if (res == 0)
             {
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");

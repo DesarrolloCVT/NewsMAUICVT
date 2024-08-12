@@ -16,8 +16,8 @@ public partial class TestCapturaCodeCam : ContentPage
         BarcodePage barcodePage = new BarcodePage();
         #endregion
         base.OnAppearing();
-        lblProducto.Text = string.Empty;
-        lblCodPro.Text = string.Empty;
+        ClearComponent();
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -30,7 +30,22 @@ public partial class TestCapturaCodeCam : ContentPage
                 barcodePage.CodigoDetectado = false;
             }
         }
+        else
+        {
+            txtCodigo.Focus();
+        }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtCodigo.Focus();
+        });
+    }
+    void ClearComponent()
+    {
+        lblProducto.Text = string.Empty;
+        lblCodPro.Text = string.Empty;
     }
     private void Button_Clicked(object sender, EventArgs e)
     {

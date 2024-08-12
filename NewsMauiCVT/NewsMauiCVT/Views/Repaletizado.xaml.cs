@@ -8,14 +8,20 @@ namespace NewsMauiCVT.Views;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class Repaletizado : ContentPage
 {
+    private int _lblCantidad;
+    private int lblCantidad
+    {
+        get => _lblCantidad;
+        set
+        {
+            _lblCantidad = value;
+            OnPropertyChanged(nameof(lblCantidad));
+        }
+    }
     public Repaletizado()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        btn_generar.IsEnabled = false;
-        LayoutDestinoExistente.IsVisible = false;
-        LayoutOrigen.IsVisible = false;
-        txtPosicion.Focus();
     }
     protected override void OnAppearing()
     {
@@ -24,12 +30,7 @@ public partial class Repaletizado : ContentPage
         #endregion
         base.OnAppearing();
         ClearComponent();
-        lblError.Text = string.Empty;
-        lblError2.Text = string.Empty;
-        lblError3.Text = string.Empty;
-        lblError.IsVisible = false;
-        lblError2.IsVisible = false;
-        lblError3.IsVisible = false;
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -37,12 +38,22 @@ public partial class Repaletizado : ContentPage
             btn_escanear.IsEnabled = true;
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
             {
-                txtPosicion.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                if(txtPosicion.IsFocused)
+                {
+                    txtPosicion.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                    btn_escanear.IsVisible = false;
+                    btn_escanear.IsEnabled = false;
+                }   
                 barcodePage.SetFlag(); // -> Set Flag => False.
-
             }
         }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtPosicion.Focus();
+        });
     }
     private async void TxtPosicion_Completed(object sender, EventArgs e)
     {
@@ -93,7 +104,7 @@ public partial class Repaletizado : ContentPage
                         lblBodega.Text = "Bodega: " + vBodega;
                         lbl_lote.Text = "Lote: " + p.Package_Lot;
                         lbl_cantidad.Text = "Cantidad: " + p.Package_Quantity.ToString();
-
+                        lblCantidad = (int)p.Package_Quantity;
                         btn_generar.IsEnabled = false;
                         lblError.IsVisible = false;
                         lblError.Text = string.Empty;
@@ -325,7 +336,10 @@ public partial class Repaletizado : ContentPage
                     {
                         try
                         {
-                            if (Convert.ToInt32(lbl_cantidad.Text) >= Convert.ToInt32(txt_cantidad.Text))
+                            Console.WriteLine("lbl_cantidad: " + lbl_cantidad.Text + " txt_cantidad: " + txt_cantidad.Text);
+                            int txtCantidad = int.Parse(txt_cantidad.Text);
+
+                            if (lblCantidad >= txtCantidad)
                             {
                                 if (VeriResPalletOrigen == 0)
                                 {
@@ -363,11 +377,15 @@ public partial class Repaletizado : ContentPage
                                 DisplayAlert("Alerta", "Excede cantidad permitida", "Aceptar");
                             }
                         }
-                        catch { }
+                        catch (Exception ex) 
+                        {
+                            Console.WriteLine("Btn_generar_Clicked - Error 1: " + ex.Message);
+                        }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine("Btn_generar_Clicked - Error 2: " + ex.Message);
                 }
             }
             else
@@ -379,9 +397,16 @@ public partial class Repaletizado : ContentPage
     }
     void ClearComponent()
     {
-
+        btn_generar.IsEnabled = false;
+        LayoutDestinoExistente.IsVisible = false;
+        LayoutOrigen.IsVisible = false;
+        lblError.IsVisible = false;
+        lblError2.IsVisible = false;
+        lblError3.IsVisible = false;
+        lblError.Text = string.Empty;
+        lblError2.Text = string.Empty;
+        lblError3.Text = string.Empty;
         txtPosicion.Text = string.Empty;
-        txtPosicion.Focus();
         lbl_codproducto.Text = string.Empty;
         lbl_producto.Text = string.Empty;
         lbl_lote.Text = string.Empty;
@@ -424,11 +449,10 @@ public partial class Repaletizado : ContentPage
     private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)
     {
         txt_cantidad.Focus();
-        Console.WriteLine("Llamado: CboTipoPallet_SelectedIndexChanged");
     }
     private void cboProducto_SelectionChanged(object sender, EventArgs e)
     {
-        Console.WriteLine("Llamado: cboProducto_SelectionChanged");
+
     }
     private void OnKeyDown()
     {

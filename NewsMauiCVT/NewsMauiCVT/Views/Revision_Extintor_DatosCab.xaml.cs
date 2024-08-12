@@ -9,19 +9,20 @@ public partial class Revision_Extintor_DatosCab : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        txtNExtintor.Focus();
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
+        txtNExtintor.Focus();
+    }
+    void ClearComponent()
+    {
+        btn_generar.IsEnabled = false;
         txtNExtintor.Text = string.Empty;
         txtUbicacion.Text = string.Empty;
         txtPesoExtintor.Text = string.Empty;
         txtTipoAgente.Text = string.Empty;
-        btn_generar.IsEnabled = false;
-
-        txtNExtintor.Focus();
     }
     private void TxtNExtintor_Completed(object sender, EventArgs e)
     {

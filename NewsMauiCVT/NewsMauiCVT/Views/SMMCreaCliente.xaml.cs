@@ -10,15 +10,18 @@ public partial class SMMCreaCliente : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        txtRut.Focus();
-        txtRut.SetSelection(0, 0);
-
     }
     protected override void OnAppearing()
     {
 
         base.OnAppearing();
+        ClearComponent();
+        txtRut.Focus();
         txtRut.SetSelection(0, 0);
+
+    }
+    void ClearComponent()
+    {   
         txtDigito.Text = string.Empty;
         txtRut.Text = string.Empty;
         txtNomCliente.Text = string.Empty;
@@ -36,9 +39,6 @@ public partial class SMMCreaCliente : ContentPage
         App.lati = string.Empty;
         App.longi = string.Empty;
         App.altit = string.Empty;
-
-        txtRut.Focus();
-
     }
     private void btnGuardaCliente_Clicked(object sender, EventArgs e)
     {

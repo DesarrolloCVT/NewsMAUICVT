@@ -13,28 +13,28 @@ public partial class SMM_Picking_Consolidado : ContentPage
         InitializeComponent();
         DateTime FConsolidado = Convert.ToDateTime(App.Fconsoli);
         string fecha = FConsolidado.Date.Day + " - " + FConsolidado.Date.Month + " - " + FConsolidado.Date.Year;
-
         lblPick.Text = "Fecha Consolidado: " + fecha;
-
         lblPick1.Text = "Departamento: " + App.DptoConsolidado.ToString();
-        txt_pallet.Focus();
     }
     protected override void OnAppearing()
     {
 
         base.OnAppearing();
+        ClearComponent();
         txt_pallet.Focus();
-        btn_agregar.IsEnabled = false;
-        lblError1.Text = string.Empty;
-        lblError1.IsVisible = false;
-        lblError2.Text = string.Empty;
-        lblError2.IsVisible = false;
         //txt_Bodega.SelectedIndex = -1;
+    }
+    void ClearComponent()
+    {
+        btn_agregar.IsEnabled = false;
+        lblError1.IsVisible = false;
+        lblError2.IsVisible = false;
         txt_pallet.Text = string.Empty;
         lblProducto.Text = string.Empty;
         txt_cantidad.Text = string.Empty;
         lblProducto1.Text = string.Empty;
-
+        lblError1.Text = string.Empty;
+        lblError2.Text = string.Empty;
     }
     private void FConsolidado_DateSelected(object sender, DateChangedEventArgs e)
     {

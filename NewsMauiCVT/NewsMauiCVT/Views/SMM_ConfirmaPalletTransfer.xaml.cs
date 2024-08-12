@@ -11,17 +11,25 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        txtFolioTransfer.Focus();
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
+        SetFocusText();
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtFolioTransfer.Focus();
+        });
+    }
+    void ClearComponent()
+    {
         txtNPallet.IsVisible = false;
-        txtNPallet.Text = string.Empty;
         btnSalir.IsVisible = false;
         btnSalir.IsEnabled = false;
-        txtFolioTransfer.Focus();
+        txtNPallet.Text = string.Empty;
         txtFolioTransfer.Text = string.Empty;
 
     }

@@ -14,12 +14,14 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
-        cboDpto.SelectedIndex = -1;
+        ClearComponent();
         //GvDatos.IsVisible = false;
+    }
+    void ClearComponent()
+    {
+        cboDpto.SelectedIndex = -1;
         btnPikear.IsEnabled = false;
-
     }
     void CargaDatosDpto()
     {

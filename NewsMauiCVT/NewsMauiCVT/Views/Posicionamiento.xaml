@@ -12,8 +12,7 @@
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
                 <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txt_origen" Completed="Txt_origen_Completed" IsLabelFloating="False" 
-                              BorderColor="Green" LabelColor="Green"                                
-                     Keyboard="Numeric">
+                              BorderColor="Green" LabelColor="Green" Keyboard="Numeric">
                 </dxe:TextEdit>
                 <dxc:DXButton 
                     Margin="25"

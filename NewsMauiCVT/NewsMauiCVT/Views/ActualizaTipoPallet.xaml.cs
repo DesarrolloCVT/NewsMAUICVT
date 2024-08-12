@@ -19,13 +19,8 @@ public partial class ActualizaTipoPallet : ContentPage
         BarcodePage barcodePage = new BarcodePage();
         #endregion
         base.OnAppearing();
-        txt_pallet.Text = string.Empty;
-        txt_pallet.Focus();
-        btn_generar.IsEnabled = false;
-        cboTipoPallet.SelectedIndex = -1;
-        cboTipoPallet.IsVisible = false;
-        lblError.IsVisible = false;
-        lblError.Text = string.Empty;
+        ClearComponent();
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -39,6 +34,12 @@ public partial class ActualizaTipoPallet : ContentPage
             }
         }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txt_pallet.Focus();
+        });
     }
     private async void TxtNPallet_Completed(object sender, EventArgs e)
     {
@@ -124,6 +125,15 @@ public partial class ActualizaTipoPallet : ContentPage
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
+    }
+    void ClearComponent()
+    {
+        btn_generar.IsEnabled = false;
+        cboTipoPallet.SelectedIndex = -1;
+        cboTipoPallet.IsVisible = false;
+        lblError.IsVisible = false;
+        txt_pallet.Text = string.Empty;
+        lblError.Text = string.Empty;
     }
     public class TipoPall
     {

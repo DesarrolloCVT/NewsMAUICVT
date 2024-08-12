@@ -5,18 +5,11 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMM_ConsultaProducto : ContentPage
 {
-    string codigoRecibido;
     public SMM_ConsultaProducto()
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        lblError2.Text = string.Empty;
-        lblError2.IsVisible = false;
-        txt_pallet.Focus();
-    }
-    public SMM_ConsultaProducto(string cod) :this()
-    {
-        codigoRecibido = cod;
+        
     }
     protected override void OnAppearing()
     {
@@ -24,17 +17,8 @@ public partial class SMM_ConsultaProducto : ContentPage
         BarcodePage barcodePage = new BarcodePage();
         #endregion
         base.OnAppearing();
-        txt_pallet.Focus();
-        lblError2.Text = string.Empty;
-        lblError2.IsVisible = false;
-        txt_pallet.Text = string.Empty;
-        lblProducto.Text = string.Empty;
-        lblPrecio.Text = string.Empty;
-        lblUM.Text = string.Empty;
-        lblCantUM.Text = string.Empty;
-        lblGrupArt.Text = string.Empty;
-        lblEstado.Text = string.Empty;
-        txt_pallet.Text = codigoRecibido;
+        ClearComponent();
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -48,6 +32,24 @@ public partial class SMM_ConsultaProducto : ContentPage
             }
         }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txt_pallet.Focus();
+        });
+    }
+    void ClearComponent()
+    {
+        lblError2.IsVisible = false;
+        lblError2.Text = string.Empty;
+        txt_pallet.Text = string.Empty;
+        lblProducto.Text = string.Empty;
+        lblPrecio.Text = string.Empty;
+        lblUM.Text = string.Empty;
+        lblCantUM.Text = string.Empty;
+        lblGrupArt.Text = string.Empty;
+        lblEstado.Text = string.Empty;
     }
     private void Txt_pallet_Completed(object sender, EventArgs e)
     {

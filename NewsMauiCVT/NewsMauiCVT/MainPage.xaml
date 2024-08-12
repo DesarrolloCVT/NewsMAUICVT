@@ -52,7 +52,8 @@
                             LabelFontSize="15"
                             LabelText="CONTRASEÑA"
                             MaxCharacterCount="6"
-                            MaxCharacterCountOverflowMode="LimitInput" />
+                            MaxCharacterCountOverflowMode="LimitInput"
+                            ReturnType="Done"/>
                     </StackLayout>
                     <StackLayout Margin="25,0" Padding="10,0,0,20">
                         <dx:DXButton  

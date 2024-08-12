@@ -40,7 +40,6 @@ public partial class PageMain : FlyoutPage
                 new Option{ page=new SMM_Picking_Consolidado_Cabecera(){Title="Menú"},title="Picking SMM", detail="Picking Consolidado"},
                 new Option{ page=new ControlFosfina(){Title="Menú"},title="Control Fosfina", detail="Registro Control Fosfina"},
                 new Option{ page=new TestCapturaCodeCam(){Title="Menú"},title="Test Captura Cam", detail="Test captura codigo cam"},
-                new Option{ page=new GeoLoc(){Title="Menú"},title="Localizacion", detail="Test captura codigo cam"},
                 new Option{ page=new SMMOrdenDeVenta(){Title="Menú"},title="SMM Orden de Ventas", detail="Creacion de Ordenes de Ventas"},
                 new Option{ page=new SMMTrazabilidadPallet(){Title="Menú"},title="SMM Trazabilidad Pallet", detail="Trazabilidad Pallet SMM"},
                 new Option{ page=new SMM_ConfirmaPalletTransfer(){Title="Menú"},title="SMM Confirma Pallet", detail="Confirma Pallet en Transferencia"},
@@ -53,6 +52,10 @@ public partial class PageMain : FlyoutPage
         List<Option> options1 = new List<Option>();
 
         options1.Add(new Option { page = new MenuPruebas { Title = "Menú" }, title = "Inicio", detail = "Inicio" /*image = "ic_ac_home.png" */});
+        if (DeviceInfo.Model != "MC33")
+        {
+            options1.Add(new Option { page = new GeoLoc() { Title = "Menú" }, title = "Localizacion", detail = "Test captura codigo cam" });
+        }
 
         foreach (var t in options)
         {

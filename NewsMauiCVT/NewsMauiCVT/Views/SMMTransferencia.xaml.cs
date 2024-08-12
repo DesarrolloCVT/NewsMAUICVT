@@ -13,9 +13,19 @@ public partial class SMMTransferencia : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        ClearComponent();
+        SetFocusText();
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtFolioTransferencia.Focus();
+        });
+    }
+    void ClearComponent()
+    {
         txtFolioTransferencia.Text = string.Empty;
-
-    }    
+    }
     private void btn_Nuevo_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SMM_TransferenciaCabecera { Title = "Finalizar" });

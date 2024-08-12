@@ -14,43 +14,13 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
         CargaDatos();
         //lblError.Text = string.Empty;
         //lblError.IsVisible = false;
-        lblError2.Text = string.Empty;
-        lblError2.IsVisible = false;
-        lblError3.Text = string.Empty;
-        lblError3.IsVisible = false;
-        lblError4.Text = string.Empty;
-        lblError4.IsVisible = false;
-        lblError5.Text = string.Empty;
-        lblError5.IsVisible = false;
         cboFolio.Focus();
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
-        cboFolio.SelectedIndex = -1;
+        ClearComponent();
         cboFolio.Focus();
-        //txt_Bodega.SelectedIndex = -1;
-        btn_agregar.IsEnabled = false;
-        //lblError.Text = string.Empty;
-        //lblError.IsVisible = false;
-        lblError2.Text = string.Empty;
-        lblError2.IsVisible = false;
-        lblError3.Text = string.Empty;
-        lblError3.IsVisible = false;
-        lblError4.Text = string.Empty;
-        lblError4.IsVisible = false;
-        lblError5.Text = string.Empty;
-        lblError5.IsVisible = false;
-        txt_pallet.Text = string.Empty;
-        txt_Npallet.Text = string.Empty;
-        lblProducto.Text = string.Empty;
-        txt_cantidad.Text = string.Empty;
-        txt_Ubicacion.Text = string.Empty;
-        txtDia.Text = string.Empty;
-        txtMes.Text = string.Empty;
-        txtAno.Text = string.Empty;
-
     }
     void CargaDatos()
     {
@@ -73,6 +43,38 @@ public partial class SMM_TomaInvenario_Bodegas : ContentPage
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
+    }
+    void ClearComponent()
+    {
+        lblError2.Text = string.Empty;
+        lblError2.IsVisible = false;
+        lblError3.Text = string.Empty;
+        lblError3.IsVisible = false;
+        lblError4.Text = string.Empty;
+        lblError4.IsVisible = false;
+        lblError5.Text = string.Empty;
+        lblError5.IsVisible = false;
+        cboFolio.SelectedIndex = -1;
+        //txt_Bodega.SelectedIndex = -1;
+        btn_agregar.IsEnabled = false;
+        //lblError.Text = string.Empty;
+        //lblError.IsVisible = false;
+        lblError2.Text = string.Empty;
+        lblError2.IsVisible = false;
+        lblError3.Text = string.Empty;
+        lblError3.IsVisible = false;
+        lblError4.Text = string.Empty;
+        lblError4.IsVisible = false;
+        lblError5.Text = string.Empty;
+        lblError5.IsVisible = false;
+        txt_pallet.Text = string.Empty;
+        txt_Npallet.Text = string.Empty;
+        lblProducto.Text = string.Empty;
+        txt_cantidad.Text = string.Empty;
+        txt_Ubicacion.Text = string.Empty;
+        txtDia.Text = string.Empty;
+        txtMes.Text = string.Empty;
+        txtAno.Text = string.Empty;
     }
     public class FolioSMM
     {

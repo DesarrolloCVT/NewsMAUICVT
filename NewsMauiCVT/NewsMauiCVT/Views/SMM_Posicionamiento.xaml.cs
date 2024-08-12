@@ -28,21 +28,31 @@ public partial class SMM_Posicionamiento : ContentPage
                 barcodePage.CodigoDetectado = false;
             }
         }
+        else
+        {
+            txt_origen.Focus();
+        }
         #endregion
     }
     protected override void OnAppearing()
     {
         base.OnAppearing();
         ClearComponent();
+        SetFocusText();
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txt_origen.Focus();
+        });
+    }
+    void ClearComponent()
+    {
         lblError.Text = string.Empty;
         lblError2.Text = string.Empty;
         lblError.IsVisible = false;
         lblError2.IsVisible = false;
-    }
-    void ClearComponent()
-    {
         txt_origen.Text = string.Empty;
-        txt_origen.Focus();
         lbl_codproducto.Text = string.Empty;
         lbl_producto.Text = string.Empty;
         lbl_lote.Text = string.Empty;
@@ -56,8 +66,6 @@ public partial class SMM_Posicionamiento : ContentPage
         LayoutOrigen.IsVisible = false;
         LayoutDestinoExistente.IsVisible = false;
         btn_generar.IsEnabled = false;
-
-
     }
     private void Txt_origen_Completed(object sender, EventArgs e)
     {

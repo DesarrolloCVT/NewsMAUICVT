@@ -20,13 +20,15 @@ public partial class SMMOrdenDeVentaDetalle : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        ClearComponent();
+    }
+    void ClearComponent()
+    {
         cboProducto.SelectedIndex = -1;
         txtCantidad.Text = string.Empty;
         txtPorcDesc.Text = string.Empty;
-
         cboProducto.HasError = false;
         cboProducto.ErrorText = string.Empty;
-
         txtCantidad.HasError = false;
         txtCantidad.ErrorText = string.Empty;
     }

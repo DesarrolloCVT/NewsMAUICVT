@@ -9,9 +9,11 @@ public partial class GeoLoc : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
-
+        ClearComponent();
+    }
+    void ClearComponent()
+    {
         lblLat.Text = string.Empty;
         lblLong.Text = string.Empty;
         lblAlt.Text = string.Empty;

@@ -10,18 +10,13 @@ public partial class TrazabilidadPallet : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        lblError.Text = string.Empty;
-        lblError.IsVisible = false;
-        txtNPallet.Focus();
-        GvData.IsVisible = false;
+        
     }
     protected override void OnAppearing()
     {   
         base.OnAppearing();
         ClearComponent();
-        txtNPallet.Focus();
-        lblError.IsVisible = false;
-        GvData.IsVisible = false;
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         BarcodePage barcodePage = new BarcodePage();
         #endregion
@@ -34,13 +29,21 @@ public partial class TrazabilidadPallet : ContentPage
             {
                 txtNPallet.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
                 barcodePage.SetFlag(); // -> Set Flag => False.
-
             }
         }
         #endregion
     }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtNPallet.Focus();
+        });
+    }
     void ClearComponent()
     {
+        lblError.Text = string.Empty;
+        lblError.IsVisible = false;
+        GvData.IsVisible = false;
         lblPallet.Text = string.Empty;
         lblLote.Text = string.Empty;
         lblCantidad.Text = string.Empty;
@@ -51,20 +54,16 @@ public partial class TrazabilidadPallet : ContentPage
         lblPosicion.Text = string.Empty;
         lblEstado.Text = string.Empty;
         GvData.IsVisible = false;
-
         txtNPallet.Text = string.Empty;
-        txtNPallet.Text = "";
     }
     private void TxtNPallet_Completed(object sender, EventArgs e)
     {
-
         DatosTrazabilidadPallet tp = new DatosTrazabilidadPallet();
         List<TrazabilidadPaletClass> lt = new List<TrazabilidadPaletClass>();
 
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-
             if (String.IsNullOrWhiteSpace(txtNPallet.Text))
             {
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");

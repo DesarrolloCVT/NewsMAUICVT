@@ -24,14 +24,12 @@ public partial class DetalleConsultaUbicacion : ContentPage
         //activity.IsRunning = false;
         //activity.IsVisible = false;
     }
-
     private async void Cargadatos(string idPosicion)
     {
         DatosConsultaUbicacion dCu = new DatosConsultaUbicacion();
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-
             DataTable dt = dCu.DetalleConsultaUbicacion(Convert.ToInt32(idPosicion));
             GvData.ItemsSource = dt;
             GvData.Columns["Package_SSCC"].Caption = "N° de Pallet";
@@ -53,7 +51,6 @@ public partial class DetalleConsultaUbicacion : ContentPage
             await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-
     private async void BtnResumen_Clicked(object sender, EventArgs e)
     {
         using (Controls.UserDialogs.Maui.UserDialogs.Instance.Loading("Cargando"))
@@ -65,6 +62,5 @@ public partial class DetalleConsultaUbicacion : ContentPage
             //activity.IsVisible = true;
             await Navigation.PushAsync(new ResumenConsultaUbicacion(_iposid) { Title = "Volver" });
         }
-
     }
 }

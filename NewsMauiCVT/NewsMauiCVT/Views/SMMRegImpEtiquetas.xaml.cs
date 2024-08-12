@@ -13,12 +13,20 @@ public partial class SMMRegImpEtiquetas : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
+        SetFocusText();
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txt_pallet.Focus();
+        });
+    }
+    void ClearComponent()
+    {
         txt_pallet.Text = string.Empty;
-        txt_pallet.Focus();
         btn_agregar.IsEnabled = false;
-
     }
     private async void txt_pallet_Completed(object sender, EventArgs e)
     {

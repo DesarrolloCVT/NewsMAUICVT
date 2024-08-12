@@ -1,18 +1,18 @@
+using DevExpress.Maui.Core.Internal;
+using Microsoft.Maui;
 using NewsMauiCVT.Model;
 using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace NewsMauiCVT.Views;
 
-public partial class Posicionamiento : ContentPage
+public partial class Posicionamiento : INotifyPropertyChanged
 {
     public Posicionamiento()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         //btn_generar.IsEnabled = false;
-        LayoutDestinoExistente.IsVisible = false;
-        LayoutOrigen.IsVisible = false;
-        txt_origen.Focus();
     }
     protected override void OnAppearing()
     {
@@ -21,10 +21,7 @@ public partial class Posicionamiento : ContentPage
         #endregion
         base.OnAppearing();
         ClearComponent();
-        lblError.Text = string.Empty;
-        lblError2.Text = string.Empty;
-        lblError.IsVisible = false;
-        lblError2.IsVisible = false;
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -38,6 +35,12 @@ public partial class Posicionamiento : ContentPage
             }
         }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txt_origen.Focus();
+        });
     }
     private async void Txt_origen_Completed(object sender, EventArgs e)
     {
@@ -61,11 +64,10 @@ public partial class Posicionamiento : ContentPage
                                 throw new InvalidOperationException();
                     if (dt.Count() == 0)
                     {
-                        DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                         lblError.IsVisible = true;
                         lblError.Text = "N° de pallet no existe";
-                        txt_origen.Text = string.Empty;
-                        txt_origen.Focus();
+                        //txt_origen.Focus();
                         //btn_generar.IsEnabled = false;
                         ClearComponent();
                     }
@@ -194,9 +196,12 @@ public partial class Posicionamiento : ContentPage
         }
     }
     void ClearComponent()
-    {
+    {   
+        lblError.IsVisible = false;
+        lblError2.IsVisible = false;
+        lblError.Text = string.Empty;
+        lblError2.Text = string.Empty;
         txt_origen.Text = string.Empty;
-        txt_origen.Focus();
         lbl_codproducto.Text = string.Empty;
         lbl_producto.Text = string.Empty;
         lbl_lote.Text = string.Empty;

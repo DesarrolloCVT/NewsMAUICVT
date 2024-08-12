@@ -13,6 +13,10 @@ public partial class SMMOdenDeVentaCabecera : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        ClearComponent();
+    }
+    void ClearComponent()
+    {
         cboCliente.SelectedIndex = -1;
         cboDirDespacho.SelectedIndex = -1;
         cboDirFact.SelectedIndex = -1;

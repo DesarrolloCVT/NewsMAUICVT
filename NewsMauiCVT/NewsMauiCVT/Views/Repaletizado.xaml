@@ -12,7 +12,7 @@
             </StackLayout>
             <StackLayout Margin="25,0" >
                 <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
-                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric">
+                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" ReturnType="Next">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
@@ -101,7 +101,7 @@
             </StackLayout>
             <StackLayout Margin="25,0" >
                 <dxe:TextEdit LabelText="Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_destino" Completed="Txt_destino_Completed" 
-                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" IsVisible="False">
+                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" IsVisible="False" ReturnType="Next">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
@@ -140,7 +140,7 @@
             </StackLayout>
             <StackLayout Margin="25,0" >
                 <dxe:TextEdit LabelText="Cantidad a Repaletizar" LabelFontSize="15"  BoxHeight="50" x:Name="txt_cantidad" Completed="Txt_cantidad_Completed" 
-                              IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric">
+                              IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" ReturnType="Done"> 
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">

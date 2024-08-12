@@ -21,10 +21,13 @@ public partial class SMM_TomaInventario : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
-        cboFolio.SelectedIndex = -1;
+        ClearComponent();
         cboFolio.Focus();
+    }
+    void ClearComponent()
+    {
+        cboFolio.SelectedIndex = -1;
         cboPasillo.SelectedIndex = -1;
         btn_agregar.IsEnabled = false;
         lblError.Text = string.Empty;
@@ -40,7 +43,6 @@ public partial class SMM_TomaInventario : ContentPage
         txt_pallet.Text = string.Empty;
         lblProducto.Text = string.Empty;
         txt_cantidad.Text = string.Empty;
-
     }
     void cargaDatos()
     {

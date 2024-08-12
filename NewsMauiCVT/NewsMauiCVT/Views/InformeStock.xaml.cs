@@ -12,8 +12,6 @@ public partial class InformeStock : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         CargaDatos();
-        lblError.IsVisible = false;
-        lblError.Text = string.Empty;
     }
     protected override void OnAppearing()
     {
@@ -21,11 +19,9 @@ public partial class InformeStock : ContentPage
         BarcodePage barcodePage = new BarcodePage();
         #endregion
         base.OnAppearing();
+        ClearComponent();
+        SetFocusText();
         //GvDatos.IsVisible = false;
-        lblError.Text = string.Empty;
-        lblError.IsVisible = false;
-        cboBodega.SelectedIndex = -1;
-        txtCodProd.Text = string.Empty;
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -39,6 +35,19 @@ public partial class InformeStock : ContentPage
             }
         }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtCodProd.Focus();
+        });
+    }
+    void ClearComponent()
+    {
+        lblError.IsVisible = false;
+        cboBodega.SelectedIndex = -1;
+        lblError.Text = string.Empty;
+        txtCodProd.Text = string.Empty;
     }
     void CargaDatos()
     {

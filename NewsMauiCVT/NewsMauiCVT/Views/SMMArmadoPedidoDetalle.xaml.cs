@@ -25,12 +25,15 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
     {
 
         base.OnAppearing();
+        ClearComponent();
         txt_CodBarr.Focus();
+    }
+    void ClearComponent()
+    {
         txt_CodBarr.Text = string.Empty;
         cboNombreRepo.SelectedIndex = -1;
         btn_agregar.IsVisible = false;
         lblDatosProd.IsVisible = false;
-
     }
     void cargaDatos()
     {

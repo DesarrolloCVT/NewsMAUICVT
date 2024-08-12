@@ -1,4 +1,4 @@
-﻿using Controls.UserDialogs.Maui;
+﻿ using Controls.UserDialogs.Maui;
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Views;
 using Newtonsoft.Json;
@@ -14,7 +14,7 @@ namespace NewsMauiCVT
             InitializeComponent();
             SetMobileScreen();
             NavigationPage.SetHasNavigationBar(this, false);
-            txtUsuario.Focus();
+            //txtUsuario.Focus();
         }
         private void SetMobileScreen()
         {

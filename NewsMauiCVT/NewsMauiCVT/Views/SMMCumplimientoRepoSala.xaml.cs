@@ -11,8 +11,7 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
-        txtCodigo.Focus();
-        GvGridDatos.IsVisible = false;
+        
     }
     protected override void OnAppearing()
     {
@@ -20,19 +19,8 @@ public partial class SMMCumplimientoRepoSala : ContentPage
         BarcodePage barcodePage = new BarcodePage();
         #endregion
         base.OnAppearing();
-        lblProducto.Text = string.Empty;
-        lblError2.Text = string.Empty;
-        cboNombreRepo.SelectedIndex = -1;
-        txtDia.Text = string.Empty;
-        txtMes.Text = string.Empty;
-        txtAno.Text = string.Empty;
-        GvGridDatos.IsVisible = false;
-        cboDispo.SelectedIndex = -1;
-        cboLimpieza.SelectedIndex = -1;
-        CboFefo.SelectedIndex = -1;
-        CboFleje.SelectedIndex = -1;
-        btn_agregar.IsEnabled = false;
-        txtCodigo.Focus();
+        ClearComponent();
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -46,6 +34,28 @@ public partial class SMMCumplimientoRepoSala : ContentPage
             }
         }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtCodigo.Focus();
+        });
+    }
+    void ClearComponent()
+    {
+        GvGridDatos.IsVisible = false;
+        lblProducto.Text = string.Empty;
+        lblError2.Text = string.Empty;
+        cboNombreRepo.SelectedIndex = -1;
+        txtDia.Text = string.Empty;
+        txtMes.Text = string.Empty;
+        txtAno.Text = string.Empty;
+        GvGridDatos.IsVisible = false;
+        cboDispo.SelectedIndex = -1;
+        cboLimpieza.SelectedIndex = -1;
+        CboFefo.SelectedIndex = -1;
+        CboFleje.SelectedIndex = -1;
+        btn_agregar.IsEnabled = false;
     }
     void cargaDatos()
     {

@@ -17,14 +17,17 @@ public partial class SMMDetalleRecepcion : ContentPage
         InitializeComponent();
         _folio = folio;
         lblFolioRecepcion.Text = Convert.ToString(_folio);
-        txt_CodProducto.Focus();
-
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
         txt_CodProducto.Focus();
+        //txt_CodProducto.Text = string.Empty;
+        //txt_CodProducto.Focus();
+    }
+    void ClearComponent()
+    {
         txt_CodProducto.Text = string.Empty;
         txtDiaElab.Text = string.Empty;
         txtMesElab.Text = string.Empty;
@@ -34,9 +37,6 @@ public partial class SMMDetalleRecepcion : ContentPage
         txtAnoVenc.Text = string.Empty;
         txt_cantidad.Text = string.Empty;
         lblDatosProd.IsVisible = false;
-        //txt_CodProducto.Text = string.Empty;
-        //txt_CodProducto.Focus();
-
     }
     private void Txt_CodProducto_Completed(object sender, EventArgs e)
     {

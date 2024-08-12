@@ -16,22 +16,8 @@ public partial class TomaInventarioFilm : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
         ClearComponent();
-        txt_ubicacion.Text = string.Empty;
-        cboFolio.SelectedIndex = -1;
-        //cboTipoPallet.SelectedIndex = -1;
-        lblError.IsVisible = false;
-        lblError.Text = string.Empty;
-        lblError2.IsVisible = false;
-        lblError2.Text = string.Empty;
-        lblError3.IsVisible = false;
-        lblError3.Text = string.Empty;
-        lblError4.IsVisible = false;
-        lblError4.Text = string.Empty;
-        lblError5.IsVisible = false;
-        lblError5.Text = string.Empty;
         cboFolio.Focus();
     }
     void cargaDatos()
@@ -278,7 +264,19 @@ public partial class TomaInventarioFilm : ContentPage
         }
     }
     void ClearComponent()
-    {
+    {   
+        cboFolio.SelectedIndex = -1;
+        //cboTipoPallet.SelectedIndex = -1;
+        lblError.IsVisible = false;
+        lblError.Text = string.Empty;
+        lblError2.IsVisible = false;
+        lblError2.Text = string.Empty;
+        lblError3.IsVisible = false;
+        lblError3.Text = string.Empty;
+        lblError4.IsVisible = false;
+        lblError4.Text = string.Empty;
+        lblError5.IsVisible = false;
+        lblError5.Text = string.Empty;
         txt_pallet.Text = string.Empty;
         txt_pallet.IsEnabled = false;
         txt_producto.Text = string.Empty;

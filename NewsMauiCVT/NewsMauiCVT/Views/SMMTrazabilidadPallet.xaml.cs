@@ -9,12 +9,18 @@ public partial class SMMTrazabilidadPallet : ContentPage
 {
     public SMMTrazabilidadPallet()
     {
+        
+        NavigationPage.SetHasNavigationBar(this, false);
+        InitializeComponent();
+    }
+    protected override void OnAppearing()
+    {
         #region Código para cargar página de Scan BarCode desde el teléfono.
         BarcodePage barcodePage = new BarcodePage();
         #endregion
-        NavigationPage.SetHasNavigationBar(this, false);
-        InitializeComponent();
-        txtNPallet.Focus();
+        base.OnAppearing();
+        ClearComponent();
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -29,17 +35,16 @@ public partial class SMMTrazabilidadPallet : ContentPage
         }
         #endregion
     }
-    protected override void OnAppearing()
-    {   
-        base.OnAppearing();
-        ClearComponent();
-        txtNPallet.Focus();
-        lblError.IsVisible = false;
-        GvData.IsVisible = false;
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtNPallet.Focus();
+        });
     }
     void ClearComponent()
     {
-
+        lblError.IsVisible = false;
+        GvData.IsVisible = false;
         lblPallet.Text = string.Empty;
         lblLote.Text = string.Empty;
         lblCantidad.Text = string.Empty;

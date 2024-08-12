@@ -14,20 +14,23 @@ public partial class Calidad_ControlHigiene : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        ClearComponent();
+    }
+    void ClearComponent()
+    {
+        lblError2.Text = string.Empty;
+        txtAccionCorrectiva.Text = string.Empty;
         cboMonitor.SelectedIndex = -1;
         cboArea.SelectedIndex = -1;
         cboTipoContraro.SelectedIndex = -1;
-        lblError2.Text = string.Empty;
         cboPersona.SelectedIndex = -1;
         cboLimpUniforme.SelectedIndex = -1;
         cboAfeitadoCorto.SelectedIndex = -1;
         cboUnas.SelectedIndex = -1;
         cboJoyas.SelectedIndex = -1;
         cboHigiene.SelectedIndex = -1;
-        txtAccionCorrectiva.Text = string.Empty;
         CboEstUniforme.SelectedIndex = -1;
         cboHeridaExpuesta.SelectedIndex = -1;
-        
     }
     private async void CargaDatos()
     {

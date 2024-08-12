@@ -12,9 +12,18 @@ public partial class SMMArmadoPedido : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
-
+        ClearComponent();
+        SetFocusText();
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtNPedido.Focus();
+        });
+    }
+    void ClearComponent()
+    {
         txtNPedido.Text = string.Empty;
     }
     private void btn_Crear_Clicked(object sender, EventArgs e)

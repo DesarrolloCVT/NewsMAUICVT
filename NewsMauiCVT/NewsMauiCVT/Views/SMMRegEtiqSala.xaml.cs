@@ -12,19 +12,26 @@ public partial class SMMRegEtiqSala : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
-
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
+        SetFocusText();
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txt_pallet.Focus();
+        });
+    }
+    void ClearComponent()
+    {
         txt_pallet.Text = string.Empty;
-        txt_pallet.Focus();
         btn_agregar.IsEnabled = false;
         txt_cantidad.Text = string.Empty;
         txtDia.Text = string.Empty;
         txtMes.Text = string.Empty;
         txtAno.Text = string.Empty;
-
     }
     private async void txtDia_Completed(object sender, EventArgs e)
     {
@@ -93,7 +100,7 @@ public partial class SMMRegEtiqSala : ContentPage
         }
         catch (Exception ex)
         {
-
+            Console.WriteLine($"{ex.Message}");
         }
     }
     private async void txt_pallet_Completed(object sender, EventArgs e)

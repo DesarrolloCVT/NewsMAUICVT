@@ -9,27 +9,25 @@ public partial class SMM_ExhibicionSala : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        lblError2.IsVisible = false;
-        lblError2.Text = string.Empty;
-        lblProducto.IsVisible = false;
-        cboPasillo.Focus();
-        btn_agregar.IsEnabled = false;
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
+        cboPasillo.Focus();
+    }
+    void ClearComponent()
+    {   
         cboPasillo.SelectedIndex = -1;
         cboColumna.SelectedIndex = -1;
         cboNivel.SelectedIndex = -1;
-        txtCodBarra.Text = string.Empty;
-        lblProducto.Text = string.Empty;
         lblProducto.IsVisible = false;
         cboCantCaras.SelectedIndex = -1;
-        lblError2.Text = string.Empty;
         lblError2.IsVisible = false;
-        cboPasillo.Focus();
         btn_agregar.IsEnabled = false;
+        txtCodBarra.Text = string.Empty;
+        lblProducto.Text = string.Empty;
+        lblError2.Text = string.Empty;
     }
     private void CboPasillo_SelectedIndexChanged(object sender, EventArgs e)
     {

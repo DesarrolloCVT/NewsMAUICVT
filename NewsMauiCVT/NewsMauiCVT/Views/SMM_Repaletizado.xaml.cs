@@ -9,10 +9,6 @@ public partial class SMM_Repaletizado : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        btn_generar.IsEnabled = false;
-        LayoutDestinoExistente.IsVisible = false;
-        LayoutOrigen.IsVisible = false;
-        txtPosicion.Focus();
     }
     protected override void OnAppearing()
     {
@@ -21,12 +17,7 @@ public partial class SMM_Repaletizado : ContentPage
         #endregion
         base.OnAppearing();
         ClearComponent();
-        lblError.Text = string.Empty;
-        lblError2.Text = string.Empty;
-        lblError3.Text = string.Empty;
-        lblError.IsVisible = false;
-        lblError2.IsVisible = false;
-        lblError3.IsVisible = false;
+        SetFocusText();
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -40,6 +31,12 @@ public partial class SMM_Repaletizado : ContentPage
             }
         }
         #endregion
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtPosicion.Focus();
+        });
     }
     private void TxtPosicion_Completed(object sender, EventArgs e)
     {
@@ -302,10 +299,14 @@ public partial class SMM_Repaletizado : ContentPage
         }
     }
     void ClearComponent()
-    {
-
+    {   
+        lblError.Text = string.Empty;
+        lblError2.Text = string.Empty;
+        lblError3.Text = string.Empty;
+        lblError.IsVisible = false;
+        lblError2.IsVisible = false;
+        lblError3.IsVisible = false;
         txtPosicion.Text = string.Empty;
-        txtPosicion.Focus();
         lbl_codproducto.Text = string.Empty;
         lbl_producto.Text = string.Empty;
         lbl_lote.Text = string.Empty;

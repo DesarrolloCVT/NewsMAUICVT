@@ -12,7 +12,6 @@ public partial class ControlFosfina : ContentPage
     private void FFumi_DateSelected(object sender, DateChangedEventArgs e)
     {
         txt_Bodega.Focus();
-
     }
     private void Txt_Bodega_Completed(object sender, EventArgs e)
     {
@@ -67,17 +66,13 @@ public partial class ControlFosfina : ContentPage
             txt_Bodega.Focus();
             await DisplayAlert("Alerta", "Ingrese distancia", "Aceptar");
         }
-
         else
         {
-
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
                 DatosExtintores de = new DatosExtintores();
-
                 string fFumigacion = FFumi.Date.Year + "-" + FFumi.Date.Month + "-" + FFumi.Date.Day;
-
                 string bod = txt_Bodega.Text;
                 string mayor = txt_MayorPP.Text.Replace(".", ",");
                 string a1 = cboA1.SelectedItem.ToString();

@@ -14,13 +14,14 @@ public partial class SMM_TansferenciaDetalle : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
+        ClearComponent();
         txtNPallet.Focus();
-        txtNPallet.Text = string.Empty;
         //stData.IsVisible = false;
-
-
+    }
+    void ClearComponent()
+    {
+        txtNPallet.Text = string.Empty;
     }
     private void btnGuardarDetalle_Clicked(object sender, EventArgs e)
     {
