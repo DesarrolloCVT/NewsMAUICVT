@@ -20,7 +20,9 @@
                 HeightRequest="60"
                 Text="Escanear Código"
                 Clicked="Button_Scanner_Clicked"
-                TextColor="White" />
+                TextColor="White"
+                IsEnabled="False"
+                IsVisible="False"/>
             <dxe:TextEdit
                 x:Name="txtCodigo"
                 Margin="25,0"

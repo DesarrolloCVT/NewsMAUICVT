@@ -86,8 +86,7 @@ public partial class BarcodePage : ContentPage
     }
     protected override bool OnBackButtonPressed()
     {
-        BarcodePage barcodePage = new BarcodePage();
-        barcodePage.CodigoDetectado = false;
+        CodigoDetectado = false;
         return false;
     }
 }

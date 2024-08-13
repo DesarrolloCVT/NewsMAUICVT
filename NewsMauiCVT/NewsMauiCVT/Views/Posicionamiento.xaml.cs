@@ -21,7 +21,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
         #endregion
         base.OnAppearing();
         ClearComponent();
-        SetFocusText();
+        
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {

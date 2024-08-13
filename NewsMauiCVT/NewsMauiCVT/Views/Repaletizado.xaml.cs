@@ -17,9 +17,9 @@ public partial class Repaletizado : ContentPage
             _lblCantidad = value;
             OnPropertyChanged(nameof(lblCantidad));
         }
-    }
+    }    
     public Repaletizado()
-	{
+	{   
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
@@ -28,24 +28,36 @@ public partial class Repaletizado : ContentPage
         #region Código para cargar página de Scan BarCode desde el teléfono.
         BarcodePage barcodePage = new BarcodePage();
         #endregion
+
         base.OnAppearing();
-        ClearComponent();
         SetFocusText();
+        PreparePage();
+        ClearComponent();
+
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
             btn_escanear.IsVisible = true;
             btn_escanear.IsEnabled = true;
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
-            {
+            {   
                 if(txtPosicion.IsFocused)
                 {
                     txtPosicion.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
-                    btn_escanear.IsVisible = false;
-                    btn_escanear.IsEnabled = false;
-                }   
+                }
+                else
+                {
+                    txt_destino.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                }
                 barcodePage.SetFlag(); // -> Set Flag => False.
+                
             }
+        }
+        #endregion
+        #region Validacion dispositivo Celular
+        if (DeviceInfo.Model != "MC33")
+        {
+            ValidatePreviewData();
         }
         #endregion
     }
@@ -121,7 +133,6 @@ public partial class Repaletizado : ContentPage
     }
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
     {
-
         int selectedIndex = picker.SelectedIndex;
 
         if (selectedIndex == 0)
@@ -148,7 +159,7 @@ public partial class Repaletizado : ContentPage
             cboTipoPallet.BindingContext = lPro;
             cboTipoPallet.Focus();
         }
-        else
+        else if(selectedIndex == 1)
         {
             txt_destino.IsVisible = true;
             cboTipoPallet.IsVisible = false;
@@ -224,7 +235,7 @@ public partial class Repaletizado : ContentPage
                             DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
                             DisplayAlert("Alerta", "COMPATIBLE", "Aceptar");
                             btn_generar.IsEnabled = false;
-                            txt_cantidad.Focus();
+                            //txt_cantidad.Focus();
                         }
                         else
                         {
@@ -241,6 +252,7 @@ public partial class Repaletizado : ContentPage
                     }
                 }
             }
+            txt_cantidad.Focus();
         }
         else
         {
@@ -256,24 +268,24 @@ public partial class Repaletizado : ContentPage
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese un n° de Pallet", "Aceptar");
-            txtPosicion.Focus();
+            //txtPosicion.Focus();
         }
         else
         if (txt_destino.Text.Equals(string.Empty) && selectedIndex == 1)
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese Destino", "Aceptar");
-            txt_destino.Focus();
+            //txt_destino.Focus();
         }
         else
         if (txt_cantidad.Text.Equals(string.Empty))
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese Cantidad", "Aceptar");
-            txt_cantidad.Focus();
+            //txt_cantidad.Focus();
         }
         else
-        {
+        {   
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
@@ -395,35 +407,97 @@ public partial class Repaletizado : ContentPage
             }
         }
     }
-    void ClearComponent()
+    private void PreparePage()
     {
-        btn_generar.IsEnabled = false;
-        LayoutDestinoExistente.IsVisible = false;
-        LayoutOrigen.IsVisible = false;
-        lblError.IsVisible = false;
-        lblError2.IsVisible = false;
-        lblError3.IsVisible = false;
-        lblError.Text = string.Empty;
-        lblError2.Text = string.Empty;
-        lblError3.Text = string.Empty;
-        txtPosicion.Text = string.Empty;
-        lbl_codproducto.Text = string.Empty;
-        lbl_producto.Text = string.Empty;
-        lbl_lote.Text = string.Empty;
-        lbl_cantidad.Text = string.Empty;
-        lblBodega.Text = string.Empty;
-        picker.SelectedIndex = -1;
-        txt_destino.IsVisible = false;
-        txt_destino.Text = string.Empty;
-        lbl_dproducto.Text = string.Empty;
-        lbl_dlote.Text = string.Empty;
-        lbl_dBodega.Text = string.Empty;
-        lbl_dcantidad.Text = string.Empty;
-        txt_cantidad.Text = string.Empty;
-        LayoutOrigen.IsVisible = false;
-        LayoutDestinoExistente.IsVisible = false;
-        btn_generar.IsEnabled = false;
-
+        try
+        {
+            lblError.IsVisible = false;
+            lblError2.IsVisible = false;
+            lblError3.IsVisible = false;
+            LayoutOrigen.IsVisible = false;
+            LayoutDestinoExistente.IsVisible = false;
+            btn_generar.IsEnabled = false;
+        }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
+    }
+    private async void ValidatePreviewData()
+    {
+        try {
+            if(picker.SelectedIndex == 1 && txt_destino.IsEnabled == true)
+            {
+                var result = await DisplayAlert("Confirmar", "Se han detectado datos previamente ingresados, ¿Desea continuar con el registro?", "SI", "NO");
+                if (result)
+                {
+                    Console.WriteLine("Se mantienen los datos");
+                }
+                else
+                {
+                    txt_destino.IsVisible = false;
+                    picker.SelectedIndex = -1;
+                    lblError.Text = string.Empty;
+                    lblError2.Text = string.Empty;
+                    lblError3.Text = string.Empty;
+                    txtPosicion.Text = string.Empty;
+                    lbl_codproducto.Text = string.Empty;
+                    lbl_producto.Text = string.Empty;
+                    lbl_lote.Text = string.Empty;
+                    lbl_cantidad.Text = string.Empty;
+                    lblBodega.Text = string.Empty;
+                    txt_destino.Text = string.Empty;
+                    lbl_dproducto.Text = string.Empty;
+                    lbl_dlote.Text = string.Empty;
+                    lbl_dBodega.Text = string.Empty;
+                    lbl_dcantidad.Text = string.Empty;
+                    txt_cantidad.Text = string.Empty;
+                }
+            }
+        } catch (Exception ex) { Console.WriteLine(ex.Message); }
+    }
+    private void ClearComponent()
+    {
+        if (DeviceInfo.Model != "MC33")
+        {
+            if (!(picker.SelectedIndex == 1) && (string.IsNullOrEmpty(txtPosicion.Text)) )
+            {
+                txt_destino.IsVisible = false;
+                picker.SelectedIndex = -1;
+                lblError.Text = string.Empty;
+                lblError2.Text = string.Empty;
+                lblError3.Text = string.Empty;
+                txtPosicion.Text = string.Empty;
+                lbl_codproducto.Text = string.Empty;
+                lbl_producto.Text = string.Empty;
+                lbl_lote.Text = string.Empty;
+                lbl_cantidad.Text = string.Empty;
+                lblBodega.Text = string.Empty;
+                txt_destino.Text = string.Empty;
+                lbl_dproducto.Text = string.Empty;
+                lbl_dlote.Text = string.Empty;
+                lbl_dBodega.Text = string.Empty;
+                lbl_dcantidad.Text = string.Empty;
+                txt_cantidad.Text = string.Empty;
+            }
+        }
+        else
+        {
+            txt_destino.IsVisible = false;
+            picker.SelectedIndex = -1;
+            lblError.Text = string.Empty;
+            lblError2.Text = string.Empty;
+            lblError3.Text = string.Empty;
+            txtPosicion.Text = string.Empty;
+            lbl_codproducto.Text = string.Empty;
+            lbl_producto.Text = string.Empty;
+            lbl_lote.Text = string.Empty;
+            lbl_cantidad.Text = string.Empty;
+            lblBodega.Text = string.Empty;
+            txt_destino.Text = string.Empty;
+            lbl_dproducto.Text = string.Empty;
+            lbl_dlote.Text = string.Empty;
+            lbl_dBodega.Text = string.Empty;
+            lbl_dcantidad.Text = string.Empty;
+            txt_cantidad.Text = string.Empty;
+        }
     }
     private void Txt_cantidad_Completed(object sender, EventArgs e)
     {
@@ -448,7 +522,6 @@ public partial class Repaletizado : ContentPage
     }
     private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)
     {
-        txt_cantidad.Focus();
     }
     private void cboProducto_SelectionChanged(object sender, EventArgs e)
     {
@@ -482,5 +555,16 @@ public partial class Repaletizado : ContentPage
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
 
+    }
+    private void Cbo_tipoRepaletizado_Completed(object sender, EventArgs e)
+    {
+        if (txt_destino.IsEnabled)
+        {
+            txt_destino.Focus();
+        }
+        else
+        {
+            txt_cantidad.Focus();
+        }
     }
 }

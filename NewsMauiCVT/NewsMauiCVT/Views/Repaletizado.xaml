@@ -12,7 +12,7 @@
             </StackLayout>
             <StackLayout Margin="25,0" >
                 <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
-                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" ReturnType="Next">
+                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" ReturnType="Done">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
@@ -62,8 +62,9 @@
                                   DropDownSelectedItemBackgroundColor="GreenYellow"          
                                   TextFontSize="15"
                                   ClearIconVisibility="Auto"
-                                  ReserveBottomTextLine="True"  ReturnType="Next"               
-                                  SelectionChanged="Picker_SelectedIndexChanged">
+                                  ReserveBottomTextLine="True"  ReturnType="Done"               
+                                  SelectionChanged="Picker_SelectedIndexChanged"
+                                  Completed="Cbo_tipoRepaletizado_Completed">
                     <dxe:ComboBoxEdit.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>NUEVO</x:String>
@@ -101,7 +102,7 @@
             </StackLayout>
             <StackLayout Margin="25,0" >
                 <dxe:TextEdit LabelText="Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_destino" Completed="Txt_destino_Completed" 
-                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" IsVisible="False" ReturnType="Next">
+                  IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" IsVisible="False" ReturnType="Done">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
@@ -146,10 +147,10 @@
             <StackLayout HorizontalOptions="CenterAndExpand">
                 <Label x:Name="lblError3" Text="" IsVisible="False" TextColor="Red" />
             </StackLayout>
-            <StackLayout Padding="10">
+            <StackLayout Padding="25">
                 <Button Text="GENERAR" TextColor="White" x:Name="btn_generar" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand" Clicked="Btn_generar_Clicked"   />
                 <dxc:DXButton 
-                    Margin="25"
+                    Margin="0,30,0,0"
                     x:Name="btn_escanear"
                     BackgroundColor="Green"
                     BorderColor="Black"

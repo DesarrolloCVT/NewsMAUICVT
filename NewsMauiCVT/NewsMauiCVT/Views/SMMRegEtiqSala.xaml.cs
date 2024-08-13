@@ -26,6 +26,7 @@ public partial class SMMRegEtiqSala : ContentPage
     }
     void ClearComponent()
     {
+
         txt_pallet.Text = string.Empty;
         btn_agregar.IsEnabled = false;
         txt_cantidad.Text = string.Empty;
