@@ -74,6 +74,9 @@ public partial class PageMain : FlyoutPage
     private async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         var option = e.SelectedItem as Option;
+
+        
+
         if (option.page != null)
         {   
             IsPresented = false;

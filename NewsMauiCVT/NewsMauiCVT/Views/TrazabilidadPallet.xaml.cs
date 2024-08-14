@@ -13,13 +13,15 @@ public partial class TrazabilidadPallet : ContentPage
         
     }
     protected override void OnAppearing()
-    {   
-        base.OnAppearing();
-        ClearComponent();
-        SetFocusText();
+    {
         #region Código para cargar página de Scan BarCode desde el teléfono.
         BarcodePage barcodePage = new BarcodePage();
         #endregion
+
+        base.OnAppearing();
+        ClearComponent();
+        SetFocusText();
+        
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -27,8 +29,9 @@ public partial class TrazabilidadPallet : ContentPage
             btn_escanear.IsEnabled = true;
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
             {
-                txtNPallet.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
-                barcodePage.SetFlag(); // -> Set Flag => False.
+                txtNPallet.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.Flag = !barcodePage.Flag;
+
             }
         }
         #endregion

@@ -78,7 +78,7 @@
                 <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_destino" Completed="Txt_destino_Completed" IsLabelFloating="False" 
+                <dxe:TextEdit LabelText="Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_destino" IsVisible="False" Completed="Txt_destino_Completed" IsLabelFloating="False" 
                               BorderColor="Green" LabelColor="Green" Keyboard="Numeric" >
                 </dxe:TextEdit>
             </StackLayout>

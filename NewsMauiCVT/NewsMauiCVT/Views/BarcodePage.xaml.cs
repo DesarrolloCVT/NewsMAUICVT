@@ -11,6 +11,7 @@ public partial class BarcodePage : ContentPage
 
     public bool CodigoDetectado
     {
+        //Variable Utilizada para asegurar que se ha capturado un codigo QR o un codigo de barras.
         get => _codigoDetectado; 
         set 
         {
@@ -46,13 +47,9 @@ public partial class BarcodePage : ContentPage
             Multiple = true
         };
     }
-    public string Set_txt_Barcode()
+    public string SetBarcode()
     {   
         return CodigoDeBarras;
-    }
-    public void SetFlag()
-    {
-        Flag = false;
     }
     protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {   
@@ -86,7 +83,7 @@ public partial class BarcodePage : ContentPage
     }
     protected override bool OnBackButtonPressed()
     {
-        CodigoDetectado = false;
+        CodigoDetectado = !CodigoDetectado;
         return false;
     }
 }

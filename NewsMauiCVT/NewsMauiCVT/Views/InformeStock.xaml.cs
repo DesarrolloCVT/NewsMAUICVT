@@ -29,9 +29,9 @@ public partial class InformeStock : ContentPage
             btn_escanear.IsEnabled = true;
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
             {
-                txtCodProd.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
-                barcodePage.SetFlag(); // -> Set Flag => False.
-                barcodePage.CodigoDetectado = false;
+                txtCodProd.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.Flag = !barcodePage.Flag;
+                barcodePage.CodigoDetectado = !barcodePage.CodigoDetectado;
             }
         }
         #endregion

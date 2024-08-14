@@ -20,8 +20,10 @@ public partial class Posicionamiento : INotifyPropertyChanged
         BarcodePage barcodePage = new BarcodePage();
         #endregion
         base.OnAppearing();
+        PreparePage();
         ClearComponent();
-        
+        SetFocusText();
+
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {
@@ -29,12 +31,59 @@ public partial class Posicionamiento : INotifyPropertyChanged
             btn_escanear.IsEnabled = true;
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
             {
-                txt_origen.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
-                barcodePage.SetFlag(); // -> Set Flag => False.
-                barcodePage.CodigoDetectado = false;
+                if (string.IsNullOrEmpty(txt_origen.Text))
+                {
+                    txt_origen.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
+                }
+                else
+                {
+                    txt_destino.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
+                }
+                barcodePage.Flag = !barcodePage.Flag;
+                barcodePage.CodigoDetectado = !barcodePage.CodigoDetectado;
             }
+            #region Validacion dispositivo Celular para controlar datos pre-existentes
+            ValidatePreviewData();
+            #endregion
         }
         #endregion
+    }
+    private async void ValidatePreviewData()
+    {
+        try
+        {
+            if (txt_destino.IsVisible == true)
+            {
+                var result = await DisplayAlert("Confirmar", "Se han detectado datos previamente ingresados, ¿Desea continuar con el registro?", "SI", "NO");
+                if (result)
+                {
+                    Console.WriteLine("Se mantienen los datos");
+                }
+                else
+                {
+                    lblError.IsVisible = false;
+                    lblError2.IsVisible = false;
+                    lblError.Text = string.Empty;
+                    lblError2.Text = string.Empty;
+                    txt_origen.Text = string.Empty;
+                    lbl_codproducto.Text = string.Empty;
+                    lbl_producto.Text = string.Empty;
+                    lbl_lote.Text = string.Empty;
+                    lbl_cantidad.Text = string.Empty;
+                    lbl_sitio.Text = string.Empty;
+                    lbl_ubicacion.Text = string.Empty;
+                    txt_destino.IsVisible = false;
+                    txt_ConfirmaDestino.Text = string.Empty;
+                    txt_ConfirmaDestino.IsVisible = false;
+                    txt_destino.Text = string.Empty;
+                    lbl_sitio_nuevo.Text = string.Empty;
+                    lbl_ubicacion_nueva.Text = string.Empty;
+                    LayoutOrigen.IsVisible = false;
+                    LayoutDestinoExistente.IsVisible = false;
+                }
+            }
+        }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
     }
     private void SetFocusText()
     {
@@ -196,27 +245,61 @@ public partial class Posicionamiento : INotifyPropertyChanged
         }
     }
     void ClearComponent()
-    {   
-        lblError.IsVisible = false;
-        lblError2.IsVisible = false;
-        lblError.Text = string.Empty;
-        lblError2.Text = string.Empty;
-        txt_origen.Text = string.Empty;
-        lbl_codproducto.Text = string.Empty;
-        lbl_producto.Text = string.Empty;
-        lbl_lote.Text = string.Empty;
-        lbl_cantidad.Text = string.Empty;
-        lbl_sitio.Text = string.Empty;
-        lbl_ubicacion.Text = string.Empty;
-        txt_destino.IsVisible = false;
-        txt_ConfirmaDestino.Text = string.Empty;
-        txt_ConfirmaDestino.IsVisible = false;
-        txt_destino.Text = string.Empty;
-        lbl_sitio_nuevo.Text = string.Empty;
-        lbl_ubicacion_nueva.Text = string.Empty;
-        LayoutOrigen.IsVisible = false;
-        LayoutDestinoExistente.IsVisible = false;
+    {
+        if (DeviceInfo.Model != "MC33")
+        {
+            if (txt_destino.IsVisible == false)
+            {
+                lblError.Text = string.Empty;
+                lblError2.Text = string.Empty;
+                txt_origen.Text = string.Empty;
+                lbl_codproducto.Text = string.Empty;
+                lbl_producto.Text = string.Empty;
+                lbl_lote.Text = string.Empty;
+                lbl_cantidad.Text = string.Empty;
+                lbl_sitio.Text = string.Empty;
+                lbl_ubicacion.Text = string.Empty;
+                txt_ConfirmaDestino.Text = string.Empty;
+                txt_destino.Text = string.Empty;
+                lbl_sitio_nuevo.Text = string.Empty;
+                lbl_ubicacion_nueva.Text = string.Empty;
+            }
+        }
+        else
+        {
+            lblError.IsVisible = false;
+            lblError2.IsVisible = false;
+            lblError.Text = string.Empty;
+            lblError2.Text = string.Empty;
+            txt_origen.Text = string.Empty;
+            lbl_codproducto.Text = string.Empty;
+            lbl_producto.Text = string.Empty;
+            lbl_lote.Text = string.Empty;
+            lbl_cantidad.Text = string.Empty;
+            lbl_sitio.Text = string.Empty;
+            lbl_ubicacion.Text = string.Empty;
+            txt_destino.IsVisible = false;
+            txt_ConfirmaDestino.Text = string.Empty;
+            txt_ConfirmaDestino.IsVisible = false;
+            txt_destino.Text = string.Empty;
+            lbl_sitio_nuevo.Text = string.Empty;
+            lbl_ubicacion_nueva.Text = string.Empty;
+            LayoutOrigen.IsVisible = false;
+            LayoutDestinoExistente.IsVisible = false;
+        }
         //  btn_generar.IsEnabled = false;
+    }
+    private void PreparePage()
+    {
+        try
+        {
+            txt_ConfirmaDestino.IsVisible = false;
+            LayoutOrigen.IsVisible = false;
+            LayoutDestinoExistente.IsVisible = false;
+            lblError.IsVisible = false;
+            lblError2.IsVisible = false;
+        }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
     }
     private void Txt_ConfirmaDestino_Completed(object sender, EventArgs e)
     {

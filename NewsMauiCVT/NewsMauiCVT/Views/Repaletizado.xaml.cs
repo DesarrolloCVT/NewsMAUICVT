@@ -35,32 +35,34 @@ public partial class Repaletizado : ContentPage
         ClearComponent();
 
         #region Código para cargar página de Scan BarCode desde el teléfono.
+        //Validacion para descartar el uso de la Pistola.
         if (DeviceInfo.Model != "MC33")
         {
+            //Se hace visible boton escanear codigo
             btn_escanear.IsVisible = true;
             btn_escanear.IsEnabled = true;
+
+            //validacion: Comprueba que la bandera esta arriba y se ha detectado un codigo antes de hacer el set del TextEdit.
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
             {   
                 if(txtPosicion.IsFocused)
                 {
-                    txtPosicion.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                    txtPosicion.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
                 }
                 else
                 {
-                    txt_destino.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
+                    txt_destino.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
                 }
-                barcodePage.SetFlag(); // -> Set Flag => False.
-                
+                barcodePage.Flag = !barcodePage.Flag;
+                barcodePage.CodigoDetectado = !barcodePage.CodigoDetectado;
             }
-        }
-        #endregion
-        #region Validacion dispositivo Celular
-        if (DeviceInfo.Model != "MC33")
-        {
+            #region Validacion: validación para dispositivo Celular, para utilizar datos pre-existentes. 
             ValidatePreviewData();
+            #endregion
         }
         #endregion
     }
+    //Validacion para posicionar el Foco en el TextEdit Posicion -> N° de pallet.
     private void SetFocusText()
     {
         _ = Task.Delay(200).ContinueWith(t => {
@@ -69,19 +71,24 @@ public partial class Repaletizado : ContentPage
     }
     private async void TxtPosicion_Completed(object sender, EventArgs e)
     {
+        //Realiza la validez del numero de pallet registrado.
         var ACC = Connectivity.NetworkAccess;
-        if (ACC == NetworkAccess.Internet)
+        if (ACC == NetworkAccess.Internet) // Valida acceso a internet
         {
             string nPallet = txtPosicion.Text;
             HttpClient ClientHttp = new HttpClient();
             ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-            var rest2 = ClientHttp.GetAsync("api/Produccion?NumeroDePallet=" + nPallet).Result;
+            //Se realiza el call de a traves de metodo Get Uri. 
+            var rest2 = ClientHttp.GetAsync("api/Produccion?NumeroDePallet=" + nPallet).Result; 
 
-            if (rest2.IsSuccessStatusCode)
+            if (rest2.IsSuccessStatusCode) //Se valida respuesta del Call
             {
+                //Se lee y se almacena el resultado -> Objeto.
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
+                //Se deserializa el objeto json y se convierte en una lista.
                 List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr) ??
                                 throw new InvalidOperationException();
+                //Se valida si la respuesta contiene datos.
                 if (dt.Count() == 0)
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");

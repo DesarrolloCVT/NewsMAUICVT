@@ -4,8 +4,8 @@ using NewsMauiCVT.Model;
 namespace NewsMauiCVT;
 
 public partial class MenuPruebas : ContentPage
-{
-	public MenuPruebas()
+{   
+    public MenuPruebas()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
@@ -78,5 +78,11 @@ public partial class MenuPruebas : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        PageMain page = new PageMain();
+        page.IsPresented = true;// !page.IsPresented;
     }
 }

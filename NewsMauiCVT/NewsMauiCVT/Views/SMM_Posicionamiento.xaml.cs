@@ -23,9 +23,9 @@ public partial class SMM_Posicionamiento : ContentPage
             btn_escanear.IsEnabled = true;
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
             {
-                txt_origen.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
-                barcodePage.SetFlag(); // -> Set Flag => False.
-                barcodePage.CodigoDetectado = false;
+                txt_origen.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.Flag = !barcodePage.Flag;
+                barcodePage.CodigoDetectado = !barcodePage.CodigoDetectado;
             }
         }
         else

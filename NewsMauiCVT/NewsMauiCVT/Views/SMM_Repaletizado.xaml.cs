@@ -25,8 +25,8 @@ public partial class SMM_Repaletizado : ContentPage
             btn_escanear.IsEnabled = true;
             if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
             {
-                txtPosicion.Text = barcodePage.Set_txt_Barcode(); //Set text -> Codigo de barras recuperado.
-                barcodePage.SetFlag(); // -> Set Flag => False.
+                txtPosicion.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
+                barcodePage.Flag = !barcodePage.Flag;
 
             }
         }
