@@ -10,6 +10,7 @@
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
                 <Label
+                    x:Name="txt_version"
                     FlexLayout.AlignSelf="End"
                     FontAttributes="Bold"
                     FontSize="10"
@@ -39,7 +40,8 @@
                             IsLabelFloating="False"
                             LabelColor="Green"
                             LabelFontSize="15"
-                            LabelText="USUARIO" />
+                            LabelText="USUARIO"
+                            ReturnType="Next"/>
                     </StackLayout>
                     <StackLayout Margin="25,0" Padding="10,0,0,20">
                         <dx:PasswordEdit
@@ -53,7 +55,7 @@
                             LabelText="CONTRASEÑA"
                             MaxCharacterCount="6"
                             MaxCharacterCountOverflowMode="LimitInput"
-                            ReturnType="Done"/>
+                            ReturnType="Send"/>
                     </StackLayout>
                     <StackLayout Margin="25,0" Padding="10,0,0,20">
                         <dx:DXButton  

@@ -22,7 +22,6 @@ public partial class MenuPruebas : ContentPage
                 bntConsultaUbicacion.IsVisible = false;
                 btnRepaletizado.IsVisible = false;
                 bntTomaInventario.IsVisible = false;
-
                 break;
             default:
                 break;
@@ -79,10 +78,9 @@ public partial class MenuPruebas : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-
-    private void Button_Clicked(object sender, EventArgs e)
+    /*private void Button_Clicked(object sender, EventArgs e)
     {
         PageMain page = new PageMain();
         page.IsPresented = true;// !page.IsPresented;
-    }
+    }*/
 }

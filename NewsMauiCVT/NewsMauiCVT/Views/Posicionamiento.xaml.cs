@@ -19,6 +19,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
         #region Código para cargar página de Scan BarCode desde el teléfono.
         BarcodePage barcodePage = new BarcodePage();
         #endregion
+
         base.OnAppearing();
         PreparePage();
         ClearComponent();
@@ -244,7 +245,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-    void ClearComponent()
+    private void ClearComponent()
     {
         if (DeviceInfo.Model != "MC33")
         {

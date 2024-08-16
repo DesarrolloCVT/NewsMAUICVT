@@ -10,9 +10,9 @@ namespace NewsMauiCVT.Datos
 {
     internal class DatosApp
     {
-        public string TraeVersion(string vers)
+        public string TraeVersion()
         {
-            string Vers = "0.0.0";
+            string vers = "0.0.0";
             try
             {
                 HttpClient ClientHttp = new()
@@ -21,14 +21,18 @@ namespace NewsMauiCVT.Datos
                 };
 
                 var rest2 = ClientHttp.GetAsync("api/DatosAPP?idAPP=" + 1).Result;
-                var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                Vers = JsonConvert.DeserializeObject<string>(resultadoStr) ??
-                                throw new InvalidOperationException();
+                if (rest2.IsSuccessStatusCode)
+                {
+                    var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
+                    vers = JsonConvert.DeserializeObject<string>(resultadoStr) ??
+                        throw new InvalidOperationException();
+                }
             }
             catch (Exception ex)
             {
                 string mns = ex.Message;
             }
+            Console.WriteLine("Version: " + vers);
             return vers;
         }
 

@@ -1,4 +1,5 @@
 ﻿ using Controls.UserDialogs.Maui;
+using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Views;
 using Newtonsoft.Json;
@@ -8,16 +9,24 @@ namespace NewsMauiCVT
 {
     public partial class MainPage : ContentPage 
     {
-
         public MainPage()
         {   
             InitializeComponent();
             SetMobileScreen();
             NavigationPage.SetHasNavigationBar(this, false);
-            //txtUsuario.Focus();
         }
         private void SetMobileScreen()
         {
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet)
+            {
+                DatosApp datos = new DatosApp();
+                txt_version.Text = ("Versión " + datos.TraeVersion());
+            }
+            else
+            {
+                txt_version.Text = ("Versión 0.0.0");
+            }
             if (!(DeviceInfo.Model == "MC33"))
             {
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -54,7 +63,7 @@ namespace NewsMauiCVT
                         };
                         try
                         {
-                            //para Consultar
+                            //Consulta
                             var rest = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave).Result;
                             if (rest.IsSuccessStatusCode)
                             {

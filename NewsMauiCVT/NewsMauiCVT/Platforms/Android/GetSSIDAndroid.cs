@@ -25,9 +25,7 @@ namespace NewsMauiCVT.Platforms.Android
                                 throw new InvalidOperationException();
                 return wifiSSID;
                 // Now you have the SSID!
-            }
-            else
-            {
+            } else {
                 return "NULL";
             }
         }

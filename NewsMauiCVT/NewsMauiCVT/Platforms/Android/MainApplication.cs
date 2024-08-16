@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Runtime;
+using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Platforms.Android;
 
