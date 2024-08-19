@@ -4,7 +4,7 @@
              xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              x:Class="NewsMauiCVT.Views.Posicionamiento"
-             Title="Posicionamiento">
+             NavigationPage.HasBackButton="False">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="20">

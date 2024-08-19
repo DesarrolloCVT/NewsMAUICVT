@@ -8,7 +8,21 @@ public partial class FlyoutPagePrincipal : FlyoutPage
 	{
 		InitializeComponent();
         flyoutPage.collectionView.SelectionChanged += CollectionView_SelectionChanged;
-	}
+        Detail = new NavigationPage(new MenuPruebas());
+
+        var menuButton = new ToolbarItem
+        {
+            Text = "Menu",
+            IconImageSource = "hamburger.png",
+            Order = ToolbarItemOrder.Primary,
+            Priority = 0
+        };
+        menuButton.Clicked += (s, e) =>
+        {
+            IsPresented = !IsPresented;
+        };
+        (Detail as NavigationPage).ToolbarItems.Add(menuButton);
+    }
     private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var item = e.CurrentSelection.FirstOrDefault() as FlyoutPageItem;

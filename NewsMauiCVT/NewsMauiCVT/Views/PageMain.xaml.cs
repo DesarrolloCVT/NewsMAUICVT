@@ -7,8 +7,24 @@ public partial class PageMain : FlyoutPage
 	public PageMain()
 	{
         InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, false);
         myPageMain();
+    }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var menuButton = new ToolbarItem
+        {
+            Text = "Menu",
+            IconImageSource = "hamburger.png",
+            Order = ToolbarItemOrder.Primary,
+            Priority = 0
+        };
+        menuButton.Clicked += (s, e) =>
+        {
+            IsPresented = !IsPresented;
+        };
+        (Detail as NavigationPage).ToolbarItems.Add(menuButton);
     }
     public void myPageMain()
     {

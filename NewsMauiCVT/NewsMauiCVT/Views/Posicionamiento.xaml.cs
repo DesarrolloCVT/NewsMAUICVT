@@ -387,7 +387,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
     {
         OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
-        return true;
+        return false;
     }
     private void Btn_escanear_Clicked(object sender, EventArgs e)
     {
