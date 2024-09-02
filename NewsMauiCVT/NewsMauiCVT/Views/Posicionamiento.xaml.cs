@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace NewsMauiCVT.Views;
 
-public partial class Posicionamiento : INotifyPropertyChanged
+public partial class Posicionamiento : ContentPage
 {
     public Posicionamiento()
 	{
@@ -24,6 +24,11 @@ public partial class Posicionamiento : INotifyPropertyChanged
         PreparePage();
         ClearComponent();
         SetFocusText();
+
+        /*Shell shell = new Shell();
+        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
+        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
+        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
 
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
@@ -105,21 +110,23 @@ public partial class Posicionamiento : INotifyPropertyChanged
             ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
             try
             {
-                //ObtieneInfoPalletPosicionamiento
+                //Obtiene Informacion del Pallet
                 var rest = ClientHttp.GetAsync("api/Posicionamiento?SSCCPack=" + nPallet).Result;
+
                 if (rest.IsSuccessStatusCode)
                 {
                     var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                     List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr) ??
                                 throw new InvalidOperationException();
                     if (dt.Count() == 0)
-                    {
-                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                        lblError.IsVisible = true;
+                    {   
+                        txt_origen.Text = string.Empty;
                         lblError.Text = "N° de pallet no existe";
-                        //txt_origen.Focus();
-                        //btn_generar.IsEnabled = false;
-                        ClearComponent();
+                        lblError.IsVisible = true;
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                        _ = Task.Delay(300).ContinueWith(t => {
+                            txt_origen.Focus();
+                        });
                     }
                     else
                     {
@@ -130,6 +137,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
 
                             //ObtieneInfoProducto
                             var rest2 = ClientHttp.GetAsync("api/Produccion/" + p.ArticleProvider_Id).Result;
+
                             if (rest2.IsSuccessStatusCode)
                             {
                                 var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
@@ -161,6 +169,12 @@ public partial class Posicionamiento : INotifyPropertyChanged
 
                                     lbl_sitio.Text = "Sitio: " + NombreCortoSitio;
                                 }
+                                string fecha;
+                                DateTime date = DateTime.Now;
+                                date = (DateTime)p.Package_ProductionDate;
+                                fecha = date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                                lbl_fechaProducto.Text = "Fecha Producción: " + fecha;
+                                Console.WriteLine("fecha: " + fecha);
                                 lbl_lote.Text = "Lote: " + p.Package_Lot;
                                 lbl_cantidad.Text = "Cantidad: " + p.Package_Quantity.ToString();
                                 lblError.IsVisible = false;
@@ -181,7 +195,6 @@ public partial class Posicionamiento : INotifyPropertyChanged
     }
     private void Txt_destino_Completed(object sender, EventArgs e)
     {
-
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
@@ -304,7 +317,56 @@ public partial class Posicionamiento : INotifyPropertyChanged
     }
     private void Txt_ConfirmaDestino_Completed(object sender, EventArgs e)
     {
-        if (txt_destino.Text != txt_ConfirmaDestino.Text)
+        if(!txt_origen.Text.Equals(string.Empty) &&  txt_destino.Text == txt_ConfirmaDestino.Text && !txt_destino.Text.Equals(string.Empty))
+        {
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet)
+            {
+                HttpClient ClientHttp = new HttpClient();
+                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+
+                //busca staffid
+                var rest = ClientHttp.GetAsync("api/Usuario?usernameWMS=" + App.UserSistema).Result;
+                var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                int staffID = JsonConvert.DeserializeObject<int>(resultadoStr);
+
+                //ObtienePackageIdPosicionamiento
+                var rest2 = ClientHttp.GetAsync("api/Posicionamiento?NumPallet=" + txt_origen.Text).Result;
+                var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
+                int Package_Id = JsonConvert.DeserializeObject<int>(resultadoStr2);
+
+                //ActualizaLayoutPackage
+                var rest3 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&layoutid=" + Convert.ToInt32(txt_destino.Text)).Result;
+                var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
+
+                //AddLocation
+                var rest4 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&LayoutDestinoId=" + Convert.ToInt32(txt_destino.Text) + "&StaffId=" + staffID).Result;
+                var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
+                bool oks = JsonConvert.DeserializeObject<bool>(resultadoStr4);
+
+                if (oks == true)
+                {
+                    DependencyService.Get<Model.IAudio>().PlayAudioFile("Correcto.mp3");
+                    //  DisplayAlert("Alerta", "Registrado", "Aceptar");
+                    lblConfirm.IsVisible = true;
+                    lblConfirm.Text = "Registrado";
+                    ClearComponent();
+                    txt_origen.Focus();
+
+                }
+                else
+                {
+                    DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                    DisplayAlert("Alerta", "Error al Registrar Verificar", "Aceptar");
+                }
+            }
+            else
+            {
+                DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            }
+        }
+        else if (txt_destino.Text != txt_ConfirmaDestino.Text)
         {
             DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Destinos no son iguales favor verificar", "Aceptar");
@@ -323,7 +385,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
             DisplayAlert("Alerta", "Ingrese Destino", "Aceptar");
             txt_destino.Focus();
         }
-        else
+        /*else
         {
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
@@ -369,7 +431,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
                 DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
                 DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
-        }
+        }*/
     }
     private void OnKeyDown()
     {
@@ -387,7 +449,7 @@ public partial class Posicionamiento : INotifyPropertyChanged
     {
         OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
-        return false;
+        return true;
     }
     private void Btn_escanear_Clicked(object sender, EventArgs e)
     {

@@ -46,7 +46,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("insertaRegistroCumplimiento: " + ex.ToString());
+            }
             return ret;
         }
 

@@ -31,9 +31,9 @@ namespace NewsMauiCVT.Datos
 
 
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("BuscaTraabilidadPallet: " + ex.Message);
             }
 
             return dt;

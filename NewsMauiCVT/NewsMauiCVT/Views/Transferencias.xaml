@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             x:Class="NewsMauiCVT.Views.Transferencias">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Padding="20">
+            <StackLayout Padding="20">
+                <Label Text="TRANSFERENCIAS" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+            </StackLayout>
+            <StackLayout Margin="25,0" Padding="10">
+                <StackLayout Padding="20">
+                    <Label
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Center"
+                        Text="FOLIO TRANSFERENCIA"
+                        TextColor="Black" />
+                </StackLayout>
+                <StackLayout VerticalOptions="End">
+                    <dxe:ComboBoxEdit
+                        x:Name="cboFolioTransfer"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DisplayMember="folioTransfer"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="False"
+                        IsLabelFloating="True"
+                        ItemsSource="{Binding}"
+                        LabelColor="Green"
+                        LabelText="Folio"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionChanged="CboFolio_SelectedIndexChanged"
+                        TextFontSize="20"
+                        ValueMember="folioTransfer">
+                        <dxe:ComboBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Padding="10"
+                                        Text="{Binding folioTransfer}" />
+                                </Grid>
+                            </DataTemplate>
+                        </dxe:ComboBoxEdit.ItemTemplate>
+                    </dxe:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout Margin="25,10,25,50">
+                    <dxc:DXButton
+                        x:Name="btn_seleccionar"
+                        BackgroundColor="Green"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="Btn_seleccionar_Clicked"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HeightRequest="70"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="SELECCIONAR" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

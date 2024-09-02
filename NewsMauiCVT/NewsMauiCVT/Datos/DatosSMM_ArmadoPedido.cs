@@ -22,7 +22,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaFolioPrdido: " + ex.Message);
+            }
             return ret;
         }
 
@@ -38,7 +41,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<List<SMMProductoArmadoPedido>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DatosProductosArmadoPes: " + ex.Message);
+            }
             return ret;
         }
 
@@ -55,7 +61,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("insertaRegistroArmadoPedido: " + ex.Message);
+            }
             return ret;
         }
     }

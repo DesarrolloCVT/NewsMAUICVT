@@ -1,19 +1,27 @@
-using NewsMauiCVT.Views;
+using Microsoft.Maui.Controls;
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
-using ZXing.Client.Result;
-namespace NewsMauiCVT;
+
+
+namespace NewsMauiCVT.Views;
 
 public partial class MenuPruebas : ContentPage
-{   
+{
+    public Shell shell;
     public MenuPruebas()
 	{
-        NavigationPage.SetHasNavigationBar(this, true);
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         btnPosicionamiento.IsVisible = false;
         bntConsultaUbicacion.IsVisible = false;
         btnRepaletizado.IsVisible = false;
         bntTomaInventario.IsVisible = false;
+
+
+        /*shell = new Shell();
+        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
+        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
+        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
 
         lblNombre.Text = App.NombreUsuario.ToString();
         switch (App.idPerfil)
@@ -26,7 +34,6 @@ public partial class MenuPruebas : ContentPage
                 break;
             default:
                 break;
-
         }
         SetMobileScreen();
         DatosApp dpp = new DatosApp();
@@ -60,7 +67,8 @@ public partial class MenuPruebas : ContentPage
     }
     private void BntConsultaUbicacion_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ConsultaUbicacion() { Title = "Volver" });
+        //Navigation.PushAsync(new ConsultaUbicacion() { Title = "Volver" });
+        Shell.Current.GoToAsync("Consulta");
     }
     private void BtnPosicionamiento_Clicked(object sender, EventArgs e)
     {

@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-             x:Class="NewsMauiCVT.Views.SMM_ConfirmaPalletTransfer"
-             Title="SMM_ConfirmaPalletTransfer">
+             x:Class="NewsMauiCVT.Views.SMM_ConfirmaPalletTransfer">
     
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
@@ -12,13 +11,13 @@
                 <Label Text="CONFIRMA PALLET EN TRANSFERENCIA SMM" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
             <StackLayout Margin="25,0">
-                <dxe:TextEdit LabelText="Folio Transferencia " LabelFontSize="15"  BoxHeight="50" x:Name="txtFolioTransfer" Completed="txtFolioTransfer_Completed" 
+                <dxe:TextEdit LabelText="Folio Transferencia " LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="txtFolioTransfer" Completed="txtFolioTransfer_Completed" 
                       IsLabelFloating="False" BorderColor="Green" LabelColor="Green"                               
                      Keyboard="Numeric">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout Margin="25,0">
-                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txtNPallet" Completed="txtNPallet_Completed" 
+                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="txtNPallet" Completed="txtNPallet_Completed" 
                       IsLabelFloating="False" BorderColor="Green" LabelColor="Green"                               
                      Keyboard="Numeric" IsVisible="false">
                 </dxe:TextEdit>

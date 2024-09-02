@@ -35,10 +35,7 @@ namespace NewsMauiCVT
             .UseDevExpressDataGrid()
             .UseMauiCommunityToolkit()
             .UseBarcodeReader();
-#if DEBUG
-            /*builder.Logging.AddDebug();
-            builder.UseMauiApp<App>().UseDevExpress(useLocalization: false).UseDevExpressCollectionView().UseDevExpressControls().UseDevExpressDataGrid().UseDevExpressEditors().UseMauiCommunityToolkit();*/
-#endif
+
             builder.Services.AddSingleton(AudioManager.Current);
             builder.Services.AddTransient<MainPage>();
             return builder.Build();

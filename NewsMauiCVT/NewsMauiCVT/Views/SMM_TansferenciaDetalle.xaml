@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-             x:Class="NewsMauiCVT.Views.SMM_TansferenciaDetalle"
-             Title="SMM_TansferenciaDetalle">
+             x:Class="NewsMauiCVT.Views.SMM_TansferenciaDetalle">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
@@ -12,7 +11,7 @@
                     <Label FontAttributes="Bold" Text="DETALLE TRANSFERENCIA" VerticalOptions="Center" HorizontalOptions="Center" FontSize="20"/>
                 </StackLayout>
                 <StackLayout Margin="25,0,25,20" >
-                    <dxe:TextEdit LabelText="N° PALLET" LabelFontSize="15"  BoxHeight="50" x:Name="txtNPallet" 
+                    <dxe:TextEdit LabelText="N° PALLET" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="txtNPallet" 
                     IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Completed="txtNPallet_Completed">
                     </dxe:TextEdit>
                 </StackLayout>
@@ -27,34 +26,34 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <dxe:TextEdit LabelText="bodega" LabelFontSize="10"  BoxHeight="50" x:Name="lblBodega" 
+                        <dxe:TextEdit LabelText="bodega" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="lblBodega" 
                     IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="0" Grid.Column="0" IsReadOnly="True" 
                ClearIconVisibility="Never">
                         </dxe:TextEdit>
-                        <dxe:TextEdit LabelText="lote" LabelFontSize="10"  BoxHeight="50" x:Name="lblLote" 
-                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="0" Grid.Column="1" IsReadOnly="True" TextFontSize="15"
+                        <dxe:TextEdit LabelText="lote" LabelFontSize="20" BoxHeight="50" x:Name="lblLote" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="0" Grid.Column="1" IsReadOnly="True" TextFontSize="20"
               ClearIconVisibility="Never">
                         </dxe:TextEdit>
-                        <dxe:TextEdit LabelText="Cantidad" LabelFontSize="10"  BoxHeight="50" x:Name="lblCantidad" 
+                        <dxe:TextEdit LabelText="Cantidad" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="lblCantidad" 
                     IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="1" Grid.Column="0" IsReadOnly="True"
               ClearIconVisibility="Never">
                         </dxe:TextEdit>
-                        <dxe:TextEdit LabelText="Posicion" LabelFontSize="10"  BoxHeight="50" x:Name="lblPosicion" 
+                        <dxe:TextEdit LabelText="Posicion" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="lblPosicion" 
                     IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="1" Grid.Column="1" IsReadOnly="True"
               ClearIconVisibility="Never">
                         </dxe:TextEdit>
-                        <dxe:TextEdit LabelText="Codigo Ubicacion" LabelFontSize="10"  BoxHeight="50" x:Name="lblCodUbicacion" 
+                        <dxe:TextEdit LabelText="Codigo Ubicacion" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="lblCodUbicacion" 
                     IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="2" Grid.Column="0" IsReadOnly="True"
               ClearIconVisibility="Never">
                         </dxe:TextEdit>
-                        <dxe:TextEdit LabelText="CodProd" LabelFontSize="10"  BoxHeight="50" x:Name="lblCodPro" 
-                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="2" Grid.Column="1" IsReadOnly="True" TextFontSize="15"
+                        <dxe:TextEdit LabelText="CodProd" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="lblCodPro" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="2" Grid.Column="1" IsReadOnly="True"
               ClearIconVisibility="Never">
                         </dxe:TextEdit>
                     </Grid>
                     <StackLayout Margin="5">
-                        <dxe:TextEdit LabelText="Producto" LabelFontSize="10"  BoxHeight="50" x:Name="lblProducto" 
-                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="3" Grid.Column="0" IsReadOnly="True" TextFontSize="13">
+                        <dxe:TextEdit LabelText="Producto" LabelFontSize="20"  BoxHeight="50" x:Name="lblProducto" 
+                    IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Grid.Row="3" Grid.Column="0" IsReadOnly="True" TextFontSize="20">
                         </dxe:TextEdit>
                     </StackLayout>
                 </StackLayout>

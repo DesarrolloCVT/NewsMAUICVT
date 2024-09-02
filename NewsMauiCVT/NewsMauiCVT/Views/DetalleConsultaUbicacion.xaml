@@ -6,6 +6,9 @@
              x:Class="NewsMauiCVT.Views.DetalleConsultaUbicacion">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
+            <!--Shell.BackButtonBehavior>
+                <BackButtonBehavior Command="{Binding BackCommand}"/>
+            </Shell.BackButtonBehavior-->
             <StackLayout>
                 <StackLayout Margin="0,20,0,20">
                     <Label HorizontalTextAlignment="Center" FontSize="Medium" x:Name="lblCantPallets" FontAttributes="Bold"></Label>

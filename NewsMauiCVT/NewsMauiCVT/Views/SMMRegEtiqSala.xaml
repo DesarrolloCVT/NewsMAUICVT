@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-    Title="SMMRegEtiqSala">
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="20">
@@ -24,7 +23,8 @@
                     Completed="txt_pallet_Completed"
                     IsLabelFloating="False"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Codigo" />
                 <Label
                     x:Name="lblError2"
@@ -49,7 +49,8 @@
                     IsLabelFloating="False"
                     Keyboard="Numeric"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Cantidad" />
                 <Label
                     x:Name="lblError4"
@@ -82,7 +83,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Dia venc." />
                     <dxe:TextEdit
                         x:Name="txtMes"
@@ -94,7 +96,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Mes venc." />
                     <dxe:TextEdit
                         x:Name="txtAno"
@@ -106,7 +109,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="año venc." />
                 </Grid>
             </StackLayout>

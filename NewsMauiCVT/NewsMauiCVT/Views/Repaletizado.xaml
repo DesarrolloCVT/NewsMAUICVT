@@ -3,15 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-             x:Class="NewsMauiCVT.Views.Repaletizado"
-             Title="Repaletizado">
+             x:Class="NewsMauiCVT.Views.Repaletizado">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="20">
                 <Label Text="REPALETIZADO" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
             <StackLayout Margin="25,0" >
-                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
+                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
                   IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" ReturnType="Done">
                 </dxe:TextEdit>
             </StackLayout>
@@ -23,31 +22,31 @@
                        x:Name="lbl_codproducto"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
                 <Label Text="" 
                        x:Name="lbl_producto"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
                 <Label Text=""
                        x:Name="lbl_lote"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
                 <Label Text="" 
                        x:Name="lbl_cantidad"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
                 <Label Text="" 
                        x:Name="lblBodega"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
             </StackLayout>
             <StackLayout Margin="25,0" >
@@ -56,7 +55,7 @@
                                   BorderColor="Green"             
                                   LabelText="TIPO REPALETIZADO"
                                   IsLabelFloating="True"             
-                                  IsFilterEnabled="True"
+                                  IsFilterEnabled="False"
                                   FilterCondition="Contains"
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"          
@@ -81,7 +80,7 @@
                     LabelText="Tipo Pallet"
                     IsLabelFloating="True"
                     DisplayMember="Supportive_Description"
-                    IsFilterEnabled="True"
+                    IsFilterEnabled="False"
                     FilterCondition="Contains"
                     FilterComparisonType="CurrentCultureIgnoreCase"
                     DropDownSelectedItemBackgroundColor="GreenYellow"            
@@ -101,7 +100,7 @@
                 </dxe:ComboBoxEdit>
             </StackLayout>
             <StackLayout Margin="25,0" >
-                <dxe:TextEdit LabelText="Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_destino" Completed="Txt_destino_Completed" 
+                <dxe:TextEdit LabelText="Destino" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="txt_destino" Completed="Txt_destino_Completed" 
                   IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" IsVisible="False" ReturnType="Done">
                 </dxe:TextEdit>
             </StackLayout>
@@ -113,34 +112,34 @@
                        x:Name="lbl_dcodproducto"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
                 <Label Text="" 
                        x:Name="lbl_dproducto"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" TextColor="Red"/>
+                       FontSize="Medium" TextColor="Red"/>
                 <Label Text="" 
                        x:Name="lbl_dlote"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
                 <Label Text="" 
                        x:Name="lbl_dcantidad"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
                 <Label Text=""        
                        x:Name="lbl_dBodega"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Red"/>
             </StackLayout>
             <StackLayout Margin="25,0" >
-                <dxe:TextEdit LabelText="Cantidad a Repaletizar" LabelFontSize="15"  BoxHeight="50" x:Name="txt_cantidad" Completed="Txt_cantidad_Completed" 
+                <dxe:TextEdit LabelText="Cantidad a Repaletizar" LabelFontSize="20" TextFontSize="20" BoxHeight="50" x:Name="txt_cantidad" Completed="Txt_cantidad_Completed" 
                               IsLabelFloating="False" BorderColor="Green" LabelColor="Green" Keyboard="Numeric" ReturnType="Done"> 
                 </dxe:TextEdit>
             </StackLayout>

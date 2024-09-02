@@ -27,25 +27,32 @@ namespace NewsMauiCVT.Datos
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
-            { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("Sp_Fefo: " + ex.Message);
+            }
             return dt;
         }
 
         public int TraeIdBodega(string descrip)
         {
             int res = 0;
-
-            List<Site> lsBod = DatosBodegas();
-
-            foreach (var t in lsBod)
+            try
             {
-                if (t.Site_Description == descrip)
+                List<Site> lsBod = DatosBodegas();
+
+                foreach (var t in lsBod)
                 {
-                    res = t.Site_Id;
+                    if (t.Site_Description == descrip)
+                    {
+                        res = t.Site_Id;
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeIdBodega: " + ex.Message);
+            }
             return res;
         }
         public List<Site> DatosBodegas()
@@ -61,9 +68,9 @@ namespace NewsMauiCVT.Datos
                 lt = JsonConvert.DeserializeObject<List<Site>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine($"DatosBodegas: {ex.Message}");
             }
 
             return lt;
@@ -72,17 +79,22 @@ namespace NewsMauiCVT.Datos
         public string TraeCodProd(string nompro)
         {
             string res = "";
-
-            List<Productos> lsProd = DatosProductos();
-
-            foreach (var t in lsProd)
+            try
             {
-                if (t.ArticleProvider_Description == nompro)
+                List<Productos> lsProd = DatosProductos();
+
+                foreach (var t in lsProd)
                 {
-                    res = t.ArticleProvider_CodClient;
+                    if (t.ArticleProvider_Description == nompro)
+                    {
+                        res = t.ArticleProvider_CodClient;
+                    }
                 }
             }
-
+            catch(Exception ex)
+            {
+                Console.WriteLine("TraeCodProd: " + ex.Message);
+            }
             return res;
         }
         public List<Productos> DatosProductos()
@@ -98,9 +110,9 @@ namespace NewsMauiCVT.Datos
                 lt = JsonConvert.DeserializeObject<List<Productos>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("DatosProductos: " + ex.Message);
             }
 
             return lt;

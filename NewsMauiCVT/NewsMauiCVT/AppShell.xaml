@@ -4,12 +4,139 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:NewsMauiCVT"
-    Shell.FlyoutBehavior="Disabled"
-    Title="NewsMauiCVT">
+    xmlns:local1="clr-namespace:NewsMauiCVT.Views"
+    Shell.FlyoutBehavior="Disabled">
+    
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="180"
+          Padding="0.10">
+            <Image Source="logregister.jpg" Aspect="Fill"/>
+            <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Image Source="logocvt.png"></Image>
+                <Label Text="" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" x:Name="lblNombre"/>
+            </StackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
 
-    <ShellContent
-        FlyoutIcon="hamburger.png"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.FlyoutFooter>
+        <Grid>
+            <StackLayout Margin="0,5,0,5" HorizontalOptions="CenterAndExpand" VerticalOptions="End" BackgroundColor="White">
+                <Image Source="submarcas.png" BackgroundColor="White"></Image>
+            </StackLayout>
+        </Grid>
+    </Shell.FlyoutFooter>
 
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Transparent">
+                <StackLayout Margin="20,15,0,0" Grid.Row="1" Spacing="0">
+                    <Border VerticalOptions="Start"></Border>
+                    <Label Grid.Column="1"
+                           Text="{Binding Title}"
+                           FontSize="Body"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           TextColor="#AED6FF"/>
+                </StackLayout>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    
+    <FlyoutItem Title="Inicio">
+        <ShellContent ContentTemplate="{DataTemplate local1:MenuPruebas}"
+                      Route="DashBoard"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Consulta Ubicación">
+        <ShellContent ContentTemplate="{DataTemplate local1:ConsultaUbicacion}"
+                      Route="Consulta"/>
+    </FlyoutItem>
+        <FlyoutItem Title="Detalle Ubicación">
+        <ShellContent ContentTemplate="{DataTemplate local1:DetalleConsultaUbicacion}"
+                   Route="Detalle"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Repaletizado">
+        <ShellContent ContentTemplate="{DataTemplate local1:Repaletizado}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Posicionamiento">
+        <ShellContent ContentTemplate="{DataTemplate local1:Posicionamiento}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Cambia Tipo Pallet">
+        <ShellContent ContentTemplate="{DataTemplate local1:ActualizaTipoPallet}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Inventario">
+        <ShellContent ContentTemplate="{DataTemplate local1:TomaInventario}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Toma Inventario Film">
+        <ShellContent ContentTemplate="{DataTemplate local1:TomaInventarioFilm}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Trazabilidad Pallet">
+        <ShellContent ContentTemplate="{DataTemplate local1:TrazabilidadPallet}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Informe de Stock">
+        <ShellContent ContentTemplate="{DataTemplate local1:InformeStock}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Toma de Inventario Mayorista">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_TomaInventario}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Transferencia Mayorista">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMMTransferencia}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Repaletizado Mayorista">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_Repaletizado}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Consulta Producto">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_ConsultaProducto}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Recepción Mayorista">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_Recepcion}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Toma de Inventario de Bodega 02">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_TomaInvenario_Bodegas}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Posicionamiento Mayorista">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_Posicionamiento}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Exhibición Sala">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_ExhibicionSala}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Check Extintores">
+        <ShellContent ContentTemplate="{DataTemplate local1:Revision_Extintor_DatosCab}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Picking SMM">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_Picking_Consolidado_Cabecera}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Control Fosfina">
+        <ShellContent ContentTemplate="{DataTemplate local1:ControlFosfina}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Test Captura Cam">
+        <ShellContent ContentTemplate="{DataTemplate local1:TestCapturaCodeCam}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="SMM Orden de Venta">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMMOrdenDeVenta}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="SMM Trazabilidad Pallet">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMMTrazabilidadPallet}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="SMM Confirma Pallet">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMM_ConfirmaPalletTransfer}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="SMM Cumplimiento Reposición Sala">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMMCumplimientoRepoSala}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="SMM Medición armado de pedidos">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMMArmadoPedido}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="SMM Registro Imp.Etiquetas">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMMRegImpEtiquetas}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="SMM Registro Etiquetas pallet sala">
+        <ShellContent ContentTemplate="{DataTemplate local1:SMMRegEtiqSala}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Control Higiene">
+        <ShellContent ContentTemplate="{DataTemplate local1:Calidad_ControlHigiene}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Transferencias">
+        <ShellContent ContentTemplate="{DataTemplate local1:Transferencias}"/>
+    </FlyoutItem>
 </Shell>

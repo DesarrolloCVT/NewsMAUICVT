@@ -30,7 +30,7 @@ namespace NewsMauiCVT.Datos
             }
             catch (Exception ex)
             {
-                string mns = ex.Message;
+                Console.WriteLine(ex.ToString());
             }
             Console.WriteLine("Version: " + vers);
             return vers;
@@ -47,7 +47,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<MenuClass>>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("TraeMenu: " + ex.ToString());
+            }
             return ls;
         }
     }

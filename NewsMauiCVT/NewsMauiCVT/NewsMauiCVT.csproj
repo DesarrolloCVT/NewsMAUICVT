@@ -154,10 +154,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="ConsultaUbicacion.xaml">
+	  <MauiXaml Update="Views\ConsultaUbicacion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MenuPruebas.xaml">
+	  <MauiXaml Update="Views\MenuPruebas.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ActualizaTipoPallet.xaml">
@@ -175,10 +175,10 @@
 	  <MauiXaml Update="Views\DetalleConsultaUbicacion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\FlyoutMenuPage.xaml">
+	  <MauiXaml Update="Views\Menu_flotante_secundario\FlyoutMenuPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\FlyoutPagePrincipal.xaml">
+	  <MauiXaml Update="Views\Menu_flotante_secundario\FlyoutPagePrincipal.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\GeoLoc.xaml">
@@ -296,6 +296,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TomaInventarioFilm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Transferencias.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TransferenciasDetalle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TrazabilidadPallet.xaml">

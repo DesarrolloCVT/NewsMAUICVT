@@ -26,9 +26,9 @@ namespace NewsMauiCVT.Datos
                 dt = JsonConvert.DeserializeObject<List<ProductoInventarioFilm>>(resultadoStr) ??
                     throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("ListProductosInventario: " + ex.Message);
             }
 
             return dt;

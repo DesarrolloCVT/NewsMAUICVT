@@ -10,7 +10,6 @@ public partial class TrazabilidadPallet : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        
     }
     protected override void OnAppearing()
     {
@@ -21,7 +20,12 @@ public partial class TrazabilidadPallet : ContentPage
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
-        
+
+        /*Shell shell = new Shell();
+        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
+        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
+        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
+
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33")
         {

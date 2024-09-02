@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="NewsMauiCVT.Views.SMMArmadoPedidoDetalle"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-    Title="SMMArmadoPedidoDetalle">
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
     <!--ContentPage.BindingContext>
         <ViewModel:TestCapturaViewModel />
     </ContentPage.BindingContext-->
@@ -44,7 +43,8 @@
                     Completed="txt_CodBarr_Completed"
                     IsLabelFloating="False"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Codigo"
                     Text="{Binding Result}" />
                 <Label
@@ -123,7 +123,7 @@
                         IsLabelFloating="True"
                         ItemsSource="{Binding}"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
                         LabelText="NOMBRE ARMADOR"
                         ReserveBottomTextLine="True"
                         TextFontSize="20"
@@ -162,7 +162,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Dia venc." />
                         <dxe:TextEdit
                             x:Name="txtMes"
@@ -174,7 +175,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Mes venc." />
                         <dxe:TextEdit
                             x:Name="txtAno"
@@ -186,7 +188,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="año venc." />
                     </Grid>
                 </StackLayout>
@@ -214,10 +217,10 @@
                                 DropDownSelectedItemBackgroundColor="GreenYellow"
                                 IsLabelFloating="True"
                                 LabelColor="Green"
-                                LabelFontSize="15"
+                                LabelFontSize="20"
                                 LabelText="Cant.Correcta"
                                 ReserveBottomTextLine="True"
-                                TextFontSize="15">
+                                TextFontSize="20">
                                 <dxe:ComboBoxEdit.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>1</x:String>
@@ -234,10 +237,10 @@
                                 DropDownSelectedItemBackgroundColor="GreenYellow"
                                 IsLabelFloating="True"
                                 LabelColor="Green"
-                                LabelFontSize="15"
+                                LabelFontSize="20"
                                 LabelText="Venc.Correcto"
                                 ReserveBottomTextLine="True"
-                                TextFontSize="15">
+                                TextFontSize="20">
                                 <dxe:ComboBoxEdit.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>1</x:String>
@@ -254,10 +257,10 @@
                                 DropDownSelectedItemBackgroundColor="GreenYellow"
                                 IsLabelFloating="True"
                                 LabelColor="Green"
-                                LabelFontSize="15"
+                                LabelFontSize="20"
                                 LabelText="Etiqueta"
                                 ReserveBottomTextLine="True"
-                                TextFontSize="15">
+                                TextFontSize="20">
                                 <dxe:ComboBoxEdit.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>1</x:String>
@@ -274,10 +277,10 @@
                                 DropDownSelectedItemBackgroundColor="GreenYellow"
                                 IsLabelFloating="True"
                                 LabelColor="Green"
-                                LabelFontSize="15"
+                                LabelFontSize="20"
                                 LabelText="Enfilado"
                                 ReserveBottomTextLine="True"
-                                TextFontSize="15">
+                                TextFontSize="20">
                                 <dxe:ComboBoxEdit.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>1</x:String>
@@ -294,10 +297,10 @@
                                 DropDownSelectedItemBackgroundColor="GreenYellow"
                                 IsLabelFloating="True"
                                 LabelColor="Green"
-                                LabelFontSize="15"
+                                LabelFontSize="20"
                                 LabelText="Estibado"
                                 ReserveBottomTextLine="True"
-                                TextFontSize="15">
+                                TextFontSize="20">
                                 <dxe:ComboBoxEdit.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>1</x:String>
@@ -314,10 +317,10 @@
                                 DropDownSelectedItemBackgroundColor="GreenYellow"
                                 IsLabelFloating="True"
                                 LabelColor="Green"
-                                LabelFontSize="15"
+                                LabelFontSize="20"
                                 LabelText="Cond.Pallet"
                                 ReserveBottomTextLine="True"
-                                TextFontSize="15">
+                                TextFontSize="20">
                                 <dxe:ComboBoxEdit.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>1</x:String>

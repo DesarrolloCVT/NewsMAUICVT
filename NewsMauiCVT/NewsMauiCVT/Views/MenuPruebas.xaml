@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              NavigationPage.HasBackButton="False"
-             x:Class="NewsMauiCVT.MenuPruebas">
+             x:Class="NewsMauiCVT.Views.MenuPruebas">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>

@@ -23,7 +23,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("insertaNuevoCheck: " + ex.Message);
+            }
             return ret;
         }
         public int insertaNuevoDetalle(int idExtintor, string resp, string observacion, string pregun)
@@ -38,7 +41,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("insertaNuevoDetalle: " + ex.Message);
+            }
             return ret;
         }
         public int insertaNuevoEntorno(string pregunta, string respuesta, string observacion, int idRevisionEx)
@@ -53,7 +59,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("insertaNuevoEntorno: " + ex.Message);
+            }
             return ret;
         }
         public int insertaRegistroFosfina(string hora, string FechaFumi, string Bodega, string MayorPP, string A1, string Distancia)
@@ -68,7 +77,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("insertaRegistroFosfina: " + ex.Message);
+            }
             return ret;
         }
     }

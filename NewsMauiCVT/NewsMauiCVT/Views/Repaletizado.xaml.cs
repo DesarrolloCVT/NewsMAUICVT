@@ -34,6 +34,11 @@ public partial class Repaletizado : ContentPage
         PreparePage();
         ClearComponent();
 
+        Shell shell = new Shell();
+        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
+        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
+        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;
+
         #region Código para cargar página de Scan BarCode desde el teléfono.
         //Validacion para descartar el uso de la Pistola.
         if (DeviceInfo.Model != "MC33")
@@ -63,6 +68,10 @@ public partial class Repaletizado : ContentPage
         #endregion
     }
     //Validacion para posicionar el Foco en el TextEdit Posicion -> N° de pallet.
+    public class TipoPall
+    {
+        public string Supportive_Description { get; set; }
+    }
     private void SetFocusText()
     {
         _ = Task.Delay(200).ContinueWith(t => {
@@ -71,113 +80,126 @@ public partial class Repaletizado : ContentPage
     }
     private async void TxtPosicion_Completed(object sender, EventArgs e)
     {
-        //Realiza la validez del numero de pallet registrado.
-        var ACC = Connectivity.NetworkAccess;
-        if (ACC == NetworkAccess.Internet) // Valida acceso a internet
+        try
         {
-            string nPallet = txtPosicion.Text;
-            HttpClient ClientHttp = new HttpClient();
-            ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-            //Se realiza el call de a traves de metodo Get Uri. 
-            var rest2 = ClientHttp.GetAsync("api/Produccion?NumeroDePallet=" + nPallet).Result; 
-
-            if (rest2.IsSuccessStatusCode) //Se valida respuesta del Call
+            //Realiza la validez del numero de pallet registrado.
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet) // Valida acceso a internet
             {
-                //Se lee y se almacena el resultado -> Objeto.
-                var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                //Se deserializa el objeto json y se convierte en una lista.
-                List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr) ??
-                                throw new InvalidOperationException();
-                //Se valida si la respuesta contiene datos.
-                if (dt.Count() == 0)
+                string nPallet = txtPosicion.Text;
+                HttpClient ClientHttp = new HttpClient();
+                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                //Se realiza el call de a traves de metodo Get Uri. 
+                var rest2 = ClientHttp.GetAsync("api/Produccion?NumeroDePallet=" + nPallet).Result;
+
+                if (rest2.IsSuccessStatusCode) //Se valida respuesta del Call
                 {
-                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                    lblError.IsVisible = true;
-                    lblError.Text = "N° de pallet no existe o no posicionado ";
-                    txtPosicion.Focus();
-                    txtPosicion.Text = string.Empty;
-                }
-                else
-                {
-                    foreach (var p in dt)
+                    //Se lee y se almacena el resultado -> Objeto.
+                    var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
+                    //Se deserializa el objeto json y se convierte en una lista.
+                    List<Package> dt = JsonConvert.DeserializeObject<List<Package>>(resultadoStr) ??
+                                    throw new InvalidOperationException();
+                    //Se valida si la respuesta contiene datos.
+                    if (dt.Count() == 0)
                     {
-                        LayoutOrigen.IsVisible = true;
-                        var rest = ClientHttp.GetAsync("api/Produccion/" + p.ArticleProvider_Id).Result;
-                        var resultadoStr2 = rest.Content.ReadAsStringAsync().Result;
-                        List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2) ??
-                                throw new InvalidOperationException();
-                        foreach (var a in ap)
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                        lblError.IsVisible = true;
+                        lblError.Text = "N° de pallet no existe o no posicionado ";
+                        txtPosicion.Focus();
+                        txtPosicion.Text = string.Empty;
+                    }
+                    else
+                    {
+                        foreach (var p in dt)
                         {
-                            lbl_codproducto.Text = "Cod.Producto: " + a.ArticleProvider_CodClient;
-                            lbl_producto.Text = "Producto: " + a.ArticleProvider_Description;
+                            LayoutOrigen.IsVisible = true;
+                            var rest = ClientHttp.GetAsync("api/Produccion/" + p.ArticleProvider_Id).Result;
+                            var resultadoStr2 = rest.Content.ReadAsStringAsync().Result;
+                            List<ArticleProvider> ap = JsonConvert.DeserializeObject<List<ArticleProvider>>(resultadoStr2) ??
+                                    throw new InvalidOperationException();
+                            foreach (var a in ap)
+                            {
+                                lbl_codproducto.Text = "Cod.Producto: " + a.ArticleProvider_CodClient;
+                                lbl_producto.Text = "Producto: " + a.ArticleProvider_Description;
+                            }
+
+                            var rest3 = ClientHttp.GetAsync("api/Bodega?layoutid=" + p.Layout_Id).Result;
+                            var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
+                            int idSite = JsonConvert.DeserializeObject<int>(resultadoStr3);
+                            var rest4 = ClientHttp.GetAsync("api/Bodega?siteid=" + idSite).Result;
+                            var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
+                            string vBodega = JsonConvert.DeserializeObject<string>(resultadoStr4) ??
+                                    throw new InvalidOperationException();
+
+                            lblBodega.Text = "Bodega: " + vBodega;
+                            lbl_lote.Text = "Lote: " + p.Package_Lot;
+                            lbl_cantidad.Text = "Cantidad: " + p.Package_Quantity.ToString();
+                            lblCantidad = (int)p.Package_Quantity;
+                            btn_generar.IsEnabled = false;
+                            lblError.IsVisible = false;
+                            lblError.Text = string.Empty;
+                            picker.Focus();
                         }
-
-                        var rest3 = ClientHttp.GetAsync("api/Bodega?layoutid=" + p.Layout_Id).Result;
-                        var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
-                        int idSite = JsonConvert.DeserializeObject<int>(resultadoStr3);
-                        var rest4 = ClientHttp.GetAsync("api/Bodega?siteid=" + idSite).Result;
-                        var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
-                        string vBodega = JsonConvert.DeserializeObject<string>(resultadoStr4) ??
-                                throw new InvalidOperationException();
-
-                        lblBodega.Text = "Bodega: " + vBodega;
-                        lbl_lote.Text = "Lote: " + p.Package_Lot;
-                        lbl_cantidad.Text = "Cantidad: " + p.Package_Quantity.ToString();
-                        lblCantidad = (int)p.Package_Quantity;
-                        btn_generar.IsEnabled = false;
-                        lblError.IsVisible = false;
-                        lblError.Text = string.Empty;
-                        picker.Focus();
                     }
                 }
             }
+            else
+            {
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            }
         }
-        else
+        catch (Exception ex) 
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            Console.WriteLine("Repalertizado TxtPosicion_Completed: " + ex.ToString());
         }
     }
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int selectedIndex = picker.SelectedIndex;
-
-        if (selectedIndex == 0)
+        try
         {
-            txt_destino.IsVisible = false;
-            LayoutDestinoExistente.IsVisible = false;
-            lbl_dcantidad.Text = string.Empty;
-            lbl_dcodproducto.Text = string.Empty;
-            lbl_dproducto.Text = string.Empty;
-            lbl_dlote.Text = string.Empty;
-            lbl_dBodega.Text = string.Empty;
-            txt_destino.Text = string.Empty;
-
-            DatosTipoPallet dti = new DatosTipoPallet();
-            List<TipoPalletClass> dt2 = dti.ListaTipoPallet();
-            List<TipoPall> lPro = new List<TipoPall>();
-
-            cboTipoPallet.IsVisible = true;
-
-            foreach (var s in dt2)
+            int selectedIndex = picker.SelectedIndex;
+            if (selectedIndex == 0)
             {
-                lPro.Add(new TipoPall { Supportive_Description = s.Supportive_Description });
+                txt_cantidad.IsEnabled = true;
+                txt_destino.IsVisible = false;
+                LayoutDestinoExistente.IsVisible = false;
+                lbl_dcantidad.Text = string.Empty;
+                lbl_dcodproducto.Text = string.Empty;
+                lbl_dproducto.Text = string.Empty;
+                lbl_dlote.Text = string.Empty;
+                lbl_dBodega.Text = string.Empty;
+                txt_destino.Text = string.Empty;
+
+                DatosTipoPallet dti = new DatosTipoPallet();
+                List<TipoPalletClass> dt2 = dti.ListaTipoPallet();
+                List<TipoPall> lPro = new List<TipoPall>();
+
+                cboTipoPallet.IsVisible = true;
+                cboTipoPallet.IsEnabled = true;
+
+                foreach (var s in dt2)
+                {
+                    lPro.Add(new TipoPall { Supportive_Description = s.Supportive_Description });
+                }
+                cboTipoPallet.BindingContext = lPro;
+                cboTipoPallet.Focus();
             }
-            cboTipoPallet.BindingContext = lPro;
-            cboTipoPallet.Focus();
+            else if (selectedIndex == 1)
+            {
+                txt_cantidad.IsEnabled = true;
+                txt_destino.IsVisible = true;
+                cboTipoPallet.IsVisible = false;
+                cboTipoPallet.IsEnabled = false;
+                txt_destino.Focus();
+            }
         }
-        else if(selectedIndex == 1)
+        catch (Exception ex) 
         {
-            txt_destino.IsVisible = true;
-            cboTipoPallet.IsVisible = false;
-            txt_destino.Focus();
+            Console.WriteLine("Repalertizado Picker_SelectedIndexChanged: " + ex.ToString());
         }
     }
-    public class TipoPall
-    {
-        public string Supportive_Description { get; set; }
-    }
-    private void Txt_destino_Completed(object sender, EventArgs e)
+    private async void Txt_destino_Completed(object sender, EventArgs e)
     {
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
@@ -233,38 +255,55 @@ public partial class Repaletizado : ContentPage
                     {
                         if (lblBodega.Text != lbl_dBodega.Text)
                         {
+                            LayoutDestinoExistente.IsVisible = false;
+                            txt_destino.Text = string.Empty;
                             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                            DisplayAlert("Alerta", "NO COMPATIBLE : Pallet en bodega diferente o N° de pallet son identicos ", "Aceptar");
+                            await DisplayAlert("Alerta", "NO COMPATIBLE : Pallets en bodegas diferentes ", "Aceptar");
                             btn_generar.IsEnabled = false;
+                            _ = Task.Delay(100).ContinueWith(t => {
+                                txt_destino.Focus();
+                            });
+                            
                         }
                         else if (lbl_dcodproducto.Text == lbl_codproducto.Text && lbl_dlote.Text == lbl_lote.Text)
                         {
+                            LayoutDestinoExistente.IsVisible = true;
                             DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
-                            DisplayAlert("Alerta", "COMPATIBLE", "Aceptar");
+                            await DisplayAlert("Alerta", "COMPATIBLE", "Aceptar");
+                            txt_cantidad.IsEnabled = true; 
                             btn_generar.IsEnabled = false;
-                            //txt_cantidad.Focus();
+                            txt_cantidad.Focus();
                         }
                         else
                         {
+                            LayoutDestinoExistente.IsVisible = false;
+                            txt_destino.Text = string.Empty;
                             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                            DisplayAlert("Alerta", "NO COMPATIBLE : Pallet en bodega diferente o N° de pallet son identicos ", "Aceptar");
+                            await DisplayAlert("Alerta", "NO COMPATIBLE : Pallets en bodegas diferentes o N° de pallets son identicos ", "Aceptar");
                             btn_generar.IsEnabled = false;
+                            _ = Task.Delay(100).ContinueWith(t => {
+                                txt_destino.Focus();
+                            });
                         }
                     }
                     else
                     {
+                        LayoutDestinoExistente.IsVisible = false;
+                        txt_destino.Text = string.Empty;
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                        DisplayAlert("Alerta", "NO COMPATIBLE : Pallet en bodega diferente o N° de pallet son identicos", "Aceptar");
+                        await DisplayAlert("Alerta", "NO COMPATIBLE : N° de pallets origen y destino son identicos", "Aceptar");
                         btn_generar.IsEnabled = false;
+                        _ = Task.Delay(100).ContinueWith(t => {
+                            txt_destino.Focus();
+                        });
                     }
                 }
             }
-            txt_cantidad.Focus();
         }
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
     private void Btn_generar_Clicked(object sender, EventArgs e)
@@ -275,21 +314,21 @@ public partial class Repaletizado : ContentPage
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese un n° de Pallet", "Aceptar");
-            //txtPosicion.Focus();
+            txtPosicion.Focus();
         }
         else
         if (txt_destino.Text.Equals(string.Empty) && selectedIndex == 1)
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese Destino", "Aceptar");
-            //txt_destino.Focus();
+            txt_destino.Focus();
         }
         else
         if (txt_cantidad.Text.Equals(string.Empty))
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Ingrese Cantidad", "Aceptar");
-            //txt_cantidad.Focus();
+            txt_cantidad.Focus();
         }
         else
         {   
@@ -414,6 +453,34 @@ public partial class Repaletizado : ContentPage
             }
         }
     }
+    private void Txt_cantidad_Completed(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(txt_cantidad.Text))
+        {
+            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            lblError3.IsVisible = true;
+            lblError3.Text = "ingrese Cantidad";
+        }
+        else if (!txt_cantidad.Text.ToCharArray().All(Char.IsDigit))
+        {
+            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            lblError3.IsVisible = true;
+            lblError3.Text = "ingrese solo numeros";
+        }
+        else if(!string.IsNullOrWhiteSpace(txt_cantidad.Text) && !string.IsNullOrWhiteSpace(txtPosicion.Text) && !string.IsNullOrWhiteSpace(txt_destino.Text))
+        {
+            btn_generar.IsEnabled = true;
+            lblError3.IsVisible = false;
+            lblError3.Text = string.Empty;
+        }
+
+    }
+    private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)
+    {
+    }
+    private void Cbo_tipoRepaletizado_Completed(object sender, EventArgs e)
+    {
+    }
     private void PreparePage()
     {
         try
@@ -487,6 +554,8 @@ public partial class Repaletizado : ContentPage
         }
         else
         {
+            cboTipoPallet.IsEnabled = false;
+            cboTipoPallet.IsVisible = false;
             txt_destino.IsVisible = false;
             picker.SelectedIndex = -1;
             lblError.Text = string.Empty;
@@ -505,34 +574,6 @@ public partial class Repaletizado : ContentPage
             lbl_dcantidad.Text = string.Empty;
             txt_cantidad.Text = string.Empty;
         }
-    }
-    private void Txt_cantidad_Completed(object sender, EventArgs e)
-    {
-        if (String.IsNullOrWhiteSpace(txt_cantidad.Text))
-        {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            lblError3.IsVisible = true;
-            lblError3.Text = "ingrese Cantidad";
-        }
-        else if (!txt_cantidad.Text.ToCharArray().All(Char.IsDigit))
-        {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            lblError3.IsVisible = true;
-            lblError3.Text = "ingrese solo numeros";
-        }
-        else
-        {
-            btn_generar.IsEnabled = true;
-            lblError3.IsVisible = false;
-            lblError3.Text = string.Empty;
-        }
-    }
-    private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)
-    {
-    }
-    private void cboProducto_SelectionChanged(object sender, EventArgs e)
-    {
-
     }
     private void OnKeyDown()
     {
@@ -562,16 +603,5 @@ public partial class Repaletizado : ContentPage
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
 
-    }
-    private void Cbo_tipoRepaletizado_Completed(object sender, EventArgs e)
-    {
-        if (txt_destino.IsEnabled)
-        {
-            txt_destino.Focus();
-        }
-        else
-        {
-            txt_cantidad.Focus();
-        }
     }
 }

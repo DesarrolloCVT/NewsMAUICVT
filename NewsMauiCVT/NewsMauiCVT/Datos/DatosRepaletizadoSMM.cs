@@ -26,7 +26,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMPackageClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtieneDatosPaletSMM: " + ex.Message);
+            }
             return ls;
         }
 
@@ -43,7 +46,10 @@ namespace NewsMauiCVT.Datos
                 res = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtieneNombreProducSMM: " + ex.Message);
+            }
             return res;
 
         }
@@ -59,7 +65,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 res = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtienSiteLayoutSMM: " + ex.Message);
+            }
             return res;
         }
 
@@ -75,7 +84,10 @@ namespace NewsMauiCVT.Datos
                 res = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtieneNombreSitio: " + ex.Message);
+            }
             return res;
 
         }
@@ -91,7 +103,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 res = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("VerificaReservaSMM: " + ex.Message);
+            }
             return res;
 
         }
@@ -107,7 +122,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 res = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("RepaletizaDestino: " + ex.Message);
+            }
             return res;
         }
 
@@ -123,7 +141,10 @@ namespace NewsMauiCVT.Datos
                 res = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("RepaletizaNuevo: " + ex.Message);
+            }
             return res;
 
         }

@@ -23,7 +23,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<ListProdTranferSMMClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtienedatosProducto: " + ex.Message);
+            }
             return ls;
         }
         public List<SMMPackageClass> ObtieneInfoPalletPosicionamientoSMM(string SSCC)
@@ -38,7 +41,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMPackageClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtieneInfoPalletPosicionamientoSMM: " + ex.Message);
+            }
             return ls;
         }
 
@@ -53,7 +59,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtienePackageIdPosicionamiento: " + ex.Message);
+            }
             return ret;
         }
 
@@ -69,7 +78,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeLayoutDesc: " + ex.Message);
+            }
             return ret;
         }
 
@@ -85,7 +97,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeBodegaxLayout: " + ex.Message);
+            }
             return ret;
         }
 
@@ -100,7 +115,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ActualizaLayoutPackage: " + ex.Message);
+            }
             return ret;
         }
 
@@ -115,7 +133,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("AddLocation: " + ex.Message);
+            }
             return ret;
         }
     }

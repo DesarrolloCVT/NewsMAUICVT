@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-    Title="SMM_TomaInvenario_Bodegas">
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
@@ -55,7 +54,8 @@
                         Completed="Txt_Npallet_Completed"
                         IsLabelFloating="False"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="N° Pallet" />
                     <Label
                         x:Name="lblError4"
@@ -71,7 +71,8 @@
                         IsLabelFloating="False"
                         IsReadOnly="True"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Codigo Barras" />
                     <Label
                         x:Name="lblError2"
@@ -96,7 +97,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Codigo Ubicacion" />
                     <Label
                         x:Name="lblError5"
@@ -129,7 +131,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Dia venc." />
                         <dxe:TextEdit
                             x:Name="txtMes"
@@ -141,7 +144,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Mes venc." />
                         <dxe:TextEdit
                             x:Name="txtAno"
@@ -153,7 +157,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="año venc." />
                     </Grid>
                 </StackLayout>
@@ -166,7 +171,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Cantidad" />
                     <Label
                         x:Name="lblError3"

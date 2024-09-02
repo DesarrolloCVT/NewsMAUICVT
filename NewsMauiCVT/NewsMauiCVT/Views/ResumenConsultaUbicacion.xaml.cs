@@ -6,10 +6,11 @@ namespace NewsMauiCVT.Views;
 
 public partial class ResumenConsultaUbicacion : ContentPage
 {
-    public ResumenConsultaUbicacion(string idpos)
+    public ResumenConsultaUbicacion(string idPosicion)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        cargadatos(idpos);
+        cargadatos(idPosicion);
         //string g = idpos;
     }
     void cargadatos(string idPosicion)

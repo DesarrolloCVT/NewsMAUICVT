@@ -3,8 +3,7 @@
     x:Class="NewsMauiCVT.Views.SMMArmadoPedido"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    Title="SMMArmadoPedido">
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="20">
@@ -22,7 +21,8 @@
                     IsLabelFloating="False"
                     Keyboard="Numeric"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="N° Pedido" />
             </StackLayout>
             <StackLayout Padding="10">

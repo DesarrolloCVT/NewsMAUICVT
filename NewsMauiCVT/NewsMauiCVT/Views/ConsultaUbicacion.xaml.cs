@@ -1,10 +1,9 @@
 using Controls.UserDialogs.Maui;
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
-using NewsMauiCVT.Views;
 using System.Text.RegularExpressions;
 
-namespace NewsMauiCVT;
+namespace NewsMauiCVT.Views;
 
 public partial class ConsultaUbicacion : ContentPage
 {
@@ -17,14 +16,25 @@ public partial class ConsultaUbicacion : ContentPage
     {
         base.OnAppearing();
         ClearComponent();
-        txtPosicion.Focus();
+        SetFocusText();
+
+        /*Shell shell = new Shell();
+        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
+        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
+        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
     }
-    void ClearComponent()
+    private void ClearComponent()
     {   
         txtPosicion.Text = string.Empty;
         txtPosicion.Focus();
         lblError.Text = string.Empty;
         lblError.IsVisible = false;
+    }
+    private void SetFocusText()
+    {
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtPosicion.Focus();
+        });
     }
     private async void TxtPosicion_Completed(object sender, EventArgs e)
     {
@@ -80,8 +90,8 @@ public partial class ConsultaUbicacion : ContentPage
                         }
                         else
                         {
-
                             await Navigation.PushAsync(new DetalleConsultaUbicacion(txtPosicion.Text) { Title = "Volver" });
+                            //await Shell.Current.GoToAsync("Detalle");
                         }
                     }
                 }
@@ -101,9 +111,5 @@ public partial class ConsultaUbicacion : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
-    }
-    private void HandleHamburgerClick(object sender, EventArgs e)
-    {
-        Console.WriteLine("Boton Menu");
     }
 }

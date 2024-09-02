@@ -6,8 +6,13 @@ namespace NewsMauiCVT.Views;
 public partial class DetalleConsultaUbicacion : ContentPage
 {
     string _iposid = "";
+    public DetalleConsultaUbicacion()
+    {
+        InitializeComponent();
+    }
     public DetalleConsultaUbicacion(string idPosicion)
     {
+        NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         Cargadatos(idPosicion);
         _iposid = idPosicion;
@@ -42,6 +47,8 @@ public partial class DetalleConsultaUbicacion : ContentPage
             GvData.Columns["ArticleProvider_Description"].Width = 110;
             GvData.Columns["Staff_Name"].Caption = "Usuario";
             GvData.Columns["Staff_Name"].Width = 110;
+            GvData.Columns["Package_ProductionDate"].Caption = "Fecha Producción";
+            GvData.Columns["Package_ProductionDate"].Width = 110;
             string totalcoun = GvData.VisibleRowCount.ToString();
             lblCantPallets.Text = "Cantidad Pallets: " + totalcoun;
         }
@@ -62,5 +69,10 @@ public partial class DetalleConsultaUbicacion : ContentPage
             //activity.IsVisible = true;
             await Navigation.PushAsync(new ResumenConsultaUbicacion(_iposid) { Title = "Volver" });
         }
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return false;
     }
 }

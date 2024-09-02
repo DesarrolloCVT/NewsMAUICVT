@@ -23,7 +23,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaFolioOrden: " + ex.Message);
+            }
             return ret;
         }
 
@@ -39,7 +42,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaRutCliente: " + ex.Message);
+            }
             return ret;
         }
 
@@ -55,7 +61,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("insertacliente: " + ex.Message);
+            }
             return ret;
         }
 
@@ -71,7 +80,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMClienteOrdenDeVentas>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeClientesOrden: " + ex.Message);
+            }
             return ls;
         }
 
@@ -87,7 +99,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMDireccionOrdenDeVentas>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeDirDespachoOrden: " + ex.Message);
+            }
             return ls;
         }
         public List<SMMDireccionFactOrdenVentas> TraeDirFacturacion(string DirClienteFactura)
@@ -102,7 +117,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMDireccionFactOrdenVentas>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeDirFacturacion: " + ex.Message);
+            }
             return ls;
         }
 
@@ -118,7 +136,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("CreaOrdenVenta: " + ex.Message);
+            }
             return ret;
         }
 
@@ -134,7 +155,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMProductosOrdenDeVenta>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ListaProductosOrdenVenta: " + ex.Message);
+            }
             return ls;
         }
 
@@ -150,7 +174,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("insertaDetalleOrden: " + ex.Message);
+            }
             return ret;
         }
 
@@ -170,9 +197,9 @@ namespace NewsMauiCVT.Datos
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("RegistroOrdenVEnta: " + ex.Message);
             }
 
             return dt;
@@ -194,9 +221,9 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<TotalesOrden>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("DatosTotales: " + ex.Message);
             }
 
             return ls;

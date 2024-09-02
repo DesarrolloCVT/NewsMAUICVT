@@ -25,9 +25,9 @@ namespace NewsMauiCVT.Datos
                 dt = JsonConvert.DeserializeObject<List<ProductoInventarioCVT>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex) 
             {
-
+                Console.WriteLine("ListProductosInventario: " + ex.ToString());
             }
 
             return dt;
@@ -39,13 +39,18 @@ namespace NewsMauiCVT.Datos
             int ret = 0;
             try
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                };
                 var rest2 = ClientHttp.GetAsync("api/Bodega?layoutid=" + layoutid).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("traeSiteIdLayout: " + ex.Message.ToString());
+            }
             return ret;
         }
     }

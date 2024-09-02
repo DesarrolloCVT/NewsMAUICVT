@@ -11,7 +11,7 @@
     <FlyoutPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <local1:MenuPruebas/>
+                <local:MenuPruebas/>
             </x:Arguments>
         </NavigationPage>
     </FlyoutPage.Detail>

@@ -3,8 +3,7 @@
     x:Class="NewsMauiCVT.Views.TestCapturaCodeCam"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    Title="TestCapturaCodeCam">
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
     <!--ContentPage.BindingContext>
         <viewmodels:TestCapturaViewModel/>
     </ContentPage.BindingContext-->
@@ -30,7 +29,8 @@
                 BoxHeight="50"
                 IsLabelFloating="False"
                 LabelColor="Green"
-                LabelFontSize="15"
+                LabelFontSize="20"
+                TextFontSize="20"
                 LabelText="CODIGO DE BARRAS"
                 Text="{Binding Result}" />
             <StackLayout Margin="50,0">
@@ -54,7 +54,8 @@
                     IsEnabled="False"
                     IsLabelFloating="False"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Codigo Producto"
                     Text=""
                     TextFontAttributes="Bold" />

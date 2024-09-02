@@ -12,6 +12,12 @@ public partial class InformeStock : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         CargaDatos();
+
+        
+        /*Shell shell = new Shell();
+        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
+        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
+        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
     }
     protected override void OnAppearing()
     {

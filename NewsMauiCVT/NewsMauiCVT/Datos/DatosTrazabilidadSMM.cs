@@ -26,9 +26,9 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr);
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("DetalleTrazaSMM: " + ex.Message);
             }
 
             return dt;
@@ -46,7 +46,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMTrazabilidadBusqueda>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtienedatosTraza: " + ex.Message);
+            }
             return ls;
         }
 

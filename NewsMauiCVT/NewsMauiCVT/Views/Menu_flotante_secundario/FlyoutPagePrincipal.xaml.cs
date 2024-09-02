@@ -7,7 +7,11 @@ public partial class FlyoutPagePrincipal : FlyoutPage
 	public FlyoutPagePrincipal()
 	{
 		InitializeComponent();
+
         flyoutPage.collectionView.SelectionChanged += CollectionView_SelectionChanged;
+
+
+
         Detail = new NavigationPage(new MenuPruebas());
 
         var menuButton = new ToolbarItem

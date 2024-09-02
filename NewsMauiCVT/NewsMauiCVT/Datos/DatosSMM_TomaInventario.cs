@@ -23,7 +23,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<TomaInventarioClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeFoliosInventarios: " + ex.Message);
+            }
             return ls;
         }
 
@@ -39,7 +42,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaBodegaSMM: " + ex.Message);
+            }
             return ret;
         }
 
@@ -55,7 +61,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaCodProducto: " + ex.Message);
+            }
             return ret;
         }
         public int ValidaNumeroDePallet(int NumPallet, string Codpro)
@@ -69,7 +78,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaNumeroDePallet: " + ex.Message);
+            }
             return ret;
         }
         public int ValidaPallet(int PalletVerifica)
@@ -83,7 +95,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaPallet: " + ex.Message);
+            }
             return ret;
         }
 
@@ -99,7 +114,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("traeItemCodeProducto: " + ex.Message);
+            }
             return ret;
         }
 
@@ -115,7 +133,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("traeCodBarraProducto: " + ex.Message);
+            }
             return ret;
         }
         public string traeCodBarraProductoBodega02(string NpalletBodega02)
@@ -130,7 +151,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("traeCodBarraProductoBodega02: " + ex.Message);
+            }
             return ret;
         }
         public int ValidaUbicacion(int Ubicacion, int site)
@@ -144,7 +168,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaUbicacion: " + ex.Message);
+            }
             return ret;
         }
         public string TraeCodProducti(string codBar)
@@ -158,7 +185,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeCodProducti: " + ex.Message);
+            }
             return ret;
         }
 
@@ -175,7 +205,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("insertaInventario: " + ex.Message);
+            }
             return ret;
         }
         public bool insertaDetalleInventarioBodegas(int Inventario_Id, string Dun14, string CodProducto, string Cantidad, int SiteID, int IdUsuario, int UbiPasillo, string Fvencimiento, int SSCC, string CantxEmp, int CantBase, string TipoEmpaque)
@@ -190,7 +223,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("insertaDetalleInventarioBodegas: " + ex.Message);
+            }
             return ret;
         }
 
@@ -205,7 +241,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<SMMDatoProductosRecepcion>>(resultadoStr) ?? throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ListaDatosProdRes: " + ex.Message);
+            }
             return ls;
         }
 

@@ -23,7 +23,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<TipoPalletClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)  
+            {
+                Console.WriteLine("ListaTipoPallet: " + ex.ToString());
+            }
             return ls;
         }
         public int TraeIdTipoPallet(string Decripcion)
@@ -37,7 +40,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeIdTipoPallet: " + ex.ToString());
+            }
             return ret;
         }
         public bool ActualizaTipoPallet(int SSCC, int CodTipo)
@@ -51,7 +57,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ActualizaTipoPallet: " + ex.ToString());
+            }
             return ret;
         }
         public string TraeNombreTipo(int pk)
@@ -66,7 +75,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeNombreTipo: " + ex.ToString());
+            }
             return ret;
         }
     }

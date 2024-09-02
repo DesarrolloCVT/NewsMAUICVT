@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-    Title="TomaInventarioFilm">
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="20">
@@ -55,7 +54,8 @@
                     IsLabelFloating="False"
                     Keyboard="Numeric"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="N° Pallet" />
                 <Label
                     x:Name="lblError"
@@ -70,7 +70,8 @@
                     BoxHeight="50"
                     IsLabelFloating="False"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Producto" />
                 <Label
                     x:Name="lblError2"
@@ -85,7 +86,8 @@
                     BoxHeight="50"
                     IsLabelFloating="False"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Lote" />
                 <Label
                     x:Name="lblError3"
@@ -102,7 +104,8 @@
                     IsLabelFloating="False"
                     Keyboard="Numeric"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Cantidad" />
                 <Label
                     x:Name="lblError4"
@@ -119,7 +122,8 @@
                     IsLabelFloating="False"
                     Keyboard="Numeric"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Ubicacion" />
                 <Label
                     x:Name="lblError5"

@@ -23,7 +23,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<OcOpenSMM>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("TraeOcAbiertas: " + ex.Message);
+            }
             return ls;
         }
 
@@ -40,7 +43,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("insertaCabeceraRecepcion: " + ex.Message);
+            }
             return ret;
         }
 
@@ -55,7 +61,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaFolioRecepcion: " + ex.Message);
+            }
             return ret;
         }
 
@@ -70,7 +79,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeOcRecepcion: " + ex.Message);
+            }
             return ret;
         }
 
@@ -86,7 +98,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<List<SMMProductosEnOC>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ListaProducOC: " + ex.Message);
+            }
             return ret;
         }
         public List<SMMProductosEnRecepcionOC> DatosProductosRecepcionXam(string CodBarraProd, int nOrden)
@@ -101,7 +116,10 @@ namespace NewsMauiCVT.Datos
                 ret = JsonConvert.DeserializeObject<List<SMMProductosEnRecepcionOC>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DatosProductosRecepcionXam: " + ex.Message);
+            }
             return ret;
         }
 
@@ -117,7 +135,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("insertaDetalleRecepcion: " + ex.Message);
+            }
             return ret;
         }
 
@@ -133,7 +154,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeDiasUtilPorc: " + ex.Message);
+            }
             return ret;
         }
 
@@ -149,7 +173,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeDiasUtilTotal: " + ex.Message);
+            }
             return ret;
         }
     }

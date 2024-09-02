@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-    Title="SMM_Repaletizado">
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Padding="20">
@@ -24,7 +23,8 @@
                     IsLabelFloating="False"
                     Keyboard="Numeric"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="N° Pallet" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
@@ -37,35 +37,35 @@
             <StackLayout x:Name="LayoutOrigen" Padding="40,0,20,0">
                 <Label
                     x:Name="lbl_codproducto"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lbl_producto"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lbl_lote"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lbl_cantidad"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lblBodega"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
@@ -113,35 +113,35 @@
             <StackLayout x:Name="LayoutDestinoExistente" Padding="40,0,20,0">
                 <Label
                     x:Name="lbl_dcodproducto"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lbl_dproducto"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lbl_dlote"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lbl_dcantidad"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
                     VerticalOptions="Start" />
                 <Label
                     x:Name="lbl_dBodega"
-                    FontSize="Small"
+                    FontSize="Medium"
                     HorizontalOptions="Start"
                     Text=""
                     TextColor="Red"
@@ -156,7 +156,8 @@
                     IsLabelFloating="False"
                     Keyboard="Numeric"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
+                    TextFontSize="20"
                     LabelText="Cantidad a Repaletizar" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">

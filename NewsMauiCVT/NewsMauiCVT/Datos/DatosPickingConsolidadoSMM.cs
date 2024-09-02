@@ -29,7 +29,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("insertaRegistro: " + ex.Message);
+            }
             return ret;
         }
 
@@ -44,7 +47,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaProductoConsolidado: " + ex.Message);
+            }
             return ret;
         }
 
@@ -64,9 +70,9 @@ namespace NewsMauiCVT.Datos
                                 throw new InvalidOperationException();
 
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("DetallePickingSMM: " + ex.Message);
             }
 
             return dt;
@@ -85,7 +91,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMDepartamentos>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraeDepartamentos: " + ex.Message);
+            }
             return ls;
         }
     }

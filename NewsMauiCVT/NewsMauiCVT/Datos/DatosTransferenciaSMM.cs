@@ -27,9 +27,9 @@ namespace NewsMauiCVT.Datos
                 lt = JsonConvert.DeserializeObject<List<ListProdTranferSMMClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex) 
             {
-
+                Console.WriteLine("ObtieneDatosPalletSMM: " + ex.Message);
             }
 
             return lt;
@@ -52,7 +52,10 @@ namespace NewsMauiCVT.Datos
                 resp = JsonConvert.DeserializeObject<int>(resultadoStr);
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("InsertaTransferenciaSMM: " + ex.Message);
+            }
             return resp;
 
         }
@@ -60,21 +63,19 @@ namespace NewsMauiCVT.Datos
         public int ValidaTransferencia(int TransferID, int stado)
         {
             int resp = 0;
-
-
             try
             {
-
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?TransferID=" + TransferID + "&stado=" + stado).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 resp = JsonConvert.DeserializeObject<int>(resultadoStr);
-
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaTransferencia: " + ex.Message);
+            }
             return resp;
-
         }
 
         public List<SMMSite> ListaBodegas()
@@ -89,7 +90,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMSite>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ListaBodegas: " + ex.Message);
+            }
             return ls;
         }
 
@@ -105,7 +109,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<SMMFolioSolicitud>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ListadoFolios: " + ex.Message);
+            }
             return ls;
         }
 
@@ -114,14 +121,16 @@ namespace NewsMauiCVT.Datos
             int ret = 0;
             try
             {
-
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?sOrigen=" + sOrigen + "&sDestino=" + sDestino + "&idUser=" + idUser + "&EntidadT=" + EntidadT + "&FolioEnt=" + FolioEnt + "&Coment=" + Coment + "&FolioSol=" + FolioSol).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("InsertaTransferenciaCab: " + ex.Message);
+            }
             return ret;
         }
 
@@ -137,7 +146,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<FiltoTransferenciaSMM>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("FiltroTransferencia: " + ex.Message);
+            }
             return ls;
         }
 
@@ -146,21 +158,21 @@ namespace NewsMauiCVT.Datos
             bool ret = false;
             try
             {
-
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?sitioid=" + sitioid + "&packageid=" + packageid + "&layoutid=" + layoutid + "&IdUsuario=" + IdUsuario + "&transferid=" + transferid + "&quantity=" + quantity).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("AgregaBultoTransferSMM: " + ex.Message);
+            }
             return ret;
         }
-
         public DataTable bultosCargadosTransferencia(int folioTransferencia)
         {
             DataTable dt = new DataTable();
-
             try
             {
                 HttpClient ClientHttp = new HttpClient();
@@ -173,11 +185,10 @@ namespace NewsMauiCVT.Datos
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("bultosCargadosTransferencia: " + ex.Message);
             }
-
             return dt;
         }
 
@@ -193,7 +204,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TraePKID: " + ex.Message);
+            }
             return ret;
         }
 
@@ -209,11 +223,11 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("EliminaPalletDetTrans: " + ex.Message);
+            }
             return ret;
         }
-
-
-
     }
 }

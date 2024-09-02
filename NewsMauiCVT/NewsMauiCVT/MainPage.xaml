@@ -40,6 +40,7 @@
                             IsLabelFloating="False"
                             LabelColor="Green"
                             LabelFontSize="15"
+                            TextFontSize="20"
                             LabelText="USUARIO"
                             ReturnType="Next"/>
                     </StackLayout>

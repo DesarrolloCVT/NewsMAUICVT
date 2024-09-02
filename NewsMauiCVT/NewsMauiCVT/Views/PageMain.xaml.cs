@@ -9,7 +9,7 @@ public partial class PageMain : FlyoutPage
         InitializeComponent();
         myPageMain();
     }
-    protected override void OnAppearing()
+    /*protected override void OnAppearing()
     {
         base.OnAppearing();
 
@@ -25,10 +25,10 @@ public partial class PageMain : FlyoutPage
             IsPresented = !IsPresented;
         };
         (Detail as NavigationPage).ToolbarItems.Add(menuButton);
-    }
+    }*/
     public void myPageMain()
     {
-        Detail = new NavigationPage(new MenuPruebas() { Title = "Menú"});
+        Detail = new NavigationPage(new MenuPruebas());
 
         DatosApp dpp = new DatosApp();
         List<MenuClass> mn = dpp.TraeMenu(App.idPerfil);
@@ -63,7 +63,8 @@ public partial class PageMain : FlyoutPage
                 new Option{ page=new SMMArmadoPedido(){Title="Menú"},title="SMM Medición armado de pedidos", detail="Ingreso medición armado de pedidos"},
                 new Option{ page=new SMMRegImpEtiquetas(){Title="Menú"},title="SMM Registro Imp.Etiquetas", detail="Ingreso de productos para impresion etiquetas de precios"},
                 new Option{ page=new SMMRegEtiqSala(){Title="Menú"},title="SMM Registro Etiquetas pallet sala", detail="ingreso de productos para impresion de etiquetas para sala de ventas"},
-                new Option{ page=new Calidad_ControlHigiene(){Title="Menú"},title="Control Higiene", detail="Registro Control Higiene Personal"}
+                new Option{ page=new Calidad_ControlHigiene(){Title="Menú"},title="Control Higiene", detail="Registro Control Higiene Personal"},
+                new Option{ page=new Transferencias(){Title="Menú"},title="Transferencias", detail="Transferencia de Pallets"},
         };  
         List<Option> options1 = new List<Option>();
 

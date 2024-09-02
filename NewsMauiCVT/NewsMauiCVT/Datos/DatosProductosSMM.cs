@@ -22,7 +22,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ValidaProductoSMM: " + ex.Message);
+            }
             return ret;
         }
 
@@ -43,9 +46,9 @@ namespace NewsMauiCVT.Datos
 
 
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine("ListDatoProductosSMMValida: " + ex.Message);
             }
 
             return dt;

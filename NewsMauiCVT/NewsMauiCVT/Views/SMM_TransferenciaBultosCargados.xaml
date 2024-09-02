@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
-    Title="SMM_TransferenciaBultosCargados">
+    xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout Margin="10">
@@ -30,7 +29,8 @@
                         ClearIconVisibility="Never"
                         IsLabelFloating="False"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="N° Pallet" />
 
                     <dxc:DXButton

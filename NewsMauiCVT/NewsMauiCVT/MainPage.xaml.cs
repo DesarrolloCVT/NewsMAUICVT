@@ -1,4 +1,5 @@
 ﻿ using Controls.UserDialogs.Maui;
+using Microsoft.Maui.Controls.Platform.Compatibility;
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Views;
@@ -18,125 +19,153 @@ namespace NewsMauiCVT
         private void SetMobileScreen()
         {
             var ACC = Connectivity.NetworkAccess;
-            if (ACC == NetworkAccess.Internet)
+            try
             {
-                DatosApp datos = new DatosApp();
-                txt_version.Text = ("Versión " + datos.TraeVersion());
-            }
-            else
-            {
-                txt_version.Text = ("Versión 0.0.0");
-            }
-            if (!(DeviceInfo.Model == "MC33"))
-            {
+                if (ACC == NetworkAccess.Internet)
+                {
+                    DatosApp datos = new DatosApp();
+                    txt_version.Text = ("Versión " + datos.TraeVersion());
+                }
+                else
+                {
+                    txt_version.Text = ("Versión 0.0.0");
+                }
+                if (!(DeviceInfo.Model == "MC33"))
+                {
 #pragma warning disable CS0618 // Type or member is obsolete
-                SlStackLayout.VerticalOptions = LayoutOptions.CenterAndExpand;
+                    SlStackLayout.VerticalOptions = LayoutOptions.CenterAndExpand;
 #pragma warning restore CS0618 // Type or member is obsolete
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("LoginPage SetMobileScreen: " + ex.Message);
+            }
+            
         }
         private async void Loging_ClickedAsync(object sender, EventArgs e)
         {
-            using (UserDialogs.Instance.Loading("Verificando Datos"))
+            try
             {
-                await Task.Delay(10);
-                var ssid = DependencyService.Get<IGetSSID>().GetSSID();
-                string sd = Regex.Replace(ssid, @"[^\w\d]", string.Empty);
-                loging.IsEnabled = false;
-
-                //UserDialogs.Instance.HideLoading();
-
-                var ACC = Connectivity.NetworkAccess;
-                if (ACC == NetworkAccess.Internet)
+                using (UserDialogs.Instance.Loading("Verificando Datos"))
                 {
-                    if (DeviceInfo.Model == "MC33")
-                    {
+                    await Task.Delay(10);
+                    var ssid = DependencyService.Get<IGetSSID>().GetSSID();
+                    string sd = Regex.Replace(ssid, @"[^\w\d]", string.Empty);
+                    loging.IsEnabled = false;
 
-                    }
-                    string usuario = txtUsuario.Text.ToLower();
-                    string clave = txtContraseña.Text.ToLower();
-
-                    try
+                    if (!string.IsNullOrEmpty(txtUsuario.Text) && !string.IsNullOrEmpty(txtContraseña.Text))
                     {
-                        HttpClient ClientHttp = new()
+                        var ACC = Connectivity.NetworkAccess;
+                        if (ACC == NetworkAccess.Internet)
                         {
-                            BaseAddress = new Uri("http://wsintranet.cvt.local/")
-                        };
-                        try
-                        {
-                            //Consulta
-                            var rest = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave).Result;
-                            if (rest.IsSuccessStatusCode)
+                            string usuario = txtUsuario.Text.ToLower();
+                            string clave = txtContraseña.Text.ToLower();
+
+                            try
                             {
-                                var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                                var listado = JsonConvert.DeserializeObject<int>(resultadoStr);
-
-                                if (listado != 0)
+                                HttpClient ClientHttp = new()
                                 {
-                                    try
-                                    {   
-                                        var rest2 = ClientHttp.GetAsync("api/Usuario?idUser=" + listado).Result;
-                                        var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
-                                        List<UsuarioClass> du = JsonConvert.DeserializeObject<List<UsuarioClass>>(resultadoStr2) ??
-                                    throw new InvalidOperationException();
+                                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                                };
+                                try
+                                {
+                                    //Consulta
+                                    var rest = ClientHttp.GetAsync("api/Usuario?usuario=" + usuario + "&pass=" + clave).Result;
+                                    if (rest.IsSuccessStatusCode)
+                                    {
+                                        var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                                        var listado = JsonConvert.DeserializeObject<int>(resultadoStr);
 
-                                        //if (du.Count != 0) { }
-                                        foreach (var d in du)
+                                        if (listado != 0)
                                         {
-                                            App.Iduser = listado;
-                                            App.UserSistema = d.UsuarioSistema;
-                                            App.NombreUsuario = d.NombreUsuario.ToString();
-                                            App.idPerfil = d.IdPerfilMovile;
-                                            // App.vali = true;
+                                            try
+                                            {
+                                                var rest2 = ClientHttp.GetAsync("api/Usuario?idUser=" + listado).Result;
+                                                var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
+                                                List<UsuarioClass> du = JsonConvert.DeserializeObject<List<UsuarioClass>>(resultadoStr2) ??
+                                            throw new InvalidOperationException();
+
+                                                //if (du.Count != 0) { }
+                                                foreach (var d in du)
+                                                {
+                                                    App.Iduser = listado;
+                                                    App.UserSistema = d.UsuarioSistema;
+                                                    App.NombreUsuario = d.NombreUsuario.ToString();
+                                                    App.idPerfil = d.IdPerfilMovile;
+                                                    // App.vali = true;
+                                                }
+                                                DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                                                await Navigation.PushAsync(new PageMain());
+                                                //await Shell.Current.GoToAsync("//DashBoard");
+                                                /* Código para implementar Navigation desde App / Shell / Navigation PAge
+
+                                                Routing.RegisterRoute("DashBoard", typeof(MenuPruebas));
+                                                await Shell.Current.GoToAsync("//DashBoard");
+                                                await Navigation.PushAsync(new MenuPruebas());
+                                                await Navigation.PushAsync(new FlyoutPagePrincipal());
+                                                await Shell.Current.GoToAsync("//MenuPruebas");
+
+                                                 */
+                                                txtUsuario.Text = string.Empty;
+                                                txtContraseña.Text = string.Empty;
+
+                                            }
+                                            catch
+                                            {
+                                                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                                await DisplayAlert("Alerta", "No tiene los perfiles necesarios para poder acceder a esta APP", "OK");
+                                                txtUsuario.Text = string.Empty;
+                                                txtContraseña.Text = string.Empty;
+                                                txtUsuario.Focus();
+                                                loging.IsEnabled = true;
+                                            }
                                         }
-                                        DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
-                                        await Navigation.PushAsync(new PageMain());
-                                        //await Navigation.PushAsync(new FlyoutPagePrincipal());
-                                        txtUsuario.Text = string.Empty;
-                                        txtContraseña.Text = string.Empty;
-                                        
                                     }
-                                    catch
+                                    else
                                     {
                                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                        await DisplayAlert("Alerta", "No tiene los perfiles necesarios para poder acceder a esta APP", "OK");
+                                        await DisplayAlert("Alerta", "Usuario o Contraseña No Existen ", "Aceptar");
                                         txtUsuario.Text = string.Empty;
                                         txtContraseña.Text = string.Empty;
                                         txtUsuario.Focus();
                                         loging.IsEnabled = true;
                                     }
                                 }
+                                catch (AggregateException ex)
+                                {
+                                    Console.WriteLine("StackTrace Exception: " + ex.StackTrace);
+                                    Console.WriteLine("InnerException: " + ex.InnerException);
+                                    Console.WriteLine("InnerException.Message: " + ex.InnerException.Message);
+                                }
                             }
-                            else
+                            catch (Exception ex)
                             {
                                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                await DisplayAlert("Alerta", "Usuario o Contraseña No Existen ", "Aceptar");
-                                txtUsuario.Text = string.Empty;
-                                txtContraseña.Text = string.Empty;
-                                txtUsuario.Focus();
-                                loging.IsEnabled = true;
+                                System.Diagnostics.Debug.WriteLine(ex.Message);
                             }
-                        } catch (AggregateException ex)
+                        }
+                        else
                         {
-                            Console.WriteLine("StackTrace Exception: " + ex.StackTrace);
-                            Console.WriteLine("InnerException: " + ex.InnerException);
-                            Console.WriteLine("InnerException.Message: " + ex.InnerException.Message);
+                            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+                            loging.IsEnabled = true;
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                        await DisplayAlert("Alerta", "Ingrese Usuario y Contraseña", "Aceptar");
+                        loging.IsEnabled = true;
                     }
                 }
-                else
-                {
-                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                    await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
-                    loging.IsEnabled = true;
-                }
-
+            }
+            catch (Exception ex)
+            {
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                Console.WriteLine(ex.ToString());
+                await DisplayAlert("Alerta", "Revise conexión", "Aceptar");
             }
         }
     }
-
 }

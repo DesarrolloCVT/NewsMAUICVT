@@ -19,8 +19,10 @@ namespace NewsMauiCVT.Datos
             int Estado = 0;
             try
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                };
 
                 var rest2 = ClientHttp.GetAsync("api/Produccion?Idpos=" + idpos).Result;
 
@@ -39,59 +41,51 @@ namespace NewsMauiCVT.Datos
                     }
                 }
             }
-            catch { }
-
+            catch (Exception ex) 
+            {
+                Console.WriteLine("EvaluaExistenDatosEnPosision: " + ex.Message);
+            }
             return Estado;
         }
 
         public DataTable DetalleConsultaUbicacion(int npallet)
         {
-            DataTable dt = new DataTable();
-
+            DataTable dt = new();
             try
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                };
                 int idpos = Convert.ToInt32(npallet);
                 var rest2 = ClientHttp.GetAsync("api/Produccion?Idpos=" + idpos).Result;
-
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
-            {
-
+            catch (Exception ex) {
+                Console.WriteLine("DetalleConsultaUbicacion: " + ex.ToString());
             }
-
             return dt;
-
         }
 
         public DataTable ResumenConsultaUbicacion(int npallet)
         {
-            DataTable dt = new DataTable();
-
+            DataTable dt = new();
             try
             {
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-
                 int idpos = Convert.ToInt32(npallet);
                 var rest2 = ClientHttp.GetAsync("api/Produccion?NumPosicion=" + idpos).Result;
-
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
-            {
-
+            catch (Exception ex) {
+                Console.WriteLine("ResumenConsultaUbicacion: " + ex.ToString());
             }
-
             return dt;
-
         }
     }
 }

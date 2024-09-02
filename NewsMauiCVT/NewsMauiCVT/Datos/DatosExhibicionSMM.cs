@@ -22,7 +22,10 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("InsertaRegistroExhibicion: " + ex.Message);
+            }
             return ret;
         }
     }

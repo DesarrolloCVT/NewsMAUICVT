@@ -15,7 +15,7 @@
             <x:Array Type="{x:Type local1:FlyoutPageItem}">
                 <local1:FlyoutPageItem title="Inicio"
                                        detail="Menu de inicio"
-                                       TargetType="{x:Type local2:MenuPruebas}"/>
+                                       TargetType="{x:Type local:MenuPruebas}"/>
                 <local1:FlyoutPageItem title="Posicionamiento"
                                        detail="Posicionamiento Pallets"
                                        TargetType="{x:Type local:Posicionamiento}"/>
@@ -27,7 +27,7 @@
                                        TargetType="{x:Type local:ActualizaTipoPallet}"/>
                 <local1:FlyoutPageItem title="Consulta Ubicacion"
                                        detail="Busqueda detalle ubicacion"
-                                       TargetType="{x:Type local2:ConsultaUbicacion}"/>
+                                       TargetType="{x:Type local:ConsultaUbicacion}"/>
                 <local1:FlyoutPageItem title="Inventario"
                                        detail="Toma Inventario"
                                        TargetType="{x:Type local:TomaInventario}"/>

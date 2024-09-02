@@ -3,8 +3,7 @@
     x:Class="NewsMauiCVT.Views.SMM_ConsultaProducto"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    Title="SMM_ConsultaProducto">
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
@@ -24,7 +23,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Codigo" />
                     <Label
                         x:Name="lblError2"

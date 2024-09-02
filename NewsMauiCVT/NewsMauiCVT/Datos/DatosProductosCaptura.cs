@@ -23,7 +23,10 @@ namespace NewsMauiCVT.Datos
                 ls = JsonConvert.DeserializeObject<List<ProductosCapturaCod>>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DatosProductos: " + ex.Message);
+            }
             return ls;
         }
 

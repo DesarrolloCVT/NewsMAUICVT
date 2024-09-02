@@ -15,6 +15,11 @@ public partial class Revision_Extintor_DatosCab : ContentPage
         base.OnAppearing();
         ClearComponent();
         txtNExtintor.Focus();
+
+        /*Shell shell = new Shell();
+        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
+        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
+        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
     }
     void ClearComponent()
     {

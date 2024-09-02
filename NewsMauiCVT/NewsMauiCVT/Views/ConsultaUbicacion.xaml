@@ -2,16 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-             x:Class="NewsMauiCVT.ConsultaUbicacion"
-             Title="ConsultaUbicacion">
+             x:Class="NewsMauiCVT.Views.ConsultaUbicacion">
     <ContentPage.Content>
         <StackLayout>
-            <!--Button IsVisible="true" ImageSource="hamburger.png" Opacity="0.4"  HeightRequest="50" Clicked="HandleHamburgerClick" HorizontalOptions="Start" BackgroundColor="White" /-->
             <StackLayout Margin="25">
                 <Label Text="CONSULTA UBICACION" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="UBICACION" LabelFontSize="15"  BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
+                <dxe:TextEdit LabelText="UBICACION" 
+                              LabelFontSize="20"  TextFontSize="20" BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
                         IsLabelFloating="False" BorderColor="Green" LabelColor="Green">
                 </dxe:TextEdit>
             </StackLayout>

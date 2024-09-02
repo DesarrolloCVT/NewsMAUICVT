@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
-    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    Title="SMMCumplimientoRepoSala">
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
     <!--ContentPage.BindingContext>
         <viewmodel:TestCapturaViewModel />
     </ContentPage.BindingContext-->
@@ -30,7 +29,8 @@
                 Completed="txtCodigo_Completed"
                 IsLabelFloating="False"
                 LabelColor="Green"
-                LabelFontSize="15"
+                LabelFontSize="20"
+                TextFontSize="20"
                 LabelText="CODIGO DE BARRAS"
                 Text="{Binding Result}" />
             <StackLayout Margin="50,0">
@@ -69,7 +69,7 @@
                     IsLabelFloating="True"
                     ItemsSource="{Binding}"
                     LabelColor="Green"
-                    LabelFontSize="15"
+                    LabelFontSize="20"
                     LabelText="NOMBRE REPONEDOR"
                     ReserveBottomTextLine="True"
                     SelectionChanged="cboNombreRepo_SelectionChanged"
@@ -108,7 +108,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Dia venc." />
                     <dxe:TextEdit
                         x:Name="txtMes"
@@ -120,7 +121,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Mes venc." />
                     <dxe:TextEdit
                         x:Name="txtAno"
@@ -132,7 +134,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="año venc." />
                 </Grid>
             </StackLayout>
@@ -159,11 +162,11 @@
                             DropDownSelectedItemBackgroundColor="GreenYellow"
                             IsLabelFloating="True"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
                             LabelText="Dis.Producto"
                             ReserveBottomTextLine="True"
                             SelectionChanged="cboDispo_SelectionChanged"
-                            TextFontSize="15">
+                            TextFontSize="20">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>1</x:String>
@@ -180,11 +183,11 @@
                             DropDownSelectedItemBackgroundColor="GreenYellow"
                             IsLabelFloating="True"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
                             LabelText="Limpieza"
                             ReserveBottomTextLine="True"
                             SelectionChanged="cboLimpieza_SelectionChanged"
-                            TextFontSize="15">
+                            TextFontSize="20">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>1</x:String>
@@ -201,11 +204,11 @@
                             DropDownSelectedItemBackgroundColor="GreenYellow"
                             IsLabelFloating="True"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
                             LabelText="Fefo"
                             ReserveBottomTextLine="True"
                             SelectionChanged="CboFefo_SelectionChanged"
-                            TextFontSize="15">
+                            TextFontSize="20">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>1</x:String>
@@ -222,10 +225,10 @@
                             DropDownSelectedItemBackgroundColor="GreenYellow"
                             IsLabelFloating="True"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
                             LabelText="Fleje"
                             ReserveBottomTextLine="True"
-                            TextFontSize="15">
+                            TextFontSize="20">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>1</x:String>

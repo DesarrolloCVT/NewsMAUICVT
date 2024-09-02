@@ -3,8 +3,7 @@
     x:Class="NewsMauiCVT.Views.SMMDetalleRecepcion"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
-    Title="SMMDetalleRecepcion">
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout>
@@ -30,7 +29,8 @@
                         Completed="Txt_CodProducto_Completed"
                         IsLabelFloating="False"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Codigo" />
                     <Label
                         x:Name="lblError"
@@ -120,7 +120,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Dia Elab." />
                         <dxe:TextEdit
                             x:Name="txtMesElab"
@@ -132,7 +133,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Mes Elab." />
                         <dxe:TextEdit
                             x:Name="txtAnoElab"
@@ -144,7 +146,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="año Elab." />
                     </Grid>
                 </StackLayout>
@@ -176,7 +179,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Dia Venc." />
                         <dxe:TextEdit
                             x:Name="txtMesVenc"
@@ -188,7 +192,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="Mes Venc." />
                         <dxe:TextEdit
                             x:Name="txtAnoVenc"
@@ -200,7 +205,8 @@
                             IsLabelFloating="False"
                             Keyboard="Numeric"
                             LabelColor="Green"
-                            LabelFontSize="15"
+                            LabelFontSize="20"
+                            TextFontSize="20"
                             LabelText="año Venc." />
                     </Grid>
                     <dxe:TextEdit
@@ -210,7 +216,8 @@
                         IsLabelFloating="False"
                         Keyboard="Numeric"
                         LabelColor="Green"
-                        LabelFontSize="15"
+                        LabelFontSize="20"
+                        TextFontSize="20"
                         LabelText="Cantidad" />
                 </StackLayout>
                 <StackLayout Padding="10">

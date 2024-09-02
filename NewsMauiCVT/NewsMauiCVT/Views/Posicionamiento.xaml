@@ -11,7 +11,7 @@
                 <Label Text="POSICIONAMIENTO" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="15"  BoxHeight="50" x:Name="txt_origen" Completed="Txt_origen_Completed" IsLabelFloating="False" 
+                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="20" TextFontSize="20"  BoxHeight="50" x:Name="txt_origen" Completed="Txt_origen_Completed" IsLabelFloating="False" 
                               BorderColor="Green" LabelColor="Green" Keyboard="Numeric">
                 </dxe:TextEdit>
                 <dxc:DXButton 
@@ -41,44 +41,50 @@
                        x:Name="lbl_codproducto"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
+                       TextColor="Blue"/>
+                <Label Text="" 
+                       x:Name="lbl_fechaProducto"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
                 <Label Text="" 
                        x:Name="lbl_producto"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
                 <Label Text="" 
                        x:Name="lbl_lote"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
                 <Label Text="" 
                        x:Name="lbl_cantidad"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
                 <Label Text="" 
                        x:Name="lbl_sitio"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
                 <Label Text="" 
                        x:Name="lbl_ubicacion"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
                 <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_destino" IsVisible="False" Completed="Txt_destino_Completed" IsLabelFloating="False" 
+                <dxe:TextEdit LabelText="Destino" LabelFontSize="20" TextFontSize="20"  BoxHeight="50" x:Name="txt_destino" IsVisible="False" Completed="Txt_destino_Completed" IsLabelFloating="False" 
                               BorderColor="Green" LabelColor="Green" Keyboard="Numeric" >
                 </dxe:TextEdit>
             </StackLayout>
@@ -87,17 +93,17 @@
                        x:Name="lbl_sitio_nuevo"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
                 <Label Text="" 
                        x:Name="lbl_ubicacion_nueva"
                        HorizontalOptions="Start"
                        VerticalOptions="Start" 
-                       FontSize="Small" 
+                       FontSize="Medium" 
                        TextColor="Blue"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="Confirma Destino" LabelFontSize="15"  BoxHeight="50" x:Name="txt_ConfirmaDestino" Completed="Txt_ConfirmaDestino_Completed" 
+                <dxe:TextEdit LabelText="Confirma Destino" LabelFontSize="20" TextFontSize="20"  BoxHeight="50" x:Name="txt_ConfirmaDestino" Completed="Txt_ConfirmaDestino_Completed" 
                       IsLabelFloating="False" BorderColor="Green" LabelColor="Green"                                
                      Keyboard="Numeric" >
                 </dxe:TextEdit>
