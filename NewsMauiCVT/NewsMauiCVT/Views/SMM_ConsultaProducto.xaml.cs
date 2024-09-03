@@ -47,6 +47,7 @@ public partial class SMM_ConsultaProducto : ContentPage
     }
     void ClearComponent()
     {
+        lblUnidades.Text = string.Empty;
         lblError2.IsVisible = false;
         lblError2.Text = string.Empty;
         txt_pallet.Text = string.Empty;

@@ -46,7 +46,6 @@ public partial class TransferenciasDetalle : ContentPage
             GvData.Columns["Package_ProductionDate"].Caption = "Fecha Producción";
             GvData.Columns["Package_ProductionDate"].Width = 110;
             string totalcoun = GvData.VisibleRowCount.ToString();
-            
         }
         else
         {
@@ -70,20 +69,22 @@ public partial class TransferenciasDetalle : ContentPage
 
                 DatosTransferencia dt = new DatosTransferencia();
                 int packageId = int.Parse(txt_pallet.Text);
+                bool resp = dt.InsertaTransferencia(transferId, packageId);
 
-                int resp = dt.InsertaTransferencia(transferId, packageId);
-
-                if (resp != 0)
+                if (resp)
                 {
                     lblConfirm.Text = "Pallet agregado correctamente";
                     lblConfirm.IsVisible = true;
+                    txt_pallet.Text = string.Empty;
+                    txt_pallet.Focus();
                 }
                 else
                 {
                     lblError.Text = "No se ha agregado Pallet";
                     lblError.IsVisible = true;
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                    DisplayAlert("Alerta", "Error al Registrar Favor Verificar", "Aceptar");
+                    txt_pallet.Text = string.Empty;
+                    txt_pallet.Focus();
                 }
             }
             else
@@ -101,18 +102,6 @@ public partial class TransferenciasDetalle : ContentPage
                 txt_pallet.Focus();
             });
         }
-    }
-    private void OnKeyDown()
-    {
-#if ANDROID
-        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
-        if (imm != null)
-        {
-            var activity = Platform.CurrentActivity;
-            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
-            imm.HideSoftInputFromWindow(wToken, 0);
-        }
-#endif
     }
     protected override bool OnBackButtonPressed()
     {

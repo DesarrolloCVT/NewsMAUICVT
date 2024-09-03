@@ -67,8 +67,8 @@ public partial class MenuPruebas : ContentPage
     }
     private void BntConsultaUbicacion_Clicked(object sender, EventArgs e)
     {
-        //Navigation.PushAsync(new ConsultaUbicacion() { Title = "Volver" });
-        Shell.Current.GoToAsync("Consulta");
+        Navigation.PushAsync(new ConsultaUbicacion() { Title = "Volver" });
+        //Shell.Current.GoToAsync("Consulta");
     }
     private void BtnPosicionamiento_Clicked(object sender, EventArgs e)
     {
