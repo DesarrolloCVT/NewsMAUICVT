@@ -25,13 +25,8 @@ public partial class Posicionamiento : ContentPage
         ClearComponent();
         SetFocusText();
 
-        /*Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
-
         #region Código para cargar página de Scan BarCode desde el teléfono.
-        if (DeviceInfo.Model != "MC33")
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
             btn_escanear.IsVisible = true;
             btn_escanear.IsEnabled = true;
@@ -172,7 +167,7 @@ public partial class Posicionamiento : ContentPage
                                 string fecha;
                                 DateTime date = DateTime.Now;
                                 date = (DateTime)p.Package_ProductionDate;
-                                fecha = date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                                fecha = date.ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
                                 lbl_fechaProducto.Text = "Fecha Producción: " + fecha;
                                 Console.WriteLine("fecha: " + fecha);
                                 lbl_lote.Text = "Lote: " + p.Package_Lot;
@@ -260,7 +255,7 @@ public partial class Posicionamiento : ContentPage
     }
     private void ClearComponent()
     {
-        if (DeviceInfo.Model != "MC33")
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
             if (txt_destino.IsVisible == false)
             {

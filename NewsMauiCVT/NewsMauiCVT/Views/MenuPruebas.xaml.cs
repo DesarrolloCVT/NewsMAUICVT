@@ -7,7 +7,6 @@ namespace NewsMauiCVT.Views;
 
 public partial class MenuPruebas : ContentPage
 {
-    public Shell shell;
     public MenuPruebas()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
@@ -16,12 +15,6 @@ public partial class MenuPruebas : ContentPage
         bntConsultaUbicacion.IsVisible = false;
         btnRepaletizado.IsVisible = false;
         bntTomaInventario.IsVisible = false;
-
-
-        /*shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
 
         lblNombre.Text = App.NombreUsuario.ToString();
         switch (App.idPerfil)
@@ -58,7 +51,7 @@ public partial class MenuPruebas : ContentPage
     }
     private void SetMobileScreen()
     {
-        if (!(DeviceInfo.Model == "MC33"))
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
 #pragma warning disable CS0618 // Type or member is obsolete
             GvGrid.VerticalOptions = LayoutOptions.CenterAndExpand;

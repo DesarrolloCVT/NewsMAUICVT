@@ -18,13 +18,8 @@ public partial class SMM_Posicionamiento : ContentPage
         LayoutOrigen.IsVisible = false;
         txt_origen.Focus();
 
-        Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;
-
         #region Código para cargar página de Scan BarCode desde el teléfono.
-        if (DeviceInfo.Model != "MC33")
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
             btn_escanear.IsVisible = true;
             btn_escanear.IsEnabled = true;
@@ -46,12 +41,6 @@ public partial class SMM_Posicionamiento : ContentPage
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
-
-        /*Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
-
     }
     private void SetFocusText()
     {

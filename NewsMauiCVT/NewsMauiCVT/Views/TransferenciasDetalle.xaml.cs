@@ -25,13 +25,13 @@ public partial class TransferenciasDetalle : ContentPage
         lblError.IsVisible = false;
         lblConfirm.IsVisible = false;
     }
-    private async void LoadData(string idPosicion)
+    private async void LoadData(string folio)
     {
-        DatosConsultaUbicacion dCu = new DatosConsultaUbicacion();
+        DetalleConsultaTransferencia dct = new DetalleConsultaTransferencia();
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-            DataTable dt = dCu.DetalleConsultaUbicacion(Convert.ToInt32(idPosicion));
+            DataTable dt = dct.DetalleConsultaTransferencias(int.Parse(folio));
             GvData.ItemsSource = dt;
             GvData.Columns["Package_SSCC"].Caption = "N° de Pallet";
             GvData.Columns["Package_SSCC"].Width = 110;

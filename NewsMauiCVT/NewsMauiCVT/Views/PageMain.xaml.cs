@@ -9,23 +9,6 @@ public partial class PageMain : FlyoutPage
         InitializeComponent();
         myPageMain();
     }
-    /*protected override void OnAppearing()
-    {
-        base.OnAppearing();
-
-        var menuButton = new ToolbarItem
-        {
-            Text = "Menu",
-            IconImageSource = "hamburger.png",
-            Order = ToolbarItemOrder.Primary,
-            Priority = 0
-        };
-        menuButton.Clicked += (s, e) =>
-        {
-            IsPresented = !IsPresented;
-        };
-        (Detail as NavigationPage).ToolbarItems.Add(menuButton);
-    }*/
     public void myPageMain()
     {
         Detail = new NavigationPage(new MenuPruebas());
@@ -69,8 +52,8 @@ public partial class PageMain : FlyoutPage
         List<Option> options1 = new List<Option>();
 
         options1.Add(new Option { page = new MenuPruebas { Title = "Menú" }, title = "Inicio", detail = "Inicio" /*image = "ic_ac_home.png" */});
-        
-        if (DeviceInfo.Model != "MC33")
+
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
             options1.Add(new Option { page = new GeoLoc() { Title = "Menú" }, title = "Localizacion", detail = "Test captura codigo cam" });
         }

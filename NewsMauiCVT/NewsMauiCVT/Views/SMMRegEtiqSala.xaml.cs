@@ -17,12 +17,6 @@ public partial class SMMRegEtiqSala : ContentPage
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
-
-        /*Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
-
     }
     private void SetFocusText()
     {

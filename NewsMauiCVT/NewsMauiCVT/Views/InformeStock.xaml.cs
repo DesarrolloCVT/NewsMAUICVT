@@ -12,24 +12,20 @@ public partial class InformeStock : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         CargaDatos();
-
-        
-        /*Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
     }
     protected override void OnAppearing()
     {
         #region Código para cargar página de Scan BarCode desde el teléfono.
         BarcodePage barcodePage = new BarcodePage();
         #endregion
+
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
         //GvDatos.IsVisible = false;
+
         #region Código para cargar página de Scan BarCode desde el teléfono.
-        if (DeviceInfo.Model != "MC33")
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
             btn_escanear.IsVisible = true;
             btn_escanear.IsEnabled = true;

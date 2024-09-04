@@ -30,7 +30,7 @@ namespace NewsMauiCVT
                 {
                     txt_version.Text = ("Versión 0.0.0");
                 }
-                if (!(DeviceInfo.Model == "MC33"))
+                if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
                 {
 #pragma warning disable CS0618 // Type or member is obsolete
                     SlStackLayout.VerticalOptions = LayoutOptions.CenterAndExpand;
@@ -97,16 +97,6 @@ namespace NewsMauiCVT
                                                 }
                                                 DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
                                                 await Navigation.PushAsync(new PageMain());
-                                                //await Shell.Current.GoToAsync("//DashBoard");
-                                                /* Código para implementar Navigation desde App / Shell / Navigation PAge
-
-                                                Routing.RegisterRoute("DashBoard", typeof(MenuPruebas));
-                                                await Shell.Current.GoToAsync("//DashBoard");
-                                                await Navigation.PushAsync(new MenuPruebas());
-                                                await Navigation.PushAsync(new FlyoutPagePrincipal());
-                                                await Shell.Current.GoToAsync("//MenuPruebas");
-
-                                                 */
                                                 txtUsuario.Text = string.Empty;
                                                 txtContraseña.Text = string.Empty;
 

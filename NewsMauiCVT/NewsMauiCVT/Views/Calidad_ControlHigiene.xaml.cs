@@ -15,11 +15,6 @@ public partial class Calidad_ControlHigiene : ContentPage
     {
         base.OnAppearing();
         ClearComponent();
-
-        /*Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
     }
     void ClearComponent()
     {

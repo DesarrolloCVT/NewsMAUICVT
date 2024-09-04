@@ -17,6 +17,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:TextEdit
                         x:Name="txt_pallet"
+                        Keyboard="Numeric"
                         BorderColor="Green"
                         BoxHeight="50"
                         Completed="Txt_pallet_Completed"

@@ -34,14 +34,9 @@ public partial class Repaletizado : ContentPage
         PreparePage();
         ClearComponent();
 
-        Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;
-
         #region Código para cargar página de Scan BarCode desde el teléfono.
         //Validacion para descartar el uso de la Pistola.
-        if (DeviceInfo.Model != "MC33")
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
             //Se hace visible boton escanear codigo
             btn_escanear.IsVisible = true;
@@ -529,7 +524,7 @@ public partial class Repaletizado : ContentPage
     }
     private void ClearComponent()
     {
-        if (DeviceInfo.Model != "MC33")
+        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
             if (!(picker.SelectedIndex == 1) && (string.IsNullOrEmpty(txtPosicion.Text)) )
             {

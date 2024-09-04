@@ -17,11 +17,6 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
         base.OnAppearing();
         ClearComponent();
         //GvDatos.IsVisible = false;
-
-        /*Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
     }
     void ClearComponent()
     {

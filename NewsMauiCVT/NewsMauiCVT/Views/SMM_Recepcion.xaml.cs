@@ -18,11 +18,6 @@ public partial class SMM_Recepcion : ContentPage
     {
         base.OnAppearing();
         ClearComponent();
-
-        /*Shell shell = new Shell();
-        Shell.SetFlyoutBehavior(this, FlyoutBehavior.Flyout);
-        shell.FlyoutHeaderBehavior = FlyoutHeaderBehavior.Fixed;
-        shell.FlyoutVerticalScrollMode = ScrollMode.Auto;*/
     }
     void ClearComponent()
     {
