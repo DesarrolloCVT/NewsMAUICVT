@@ -11,8 +11,18 @@
                 <Label Text="POSICIONAMIENTO" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="N° Pallet" LabelFontSize="20" TextFontSize="20"  BoxHeight="50" x:Name="txt_origen" Completed="Txt_origen_Completed" IsLabelFloating="False" 
-                              BorderColor="Green" LabelColor="Green" Keyboard="Numeric">
+                <dxe:TextEdit 
+                    LabelText="N° Pallet" 
+                    LabelFontSize="20" 
+                    TextFontSize="20"  
+                    BoxHeight="50"
+                    x:Name="txt_origen"
+                    Completed="Txt_origen_Completed"
+                    IsLabelFloating="False"
+                    BorderColor="Green"
+                    LabelColor="Green"
+                    Keyboard="{Null}"
+                    ClearIconVisibility="Never">
                 </dxe:TextEdit>
                 <dxc:DXButton 
                     Margin="25"
@@ -84,8 +94,19 @@
                 <Label x:Name="lblError2" Text="" IsVisible="False" TextColor="Red"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="Destino" LabelFontSize="20" TextFontSize="20"  BoxHeight="50" x:Name="txt_destino" IsVisible="False" Completed="Txt_destino_Completed" IsLabelFloating="False" 
-                              BorderColor="Green" LabelColor="Green" Keyboard="Numeric" >
+                <dxe:TextEdit 
+                    LabelText="Destino" 
+                    LabelFontSize="20" 
+                    TextFontSize="20"  
+                    BoxHeight="50" 
+                    x:Name="txt_destino" 
+                    IsVisible="False" 
+                    Completed="Txt_destino_Completed" 
+                    IsLabelFloating="False"
+                    BorderColor="Green" 
+                    LabelColor="Green" 
+                    Keyboard="{Null}"
+                    ClearIconVisibility="Never">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout Padding="40,0,20,0" x:Name="LayoutDestinoExistente">
@@ -103,9 +124,18 @@
                        TextColor="Blue"/>
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
-                <dxe:TextEdit LabelText="Confirma Destino" LabelFontSize="20" TextFontSize="20"  BoxHeight="50" x:Name="txt_ConfirmaDestino" Completed="Txt_ConfirmaDestino_Completed" 
-                      IsLabelFloating="False" BorderColor="Green" LabelColor="Green"                                
-                     Keyboard="Numeric" >
+                <dxe:TextEdit 
+                    LabelText="Confirma Destino" 
+                    LabelFontSize="20" 
+                    TextFontSize="20"  
+                    BoxHeight="50" 
+                    x:Name="txt_ConfirmaDestino" 
+                    Completed="Txt_ConfirmaDestino_Completed" 
+                    IsLabelFloating="False" 
+                    BorderColor="Green" 
+                    LabelColor="Green" 
+                    Keyboard="{Null}"
+                    ClearIconVisibility="Never">
                 </dxe:TextEdit>
             </StackLayout>
         </StackLayout>

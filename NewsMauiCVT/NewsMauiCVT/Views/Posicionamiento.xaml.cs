@@ -195,8 +195,10 @@ public partial class Posicionamiento : ContentPage
         {
             try
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                };
 
                 //ObtieneInfoLayout
                 var rest = ClientHttp.GetAsync("api/Bodega?CodLayoutInfo=" + Convert.ToInt32(txt_destino.Text)).Result;
@@ -234,7 +236,7 @@ public partial class Posicionamiento : ContentPage
                     }
                     else
                     {
-                        DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                         // btn_generar.IsEnabled = false;
                         txt_destino.Text = string.Empty;
                         txt_destino.Focus();
@@ -245,11 +247,14 @@ public partial class Posicionamiento : ContentPage
                     }
                 }
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("Txt_destino_Completed: " + ex.ToString());
+            }
         }
         else
         {
-            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }

@@ -10,8 +10,15 @@
             </StackLayout>
             <StackLayout Margin="25,0" Padding="10">
                 <dxe:TextEdit LabelText="UBICACION" 
-                              LabelFontSize="20"  TextFontSize="20" BoxHeight="50" x:Name="txtPosicion" Completed="TxtPosicion_Completed" 
-                        IsLabelFloating="False" BorderColor="Green" LabelColor="Green">
+                              LabelFontSize="20"
+                              TextFontSize="20"
+                              BoxHeight="50"
+                              x:Name="txtPosicion"
+                              Completed="TxtPosicion_Completed"
+                              IsLabelFloating="False"
+                              BorderColor="Green"
+                              LabelColor="Green"
+                              Focused="txtPosicion_Focused">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">

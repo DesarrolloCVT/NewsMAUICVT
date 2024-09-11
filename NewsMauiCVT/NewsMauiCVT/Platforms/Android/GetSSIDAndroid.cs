@@ -12,7 +12,7 @@ using NewsMauiCVT.Platforms.Android;
 using AndroidApp = Android.App.Application;
 
 namespace NewsMauiCVT.Platforms.Android
-{   
+{
     public class GetSSIDAndroid : IGetSSID
     {
         public string GetSSID()
@@ -25,9 +25,21 @@ namespace NewsMauiCVT.Platforms.Android
                                 throw new InvalidOperationException();
                 return wifiSSID;
                 // Now you have the SSID!
-            } else {
+            }
+            else
+            {
                 return "NULL";
             }
+        }
+
+        public bool IsConnectedWifi()
+        {
+            WifiManager wifiManager = AndroidApp.Context.GetSystemService(Context.WifiService) as WifiManager;
+
+            if(wifiManager.IsWifiEnabled)
+            return true;
+            else
+                return false;
         }
     }
 }

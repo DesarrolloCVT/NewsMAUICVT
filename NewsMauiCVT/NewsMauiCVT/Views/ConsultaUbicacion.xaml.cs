@@ -107,4 +107,22 @@ public partial class ConsultaUbicacion : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
+    private void txtPosicion_Focused(object sender, FocusEventArgs e)
+    {
+        _ = Task.Delay(300).ContinueWith(t => {
+            OnKeyDown();
+        });
+    }
+    private void OnKeyDown()
+    {
+#if ANDROID
+        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
+        if (imm != null)
+        {
+            var activity = Platform.CurrentActivity;
+            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
+            imm.HideSoftInputFromWindow(wToken, 0);
+        }
+#endif
+    }
 }

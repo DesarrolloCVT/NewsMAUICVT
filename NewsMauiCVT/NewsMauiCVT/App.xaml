@@ -12,18 +12,4 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-    <Application.MainPage>
-        <Shell FlyoutBehavior="Flyout" FlyoutHeaderBehavior="Fixed" FlyoutVerticalScrollMode="Auto">
-            <FlyoutItem Title="Informe de Stock">
-                <ShellContent ContentTemplate="{DataTemplate local:InformeStock}"/>
-            </FlyoutItem>
-            <FlyoutItem Title="Inicio">
-                <ShellContent ContentTemplate="{DataTemplate local:MenuPruebas}"/>
-            </FlyoutItem>
-            <FlyoutItem Title="Repaletizado">
-                <ShellContent ContentTemplate="{DataTemplate local:Repaletizado}"/>
-            </FlyoutItem>
-            
-        </Shell>
-    </Application.MainPage>
 </Application>

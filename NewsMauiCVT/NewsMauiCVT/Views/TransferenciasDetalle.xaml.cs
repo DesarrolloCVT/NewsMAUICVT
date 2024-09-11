@@ -18,6 +18,7 @@ public partial class TransferenciasDetalle : ContentPage
         base.OnAppearing();
         SetFocusText();
         ClearComponent();
+        LoadData(transferId);
     }
     private void ClearComponent()
     {
@@ -25,24 +26,28 @@ public partial class TransferenciasDetalle : ContentPage
         lblError.IsVisible = false;
         lblConfirm.IsVisible = false;
     }
-    private async void LoadData(string folio)
+    private async void LoadData(int folio)
     {
         DetalleConsultaTransferencia dct = new DetalleConsultaTransferencia();
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-            DataTable dt = dct.DetalleConsultaTransferencias(int.Parse(folio));
+            DataTable dt = dct.DetalleConsultaTransferencias(folio);
             GvData.ItemsSource = dt;
+            GvData.Columns["Transfer_Id"].Caption = "Folio";
+            GvData.Columns["Transfer_Id"].Width = 110;
             GvData.Columns["Package_SSCC"].Caption = "N° de Pallet";
             GvData.Columns["Package_SSCC"].Width = 110;
             GvData.Columns["ArticleProvider_CodClient"].Caption = "Cod. Producto";
             GvData.Columns["ArticleProvider_CodClient"].Width = 110;
+            GvData.Columns["Site_ShortDescription"].Caption = "Sitio";
+            GvData.Columns["Site_ShortDescription"].Width = 110;
             GvData.Columns["Package_Quantity"].Caption = "Cantidad";
             GvData.Columns["Package_Quantity"].Width = 110;
             GvData.Columns["ArticleProvider_Description"].Caption = "Producto";
             GvData.Columns["ArticleProvider_Description"].Width = 110;
-            GvData.Columns["Staff_Name"].Caption = "Usuario";
-            GvData.Columns["Staff_Name"].Width = 110;
+            GvData.Columns["Layout_ShortDescription"].Caption = "Ubicacion";
+            GvData.Columns["?"].Width = 110;
             GvData.Columns["Package_ProductionDate"].Caption = "Fecha Producción";
             GvData.Columns["Package_ProductionDate"].Width = 110;
             string totalcoun = GvData.VisibleRowCount.ToString();
@@ -73,6 +78,7 @@ public partial class TransferenciasDetalle : ContentPage
 
                 if (resp)
                 {
+                    LoadData(transferId);
                     lblConfirm.Text = "Pallet agregado correctamente";
                     lblConfirm.IsVisible = true;
                     txt_pallet.Text = string.Empty;
