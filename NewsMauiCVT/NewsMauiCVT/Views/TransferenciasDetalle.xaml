@@ -20,7 +20,8 @@
                 <Label x:Name="lblError" FontSize="Medium" Text="" IsVisible="False" TextColor="Red" />
             </StackLayout>
             <StackLayout>
-                <StackLayout>
+                <Label x:Name="lblCantPallets" HorizontalOptions="Center" FontSize="Medium"/>
+                <StackLayout Padding="0,15,0,0">
                     <dxg:DataGridView x:Name="GvData">
                         <dxg:DataGridView.ColumnHeaderAppearance>
                             <dxg:ColumnHeaderAppearance BackgroundColor="#3399ff" FontSize="12" FontColor="White" FontAttributes="Bold" />

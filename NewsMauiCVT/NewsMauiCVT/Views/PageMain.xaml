@@ -12,7 +12,7 @@
                 <Grid>
                     <Image Source="logregister.jpg" Aspect="Fill"/>
                     <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Image Source="logocvt.png"></Image>
+                        <Image Margin="0,0,0,0" Source="logocvt.png" BackgroundColor="Transparent"></Image>
                         <Label Text="" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" x:Name="lblNombre"/>
                     </StackLayout>
                 </Grid>

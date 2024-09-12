@@ -89,8 +89,9 @@
 		<MauiIcon Include="Resources\AppIcon\logo.png" Color="White" ForegroundScale="0.54" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
+		<MauiSplashScreen Include="Resources\Splash\logosplash.svg" Color="#FFFFFF" BaseSize="128,128">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiSplashScreen>
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
@@ -313,6 +314,12 @@
 	  <MauiXaml Update="Views\TrazabilidadPallet.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\Splash\logosplash.svg" Color="#FFFFFF" BaseSize="128,128">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionNewsMauiCVTHideInfoBar="True" /></VisualStudio></ProjectExtensions>

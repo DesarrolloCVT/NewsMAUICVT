@@ -17,7 +17,7 @@ namespace NewsMauiCVT.Datos
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("https://localhost:44305/") //new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
                 var rest2 = ClientHttp.GetAsync("api/Bodega?transferId=" + transferId).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;

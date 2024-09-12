@@ -1,4 +1,4 @@
-using Microsoft.Maui.Platform;
+ï»¿using Microsoft.Maui.Platform;
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using System.Data;
@@ -18,7 +18,6 @@ public partial class TransferenciasDetalle : ContentPage
         base.OnAppearing();
         SetFocusText();
         ClearComponent();
-        LoadData(transferId);
     }
     private void ClearComponent()
     {
@@ -28,34 +27,42 @@ public partial class TransferenciasDetalle : ContentPage
     }
     private async void LoadData(int folio)
     {
-        DetalleConsultaTransferencia dct = new DetalleConsultaTransferencia();
-        var ACC = Connectivity.NetworkAccess;
-        if (ACC == NetworkAccess.Internet)
+        try
         {
-            DataTable dt = dct.DetalleConsultaTransferencias(folio);
-            GvData.ItemsSource = dt;
-            GvData.Columns["Transfer_Id"].Caption = "Folio";
-            GvData.Columns["Transfer_Id"].Width = 110;
-            GvData.Columns["Package_SSCC"].Caption = "N° de Pallet";
-            GvData.Columns["Package_SSCC"].Width = 110;
-            GvData.Columns["ArticleProvider_CodClient"].Caption = "Cod. Producto";
-            GvData.Columns["ArticleProvider_CodClient"].Width = 110;
-            GvData.Columns["Site_ShortDescription"].Caption = "Sitio";
-            GvData.Columns["Site_ShortDescription"].Width = 110;
-            GvData.Columns["Package_Quantity"].Caption = "Cantidad";
-            GvData.Columns["Package_Quantity"].Width = 110;
-            GvData.Columns["ArticleProvider_Description"].Caption = "Producto";
-            GvData.Columns["ArticleProvider_Description"].Width = 110;
-            GvData.Columns["Layout_ShortDescription"].Caption = "Ubicacion";
-            GvData.Columns["?"].Width = 110;
-            GvData.Columns["Package_ProductionDate"].Caption = "Fecha Producción";
-            GvData.Columns["Package_ProductionDate"].Width = 110;
-            string totalcoun = GvData.VisibleRowCount.ToString();
+            DetalleConsultaTransferencia dct = new DetalleConsultaTransferencia();
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet)
+            {
+                DataTable dt = dct.DetalleConsultaTransferencias(folio);
+                GvData.ItemsSource = dt;
+                GvData.Columns["Transfer_Id"].Caption = "Folio";
+                GvData.Columns["Transfer_Id"].Width = 110;
+                GvData.Columns["Package_SSCC"].Caption = "NÂ° de Pallet";
+                GvData.Columns["Package_SSCC"].Width = 110;
+                GvData.Columns["ArticleProvider_CodClient"].Caption = "Cod. Producto";
+                GvData.Columns["ArticleProvider_CodClient"].Width = 110;
+                GvData.Columns["ArticleProvider_Description"].Caption = "Producto";
+                GvData.Columns["ArticleProvider_Description"].Width = 110;
+                GvData.Columns["Package_Quantity"].Caption = "Cantidad";
+                GvData.Columns["Package_Quantity"].Width = 110;
+                GvData.Columns["Site_ShortDescription"].Caption = "Sitio";
+                GvData.Columns["Site_ShortDescription"].Width = 110;
+                GvData.Columns["Package_ProductionDate"].Caption = "Fecha ProducciÃ³n";
+                GvData.Columns["Package_ProductionDate"].Width = 110;
+                GvData.Columns["Layout_ShortDescription"].Caption = "Ubicacion";
+                GvData.Columns["Layout_ShortDescription"].Width = 110;
+                string totalcoun = GvData.VisibleRowCount.ToString();
+                lblCantPallets.Text = "Cantidad Pallets: " + totalcoun;
+            }
+            else
+            {
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            }
         }
-        else
+        catch (Exception ex) 
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            Console.WriteLine("LoadData: " + ex.ToString());
         }
     }
     private void SetFocusText()
@@ -78,11 +85,11 @@ public partial class TransferenciasDetalle : ContentPage
 
                 if (resp)
                 {
-                    LoadData(transferId);
                     lblConfirm.Text = "Pallet agregado correctamente";
                     lblConfirm.IsVisible = true;
                     txt_pallet.Text = string.Empty;
                     txt_pallet.Focus();
+                    LoadData(transferId);
                 }
                 else
                 {
@@ -91,6 +98,7 @@ public partial class TransferenciasDetalle : ContentPage
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                     txt_pallet.Text = string.Empty;
                     txt_pallet.Focus();
+                    LoadData(transferId);
                 }
             }
             else
@@ -102,7 +110,7 @@ public partial class TransferenciasDetalle : ContentPage
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            lblError.Text = "Seleccione un Pallet válido";
+            lblError.Text = "Seleccione un NÂ° de Pallet vÃ¡lido";
             lblError.IsVisible = true;
             _ = Task.Delay(100).ContinueWith(t => {
                 txt_pallet.Focus();
