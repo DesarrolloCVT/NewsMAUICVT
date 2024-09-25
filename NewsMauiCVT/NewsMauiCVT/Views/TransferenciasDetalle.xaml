@@ -24,11 +24,21 @@
                 <StackLayout Padding="0,15,0,0">
                     <dxg:DataGridView x:Name="GvData">
                         <dxg:DataGridView.ColumnHeaderAppearance>
-                            <dxg:ColumnHeaderAppearance BackgroundColor="#3399ff" FontSize="12" FontColor="White" FontAttributes="Bold" />
+                            <dxg:ColumnHeaderAppearance 
+                                BackgroundColor="#3399ff"
+                                FontSize="12"
+                                FontColor="White"
+                                FontAttributes="Bold" />
                         </dxg:DataGridView.ColumnHeaderAppearance>
                         <dxg:DataGridView.CellAppearance>
-                            <dxg:CellAppearance Padding="5" BackgroundColor="#333333" BorderColor="#515151" FontSize="14" FontColor="White" 
-                               SelectionColor="#f78a09" SelectionFontColor="Black"/>
+                            <dxg:CellAppearance 
+                                Padding="5"
+                                BackgroundColor="#333333"
+                                BorderColor="#515151"
+                                FontSize="14"
+                                FontColor="White" 
+                                SelectionColor="#f78a09"
+                                SelectionFontColor="Black"/>
                         </dxg:DataGridView.CellAppearance>
                     </dxg:DataGridView>
                 </StackLayout>

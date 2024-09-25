@@ -13,14 +13,12 @@ namespace NewsMauiCVT.Datos
     public class DatosTrazabilidadPallet
     {
         public DatosTrazabilidadPallet() { }
-
         public List<TrazabilidadPaletClass> BuscaTraabilidadPallet(int npallet)
         {
             List<TrazabilidadPaletClass> dt = new List<TrazabilidadPaletClass>();
 
             try
             {
-
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
 
@@ -28,26 +26,19 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                 dt = JsonConvert.DeserializeObject<List<TrazabilidadPaletClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
-
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine("BuscaTraabilidadPallet: " + ex.Message);
             }
-
             return dt;
-
-
         }
-
         public DataTable DetalleTrazabilidadPallet(int npallet)
         {
             DataTable dt = new DataTable();
 
             try
             {
-
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
 
@@ -56,11 +47,9 @@ namespace NewsMauiCVT.Datos
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
                                 throw new InvalidOperationException();
             }
-            catch
-            {
-
+            catch (Exception ex) {
+                Console.WriteLine("DetalleTrazabilidadPallet: " + ex.Message);
             }
-
             return dt;
         }
     }

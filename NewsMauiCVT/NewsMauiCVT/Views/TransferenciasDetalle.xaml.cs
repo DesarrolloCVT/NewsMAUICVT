@@ -73,44 +73,59 @@ public partial class TransferenciasDetalle : ContentPage
     }
     private void txt_pallet_Completed(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(txt_pallet.Text))
+        DatosPallets dp = new DatosPallets();
+        List<PalletClass> list = dp.ObtieneInfoPallet(txt_pallet.Text);
+
+        if (list.Count > 0) 
         {
-            var ACC = Connectivity.NetworkAccess;
-            if (ACC == NetworkAccess.Internet)
+            if (!string.IsNullOrEmpty(txt_pallet.Text))
             {
-
-                DatosTransferencia dt = new DatosTransferencia();
-                int packageId = int.Parse(txt_pallet.Text);
-                bool resp = dt.InsertaTransferencia(transferId, packageId);
-
-                if (resp)
+                var ACC = Connectivity.NetworkAccess;
+                if (ACC == NetworkAccess.Internet)
                 {
-                    lblConfirm.Text = "Pallet agregado correctamente";
-                    lblConfirm.IsVisible = true;
-                    txt_pallet.Text = string.Empty;
-                    txt_pallet.Focus();
-                    LoadData(transferId);
+                    DatosTransferencia dt = new DatosTransferencia();
+                    int packageId = int.Parse(txt_pallet.Text);
+                    bool resp = dt.InsertaTransferencia(transferId, packageId);
+
+                    if (resp)
+                    {
+                        lblConfirm.Text = "Pallet agregado correctamente ";
+                        lblConfirm.IsVisible = true;
+                        txt_pallet.Text = string.Empty;
+                        txt_pallet.Focus();
+                        LoadData(transferId);
+                    }
+                    else
+                    {
+                        lblError.Text = "No se ha agregado Pallet ";
+                        lblError.IsVisible = true;
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                        txt_pallet.Text = string.Empty;
+                        txt_pallet.Focus();
+                        LoadData(transferId);
+                    }
                 }
                 else
                 {
-                    lblError.Text = "No se ha agregado Pallet";
-                    lblError.IsVisible = true;
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                    txt_pallet.Text = string.Empty;
-                    txt_pallet.Focus();
-                    LoadData(transferId);
+                    DisplayAlert("Alerta", "Debe Conectarse a la Red Local ", "Aceptar");
                 }
             }
             else
             {
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+                lblError.Text = "Seleccione un N° de Pallet válido ";
+                lblError.IsVisible = true;
+                _ = Task.Delay(100).ContinueWith(t => {
+                    txt_pallet.Focus();
+                });
             }
         }
         else
         {
+            txt_pallet.Text = string.Empty;
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            lblError.Text = "Seleccione un N° de Pallet válido";
+            lblError.Text = "Seleccione un N° de Pallet válido ";
             lblError.IsVisible = true;
             _ = Task.Delay(100).ContinueWith(t => {
                 txt_pallet.Focus();

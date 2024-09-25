@@ -48,7 +48,8 @@
                         x:Name="lblError"
                         IsVisible="False"
                         Text=""
-                        TextColor="Red" />
+                        TextColor="Red"
+                        HorizontalTextAlignment="Center"/>
                 </StackLayout>
                 <StackLayout Padding="10,5,10,5">
                     <Grid
@@ -118,19 +119,19 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             FontAttributes="Bold"
-                            Text="" />
+                            Text=""/>
                         <Label
                             x:Name="lblProducto"
                             Grid.Row="1"
                             Grid.Column="0"
                             FontAttributes="Bold"
-                            Text="" />
+                            Text=""/>
                         <Label
                             x:Name="lblBodega"
                             Grid.Row="2"
                             Grid.Column="0"
                             FontAttributes="Bold"
-                            Text="" />
+                            Text=""/>
                     </Grid>
                 </StackLayout>
                 <StackLayout Margin="0,10,0,0">

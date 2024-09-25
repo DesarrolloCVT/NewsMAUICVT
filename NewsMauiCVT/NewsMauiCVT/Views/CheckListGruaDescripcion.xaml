@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMauiCVT.Views.CheckListGruaDescripcion">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="0,0,0,25">
+                <Label 
+                    Text="Descripcion"
+                    FontSize="Title"
+                    TextColor="Black"
+                    HorizontalOptions="CenterAndExpand"
+                    />
+            </StackLayout>
+            <StackLayout>
+                <StackLayout >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Margin="0,0,0,15" Grid.Row="0" Grid.Column="1" Text="Buen Estado"/>
+                        <Label Margin="0,0,0,15" Grid.Row="0" Grid.Column="2" Text="Mal Estado" />
+                        <Label Margin="10,10,0,0" Grid.Row="1" Grid.Column="0" Text="Luces"/>
+                        <Label Margin="10,10,0,0" Grid.Row="2" Grid.Column="0" Text="Arranque Motor" />
+                        <Label Margin="10,10,0,0" Grid.Row="3" Grid.Column="0" Text="Frenos"/>
+                        <Label Margin="10,10,0,0" Grid.Row="4" Grid.Column="0" Text="Fuga Agua o Aceite"/>
+                        <Label Margin="10,10,0,0" Grid.Row="5" Grid.Column="0" Text="Dirección"/>
+                        <Label Margin="10,10,0,0" Grid.Row="6" Grid.Column="0" Text="Transmisión"/>
+                        <Label Margin="10,10,0,0" Grid.Row="7" Grid.Column="0" Text="Escalera de acceso o pasamanos"/>
+                        <Label Margin="10,10,0,0" Grid.Row="8" Grid.Column="0" Text="Bocina"/>
+                        <Label Margin="10,10,0,0" Grid.Row="9" Grid.Column="0" Text="Alarma de retroceso"/>
+                        <Label Margin="10,10,0,0" Grid.Row="10" Grid.Column="0" Text="Espejos retrovisores"/>
+                        <Label Margin="10,10,0,0" Grid.Row="11" Grid.Column="0" Text="Tablero de datos"/>
+                        <Label Margin="10,10,0,0" Grid.Row="12" Grid.Column="0" Text="Extintor"/>
+                        <Label Margin="10,10,0,0" Grid.Row="13" Grid.Column="0" Text="Bateria"/>
+                        <Label Margin="10,10,0,0" Grid.Row="14" Grid.Column="0" Text="Asiento"/>
+                        <Label Margin="10,10,0,0" Grid.Row="15" Grid.Column="0" Text="Cinturon de seguridad"/>
+                        <Label Margin="10,10,0,0" Grid.Row="16" Grid.Column="0" Text="Baliza, Pertiga"/>
+                        <Label Margin="10,10,0,0" Grid.Row="17" Grid.Column="0" Text="Neumáticos"/>
+                        <Label Margin="10,10,0,0" Grid.Row="18" Grid.Column="0" Text="Llantas, Tuercas"/>
+                        <Label Margin="10,10,0,0" Grid.Row="19" Grid.Column="0" Text="Cadenas de Torre"/>
+                        <Label Margin="10,10,0,0" Grid.Row="20" Grid.Column="0" Text="Uñas Horquilla"/>
+                        <Label Margin="10,10,0,0" Grid.Row="21" Grid.Column="0" Text="Soporte de Cilindro Elevador"/>
+                        <Label Margin="10,10,0,0" Grid.Row="22" Grid.Column="0" Text="Flexible Polea y Rodamiento"/>
+                        <Label Margin="10,10,0,0" Grid.Row="23" Grid.Column="0" Text="Seguro de uñas horquilla"/>
+                        <Label Margin="10,10,0,0" Grid.Row="24" Grid.Column="0" Text="Punto de bloqueo"/>
+
+                        <CheckBox Grid.Row="1" Grid.Column="1" x:Name="cbxLucesSi" CheckedChanged="cbxLucesSi_CheckedChanged" ></CheckBox>
+                        <CheckBox Grid.Row="2" Grid.Column="1" x:Name="cbxMotorSi" CheckedChanged="cbxMotorSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="3" Grid.Column="1" x:Name="cbxHidraulicoSi" CheckedChanged="cbxHidraulicoSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="4" Grid.Column="1" x:Name="cbxFugasSi" CheckedChanged="cbxFugasSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="5" Grid.Column="1" x:Name="cbxDireccionSi" CheckedChanged="cbxDireccionSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="6" Grid.Column="1" x:Name="cbxTransmisionSi" CheckedChanged="cbxTransmisionSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="7" Grid.Column="1" x:Name="cbxEscaleraSi" CheckedChanged="cbxEscaleraSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="8" Grid.Column="1" x:Name="cbxBocinaSi" CheckedChanged="cbxBocinaSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="9" Grid.Column="1" x:Name="cbxAlarmaSi" CheckedChanged="cbxAlarmaSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="10" Grid.Column="1" x:Name="cbxEspejosSi" CheckedChanged="cbxEspejosSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="11" Grid.Column="1" x:Name="cbxTableroSi" CheckedChanged="cbxTableroSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="12" Grid.Column="1" x:Name="cbxExtintorSi" CheckedChanged="cbxExtintorSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="13" Grid.Column="1" x:Name="cbxBateriaSi" CheckedChanged="cbxBateriaSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="14" Grid.Column="1" x:Name="cbxAsientoSi" CheckedChanged="cbxAsientoSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="15" Grid.Column="1" x:Name="cbxCinturonSi" CheckedChanged="cbxCinturonSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="16" Grid.Column="1" x:Name="cbxBalizaSi" CheckedChanged="cbxBalizaSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="17" Grid.Column="1" x:Name="cbxNeumaticosSi" CheckedChanged="cbxNeumaticosSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="18" Grid.Column="1" x:Name="cbxLlantasSi" CheckedChanged="cbxLlantasSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="19" Grid.Column="1" x:Name="cbxCadenasSi" CheckedChanged="cbxCadenasSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="20" Grid.Column="1" x:Name="cbxUñasHorquillaSi" CheckedChanged="cbxUñasHorquillaSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="21" Grid.Column="1" x:Name="cbxSoporteCilindroSi" CheckedChanged="cbxSoporteCilindroSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="22" Grid.Column="1" x:Name="cbxFlexibleSi" CheckedChanged="cbxFlexibleSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="23" Grid.Column="1" x:Name="cbxSeguroHorquillaSi" CheckedChanged="cbxSeguroHorquillaSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="24" Grid.Column="1" x:Name="cbxPuntoDeBloqueoSi" CheckedChanged="cbxPuntoDeBloqueoSi_CheckedChanged"></CheckBox>
+                        
+                        
+                        
+                        <CheckBox Grid.Row="1" Grid.Column="2" x:Name="cbxLucesNo" CheckedChanged="cbxLucesNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="2" Grid.Column="2" x:Name="cbxMotorNo" CheckedChanged="cbxMotorNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="3" Grid.Column="2" x:Name="cbxHidraulicoNo" CheckedChanged="cbxHidraulicoNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="4" Grid.Column="2" x:Name="cbxFugasNo" CheckedChanged="cbxFugasNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="5" Grid.Column="2" x:Name="cbxDireccionNo" CheckedChanged="cbxDireccionNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="6" Grid.Column="2" x:Name="cbxTransmisionNo" CheckedChanged="cbxTransmisionNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="7" Grid.Column="2" x:Name="cbxEscaleraNo" CheckedChanged="cbxEscaleraNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="8" Grid.Column="2" x:Name="cbxBocinaNo" CheckedChanged="cbxBocinaNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="9" Grid.Column="2" x:Name="cbxAlarmaNo" CheckedChanged="cbxAlarmaNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="10" Grid.Column="2" x:Name="cbxEspejosNo" CheckedChanged="cbxEspejosNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="11" Grid.Column="2" x:Name="cbxTableroNo" CheckedChanged="cbxTableroNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="12" Grid.Column="2" x:Name="cbxExtintorNo" CheckedChanged="cbxExtintorNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="13" Grid.Column="2" x:Name="cbxBateriaNo" CheckedChanged="cbxBateriaNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="14" Grid.Column="2" x:Name="cbxAsientoNo" CheckedChanged="cbxAsientoNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="15" Grid.Column="2" x:Name="cbxCinturonNo" CheckedChanged="cbxCinturonNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="16" Grid.Column="2" x:Name="cbxBalizaNo" CheckedChanged="cbxBalizaNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="17" Grid.Column="2" x:Name="cbxNeumaticosNo" CheckedChanged="cbxNeumaticosNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="18" Grid.Column="2" x:Name="cbxLlantasNo" CheckedChanged="cbxLlantasNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="19" Grid.Column="2" x:Name="cbxCadenasNo" CheckedChanged="cbxCadenasNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="20" Grid.Column="2" x:Name="cbxUñasHorquillaNo" CheckedChanged="cbxUñasHorquillaNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="21" Grid.Column="2" x:Name="cbxSoporteCilindroNo" CheckedChanged="cbxSoporteCilindroNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="22" Grid.Column="2" x:Name="cbxFlexibleNo" CheckedChanged="cbxFlexibleNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="23" Grid.Column="2" x:Name="cbxSeguroHorquillaNo" CheckedChanged="cbxSeguroHorquillaNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="24" Grid.Column="2" x:Name="cbxPuntoDeBloqueoNo" CheckedChanged="cbxPuntoDeBloqueoNo_CheckedChanged"></CheckBox>
+
+                    </Grid>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout Padding="20,10,20,10">
+                        <Button 
+                            x:Name="btnSiguiente"
+                            Text="Siguiente"
+                            BackgroundColor="ForestGreen"
+                            CornerRadius="20"
+                            TextColor="White"
+                            Clicked="btnSiguiente_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+    

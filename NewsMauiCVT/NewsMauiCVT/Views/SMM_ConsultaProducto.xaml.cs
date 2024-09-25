@@ -60,21 +60,26 @@ public partial class SMM_ConsultaProducto : ContentPage
         DatosProductosSMM dti = new DatosProductosSMM();
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
-        {
+        {   
             string codpro = dti.ValidaProductoSMM(txt_pallet.Text);
             if (txt_pallet.Text.Equals(string.Empty))
             {
-                lblError2.Text = "ingrese Codigo Producto";
-                lblError2.IsVisible = true;
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                txt_pallet.Focus();
+                lblError2.Text = "Ingrese código producto";
+                lblError2.IsVisible = true;
+                _ = Task.Delay(150).ContinueWith(t => {
+                    txt_pallet.Focus();
+                });
             }
             else if (codpro.Equals(""))
             {
-                lblError2.IsVisible = true;
-                txt_pallet.Focus();
-                lblError2.Text = "Cod.Prodcuto No Existe";
+                ClearComponent();
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                lblError2.IsVisible = true;
+                lblError2.Text = "Cod.Prodcuto no Existe ";
+                _ = Task.Delay(150).ContinueWith(t => {
+                    txt_pallet.Focus();
+                });
             }
             else
             {
@@ -100,16 +105,20 @@ public partial class SMM_ConsultaProducto : ContentPage
                         lblEstado.TextColor = Colors.Red;
                         lblEstado.Text = "Estado :" + t.Estado;
                     }
-                }
 
-                lblError2.Text = string.Empty;
-                lblError2.IsVisible = false;
+                    lblError2.Text = string.Empty;
+                    lblError2.IsVisible = false;
+                    txt_pallet.Text = string.Empty;
+                    _ = Task.Delay(150).ContinueWith(t => {
+                        txt_pallet.Focus();
+                    });
+                }
             }
         }
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            DisplayAlert("Alerta", "Debe Conectarse a la Red Local ", "Aceptar");
         }
     }
     private void Btn_Limpiar_Clicked(object sender, EventArgs e)

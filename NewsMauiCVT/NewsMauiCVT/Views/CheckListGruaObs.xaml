@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             x:Class="NewsMauiCVT.Views.CheckListGruaObs">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="0,0,0,25">
+                <Label 
+                    Text="Observaciones Generales"
+                    FontSize="Title"
+                    TextColor="Black"
+                    HorizontalOptions="CenterAndExpand"
+                    />
+            </StackLayout>
+            <StackLayout>
+                <Editor 
+                    x:Name="txtObservaciones"
+                    Margin="20,0,20,0"
+                    Placeholder="Ingresa tu observación aquí...."
+                    HeightRequest="400">
+                </Editor>
+            </StackLayout>
+            <StackLayout Padding="20,10,20,10">
+                <Button 
+                    x:Name="btnEnviar"
+                    Text="Enviar"
+                    BackgroundColor="ForestGreen"
+                    CornerRadius="20"
+                    TextColor="White"
+                    Clicked="btnEnviar_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

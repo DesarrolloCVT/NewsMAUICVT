@@ -32,10 +32,8 @@ namespace NewsMauiCVT.Datos
         public List<ValidadorProductosSMMClass> ListDatoProductosSMMValida(string nBarra)
         {
             List<ValidadorProductosSMMClass> dt = new List<ValidadorProductosSMMClass>();
-
             try
             {
-
                 HttpClient ClientHttp = new HttpClient();
                 ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
 
@@ -43,16 +41,12 @@ namespace NewsMauiCVT.Datos
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                 dt = JsonConvert.DeserializeObject<List<ValidadorProductosSMMClass>>(resultadoStr) ??
                                 throw new InvalidOperationException();
-
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine("ListDatoProductosSMMValida: " + ex.Message);
             }
-
             return dt;
-
         }
     }
 }

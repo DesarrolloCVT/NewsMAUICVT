@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             x:Class="NewsMauiCVT.Views.CheckListGrua">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="20,0,0,0">
+                <Label
+                    Text="CHECK LIST DE GRUA"
+                    TextColor="Black"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Title"/>
+            </StackLayout>
+            <StackLayout Padding="0,40,0,15">
+                <Label 
+                    Text="DATOS de GRÚA"
+                    TextColor="Black"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Subtitle"/>
+            </StackLayout>
+            <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
+                <dxe:ComboBoxEdit
+                    x:Name="cboNumGrua"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="numGrua"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="False"
+                    IsLabelFloating="True"
+                    ItemsSource="{Binding}"
+                    LabelColor="Green"
+                    LabelText="Número de Grúa"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    SelectionChanged="cboNumGrua_SelectedIndexChanged"
+                    TextFontSize="20"
+                    ValueMember="numGrua">
+                <dxe:ComboBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Label
+                                FontAttributes="Bold"
+                                Padding="10"
+                                Text="{Binding numGrua}" />
+                        </Grid>
+                    </DataTemplate>
+                </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
+                <dxe:ComboBoxEdit
+                    x:Name="cboAreaTrabajo"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="area"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="False"
+                    IsLabelFloating="True"
+                    ItemsSource="{Binding}"
+                    LabelColor="Green"
+                    LabelText="Área de trabajo"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    SelectionChanged="CboAreaTrabajo_SelectedIndexChanged"
+                    TextFontSize="20"
+                    ValueMember="area">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding area}" />
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
+                <dxe:ComboBoxEdit
+                    x:Name="cboTipoMaquina"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="tipoGrua"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="False"
+                    IsLabelFloating="True"
+                    ItemsSource="{Binding}"
+                    LabelColor="Green"
+                    LabelText="Tipo de maquina"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    SelectionChanged="cboTipoMaquina_SelectedIndexChanged"
+                    TextFontSize="20"
+                    ValueMember="tipoGrua">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding tipoGrua}" />
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
+                <dxe:ComboBoxEdit
+                    x:Name="cboTurno"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="turnos"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="False"
+                    IsLabelFloating="True"
+                    LabelColor="Green"
+                    LabelText="Turno"
+                    ItemsSource="{Binding}"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    SelectionChanged="cboTurno_SelectedIndexChanged"
+                    TextFontSize="20"
+                    ValueMember="turnos">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding turnos}" />
+                            </Grid>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
+                <dxe:TextEdit 
+                    x:Name="txtHorometro"
+                    BorderColor="Green"
+                    BoxHeight="50"
+                    IsLabelFloating="False"
+                    LabelColor="Green"
+                    LabelFontSize="20"
+                    TextFontSize="20"
+                    LabelText="Horometro"
+                    MaxCharacterCount="9"
+                    Keyboard="Numeric"
+                    MaxCharacterCountOverflowMode="LimitInput" />
+            </StackLayout>
+            <StackLayout Padding="20,0,0,0">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        VerticalOptions="Center"
+                        Text="Fecha:"
+                        TextColor="Black"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Medium"/>
+                    <DatePicker 
+                        VerticalOptions="Center"
+                        FontSize="Medium"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        x:Name="FechaCheckList"
+                        DateSelected="FechaCheckList_DateSelected"
+                        Format="dd/MM/yyyy"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="ForestGreen">
+                    </DatePicker>
+                </Grid>
+            </StackLayout>
+            <StackLayout Padding="20,10,20,10">
+                <Button 
+                    x:Name="btnSiguiente"
+                    Text="Siguiente"
+                    BackgroundColor="ForestGreen"
+                    CornerRadius="20"
+                    TextColor="White"
+                    Clicked="btnSiguiente_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+    

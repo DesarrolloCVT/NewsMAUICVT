@@ -85,7 +85,8 @@ public partial class Transferencias : ContentPage
             if (ACC == NetworkAccess.Internet)
             {
                 if (cboFolioTransfer.SelectedIndex != -1)
-                    await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
+                    //await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
+                    await Navigation.PushAsync(new CheckListGrua());
                 else
                     await DisplayAlert("Aviso", "Selecciona un Folio", "Ok");
             }

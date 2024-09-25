@@ -28,6 +28,8 @@
                         LabelText="Codigo" />
                     <Label
                         x:Name="lblError2"
+                        Padding="0,10,0,0"
+                        HorizontalTextAlignment="Center"
                         IsVisible="False"
                         Text=""
                         TextColor="Red" />
@@ -104,6 +106,8 @@
                 <StackLayout Padding="10">
                     <Button
                         x:Name="btn_Limpiar"
+                        IsEnabled="False"
+                        IsVisible="False"
                         BackgroundColor="#00b33c"
                         Clicked="Btn_Limpiar_Clicked"
                         CornerRadius="5"
