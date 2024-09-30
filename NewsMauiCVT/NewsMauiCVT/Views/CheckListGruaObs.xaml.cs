@@ -2,19 +2,18 @@ namespace NewsMauiCVT.Views;
 
 public partial class CheckListGruaObs : ContentPage
 {
-	public CheckListGruaObs()
+	private Dictionary<string,string> checkList;
+	public CheckListGruaObs(Dictionary<string,string> keyValues)
 	{
 		InitializeComponent();
+		checkList = keyValues;
 	}
     private void btnEnviar_Clicked(object sender, EventArgs e)
     {
-		var Obs = txtObservaciones.Text;
-
-		var trend = Obs.Substring(0).ToLower().Trim();
-
-
-
-
-
+		checkList.Add("observaciones",txtObservaciones.Text);
+		foreach (var item in checkList)
+		{
+			Console.WriteLine("Key: " + item.Key.ToString() + " Value: " + item.Value.ToString());
+		}
     }
 }

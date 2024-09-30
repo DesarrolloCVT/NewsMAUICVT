@@ -6,43 +6,120 @@ namespace NewsMauiCVT.Views;
 
 public partial class CheckListGrua : ContentPage
 {
-	public CheckListGrua()
+    public Dictionary<string, string> CheckListData = new Dictionary<string, string>();  // = new Dictionary<string, string>();
+    public string _horometro;
+    public DateTime _fecha;
+    public string _turno;
+    public string _areaDeTrabajo;
+    public string _numeroDeGrua;
+    public string _tipoDeMaquinaria;
+
+    public static Dictionary<string, string> _checkListData
+    {
+        get => _checkListData;
+    }
+    public string Horometro
+    {
+        get => _horometro;
+        set
+        {
+            _horometro = value;
+            OnPropertyChanged(nameof(Horometro));
+        }
+    }
+    public DateTime Fecha
+    {
+        get => _fecha;
+        set
+        {
+            _fecha = value;
+            OnPropertyChanged(nameof(Fecha));
+        }
+    }
+    public string Turno
+    {
+        get => _turno;
+        set
+        {
+            _turno = value;
+            OnPropertyChanged(nameof(Turno));
+        }
+    }
+    public string AreaDeTrabajo
+    {
+        get => _areaDeTrabajo;
+        set
+        {
+            _areaDeTrabajo = value;
+            OnPropertyChanged(nameof(AreaDeTrabajo));
+        }
+    }
+    public string NumeroDeGrua
+    {
+        get => _numeroDeGrua;
+        set
+        {
+            _numeroDeGrua = value;
+            OnPropertyChanged(nameof(NumeroDeGrua));
+        }
+    }
+    public string TipoDeMaquinaria
+    {
+        get => _tipoDeMaquinaria;
+        set
+        {
+            _tipoDeMaquinaria = value;
+            OnPropertyChanged(nameof(TipoDeMaquinaria));
+        }
+    }
+    public CheckListGrua()
 	{
-		InitializeComponent();
+        NavigationPage.SetHasNavigationBar(this, false);
+        InitializeComponent();
         LoadDatos();
 	}
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        clearComponent();
+    }
+
     public void LoadDatos()
     {
+        FechaCheckList.Date = DateTime.Now;
+
         List<Turnos> dataTurnos = [];
+        List<AreaTrabajo> dataAreaTrabajo = [];
+        List<NumGrua> numeroGrua = [];
+        List<TipoGrua> tipoDeGrua = [];
+
         dataTurnos.Add(new Turnos { turnos = "Primer Turno" });
         dataTurnos.Add(new Turnos { turnos = "Segundo Turno" });
-        cboTurno.BindingContext = dataTurnos;
 
-        List<AreaTrabajo> dataAreaTrabajo = [];
         dataAreaTrabajo.Add(new AreaTrabajo { area = "BodegaPT" });
         dataAreaTrabajo.Add(new AreaTrabajo { area = "Envasado" });
         dataAreaTrabajo.Add(new AreaTrabajo { area = "Inventario" });
+        
+        cboTurno.BindingContext = dataTurnos;
         cboAreaTrabajo.BindingContext = dataAreaTrabajo;
 
-        DatosApp datos = new DatosApp();
-        var listado = datos.DatosMaquinarias(2);
+        DatosCheckListGruas DatosGruas = new();
+        var ListadoTipoGruas = DatosGruas.TipoMaquinarias();
+        var ListadoNumeroGruas = DatosGruas.NumeroGruas();
 
-        List<NumGrua> numeroGrua = []; 
-
-        foreach (var l in listado)
+        foreach (var l in ListadoNumeroGruas)
         {
-            numeroGrua.Add(new NumGrua { numGrua = l.Grua_Numero });
+            numeroGrua.Add(new NumGrua { numGrua = l });
+        }
+        foreach (var t in ListadoTipoGruas)
+        {
+            tipoDeGrua.Add(new TipoGrua { tipoGrua = t });
         }
 
-        List<TipoGrua> tipoDeGrua = [];
-
-        foreach (var t in listado)
-        {
-            tipoDeGrua.Add(new TipoGrua { tipoGrua = t.Tipo });
-        }
+        cboNumGrua.BindingContext = numeroGrua;
+        cboTipoMaquina.BindingContext = tipoDeGrua;
     }
-
     public class Turnos
     {
         public string turnos { get; set; }
@@ -61,21 +138,42 @@ public partial class CheckListGrua : ContentPage
     }
     private void FechaCheckList_DateSelected(object sender, DateChangedEventArgs e)
     {
-        FechaCheckList.Focus();
+        Fecha = FechaCheckList.Date;
     }
     private async void btnSiguiente_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CheckListGruaDescripcion());
+        if (!string.IsNullOrEmpty(NumeroDeGrua) && !string.IsNullOrEmpty(AreaDeTrabajo)
+            && !string.IsNullOrEmpty(TipoDeMaquinaria) && !string.IsNullOrEmpty(Turno))
+        {
+            Horometro = txtHorometro.Text;
+            CheckListData.Add("NumeroGrua", NumeroDeGrua.ToString());
+            CheckListData.Add("AreaTrabajo", AreaDeTrabajo.ToString());
+            CheckListData.Add("TipoMaquinaria", TipoDeMaquinaria.ToString());
+            CheckListData.Add("Turno", Turno.ToString());
+            CheckListData.Add("Horometro", Horometro.ToString());
+            CheckListData.Add("Fecha", Fecha.ToString("dd-MM-yyyy"));
+
+            foreach (var item in CheckListData)
+            {
+                Console.WriteLine(item.Value);
+            }
+            await Navigation.PushAsync(new CheckListGruaDescripcion(CheckListData));
+        }
+        else 
+        {
+            await DisplayAlert("Alerta", "Ingrese la información solicitada ", "OK");
+        }
     }
     private void cboTurno_SelectedIndexChanged(object sender, EventArgs e)
     {
         try
         {
-            if(CboAreaTrabajo_SelectedIndexChanged != null)
+            if(cboTurno.SelectedIndex != -1)
             {
-                Console.WriteLine("cboTurno_SelectedIndexChanged: " + cboTurno.SelectedIndex);
+                Turno = cboTurno.SelectedValue.ToString();
             }
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Console.WriteLine("cboTurno_SelectedIndexChanged: " + ex.ToString());
         }
@@ -84,19 +182,24 @@ public partial class CheckListGrua : ContentPage
     {
         try
         {
-            Console.WriteLine("CboAreaTrabajo_SelectedIndexChanged: " + cboAreaTrabajo.SelectedIndex);
+            if (cboAreaTrabajo.SelectedIndex != -1)
+            {
+                AreaDeTrabajo = cboAreaTrabajo.SelectedValue.ToString();
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine("CboAreaTrabajo_SelectedIndexChanged: " + ex.ToString());
         }
     }
-
     private void cboNumGrua_SelectedIndexChanged(object sender, EventArgs e)
     {
         try
         {
-            Console.WriteLine("cboNumGrua_SelectedIndexChanged: " + cboAreaTrabajo.SelectedIndex);
+            if (cboNumGrua.SelectedIndex != -1)
+            {
+                NumeroDeGrua = cboNumGrua.SelectedValue.ToString();
+            }
         }
         catch (Exception ex)
         {
@@ -107,11 +210,33 @@ public partial class CheckListGrua : ContentPage
     {
         try
         {
-
+            if (cboTipoMaquina.SelectedIndex != -1)
+            {
+                TipoDeMaquinaria = cboTipoMaquina.SelectedValue.ToString();
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine("cboTipoMaquina_SelectedIndexChanged: " + ex.ToString());
         }
+    }
+    private void txtHorometro_Completed(object sender, EventArgs e)
+    {
+        Horometro = txtHorometro.Text;
+    }
+    private void clearComponent()
+    {
+        cboNumGrua.SelectedIndex = -1;
+        cboAreaTrabajo.SelectedIndex = -1;
+        cboTipoMaquina.SelectedIndex = -1;
+        cboTurno.SelectedIndex = -1;
+        txtHorometro.Text = string.Empty;
+        Fecha = DateTime.Now;
+        CheckListData.Clear();
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
     }
 }

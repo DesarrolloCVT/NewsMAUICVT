@@ -53,23 +53,5 @@ namespace NewsMauiCVT.Datos
             }
             return ls;
         }
-
-        public List<DatosMaquinarias> DatosMaquinarias(int id) 
-        {
-            List<DatosMaquinarias> maquinarias = new List<DatosMaquinarias>();
-            try
-            {
-                HttpClient HttpClient = new HttpClient();
-                HttpClient.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-                var rest2 = HttpClient.GetAsync("DatosAPP?idMaquinaria=" + id).Result;
-                var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                maquinarias = JsonConvert.DeserializeObject<List<DatosMaquinarias>>(resultadoStr);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("DatosMaquinarias: " + ex.ToString());
-            }
-            return maquinarias;
-        }
     }
 }

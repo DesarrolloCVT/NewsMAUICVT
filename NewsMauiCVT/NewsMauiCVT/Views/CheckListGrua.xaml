@@ -156,6 +156,7 @@
                     LabelText="Horometro"
                     MaxCharacterCount="9"
                     Keyboard="Numeric"
+                    Completed="txtHorometro_Completed"
                     MaxCharacterCountOverflowMode="LimitInput" />
             </StackLayout>
             <StackLayout Padding="20,0,0,0">

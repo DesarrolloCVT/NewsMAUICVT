@@ -96,8 +96,6 @@ namespace NewsMauiCVT.Datos
                 {
                     var result = streamReader.ReadToEnd();
                     res = result.ToString();
-
-                    //JsonConvert.DeserializeObject<string>(result);
                 }
                 return res;
 
