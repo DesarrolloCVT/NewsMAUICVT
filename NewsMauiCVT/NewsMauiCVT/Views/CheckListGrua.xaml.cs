@@ -146,12 +146,17 @@ public partial class CheckListGrua : ContentPage
             && !string.IsNullOrEmpty(TipoDeMaquinaria) && !string.IsNullOrEmpty(Turno))
         {
             Horometro = txtHorometro.Text;
+            if (string.IsNullOrEmpty(Fecha.ToString()))
+            {
+                Fecha = DateTime.Now;
+            }
             CheckListData.Add("NumeroGrua", NumeroDeGrua.ToString());
             CheckListData.Add("AreaTrabajo", AreaDeTrabajo.ToString());
             CheckListData.Add("TipoMaquinaria", TipoDeMaquinaria.ToString());
             CheckListData.Add("Turno", Turno.ToString());
             CheckListData.Add("Horometro", Horometro.ToString());
             CheckListData.Add("Fecha", Fecha.ToString("dd-MM-yyyy"));
+
 
             foreach (var item in CheckListData)
             {

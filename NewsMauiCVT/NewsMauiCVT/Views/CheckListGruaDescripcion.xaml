@@ -70,7 +70,7 @@
                         <Label Margin="10,10,0,0" Grid.Row="17" Grid.Column="0" Text="Neumáticos"/>
                         <Label Margin="10,10,0,0" Grid.Row="18" Grid.Column="0" Text="Llantas, Tuercas"/>
                         <Label Margin="10,10,0,0" Grid.Row="19" Grid.Column="0" Text="Cadenas de Torre"/>
-                        <Label Margin="10,10,0,0" Grid.Row="20" Grid.Column="0" Text="Uñas Horquilla"/>
+                        <Label Margin="10,10,0,0" Grid.Row="20" Grid.Column="0" Text="Unas Horquilla"/>
                         <Label Margin="10,10,0,0" Grid.Row="21" Grid.Column="0" Text="Soporte de Cilindro Elevador"/>
                         <Label Margin="10,10,0,0" Grid.Row="22" Grid.Column="0" Text="Flexible Polea y Rodamiento"/>
                         <Label Margin="10,10,0,0" Grid.Row="23" Grid.Column="0" Text="Seguro de uñas horquilla"/>
@@ -95,7 +95,7 @@
                         <CheckBox Grid.Row="17" Grid.Column="1" x:Name="cbxNeumaticosSi" CheckedChanged="cbxNeumaticosSi_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="18" Grid.Column="1" x:Name="cbxLlantasSi" CheckedChanged="cbxLlantasSi_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="19" Grid.Column="1" x:Name="cbxCadenasSi" CheckedChanged="cbxCadenasSi_CheckedChanged"></CheckBox>
-                        <CheckBox Grid.Row="20" Grid.Column="1" x:Name="cbxUñasHorquillaSi" CheckedChanged="cbxUñasHorquillaSi_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="20" Grid.Column="1" x:Name="cbxUnasHorquillaSi" CheckedChanged="cbxUnasHorquillaSi_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="21" Grid.Column="1" x:Name="cbxSoporteCilindroSi" CheckedChanged="cbxSoporteCilindroSi_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="22" Grid.Column="1" x:Name="cbxFlexibleSi" CheckedChanged="cbxFlexibleSi_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="23" Grid.Column="1" x:Name="cbxSeguroHorquillaSi" CheckedChanged="cbxSeguroHorquillaSi_CheckedChanged"></CheckBox>
@@ -122,7 +122,7 @@
                         <CheckBox Grid.Row="17" Grid.Column="2" x:Name="cbxNeumaticosNo" CheckedChanged="cbxNeumaticosNo_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="18" Grid.Column="2" x:Name="cbxLlantasNo" CheckedChanged="cbxLlantasNo_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="19" Grid.Column="2" x:Name="cbxCadenasNo" CheckedChanged="cbxCadenasNo_CheckedChanged"></CheckBox>
-                        <CheckBox Grid.Row="20" Grid.Column="2" x:Name="cbxUñasHorquillaNo" CheckedChanged="cbxUñasHorquillaNo_CheckedChanged"></CheckBox>
+                        <CheckBox Grid.Row="20" Grid.Column="2" x:Name="cbxUnasHorquillaNo" CheckedChanged="cbxUnasHorquillaNo_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="21" Grid.Column="2" x:Name="cbxSoporteCilindroNo" CheckedChanged="cbxSoporteCilindroNo_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="22" Grid.Column="2" x:Name="cbxFlexibleNo" CheckedChanged="cbxFlexibleNo_CheckedChanged"></CheckBox>
                         <CheckBox Grid.Row="23" Grid.Column="2" x:Name="cbxSeguroHorquillaNo" CheckedChanged="cbxSeguroHorquillaNo_CheckedChanged"></CheckBox>
