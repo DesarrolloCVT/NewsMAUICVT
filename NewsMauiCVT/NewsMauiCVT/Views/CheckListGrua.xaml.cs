@@ -142,14 +142,16 @@ public partial class CheckListGrua : ContentPage
     }
     private async void btnSiguiente_Clicked(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(NumeroDeGrua) && !string.IsNullOrEmpty(AreaDeTrabajo)
-            && !string.IsNullOrEmpty(TipoDeMaquinaria) && !string.IsNullOrEmpty(Turno))
+        if (string.IsNullOrEmpty(Fecha.ToString()))
         {
-            Horometro = txtHorometro.Text;
-            if (string.IsNullOrEmpty(Fecha.ToString()))
-            {
-                Fecha = DateTime.Now;
-            }
+            Fecha = DateTime.Now;
+        }
+        Horometro = txtHorometro.Text;
+
+        if (cboNumGrua.SelectedIndex != -1 && cboAreaTrabajo.SelectedIndex != -1
+            && cboTipoMaquina.SelectedIndex != -1 && cboTurno.SelectedIndex != -1
+            && !string.IsNullOrEmpty(txtHorometro.Text) && !string.IsNullOrEmpty(Fecha.ToString()))
+        {   
             CheckListData.Add("NumeroGrua", NumeroDeGrua.ToString());
             CheckListData.Add("AreaTrabajo", AreaDeTrabajo.ToString());
             CheckListData.Add("TipoMaquinaria", TipoDeMaquinaria.ToString());

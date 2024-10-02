@@ -85,725 +85,1060 @@ public partial class CheckListGruaDescripcion : ContentPage
     }
     private void cbxLucesNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.ToString() == "Luces")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Luces")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+
+            if (cbxLucesNo.IsChecked == true)
+            {
+                cbxLucesSi.IsChecked = false;
+                CheckList.Add("Luces", "Mal Estado");
             }
         }
-
-        if (cbxLucesNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxLucesSi.IsChecked = false;
-            CheckList.Add("Luces", "Mal Estado");
-        }
-            
+            Console.WriteLine("cbxLucesNo_CheckedChanged: " + ex.ToString());
+        }   
     }
     private void cbxLucesSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Luces")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Luces")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxLucesSi.IsChecked == true)
+            {
+                cbxLucesNo.IsChecked = false;
+                CheckList.Add("Luces", "Buen Estado");
             }
         }
-        if (cbxLucesSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxLucesNo.IsChecked = false;
-            CheckList.Add("Luces", "Buen Estado");
+            Console.WriteLine("cbxLucesSi_CheckedChanged: " + ex.ToString());
         }
-        
     }
     private void cbxMotorSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Motor")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Motor")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxMotorSi.IsChecked == true)
+            {
+                cbxMotorNo.IsChecked = false;
+                CheckList.Add("Motor", "Buen Estado");
             }
         }
-        if (cbxMotorSi.IsChecked == true)
+        catch (Exception ex) 
         {
-            cbxMotorNo.IsChecked = false;
-            CheckList.Add("Motor", "Buen Estado");
+            Console.WriteLine("cbxMotorSi_CheckedChanged: " + ex.ToString());
         }
+        
     }
     private void cbxMotorNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Motor")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Motor")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxMotorNo.IsChecked == true)
+            {
+                cbxMotorSi.IsChecked = false;
+                CheckList.Add("Motor", "Mal Estado");
             }
         }
-        if (cbxMotorNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxMotorSi.IsChecked = false;
-            CheckList.Add("Motor", "Mal Estado");
+            Console.WriteLine("cbxMotorNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxHidraulicoNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "hidraulico")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "hidraulico")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxHidraulicoNo.IsChecked == true)
+            {
+                cbxHidraulicoSi.IsChecked = false;
+                CheckList.Add("hidraulico", "Mal Estado");
             }
         }
-        if (cbxHidraulicoNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxHidraulicoSi.IsChecked = false;
-            CheckList.Add("hidraulico", "Mal Estado");
+            Console.WriteLine("cbxHidraulicoNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxFugasNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Fugas")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Fugas")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxFugasNo.IsChecked == true)
+            {
+                cbxFugasSi.IsChecked = false;
+                CheckList.Add("Fugas", "Mal Estado");
             }
         }
-        if (cbxFugasNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxFugasSi.IsChecked = false;
-            CheckList.Add("Fugas", "Mal Estado");
+            Console.WriteLine("cbxFugasNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxDireccionNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Direccion")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Direccion")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxDireccionNo.IsChecked == true)
+            {
+                cbxDireccionSi.IsChecked = false;
+                CheckList.Add("Direccion", "Mal Estado");
             }
         }
-        if (cbxDireccionNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxDireccionSi.IsChecked = false;
-            CheckList.Add("Direccion", "Mal Estado");
+            Console.WriteLine("cbxDireccionNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxTransmisionNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Transmision")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Transmision")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxTransmisionNo.IsChecked == true)
+            {
+                cbxTransmisionSi.IsChecked = false;
+                CheckList.Add("Transmision", "Mal Estado");
             }
         }
-        if (cbxTransmisionNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxTransmisionSi.IsChecked = false;
-            CheckList.Add("Transmision", "Mal Estado");
+            Console.WriteLine("cbxTransmisionNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxEscaleraNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Escalera")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Escalera")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxEscaleraNo.IsChecked == true)
+            {
+                cbxEscaleraSi.IsChecked = false;
+                CheckList.Add("Escalera", "Mal Estado");
             }
         }
-        if (cbxEscaleraNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxEscaleraSi.IsChecked = false;
-            CheckList.Add("Escalera", "Mal Estado");
+            Console.WriteLine("cbxEscaleraNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxBocinaNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Bocina")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Bocina")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxBocinaNo.IsChecked == true)
+            {
+                cbxBocinaSi.IsChecked = false;
+                CheckList.Add("Bocina", "Mal Estado");
             }
         }
-        if (cbxBocinaNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxBocinaSi.IsChecked = false;
-            CheckList.Add("Bocina", "Mal Estado");
+            Console.WriteLine("cbxBocinaNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxAlarmaNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Alarma")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Alarma")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxAlarmaNo.IsChecked == true)
+            {
+                cbxAlarmaSi.IsChecked = false;
+                CheckList.Add("Alarma", "Mal Estado");
             }
         }
-        if (cbxAlarmaNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxAlarmaSi.IsChecked = false;
-            CheckList.Add("Alarma", "Mal Estado");
+            Console.WriteLine("cbxAlarmaNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxEspejosNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Espejos")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Espejos")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxEspejosNo.IsChecked == true)
+            {
+                cbxEspejosSi.IsChecked = false;
+                CheckList.Add("Espejos", "Mal Estado");
             }
         }
-        if (cbxEspejosNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxEspejosSi.IsChecked = false;
-            CheckList.Add("Espejos", "Mal Estado");
+            Console.WriteLine("cbxEspejosNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxTableroNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Tablero")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Tablero")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxTableroNo.IsChecked == true)
+            {
+                cbxTableroSi.IsChecked = false;
+                CheckList.Add("Tablero", "Mal Estado");
             }
         }
-        if (cbxTableroNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxTableroSi.IsChecked = false;
-            CheckList.Add("Tablero", "Mal Estado");
+            Console.WriteLine("cbxTableroNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxExtintorNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Extintor")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Extintor")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxExtintorNo.IsChecked == true)
+            {
+                cbxExtintorSi.IsChecked = false;
+                CheckList.Add("Extintor", "Mal Estado");
             }
         }
-        if (cbxExtintorNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxExtintorSi.IsChecked = false;
-            CheckList.Add("Extintor", "Mal Estado");
+            Console.WriteLine("cbxExtintorNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxBateriaNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Bateria")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Bateria")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxBateriaNo.IsChecked == true)
+            {
+                cbxBateriaSi.IsChecked = false;
+                CheckList.Add("Bateria", "Mal Estado");
             }
         }
-        if (cbxBateriaNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxBateriaSi.IsChecked = false;
-            CheckList.Add("Bateria", "Mal Estado");
+            Console.WriteLine("cbxBateriaNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxAsientoNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Asiento")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Asiento")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxAsientoNo.IsChecked == true)
+            {
+                cbxAsientoSi.IsChecked = false;
+                CheckList.Add("Asiento", "Mal Estado");
             }
         }
-        if (cbxAsientoNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxAsientoSi.IsChecked = false;
-            CheckList.Add("Asiento", "Mal Estado");
+            Console.WriteLine("cbxAsientoNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxCinturonNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Cinturon")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Cinturon")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxCinturonNo.IsChecked == true)
+            {
+                cbxCinturonSi.IsChecked = false;
+                CheckList.Add("Cinturon", "Mal Estado");
             }
         }
-        if (cbxCinturonNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxCinturonSi.IsChecked = false;
-            CheckList.Add("Cinturon", "Mal Estado");
+            Console.WriteLine("cbxCinturonNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxBalizaNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Baliza")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Baliza")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxBalizaNo.IsChecked == true)
+            {
+                cbxBalizaSi.IsChecked = false;
+                CheckList.Add("Baliza", "Mal Estado");
             }
         }
-        if (cbxBalizaNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxBalizaSi.IsChecked = false;
-            CheckList.Add("Baliza", "Mal Estado");
+            Console.WriteLine("cbxBalizaNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxNeumaticosNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Neumaticos")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Neumaticos")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxNeumaticosNo.IsChecked == true)
+            {
+                cbxNeumaticosSi.IsChecked = false;
+                CheckList.Add("Neumaticos", "Mal Estado");
             }
         }
-        if (cbxNeumaticosNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxNeumaticosSi.IsChecked = false;
-            CheckList.Add("Neumaticos", "Mal Estado");
+            Console.WriteLine("cbxNeumaticosNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxLlantasNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Llantas")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Llantas")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxLlantasNo.IsChecked == true)
+            {
+                cbxLlantasSi.IsChecked = false;
+                CheckList.Add("Llantas", "Mal Estado");
             }
         }
-        if (cbxLlantasNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxLlantasSi.IsChecked = false;
-            CheckList.Add("Llantas", "Mal Estado");
+            Console.WriteLine("cbxLlantasNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxCadenasNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Cadenas")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Cadenas")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxCadenasNo.IsChecked == true)
+            {
+                cbxCadenasSi.IsChecked = false;
+                CheckList.Add("Cadenas", "Mal Estado");
             }
         }
-        if (cbxCadenasNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxCadenasSi.IsChecked = false;
-            CheckList.Add("Cadenas", "Mal Estado");
+            Console.WriteLine("cbxCadenasNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxUnasHorquillaNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Unashorquilla")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Unashorquilla")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxUnasHorquillaNo.IsChecked == true)
+            {
+                cbxUnasHorquillaSi.IsChecked = false;
+                CheckList.Add("Unashorquilla", "Mal Estado");
             }
         }
-        if (cbxUnasHorquillaNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxUnasHorquillaSi.IsChecked = false;
-            CheckList.Add("Unashorquilla", "Mal Estado");
+            Console.WriteLine("cbxUnasHorquillaNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxUnasHorquillaSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Unashorquilla")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Unashorquilla")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxUnasHorquillaSi.IsChecked == true)
+            {
+                cbxUnasHorquillaNo.IsChecked = false;
+                CheckList.Add("Unashorquilla", "Buen Estado");
             }
         }
-        if (cbxUnasHorquillaSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxUnasHorquillaNo.IsChecked = false;
-            CheckList.Add("Unashorquilla", "Buen Estado");
+            Console.WriteLine("cbxUnasHorquillaSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxSoporteCilindroNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Soportecilindro")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Soportecilindro")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxSoporteCilindroNo.IsChecked == true)
+            {
+                cbxSoporteCilindroSi.IsChecked = false;
+                CheckList.Add("Soportecilindro", "Mal Estado");
             }
         }
-        if (cbxSoporteCilindroNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxSoporteCilindroSi.IsChecked = false;
-            CheckList.Add("Soportecilindro", "Mal Estado");
+            Console.WriteLine("cbxSoporteCilindroNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxFlexibleNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Flexible")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Flexible")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxFlexibleNo.IsChecked == true)
+            {
+                cbxFlexibleSi.IsChecked = false;
+                CheckList.Add("Flexible", "Mal Estado");
             }
         }
-        if (cbxFlexibleNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxFlexibleSi.IsChecked = false;
-            CheckList.Add("Flexible", "Mal Estado");
+            Console.WriteLine("cbxFlexibleNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxSeguroHorquillaNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Segurohorquilla")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Segurohorquilla")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxSeguroHorquillaNo.IsChecked == true)
+            {
+                cbxSeguroHorquillaSi.IsChecked = false;
+                CheckList.Add("Segurohorquilla", "Mal Estado");
             }
         }
-        if (cbxSeguroHorquillaNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxSeguroHorquillaSi.IsChecked = false;
-            CheckList.Add("Segurohorquilla", "Mal Estado");
+            Console.WriteLine("cbxSeguroHorquillaNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxPuntoDeBloqueoNo_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Puntodebloqueo")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Puntodebloqueo")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxPuntoDeBloqueoNo.IsChecked == true)
+            {
+                cbxPuntoDeBloqueoSi.IsChecked = false;
+                CheckList.Add("Puntodebloqueo", "Mal Estado");
             }
         }
-        if (cbxPuntoDeBloqueoNo.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxPuntoDeBloqueoSi.IsChecked = false;
-            CheckList.Add("Puntodebloqueo", "Mal Estado");
+            Console.WriteLine("cbxPuntoDeBloqueoNo_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxHidraulicoSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "hidraulico")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "hidraulico")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxHidraulicoSi.IsChecked == true)
+            {
+                cbxHidraulicoNo.IsChecked = false;
+                CheckList.Add("Hidraulico", "Buen Estado");
             }
         }
-        if (cbxHidraulicoSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxHidraulicoNo.IsChecked = false;
-            CheckList.Add("Hidraulico", "Buen Estado");
+            Console.WriteLine("cbxHidraulicoSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxFugasSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Fugas")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Fugas")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxFugasSi.IsChecked == true)
+            {
+                cbxFugasNo.IsChecked = false;
+                CheckList.Add("Fugas", "Buen Estado");
             }
         }
-        if (cbxFugasSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxFugasNo.IsChecked = false;
-            CheckList.Add("Fugas", "Buen Estado");
+            Console.WriteLine("cbxFugasSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxDireccionSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Direccion")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Direccion")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxDireccionSi.IsChecked == true)
+            {
+                cbxDireccionNo.IsChecked = false;
+                CheckList.Add("Direccion", "Buen Estado");
             }
         }
-        if (cbxDireccionSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxDireccionNo.IsChecked = false;
-            CheckList.Add("Direccion", "Buen Estado");
+            Console.WriteLine("cbxDireccionSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxTransmisionSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Transmision")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Transmision")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxTransmisionSi.IsChecked == true)
+            {
+                cbxTransmisionNo.IsChecked = false;
+                CheckList.Add("Transmision", "Buen Estado");
             }
         }
-        if (cbxTransmisionSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxTransmisionNo.IsChecked = false;
-            CheckList.Add("Transmision", "Buen Estado");
+            Console.WriteLine("cbxTransmisionSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxEscaleraSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Escalera")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Escalera")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxEscaleraSi.IsChecked == true)
+            {
+                cbxEscaleraNo.IsChecked = false;
+                CheckList.Add("Escalera", "Buen Estado");
             }
         }
-        if (cbxEscaleraSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxEscaleraNo.IsChecked = false;
-            CheckList.Add("Escalera", "Buen Estado");
+            Console.WriteLine("cbxEscaleraSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxBocinaSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Bocina")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Bocina")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxBocinaSi.IsChecked == true)
+            {
+                cbxBocinaNo.IsChecked = false;
+                CheckList.Add("Bocina", "Buen Estado");
             }
         }
-        if (cbxBocinaSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxBocinaNo.IsChecked = false;
-            CheckList.Add("Bocina", "Buen Estado");
+            Console.WriteLine("cbxBocinaSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxAlarmaSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Alarma")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Alarma")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxAlarmaSi.IsChecked == true)
+            {
+                cbxAlarmaNo.IsChecked = false;
+                CheckList.Add("Alarma", "Buen Estado");
             }
         }
-        if (cbxAlarmaSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxAlarmaNo.IsChecked = false;
-            CheckList.Add("Alarma", "Buen Estado");
+            Console.WriteLine("cbxAlarmaSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxEspejosSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Espejos")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Espejos")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxEspejosSi.IsChecked == true)
+            {
+                cbxEspejosNo.IsChecked = false;
+                CheckList.Add("Espejos", "Buen Estado");
             }
         }
-        if (cbxEspejosSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxEspejosNo.IsChecked = false;
-            CheckList.Add("Espejos", "Buen Estado");
+            Console.WriteLine("cbxEspejosSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxTableroSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Tablero")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Tablero")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxTableroSi.IsChecked == true)
+            {
+                cbxTableroNo.IsChecked = false;
+                CheckList.Add("Tablero", "Buen Estado");
             }
         }
-        if (cbxTableroSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxTableroNo.IsChecked = false;
-            CheckList.Add("Tablero", "Buen Estado");
+            Console.WriteLine("cbxTableroSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxExtintorSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Extintor")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Extintor")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxExtintorSi.IsChecked == true)
+            {
+                cbxExtintorNo.IsChecked = false;
+                CheckList.Add("Extintor", "Buen Estado");
             }
         }
-        if (cbxExtintorSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxExtintorNo.IsChecked = false;
-            CheckList.Add("Extintor", "Buen Estado");
+            Console.WriteLine("cbxExtintorSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxBateriaSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Bateria")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Bateria")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxBateriaSi.IsChecked == true)
+            {
+                cbxBateriaNo.IsChecked = false;
+                CheckList.Add("Bateria", "Buen Estado");
             }
         }
-        if (cbxBateriaSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxBateriaNo.IsChecked = false;
-            CheckList.Add("Bateria", "Buen Estado");
+            Console.WriteLine("cbxBateriaSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxAsientoSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Asiento")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Asiento")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxAsientoSi.IsChecked == true)
+            {
+                cbxAsientoNo.IsChecked = false;
+                CheckList.Add("Asiento", "Buen Estado");
             }
         }
-        if (cbxAsientoSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxAsientoNo.IsChecked = false;
-            CheckList.Add("Asiento", "Buen Estado");
+            Console.WriteLine("cbxAsientoSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxCinturonSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Cinturon")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Cinturon")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxCinturonSi.IsChecked == true)
+            {
+                cbxCinturonNo.IsChecked = false;
+                CheckList.Add("Cinturon", "Buen Estado");
             }
         }
-        if (cbxCinturonSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxCinturonNo.IsChecked = false;
-            CheckList.Add("Cinturon", "Buen Estado");
+            Console.WriteLine("cbxCinturonSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxBalizaSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Baliza")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Baliza")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxBalizaSi.IsChecked == true)
+            {
+                cbxBalizaNo.IsChecked = false;
+                CheckList.Add("Baliza", "Buen Estado");
             }
         }
-        if (cbxBalizaSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxBalizaNo.IsChecked = false;
-            CheckList.Add("Baliza", "Buen Estado");
+            Console.WriteLine("cbxBalizaSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxNeumaticosSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Neumaticos")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Neumaticos")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxNeumaticosSi.IsChecked == true)
+            {
+                cbxNeumaticosNo.IsChecked = false;
+                CheckList.Add("Neumaticos", "Buen Estado");
             }
         }
-        if (cbxNeumaticosSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxNeumaticosNo.IsChecked = false;
-            CheckList.Add("Neumaticos", "Buen Estado");
+            Console.WriteLine("cbxNeumaticosSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxLlantasSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Llantas")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Llantas")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxLlantasSi.IsChecked == true)
+            {
+                cbxLlantasNo.IsChecked = false;
+                CheckList.Add("Llantas", "Buen Estado");
             }
         }
-        if (cbxLlantasSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxLlantasNo.IsChecked = false;
-            CheckList.Add("Llantas", "Buen Estado");
+            Console.WriteLine("cbxLlantasSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxCadenasSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Cadenas")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Cadenas")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxCadenasSi.IsChecked == true)
+            {
+                cbxCadenasNo.IsChecked = false;
+                CheckList.Add("Cadenas", "Buen Estado");
             }
         }
-        if (cbxCadenasSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxCadenasNo.IsChecked = false;
-            CheckList.Add("Cadenas", "Buen Estado");
+            Console.WriteLine("cbxCadenasSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxSoporteCilindroSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Soportecilindro")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Soportecilindro")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxSoporteCilindroSi.IsChecked == true)
+            {
+                cbxSoporteCilindroNo.IsChecked = false;
+                CheckList.Add("Soportecilindro", "Buen Estado");
             }
         }
-        if (cbxSoporteCilindroSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxSoporteCilindroNo.IsChecked = false;
-            CheckList.Add("Soportecilindro", "Buen Estado");
+            Console.WriteLine("cbxSoporteCilindroSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxFlexibleSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Flexible")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Flexible")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxFlexibleSi.IsChecked == true)
+            {
+                cbxFlexibleNo.IsChecked = false;
+                CheckList.Add("Flexible", "Buen Estado");
             }
         }
-        if (cbxFlexibleSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxFlexibleNo.IsChecked = false;
-            CheckList.Add("Flexible", "Buen Estado");
+            Console.WriteLine("cbxFlexibleSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxSeguroHorquillaSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Segurohorquilla")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Segurohorquilla")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxSeguroHorquillaSi.IsChecked == true)
+            {
+                cbxSeguroHorquillaNo.IsChecked = false;
+                CheckList.Add("Segurohorquilla", "Buen Estado");
             }
         }
-        if (cbxSeguroHorquillaSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxSeguroHorquillaNo.IsChecked = false;
-            CheckList.Add("Segurohorquilla", "Buen Estado");
+            Console.WriteLine("cbxSeguroHorquillaSi_CheckedChanged: " + ex.ToString());
         }
     }
     private void cbxPuntoDeBloqueoSi_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        foreach (var l in CheckList)
+        try
         {
-            if (l.Key.ToString() == "Puntodebloqueo")
+            foreach (var l in CheckList)
             {
-                CheckList.Remove(l.Key.ToString());
+                if (l.Key.ToString() == "Puntodebloqueo")
+                {
+                    CheckList.Remove(l.Key.ToString());
+                }
+            }
+            if (cbxPuntoDeBloqueoSi.IsChecked == true)
+            {
+                cbxPuntoDeBloqueoNo.IsChecked = false;
+                CheckList.Add("Puntodebloqueo", "Buen Estado");
             }
         }
-        if (cbxPuntoDeBloqueoSi.IsChecked == true)
+        catch (Exception ex)
         {
-            cbxPuntoDeBloqueoNo.IsChecked = false;
-            CheckList.Add("Puntodebloqueo", "Buen Estado");
+            Console.WriteLine("cbxPuntoDeBloqueoSi_CheckedChanged: " + ex.ToString());
         }
     }
 }

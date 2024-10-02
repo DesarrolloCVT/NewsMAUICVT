@@ -19,7 +19,6 @@ public partial class TomaInventario : ContentPage
     {
         base.OnAppearing();
         ClearComponent();
-        cboFolio.Focus();
     }
     void cargaDatos()
     {
@@ -134,8 +133,10 @@ public partial class TomaInventario : ContentPage
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                         lblError.Text = "N° de pallet no existe";
                         lblError.IsVisible = true;
-                        txt_pallet.Focus();
                         txt_pallet.Text = string.Empty;
+                        _ = Task.Delay(100).ContinueWith(t => {
+                            txt_pallet.Focus();
+                        });
                     }
                     else
                     {
@@ -165,9 +166,6 @@ public partial class TomaInventario : ContentPage
 
                         lblError.Text = string.Empty;
                         lblError.IsVisible = false;
-
-
-
                     }
                 }
             }

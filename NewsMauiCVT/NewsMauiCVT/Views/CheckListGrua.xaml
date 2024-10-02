@@ -15,7 +15,7 @@
             </StackLayout>
             <StackLayout Padding="0,40,0,15">
                 <Label 
-                    Text="DATOS de GRÚA"
+                    Text="DATOS GRÚA"
                     TextColor="Black"
                     HorizontalTextAlignment="Center"
                     FontSize="Subtitle"/>
