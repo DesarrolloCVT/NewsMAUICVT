@@ -3,19 +3,39 @@
     x:Class="NewsMauiCVT.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:dx="http://schemas.devexpress.com/maui"
-    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
     
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
-            <StackLayout>
-                <Label
-                    x:Name="txt_version"
-                    FlexLayout.AlignSelf="End"
-                    FontAttributes="Bold"
-                    FontSize="10"
-                    Text="versión 2.7.6.2023"
-                    TextColor="#3399ff" />
+            <StackLayout Padding="0,10,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        x:Name="LoginQR"
+                        ImageSource="scanner_qr"
+                        BackgroundColor="White"
+                        HeightRequest="80"
+                        WidthRequest="80"
+                        HorizontalOptions="End"
+                        Clicked="LoginQR_Clicked"/>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        x:Name="txt_version"
+                        FlexLayout.AlignSelf="End"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        Text="versión 2.7.6.2023"
+                        TextColor="#3399ff" />
+                </Grid>
                 <StackLayout Margin="0,50,0,0">
                     <Image        
                         BackgroundColor="Transparent"
@@ -25,6 +45,7 @@
                 <StackLayout x:Name="SlStackLayout">
                     <StackLayout HorizontalOptions="Center">
                         <Label
+                            x:Name="txtIniciarSesion"
                             FlexLayout.AlignSelf="Center"
                             FontAttributes="Bold"
                             FontSize="25"
@@ -32,7 +53,7 @@
                             TextColor="#3399ff" />
                     </StackLayout>
                     <StackLayout Margin="25,0" Padding="10,0,0,20">
-                        <dx:TextEdit
+                        <dxe:TextEdit
                             x:Name="txtUsuario"
                             BorderColor="Green"
                             BoxHeight="50"
@@ -45,7 +66,7 @@
                             ReturnType="Next"/>
                     </StackLayout>
                     <StackLayout Margin="25,0" Padding="10,0,0,20">
-                        <dx:PasswordEdit
+                        <dxe:PasswordEdit
                             x:Name="txtContraseña"
                             BorderColor="Green"
                             BoxHeight="50"
@@ -59,7 +80,7 @@
                             ReturnType="Send"/>
                     </StackLayout>
                     <StackLayout Margin="25,0" Padding="10,0,0,20">
-                        <dx:DXButton  
+                        <dxc:DXButton  
                             Content="INICIAR" 
                             CornerRadius="20" 
                             FontAttributes="Bold" 
@@ -73,7 +94,7 @@
                             PressedBorderColor="DarkOrange"
                             Icon="enter" 
                             ShowIcon="True">
-                        </dx:DXButton>
+                        </dxc:DXButton>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

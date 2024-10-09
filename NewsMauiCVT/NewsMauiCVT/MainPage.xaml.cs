@@ -168,5 +168,9 @@ namespace NewsMauiCVT
                 await DisplayAlert("Alerta", "Revise conexión", "Aceptar");
             }
         }
+        private async void LoginQR_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginQR());
+        }
     }
 }

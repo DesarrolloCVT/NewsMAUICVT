@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:de="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:xdc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             x:Class="NewsMauiCVT.Views.AsignacionMateriaPrimaDetalle">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout>
+                <Label
+                    Text="ASIGNACION DE MATERIA PRIMA DETALLE"
+                    TextColor="Black"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Large"/>
+            </StackLayout>
+            <StackLayout Margin="20,100,20,0" Padding="20,0,20,0">
+                <de:TextEdit 
+                    x:Name="txtPallet" 
+                    Text=""
+                    Keyboard="Numeric"
+                    TextHorizontalAlignment="Start"
+                    LabelText="Pallet"
+                    BorderColor="Green"
+                    LabelColor="Green" 
+                    MaxCharacterCount="15"
+                    Completed="txtPallet_Completed"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

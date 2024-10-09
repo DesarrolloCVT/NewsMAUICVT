@@ -18,10 +18,10 @@
                     BoxHeight="50"
                     x:Name="txt_origen"
                     Completed="Txt_origen_Completed"
-                    IsLabelFloating="False"
+                    IsLabelFloating="True"
                     BorderColor="Green"
                     LabelColor="Green"
-                    Keyboard="{Null}"
+                    Keyboard="Numeric"
                     ClearIconVisibility="Never">
                 </dxe:TextEdit>
                 <dxc:DXButton 
@@ -105,7 +105,7 @@
                     IsLabelFloating="False"
                     BorderColor="Green" 
                     LabelColor="Green" 
-                    Keyboard="{Null}"
+                    Keyboard="Numeric"
                     ClearIconVisibility="Never">
                 </dxe:TextEdit>
             </StackLayout>

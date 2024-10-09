@@ -114,6 +114,8 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\hamburger.png" />
 	  <None Remove="Resources\Images\menu_hamburger.png" />
+	  <None Remove="Resources\Images\scanner_qr.png" />
+	  <None Remove="Resources\Images\scanner_QR2.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -152,6 +154,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\AsignacionMateriaPrima.xaml.cs">
+	    <DependentUpon>AsignacionMateriaPrima.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiAsset Update="Resources\Raw\Correcto.mp3">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </MauiAsset>
@@ -161,7 +169,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AsignacionDePallet.xaml">
+	  <MauiXaml Update="LoginQR.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AsignacionMateriaPrima.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AsignacionMateriaPrimaDetalle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CheckListGrua.xaml">

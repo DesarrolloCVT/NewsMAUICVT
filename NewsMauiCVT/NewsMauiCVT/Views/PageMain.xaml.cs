@@ -48,7 +48,8 @@ public partial class PageMain : FlyoutPage
                 new Option{ page=new SMMRegEtiqSala(){Title="Menú"},title="SMM Registro Etiquetas pallet sala", detail="ingreso de productos para impresion de etiquetas para sala de ventas"},
                 new Option{ page=new Calidad_ControlHigiene(){Title="Menú"},title="Control Higiene", detail="Registro Control Higiene Personal"},
                 new Option{ page=new Transferencias(){Title="Menú"},title="Transferencias", detail="Transferencia de Pallets"},
-                new Option{ page=new CheckListGrua(){Title="Menú"},title="Checklist Grua", detail="Chequeo de gruas"}
+                new Option{ page=new CheckListGrua(){Title="Menú"},title="Checklist Grua", detail="Chequeo de gruas"},
+                new Option{ page=new AsignacionMateriaPrima(){Title="Menú"},title="Asignacion Materia Prima", detail="Materia Prima"}
         };  
         List<Option> options1 = new List<Option>();
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             x:Class="NewsMauiCVT.LoginQR">
+
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Margin="0,0,0,0">
+                    <Image        
+                        BackgroundColor="Transparent"
+                        FlexLayout.AlignSelf="Center"
+                        Source="logocvt.png" />
+                </StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Image  
+                        Source="scanner_qr2"
+                        HorizontalOptions="FillAndExpand"
+                        HeightRequest="200"
+                        WidthRequest="200"/>
+                    <Label 
+                        Text="Escanea las credenciales"
+                        FontAttributes="Bold"
+                        TextColor="#3399ff"
+                        HorizontalTextAlignment="Center"/>
+                    <dxe:PasswordEdit
+                        x:Name="txtCredenciales"
+                        IsVisible="Visible"
+                        Completed="txtCredenciales_Completed"
+                        WidthRequest="150"
+                        PasswordIconVisibility="Never"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

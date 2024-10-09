@@ -23,7 +23,7 @@
                     DropDownSelectedItemBackgroundColor="GreenYellow"
                     FilterComparisonType="CurrentCultureIgnoreCase"
                     FilterCondition="Contains"
-                    IsFilterEnabled="True"
+                    IsFilterEnabled="False"
                     IsLabelFloating="True"
                     ItemsSource="{Binding}"
                     LabelColor="Green"

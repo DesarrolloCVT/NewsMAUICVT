@@ -55,9 +55,9 @@
                         BorderColor="Black"
                         BorderThickness="2"
                         Clicked="Btn_seleccionar_Clicked"
-                        CornerRadius="20"
+                        CornerRadius="30"
                         FontAttributes="Bold"
-                        HeightRequest="70"
+                        HeightRequest="50"
                         PressedBackgroundColor="MediumSeaGreen"
                         PressedBorderColor="DarkOrange"
                         Content="SELECCIONAR" />

@@ -128,8 +128,11 @@ public partial class TomaInventarioFilm : ContentPage
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                         lblError.Text = "N° de pallet no existe";
                         lblError.IsVisible = true;
-                        txt_pallet.Focus();
                         txt_pallet.Text = string.Empty;
+                        _ = Task.Delay(100).ContinueWith(t => {
+                            txt_pallet.Focus();
+                        });
+                        
                     }
                     else
                     {

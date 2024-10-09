@@ -118,7 +118,7 @@ public partial class SMM_Posicionamiento : ContentPage
         {
 
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            DisplayAlert("Alerta", "Debe conectarse a una red local ", "Aceptar");
         }
     }
     private void Txt_destino_Completed(object sender, EventArgs e)

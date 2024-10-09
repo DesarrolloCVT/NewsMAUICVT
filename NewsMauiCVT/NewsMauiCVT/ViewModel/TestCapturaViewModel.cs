@@ -26,7 +26,7 @@ namespace NewsMauiCVT.ViewModel
             set
             {
                 _result = value;
-                OnPropertyChanged(nameof(Result));
+                //OnPropertyChanged(nameof(Result));
             }
         }
         public ICommand ButtonCommand { get; private set; }
@@ -38,10 +38,10 @@ namespace NewsMauiCVT.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        { 
+        /*private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {   
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        }*/
 
         private void OnButtomCommand()
         {

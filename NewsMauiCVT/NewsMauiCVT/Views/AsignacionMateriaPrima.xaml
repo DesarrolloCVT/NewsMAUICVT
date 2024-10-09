@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:de="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:xdc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             x:Class="NewsMauiCVT.Views.AsignacionMateriaPrima">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <StackLayout Margin="0,50,0,0">
+                <Label
+                    Text="ASIGNACION DE MATERIA PRIMA"
+                    TextColor="Black"
+                    HorizontalTextAlignment="Center"
+                    FontSize="Large"/>
+            </StackLayout>
+            <StackLayout Margin="20,100,20,0" Padding="20,0,20,0">
+                <de:ComboBoxEdit 
+                    x:Name="cboMP"
+                    BorderColor="Green"
+                    ClearIconVisibility="Auto"
+                    DisplayMember="data"
+                    DropDownSelectedItemBackgroundColor="GreenYellow"
+                    FilterComparisonType="CurrentCultureIgnoreCase"
+                    FilterCondition="Contains"
+                    IsFilterEnabled="False"
+                    IsLabelFloating="True"
+                    ItemsSource="{Binding}"
+                    LabelColor="Green"
+                    LabelText="Materia Prima"
+                    ReserveBottomTextLine="True"
+                    ReturnType="Next"
+                    TextFontSize="20"
+                    ValueMember="data">
+                    <de:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontAttributes="Bold"
+                                    Padding="10"
+                                    Text="{Binding data}" />
+                            </Grid>
+                        </DataTemplate>
+                    </de:ComboBoxEdit.ItemTemplate>
+                </de:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Padding="0,100,0,0">
+                <xdc:DXButton 
+                    Content="SELECCIONAR"
+                    BorderColor="Black"
+                    BorderThickness="2"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BackgroundColor="Green"
+                    CornerRadius="30"
+                    Margin="25,0,25,0"
+                    Clicked="DXButton_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
