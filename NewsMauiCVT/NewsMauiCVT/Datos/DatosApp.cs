@@ -53,5 +53,27 @@ namespace NewsMauiCVT.Datos
             }
             return ls;
         }
+        public bool LogUsabilidad(int submenu, string tipo)
+        {
+            bool resp = false;
+            var IdUsuario = App.Iduser;
+            var Fecha = DateTime.Now;
+            var Tipo = tipo;
+            var SubMenu = submenu;
+
+            try
+            {
+                HttpClient HttpClient = new HttpClient();
+                HttpClient.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                var rest2 = HttpClient.GetAsync("api/LogUsabilidad?idUsuario=" + IdUsuario + "&submenu=" + SubMenu + "&tipoRegistro=" + Tipo).Result;
+                var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
+                resp = JsonConvert.DeserializeObject<bool>(resultadoStr);
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("LogUsabilidad: " + ex.ToString());
+            }
+            return resp;
+        }
     }
 }

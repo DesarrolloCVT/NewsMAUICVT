@@ -1,9 +1,12 @@
 ﻿ using Controls.UserDialogs.Maui;
-using Microsoft.Maui.Controls.Platform.Compatibility;
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using NewsMauiCVT.Views;
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text.RegularExpressions;
 
 namespace NewsMauiCVT
@@ -20,6 +23,31 @@ namespace NewsMauiCVT
         {
             base.OnAppearing();
             SetFocusText();
+        }
+        private void GetIPAddress()
+        {
+            string interfaceDescription = string.Empty;
+            var result = new List<IPAddress>();
+            try
+            {
+                var upAndNotLoopbackNetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback
+                                                                                                              && n.OperationalStatus == OperationalStatus.Up);
+                foreach (var networkInterface in upAndNotLoopbackNetworkInterfaces)
+                {
+                    var iPInterfaceProperties = networkInterface.GetIPProperties();
+
+                    var unicastIpAddressInformation = iPInterfaceProperties.UnicastAddresses.FirstOrDefault(u => u.Address.AddressFamily == AddressFamily.InterNetwork);
+                    if (unicastIpAddressInformation == null) continue;
+
+                    result.Add(unicastIpAddressInformation.Address);
+
+                    interfaceDescription += networkInterface.Description + "---";
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to find IP: {ex.Message}");
+            }
         }
         private void SetFocusText()
         {
@@ -55,9 +83,11 @@ namespace NewsMauiCVT
             
         }
         private async void Loging_ClickedAsync(object sender, EventArgs e)
-        {
+        {   
             try
             {
+                GetIPAddress();
+
                 using (UserDialogs.Instance.Loading("Verificando Datos"))
                 {
                     await Task.Delay(10);

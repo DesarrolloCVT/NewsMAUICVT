@@ -24,6 +24,7 @@ public partial class Posicionamiento : ContentPage
         PreparePage();
         ClearComponent();
         SetFocusText();
+        LogUsabilidad();
 
         #region Código para cargar página de Scan BarCode desde el teléfono.
         if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
@@ -460,5 +461,14 @@ public partial class Posicionamiento : ContentPage
         Application.Current?.MainPage?.Navigation
             .PushModalAsync(new NavigationPage(new BarcodePage())
             { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
+    }
+    private void LogUsabilidad()
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = "Ingreso";
+        var IdSubMenu = 26;
+
+        DisplayAlert("Alerta","Usuario: " + Usuario, "OK");
     }
 }
