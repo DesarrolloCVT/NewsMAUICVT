@@ -6,9 +6,6 @@ using NewsMauiCVT.Views;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
-#if ANDROID
-using static Android.Views.View;
-#endif
 
 namespace NewsMauiCVT;
 
@@ -25,17 +22,6 @@ public partial class LoginQR : INotifyPropertyChanged
             txtCredenciales.Focus();
         });
     }
-#if ANDROID
-    private void textBox1_Keydown(object sender, KeyEventArgs e)
-    {
-        
-        if (e.KeyCode == Android.Views.Keycode.Enter) // or Keys.Down, Keys.Left, Keys.Right
-        {
-            DisplayAlert("Alerta", "Se ha presionado la tecla Enter", "OK");
-            Console.WriteLine("textBox1_Keydown");
-        }
-    }
-#endif
     private async void txtCredenciales_Completed(object sender, EventArgs e)
     {
         try

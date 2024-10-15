@@ -78,13 +78,11 @@ public partial class CheckListGrua : ContentPage
         InitializeComponent();
         LoadDatos();
 	}
-
     protected override void OnAppearing()
     {
         base.OnAppearing();
         clearComponent();
     }
-
     public void LoadDatos()
     {
         FechaCheckList.Date = DateTime.Now;
@@ -245,5 +243,15 @@ public partial class CheckListGrua : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 0;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

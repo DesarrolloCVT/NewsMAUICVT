@@ -25,44 +25,11 @@ public partial class Repaletizado : ContentPage
     }
     protected override void OnAppearing()
     {
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        BarcodePage barcodePage = new BarcodePage();
-        #endregion
-
         base.OnAppearing();
         SetFocusText();
-        PreparePage();
         ClearComponent();
-
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        //Validacion para descartar el uso de la Pistola.
-        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
-        {
-            //Se hace visible boton escanear codigo
-            btn_escanear.IsVisible = true;
-            btn_escanear.IsEnabled = true;
-
-            //validacion: Comprueba que la bandera esta arriba y se ha detectado un codigo antes de hacer el set del TextEdit.
-            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
-            {   
-                if(txtPosicion.IsFocused)
-                {
-                    txtPosicion.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
-                }
-                else
-                {
-                    txt_destino.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
-                }
-                barcodePage.Flag = !barcodePage.Flag;
-                barcodePage.CodigoDetectado = !barcodePage.CodigoDetectado;
-            }
-            #region Validacion: validación para dispositivo Celular, para utilizar datos pre-existentes. 
-            ValidatePreviewData();
-            #endregion
-        }
-        #endregion
+        LogUsabilidad("Ingreso");
     }
-    //Validacion para posicionar el Foco en el TextEdit Posicion -> N° de pallet.
     public class TipoPall
     {
         public string Supportive_Description { get; set; }
@@ -476,19 +443,6 @@ public partial class Repaletizado : ContentPage
     private void Cbo_tipoRepaletizado_Completed(object sender, EventArgs e)
     {
     }
-    private void PreparePage()
-    {
-        try
-        {
-            lblError.IsVisible = false;
-            lblError2.IsVisible = false;
-            lblError3.IsVisible = false;
-            LayoutOrigen.IsVisible = false;
-            LayoutDestinoExistente.IsVisible = false;
-            btn_generar.IsEnabled = false;
-        }
-        catch (Exception ex) { Console.WriteLine(ex.Message); }
-    }
     private async void ValidatePreviewData()
     {
         try {
@@ -524,79 +478,44 @@ public partial class Repaletizado : ContentPage
     }
     private void ClearComponent()
     {
-        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
-        {
-            if (!(picker.SelectedIndex == 1) && (string.IsNullOrEmpty(txtPosicion.Text)) )
-            {
-                txt_destino.IsVisible = false;
-                picker.SelectedIndex = -1;
-                lblError.Text = string.Empty;
-                lblError2.Text = string.Empty;
-                lblError3.Text = string.Empty;
-                txtPosicion.Text = string.Empty;
-                lbl_codproducto.Text = string.Empty;
-                lbl_producto.Text = string.Empty;
-                lbl_lote.Text = string.Empty;
-                lbl_cantidad.Text = string.Empty;
-                lblBodega.Text = string.Empty;
-                txt_destino.Text = string.Empty;
-                lbl_dproducto.Text = string.Empty;
-                lbl_dlote.Text = string.Empty;
-                lbl_dBodega.Text = string.Empty;
-                lbl_dcantidad.Text = string.Empty;
-                txt_cantidad.Text = string.Empty;
-            }
-        }
-        else
-        {
-            cboTipoPallet.IsEnabled = false;
-            cboTipoPallet.IsVisible = false;
-            txt_destino.IsVisible = false;
-            picker.SelectedIndex = -1;
-            lblError.Text = string.Empty;
-            lblError2.Text = string.Empty;
-            lblError3.Text = string.Empty;
-            txtPosicion.Text = string.Empty;
-            lbl_codproducto.Text = string.Empty;
-            lbl_producto.Text = string.Empty;
-            lbl_lote.Text = string.Empty;
-            lbl_cantidad.Text = string.Empty;
-            lblBodega.Text = string.Empty;
-            txt_destino.Text = string.Empty;
-            lbl_dproducto.Text = string.Empty;
-            lbl_dlote.Text = string.Empty;
-            lbl_dBodega.Text = string.Empty;
-            lbl_dcantidad.Text = string.Empty;
-            txt_cantidad.Text = string.Empty;
-        }
-    }
-    private void OnKeyDown()
-    {
-#if ANDROID
-        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
-        if (imm != null)
-        {
-            var activity = Platform.CurrentActivity;
-            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
-            imm.HideSoftInputFromWindow(wToken, 0);
-        }
-#endif
+        cboTipoPallet.IsEnabled = false;
+        cboTipoPallet.IsVisible = false;
+        txt_destino.IsVisible = false;
+        picker.SelectedIndex = -1;
+        lblError.IsVisible = false;
+        lblError.Text = string.Empty;
+        lblError2.IsVisible = false;
+        lblError2.Text = string.Empty;
+        lblError3.IsVisible = false;
+        lblError3.Text = string.Empty;
+        txtPosicion.Text = string.Empty;
+        lbl_codproducto.Text = string.Empty;
+        lbl_producto.Text = string.Empty;
+        lbl_lote.Text = string.Empty;
+        lbl_cantidad.Text = string.Empty;
+        lblBodega.Text = string.Empty;
+        txt_destino.Text = string.Empty;
+        lbl_dproducto.Text = string.Empty;
+        lbl_dlote.Text = string.Empty;
+        lbl_dBodega.Text = string.Empty;
+        lbl_dcantidad.Text = string.Empty;
+        txt_cantidad.Text = string.Empty;
+        LayoutOrigen.IsVisible = false;
+        LayoutDestinoExistente.IsVisible = false;
     }
     protected override bool OnBackButtonPressed()
     {
-        OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-    private void Btn_escanear_Clicked(object sender, EventArgs e)
-    {   
-        BarcodePage barcodePage = new BarcodePage();
-        barcodePage.Flag = true;
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 20;
 
-        OnKeyDown();
-        Application.Current?.MainPage?.Navigation
-            .PushModalAsync(new NavigationPage(new BarcodePage())
-            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
-
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

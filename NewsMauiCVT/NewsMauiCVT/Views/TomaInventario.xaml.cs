@@ -19,6 +19,7 @@ public partial class TomaInventario : ContentPage
     {
         base.OnAppearing();
         ClearComponent();
+        LogUsabilidad("Ingreso");
     }
     void cargaDatos()
     {
@@ -176,91 +177,6 @@ public partial class TomaInventario : ContentPage
             DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
-    //private void Txt_producto_Completed(object sender, EventArgs e)
-    //{
-    //    var ACC = Connectivity.NetworkAccess;
-    //    if (ACC == NetworkAccess.Internet)
-    //    {
-    //        HttpClient ClientHttp = new HttpClient();
-    //        ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-
-    //        //verifica CodProducto
-    //        var rest = ClientHttp.GetAsync("api/TomaInventario?CodProducto=" + txt_producto.Text).Result;
-    //        if (rest.IsSuccessStatusCode)
-    //        {
-    //            var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-    //            int CodProd = JsonConvert.DeserializeObject<int>(resultadoStr);
-
-    //            if (CodProd == 0)
-    //            {
-    //                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-    //                lblError2.Text = "Cod. Producto no existe";
-    //                lblError2.IsVisible = true;
-    //                txt_producto.Focus();
-    //                txt_producto.Text = string.Empty;
-    //            }
-    //            else
-    //            {
-    //                lblError2.Text = string.Empty;
-    //                lblError2.IsVisible = false;
-    //                txt_lote.Focus();
-    //                txt_lote.IsEnabled = true; ;
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-    //        DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
-    //    }
-    //}
-
-    //private void Txt_lote_Completed(object sender, EventArgs e)
-    //{
-    //    var ACC = Connectivity.NetworkAccess;
-    //    if (ACC == NetworkAccess.Internet)
-    //    {
-    //        HttpClient ClientHttp = new HttpClient();
-    //        ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-
-
-    //        byte[] mybyte = System.Text.Encoding.UTF8.GetBytes(txt_lote.Text);
-    //        string returntext = System.Convert.ToBase64String(mybyte);
-
-
-    //        var rest = ClientHttp.GetAsync("api/TomaInventario?LoteCode=" + returntext).Result;
-
-    //        //var rest = ClientHttp.GetAsync("api/TomaInventario?NumLote=" + txt_lote.Text).Result;
-
-    //        if (rest.IsSuccessStatusCode)
-    //        {                  
-
-    //            var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-    //            int vLote = JsonConvert.DeserializeObject<int>(resultadoStr);
-
-    //            if (vLote == 0)
-    //            {
-    //                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-    //                lblError3.IsVisible = true;
-    //                lblError3.Text = "Lote no existe";
-    //                txt_lote.Focus();
-    //                txt_lote.Text = string.Empty;
-    //            }
-    //            else
-    //            {
-    //                lblError3.IsVisible = false;
-    //                lblError3.Text = string.Empty;
-    //                txt_cantidad.Focus();
-    //                txt_cantidad.IsEnabled = true;
-    //            }
-    //        }
-    //    }
-    //    else
-    //    {
-    //        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-    //        DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
-    //    }
-    //}
     private void Txt_cantidad_Completed(object sender, EventArgs e)
     {
         //Valida que solo se ingresen numeros
@@ -507,6 +423,8 @@ public partial class TomaInventario : ContentPage
                             txt_ubicacion.IsEnabled = false;
                             txt_pallet.Focus();
 
+                            LogUsabilidad("Crea inventario");
+
                         }
                         else
                         {
@@ -543,5 +461,15 @@ public partial class TomaInventario : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 63;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

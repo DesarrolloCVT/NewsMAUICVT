@@ -24,7 +24,7 @@ namespace NewsMauiCVT
             base.OnAppearing();
             SetFocusText();
         }
-        private void GetIPAddress()
+        private List<IPAddress> GetIPAddress()
         {
             string interfaceDescription = string.Empty;
             var result = new List<IPAddress>();
@@ -48,6 +48,7 @@ namespace NewsMauiCVT
             {
                 Debug.WriteLine($"Unable to find IP: {ex.Message}");
             }
+            return result;
         }
         private void SetFocusText()
         {
@@ -86,8 +87,6 @@ namespace NewsMauiCVT
         {   
             try
             {
-                GetIPAddress();
-
                 using (UserDialogs.Instance.Loading("Verificando Datos"))
                 {
                     await Task.Delay(10);
@@ -136,6 +135,9 @@ namespace NewsMauiCVT
                                                     App.idPerfil = d.IdPerfilMovile;
                                                     // App.vali = true;
                                                 }
+
+                                                InsertarLog();
+
                                                 DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
                                                 await Navigation.PushAsync(new PageMain());
                                                 txtUsuario.Text = string.Empty;
@@ -196,6 +198,24 @@ namespace NewsMauiCVT
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                 Console.WriteLine(ex.ToString());
                 await DisplayAlert("Alerta", "Revise conexión", "Aceptar");
+            }
+        }
+        private void InsertarLog()
+        {
+            try
+            {
+                var IP = GetIPAddress();
+                var entidad = "LOGIN MOBILE";
+                var entidadId = 0;
+                var valorAntiguo = IP.ToString();
+                var valorNuevo = "INGRESO A SISTEMA MBILE";
+
+                DatosApp datosApp = new DatosApp();
+                datosApp.InsertaRegistroLog(entidad, entidadId, valorAntiguo, valorNuevo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("InsertarLog: " + ex.ToString());
             }
         }
         private async void LoginQR_Clicked(object sender, EventArgs e)

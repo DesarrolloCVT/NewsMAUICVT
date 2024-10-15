@@ -24,21 +24,6 @@
                     Keyboard="Numeric"
                     ClearIconVisibility="Never">
                 </dxe:TextEdit>
-                <dxc:DXButton 
-                    Margin="25"
-                    x:Name="btn_escanear"
-                    BackgroundColor="Green"
-                    BorderColor="Black"
-                    BorderThickness="2"
-                    IsEnabled="False"
-                    IsVisible="False"
-                    Clicked="Btn_escanear_Clicked"
-                    Content="ESCANEAR CODIGO"
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    HeightRequest="50"
-                    PressedBackgroundColor="MediumSeaGreen"
-                    PressedBorderColor="DarkOrange" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">
                 <Label x:Name="lblConfirm" Text="" IsVisible="False" TextColor="Red" />

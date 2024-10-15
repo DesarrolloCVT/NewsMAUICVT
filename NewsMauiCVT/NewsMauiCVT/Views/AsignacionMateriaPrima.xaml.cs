@@ -1,3 +1,5 @@
+using NewsMauiCVT.Datos;
+
 namespace NewsMauiCVT.Views;
 
 public partial class AsignacionMateriaPrima : ContentPage
@@ -45,5 +47,15 @@ public partial class AsignacionMateriaPrima : ContentPage
     public class Datos
     {
         public string data { get; set; }
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 0;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

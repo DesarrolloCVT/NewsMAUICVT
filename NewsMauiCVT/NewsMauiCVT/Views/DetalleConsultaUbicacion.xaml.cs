@@ -24,6 +24,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        LogUsabilidad("Detalle Ubicacion");
         //vCArga.IsVisible = false;
         //activity.IsEnabled = false;
         //activity.IsRunning = false;
@@ -74,5 +75,15 @@ public partial class DetalleConsultaUbicacion : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return false;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 19;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

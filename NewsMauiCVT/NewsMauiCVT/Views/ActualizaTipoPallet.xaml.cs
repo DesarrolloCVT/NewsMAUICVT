@@ -16,27 +16,10 @@ public partial class ActualizaTipoPallet : ContentPage
     }
     protected override void OnAppearing()
     {
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        BarcodePage barcodePage = new BarcodePage();
-        #endregion
-
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
-
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
-        {
-            btn_escanear.IsVisible = true;
-            btn_escanear.IsEnabled = true;
-            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
-            {
-                txt_pallet.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
-                barcodePage.Flag = !barcodePage.Flag; // -> Set Flag => False.
-
-            }
-        }
-        #endregion
+        LogUsabilidad("Ingreso");
     }
     private void SetFocusText()
     {
@@ -154,6 +137,7 @@ public partial class ActualizaTipoPallet : ContentPage
             lblError.IsVisible = false;
             txt_pallet.Focus();
             btn_generar.IsEnabled = false;
+            LogUsabilidad("Actualizacion de pallet ");
         }
         else
         {
@@ -167,31 +151,19 @@ public partial class ActualizaTipoPallet : ContentPage
 
         #endregion
     }
-    private void OnKeyDown()
-    {
-#if ANDROID
-        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
-        if (imm != null)
-        {
-            var activity = Platform.CurrentActivity;
-            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
-            imm.HideSoftInputFromWindow(wToken, 0);
-        }
-#endif
-    }
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
-        OnKeyDown();
         return true;
     }
-    private void Btn_escanear_Clicked(object sender, EventArgs e)
+    private void LogUsabilidad(string accion)
     {
-        BarcodePage barcodePage = new BarcodePage();
-        barcodePage.Flag = true;
-        OnKeyDown();
-        Application.Current?.MainPage?.Navigation
-            .PushModalAsync(new NavigationPage(new BarcodePage())
-            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 305;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

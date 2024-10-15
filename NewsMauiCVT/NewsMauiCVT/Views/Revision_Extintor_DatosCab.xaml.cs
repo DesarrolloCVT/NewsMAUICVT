@@ -15,6 +15,7 @@ public partial class Revision_Extintor_DatosCab : ContentPage
         base.OnAppearing();
         ClearComponent();
         txtNExtintor.Focus();
+        LogUsabilidad("Ingreso");
     }
     void ClearComponent()
     {
@@ -111,5 +112,15 @@ public partial class Revision_Extintor_DatosCab : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 321;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

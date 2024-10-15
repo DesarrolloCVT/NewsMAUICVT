@@ -118,21 +118,6 @@
                         TextColor="White"
                         WidthRequest="250" />
                 </StackLayout>
-                <StackLayout Padding="10">
-                    <Button
-                        x:Name="btn_Escanear"
-                        IsEnabled="False"
-                        IsVisible="False"
-                        BackgroundColor="#00b33c"
-                        Clicked="Btn_Escanear_Clicked"
-                        CornerRadius="5"
-                        FlexLayout.AlignSelf="Stretch"
-                        HorizontalOptions="CenterAndExpand"
-                        Padding="10"
-                        Text="ESCANEAR"
-                        TextColor="White"
-                        WidthRequest="250" />
-                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

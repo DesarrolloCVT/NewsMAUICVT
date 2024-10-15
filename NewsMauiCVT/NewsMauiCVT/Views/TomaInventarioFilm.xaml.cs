@@ -418,6 +418,16 @@ public partial class TomaInventarioFilm : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
+    private void LogUsabilidad()
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = "Ingreso";
+        var IdSubMenu = 281;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
+    }
     //private void CboTipoPallet_SelectedIndexChanged(object sender, EventArgs e)
     //{
 

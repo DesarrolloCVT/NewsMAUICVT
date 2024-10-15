@@ -17,8 +17,7 @@
                               Completed="TxtPosicion_Completed"
                               IsLabelFloating="False"
                               BorderColor="Green"
-                              LabelColor="Green"
-                              Focused="txtPosicion_Focused">
+                              LabelColor="Green">
                 </dxe:TextEdit>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand">

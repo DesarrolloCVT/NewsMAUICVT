@@ -15,6 +15,7 @@ public partial class SMMTransferencia : ContentPage
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
+        LogUsabilidad("Ingreso");
     }
     private void SetFocusText()
     {
@@ -70,5 +71,15 @@ public partial class SMMTransferencia : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 241;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

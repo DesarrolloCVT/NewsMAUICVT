@@ -10,17 +10,6 @@
     </ContentPage.BindingContext-->
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout Margin="0,0,0,100">
-            <Button
-                x:Name="btn_escanear"
-                Margin="35"
-                BackgroundColor="Teal"
-                Command="{Binding ButtonCommand}"
-                CornerRadius="20"
-                FontSize="Medium"
-                HeightRequest="50"
-                Text="Escanear Código"
-                TextColor="White"
-                Clicked="Btn_escanear_Clicked"/>
             <dxe:TextEdit
                 x:Name="txtCodigo"
                 Margin="25,0"

@@ -148,21 +148,6 @@
             </StackLayout>
             <StackLayout Padding="25">
                 <Button Text="GENERAR" TextColor="White" x:Name="btn_generar" BackgroundColor="#00b33c"  CornerRadius="5" WidthRequest="300" Padding="10" FlexLayout.AlignSelf="Stretch"  HorizontalOptions="CenterAndExpand" Clicked="Btn_generar_Clicked"   />
-                <dxc:DXButton 
-                    Margin="0,30,0,0"
-                    x:Name="btn_escanear"
-                    BackgroundColor="Green"
-                    BorderColor="Black"
-                    BorderThickness="2"
-                    IsEnabled="False"
-                    IsVisible="False"
-                    Clicked="Btn_escanear_Clicked"
-                    Content="ESCANEAR CODIGO"
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    HeightRequest="50"
-                    PressedBackgroundColor="MediumSeaGreen"
-                    PressedBorderColor="DarkOrange" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

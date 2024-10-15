@@ -89,6 +89,7 @@ public partial class TransferenciasDetalle : ContentPage
 
                     if (resp)
                     {
+                        LogUsabilidad("Ingreso transferencia");
                         lblConfirm.Text = "Pallet agregado correctamente ";
                         lblConfirm.IsVisible = true;
                         txt_pallet.Text = string.Empty;
@@ -136,5 +137,15 @@ public partial class TransferenciasDetalle : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return false;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 22;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

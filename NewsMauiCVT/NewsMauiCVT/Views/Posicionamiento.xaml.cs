@@ -1,5 +1,6 @@
 using DevExpress.Maui.Core.Internal;
 using Microsoft.Maui;
+using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using Newtonsoft.Json;
 using System.ComponentModel;
@@ -16,76 +17,10 @@ public partial class Posicionamiento : ContentPage
     }
     protected override void OnAppearing()
     {
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        BarcodePage barcodePage = new BarcodePage();
-        #endregion
-
         base.OnAppearing();
-        PreparePage();
         ClearComponent();
         SetFocusText();
-        LogUsabilidad();
-
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
-        {
-            btn_escanear.IsVisible = true;
-            btn_escanear.IsEnabled = true;
-            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
-            {
-                if (string.IsNullOrEmpty(txt_origen.Text))
-                {
-                    txt_origen.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
-                }
-                else
-                {
-                    txt_destino.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
-                }
-                barcodePage.Flag = !barcodePage.Flag;
-                barcodePage.CodigoDetectado = !barcodePage.CodigoDetectado;
-            }
-            #region Validacion dispositivo Celular para controlar datos pre-existentes
-            ValidatePreviewData();
-            #endregion
-        }
-        #endregion
-    }
-    private async void ValidatePreviewData()
-    {
-        try
-        {
-            if (txt_destino.IsVisible == true)
-            {
-                var result = await DisplayAlert("Confirmar", "Se han detectado datos previamente ingresados, ¿Desea continuar con el registro?", "SI", "NO");
-                if (result)
-                {
-                    Console.WriteLine("Se mantienen los datos");
-                }
-                else
-                {
-                    lblError.IsVisible = false;
-                    lblError2.IsVisible = false;
-                    lblError.Text = string.Empty;
-                    lblError2.Text = string.Empty;
-                    txt_origen.Text = string.Empty;
-                    lbl_codproducto.Text = string.Empty;
-                    lbl_producto.Text = string.Empty;
-                    lbl_lote.Text = string.Empty;
-                    lbl_cantidad.Text = string.Empty;
-                    lbl_sitio.Text = string.Empty;
-                    lbl_ubicacion.Text = string.Empty;
-                    txt_destino.IsVisible = false;
-                    txt_ConfirmaDestino.Text = string.Empty;
-                    txt_ConfirmaDestino.IsVisible = false;
-                    txt_destino.Text = string.Empty;
-                    lbl_sitio_nuevo.Text = string.Empty;
-                    lbl_ubicacion_nueva.Text = string.Empty;
-                    LayoutOrigen.IsVisible = false;
-                    LayoutDestinoExistente.IsVisible = false;
-                }
-            }
-        }
-        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        LogUsabilidad("Ingreso");
     }
     private void SetFocusText()
     {
@@ -226,6 +161,7 @@ public partial class Posicionamiento : ContentPage
                                 throw new InvalidOperationException();
 
                         lbl_sitio_nuevo.Text = "Sitio: " + NombreCortoSitio;
+                        LogUsabilidad("Pallet posicionado");
                     }
                     if (lbl_sitio.Text == lbl_sitio_nuevo.Text)
                     {
@@ -247,6 +183,18 @@ public partial class Posicionamiento : ContentPage
                         lblError2.IsVisible = true;
                     }
                 }
+                else
+                {
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    txt_destino.Text = string.Empty;
+                    lbl_sitio_nuevo.Text = string.Empty;
+                    lbl_ubicacion_nueva.Text = string.Empty;
+                    lblError2.Text = "Se ha producido un error";
+                    lblError2.IsVisible = true;
+                    _ = Task.Delay(150).ContinueWith(t => {
+                        txt_destino.Focus();
+                    });
+                }
             }
             catch (Exception ex) 
             {
@@ -261,60 +209,25 @@ public partial class Posicionamiento : ContentPage
     }
     private void ClearComponent()
     {
-        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
-        {
-            if (txt_destino.IsVisible == false)
-            {
-                lblError.Text = string.Empty;
-                lblError2.Text = string.Empty;
-                txt_origen.Text = string.Empty;
-                lbl_codproducto.Text = string.Empty;
-                lbl_producto.Text = string.Empty;
-                lbl_lote.Text = string.Empty;
-                lbl_cantidad.Text = string.Empty;
-                lbl_sitio.Text = string.Empty;
-                lbl_ubicacion.Text = string.Empty;
-                txt_ConfirmaDestino.Text = string.Empty;
-                txt_destino.Text = string.Empty;
-                lbl_sitio_nuevo.Text = string.Empty;
-                lbl_ubicacion_nueva.Text = string.Empty;
-            }
-        }
-        else
-        {
-            lblError.IsVisible = false;
-            lblError2.IsVisible = false;
-            lblError.Text = string.Empty;
-            lblError2.Text = string.Empty;
-            txt_origen.Text = string.Empty;
-            lbl_codproducto.Text = string.Empty;
-            lbl_producto.Text = string.Empty;
-            lbl_lote.Text = string.Empty;
-            lbl_cantidad.Text = string.Empty;
-            lbl_sitio.Text = string.Empty;
-            lbl_ubicacion.Text = string.Empty;
-            txt_destino.IsVisible = false;
-            txt_ConfirmaDestino.Text = string.Empty;
-            txt_ConfirmaDestino.IsVisible = false;
-            txt_destino.Text = string.Empty;
-            lbl_sitio_nuevo.Text = string.Empty;
-            lbl_ubicacion_nueva.Text = string.Empty;
-            LayoutOrigen.IsVisible = false;
-            LayoutDestinoExistente.IsVisible = false;
-        }
-        //  btn_generar.IsEnabled = false;
-    }
-    private void PreparePage()
-    {
-        try
-        {
-            txt_ConfirmaDestino.IsVisible = false;
-            LayoutOrigen.IsVisible = false;
-            LayoutDestinoExistente.IsVisible = false;
-            lblError.IsVisible = false;
-            lblError2.IsVisible = false;
-        }
-        catch (Exception ex) { Console.WriteLine(ex.Message); }
+        lblError.IsVisible = false;
+        lblError2.IsVisible = false;
+        lblError.Text = string.Empty;
+        lblError2.Text = string.Empty;
+        txt_origen.Text = string.Empty;
+        lbl_codproducto.Text = string.Empty;
+        lbl_producto.Text = string.Empty;
+        lbl_lote.Text = string.Empty;
+        lbl_cantidad.Text = string.Empty;
+        lbl_sitio.Text = string.Empty;
+        lbl_ubicacion.Text = string.Empty;
+        txt_destino.IsVisible = false;
+        txt_ConfirmaDestino.Text = string.Empty;
+        txt_ConfirmaDestino.IsVisible = false;
+        txt_destino.Text = string.Empty;
+        lbl_sitio_nuevo.Text = string.Empty;
+        lbl_ubicacion_nueva.Text = string.Empty;
+        LayoutOrigen.IsVisible = false;
+        LayoutDestinoExistente.IsVisible = false;
     }
     private void Txt_ConfirmaDestino_Completed(object sender, EventArgs e)
     {
@@ -434,41 +347,19 @@ public partial class Posicionamiento : ContentPage
             }
         }*/
     }
-    private void OnKeyDown()
-    {
-#if ANDROID
-        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
-        if (imm != null)
-        {
-            var activity = Platform.CurrentActivity;
-            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
-            imm.HideSoftInputFromWindow(wToken, 0);
-        }
-#endif
-    }
     protected override bool OnBackButtonPressed()
     {
-        OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-    private void Btn_escanear_Clicked(object sender, EventArgs e)
-    {
-        BarcodePage barcodePage = new BarcodePage();
-        barcodePage.Flag = true;
-
-        OnKeyDown();
-        Application.Current?.MainPage?.Navigation
-            .PushModalAsync(new NavigationPage(new BarcodePage())
-            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
-    }
-    private void LogUsabilidad()
+    private void LogUsabilidad(string accion)
     {
         var Usuario = App.Iduser;
         var Fecha = DateTime.Now;
-        var TipoRegistro = "Ingreso";
+        var TipoRegistro = accion;
         var IdSubMenu = 26;
 
-        DisplayAlert("Alerta","Usuario: " + Usuario, "OK");
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

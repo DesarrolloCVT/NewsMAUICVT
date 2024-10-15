@@ -9,31 +9,12 @@ public partial class SMM_ConsultaProducto : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        
     }
     protected override void OnAppearing()
     {
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        BarcodePage barcodePage = new BarcodePage();
-        #endregion
-
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
-
-        #region Código para cargar página de Scan BarCode desde el teléfono.
-        if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
-        {
-            btn_Escanear.IsVisible = true;
-            btn_Escanear.IsEnabled = true;
-            if (barcodePage.Flag && barcodePage.CodigoDetectado) //True
-            {
-                txt_pallet.Text = barcodePage.SetBarcode(); //Set text -> Codigo de barras recuperado.
-                barcodePage.Flag = !barcodePage.Flag;
-                barcodePage.CodigoDetectado = !barcodePage.CodigoDetectado;
-            }
-        }
-        #endregion
     }
     private void SetFocusText()
     {
@@ -135,32 +116,9 @@ public partial class SMM_ConsultaProducto : ContentPage
         lblUnidades.Text = string.Empty;
         txt_pallet.Focus();
     }    
-    private void OnKeyDown()
-    {
-#if ANDROID
-        var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
-        if (imm != null)
-        {
-            var activity = Platform.CurrentActivity;
-            Android.OS.IBinder wToken = activity.CurrentFocus?.WindowToken;
-            imm.HideSoftInputFromWindow(wToken, 0);
-        }
-#endif
-    }
     protected override bool OnBackButtonPressed()
     {
-        OnKeyDown();
         //return true to prevent back, return false to just do something before going back. 
         return true;
-    }
-    private void Btn_Escanear_Clicked(object sender, EventArgs e)
-    {
-        BarcodePage barcodePage = new BarcodePage();
-        barcodePage.Flag = true;
-
-        OnKeyDown();
-        Application.Current?.MainPage?.Navigation
-            .PushModalAsync(new NavigationPage(new BarcodePage())
-            { BarTextColor = Colors.White, BarBackgroundColor = Colors.CadetBlue }, true);
     }
 }

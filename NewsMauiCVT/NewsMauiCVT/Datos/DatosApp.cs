@@ -75,5 +75,30 @@ namespace NewsMauiCVT.Datos
             }
             return resp;
         }
+        public bool InsertaRegistroLog(string entidad, int entidad_id
+            , string valorAntiguo, string valorNuevo)
+        {
+            bool resp = false;
+
+            var Entidad = entidad;
+            var Entidad_Id = entidad_id;
+            var IdUsuario = App.Iduser;
+            var Valor_Antiguo = valorAntiguo;
+            var Valor_Nuevo = valorNuevo;
+
+            try
+            {
+                HttpClient HttpClient = new HttpClient();
+                HttpClient.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                var rest2 = HttpClient.GetAsync("api/RegistroLog?Entidad=" + Entidad + "&Entidad_Id=" + Entidad_Id + "&IdUsuario=" + IdUsuario + "&Valor_Antiguo=" + Valor_Antiguo + "&Valor_Nuevo=" + Valor_Nuevo).Result;
+                var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
+                resp = JsonConvert.DeserializeObject<bool>(resultadoStr);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("InsertaRegistroLog: " + ex.ToString());
+            }
+            return resp;
+        }
     }
 }
