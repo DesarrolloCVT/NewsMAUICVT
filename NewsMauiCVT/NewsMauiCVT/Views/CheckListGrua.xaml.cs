@@ -150,12 +150,12 @@ public partial class CheckListGrua : ContentPage
             && cboTipoMaquina.SelectedIndex != -1 && cboTurno.SelectedIndex != -1
             && !string.IsNullOrEmpty(txtHorometro.Text) && !string.IsNullOrEmpty(Fecha.ToString()))
         {   
-            CheckListData.Add("NumeroGrua", NumeroDeGrua.ToString());
-            CheckListData.Add("AreaTrabajo", AreaDeTrabajo.ToString());
-            CheckListData.Add("TipoMaquinaria", TipoDeMaquinaria.ToString());
-            CheckListData.Add("Turno", Turno.ToString());
+            CheckListData.Add("NumeroGrua", NumeroDeGrua);
+            CheckListData.Add("AreaTrabajo", AreaDeTrabajo);
+            CheckListData.Add("TipoMaquinaria", TipoDeMaquinaria);
+            CheckListData.Add("Turno", Turno);
             CheckListData.Add("Horometro", Horometro.ToString());
-            CheckListData.Add("Fecha", Fecha.ToString("dd-MM-yyyy"));
+            CheckListData.Add("Fecha", Fecha.ToString("yyyy-MM-dd"));
 
 
             foreach (var item in CheckListData)

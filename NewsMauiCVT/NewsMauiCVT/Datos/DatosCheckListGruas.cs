@@ -51,6 +51,7 @@ namespace NewsMauiCVT.Datos
         }
         public bool InsertaCheckListGrua(Dictionary<string,string> checkList)
         {
+            Console.WriteLine("Test checklist: " + checkList.GetValueOrDefault("Fecha"));
             bool resp = false;
             try
             {
@@ -60,23 +61,24 @@ namespace NewsMauiCVT.Datos
                     BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
                 var rest = ClientHttp.GetAsync("api/CheckListGruas/InsertaCheckListGrua?Usuario_Responsable=" + App.NombreUsuario
-                    +"&Numero_Grua=" + checkList.GetValueOrDefault("NumeroGrua") 
-                    +"&Area_Trabajo="+ checkList.GetValueOrDefault("AreaTrabajo") + "&Tipo_Maquina="+ checkList.GetValueOrDefault("TipoMaquinaria")
-                    +"&Turno=1&Horometro="+ checkList.GetValueOrDefault("Horometro") + "&Fecha="+ checkList.GetValueOrDefault("Fecha") 
-                    +"&Estado_Luces="+ checkList.GetValueOrDefault("Luces") + "&Estado_Motor="+ checkList.GetValueOrDefault("Motor") 
-                    +"&Fuga_Agua_Aceite="+ checkList.GetValueOrDefault("Fugas") + "&Estado_Direccion="+ checkList.GetValueOrDefault("Direccion")
-                    +"&Estado_Transmision="+ checkList.GetValueOrDefault("Transmision") + "&Escalera_Acceso_Pasamanos="+ checkList.GetValueOrDefault("Escalera") 
-                    +"&Estado_Bocina="+ checkList.GetValueOrDefault("Bocina") + "&Alarma_Retroceso="+ checkList.GetValueOrDefault("Alarma") 
-                    +"&Espejo_Retrovisor="+ checkList.GetValueOrDefault("Espejos") + "&Estado_Tablero_Datos="+ checkList.GetValueOrDefault("Tablero")
-                    +"&Estado_Extintor="+ checkList.GetValueOrDefault("Extintor") + "&Estado_Bateria="+ checkList.GetValueOrDefault("Bateria") 
-                    +"&Estado_Asiento="+ checkList.GetValueOrDefault("Asiento") + "&Cinturon_Seguridad="+ checkList.GetValueOrDefault("Cinturon") 
-                    +"&Baliza_Pertiga="+ checkList.GetValueOrDefault("Baliza") + "&Estado_Neumaticos="+ checkList.GetValueOrDefault("Neumaticos")
-                    +"&Llantas_Tuercas="+ checkList.GetValueOrDefault("Llantas") + "&Cadenas_Torre="+ checkList.GetValueOrDefault("Cadenas") 
-                    +"&Unas_Horquilla="+ checkList.GetValueOrDefault("Unashorquilla") + "&Soporte_Cilindro="+ checkList.GetValueOrDefault("Soportecilindro") 
-                    +"&Flexible_Polea_Rodamiento="+ checkList.GetValueOrDefault("Flexible") + "&Seguro_Una_Horquilla="+ checkList.GetValueOrDefault("Segurohorquilla")
-                    +"&Punto_Bloqueo="+ checkList.GetValueOrDefault("Puntodebloqueo") + "&Observaciones="+ checkList.GetValueOrDefault("Observaciones")).Result;
+                    + "&Numero_Grua=" + checkList.GetValueOrDefault("NumeroGrua")
+                    + "&Area_Trabajo=" + checkList.GetValueOrDefault("AreaTrabajo") + "&Tipo_Maquina="+ checkList.GetValueOrDefault("TipoMaquinaria")
+                    + "&Turno=" + checkList.GetValueOrDefault("Turno") + "&Horometro=" + checkList.GetValueOrDefault("Horometro") + "&Fecha="+ checkList.GetValueOrDefault("Fecha")
+                    + "&Estado_Luces=" + checkList.GetValueOrDefault("Luces") + "&Estado_Motor="+ checkList.GetValueOrDefault("Motor")
+                    + "&Fuga_Agua_Aceite=" + checkList.GetValueOrDefault("Fugas") + "&Estado_Direccion="+ checkList.GetValueOrDefault("Direccion")
+                    + "&Estado_Transmision=" + checkList.GetValueOrDefault("Transmision") + "&Escalera_Acceso_Pasamanos="+ checkList.GetValueOrDefault("Escalera")
+                    + "&Estado_Bocina=" + checkList.GetValueOrDefault("Bocina") + "&Alarma_Retroceso="+ checkList.GetValueOrDefault("Alarma")
+                    + "&Espejo_Retrovisor=" + checkList.GetValueOrDefault("Espejos") + "&Estado_Tablero_Datos="+ checkList.GetValueOrDefault("Tablero")
+                    + "&Estado_Extintor=" + checkList.GetValueOrDefault("Extintor") + "&Estado_Bateria="+ checkList.GetValueOrDefault("Bateria")
+                    + "&Estado_Asiento=" + checkList.GetValueOrDefault("Asiento") + "&Cinturon_Seguridad="+ checkList.GetValueOrDefault("Cinturon")
+                    + "&Baliza_Pertiga=" + checkList.GetValueOrDefault("Baliza") + "&Estado_Neumaticos="+ checkList.GetValueOrDefault("Neumaticos")
+                    + "&Llantas_Tuercas=" + checkList.GetValueOrDefault("Llantas") + "&Cadenas_Torre="+ checkList.GetValueOrDefault("Cadenas")
+                    + "&Unas_Horquilla=" + checkList.GetValueOrDefault("Unashorquilla") + "&Soporte_Cilindro="+ checkList.GetValueOrDefault("Soportecilindro")
+                    + "&Flexible_Polea_Rodamiento=" + checkList.GetValueOrDefault("Flexible") + "&Seguro_Una_Horquilla="+ checkList.GetValueOrDefault("Segurohorquilla")
+                    + "&Punto_Bloqueo=" + checkList.GetValueOrDefault("Puntodebloqueo") + "&Observaciones="+ checkList.GetValueOrDefault("Observaciones")).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                 resp = JsonConvert.DeserializeObject<bool>(resultadoStr);
+                Console.WriteLine("rest: " + rest);
                 if (rest.IsSuccessStatusCode)
                 {
                     resp = true;

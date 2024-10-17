@@ -18,7 +18,22 @@ public partial class CheckListGruaObs : ContentPage
             var result = await DisplayAlert("Alerta", "¿Está seguro de enviar los datos sin observaciones?", "SI", "NO");
             if (result)
             {
-                checkList.Add("Observaciones", " ");
+                try
+                {
+                    foreach (var l in checkList)
+                    {
+                        if (l.Key.ToString() == "Observaciones")
+                        {
+                            checkList.Remove(l.Key.ToString());
+                        }
+                    }
+                    checkList.Add("Observaciones", " ");
+                }
+                catch (Exception ex) 
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+
                 var ACC = Connectivity.NetworkAccess;
                 if (ACC == NetworkAccess.Internet)
                 {
@@ -45,7 +60,21 @@ public partial class CheckListGruaObs : ContentPage
         }
         else
         {
-            checkList.Add("Observaciones", txtObservaciones.Text);
+            try
+            {
+                foreach (var l in checkList)
+                {
+                    if (l.Key.ToString() == "Observaciones")
+                    {
+                        checkList.Remove(l.Key.ToString());
+                    }
+                }
+                checkList.Add("Observaciones", txtObservaciones.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
