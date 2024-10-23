@@ -18,6 +18,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboFolio"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DisplayMember="FolioInvSMM"
@@ -49,6 +50,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="txt_Bodega"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DropDownSelectedItemBackgroundColor="GreenYellow"
@@ -79,6 +81,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboPasillo"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DropDownSelectedItemBackgroundColor="GreenYellow"

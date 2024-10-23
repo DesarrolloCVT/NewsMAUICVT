@@ -8,7 +8,7 @@ namespace NewsMauiCVT
         {
             InitializeComponent();
             DevExpress.Maui.DataGrid.Initializer.Init();
-            MainPage =  new NavigationPage(new MainPage());
+            MainPage =  new NavigationPage(new LoginPage());
 
             Current.UserAppTheme = AppTheme.Light;
             RequestedThemeChanged += (s, e) => { Current.UserAppTheme = AppTheme.Light; };
@@ -27,14 +27,15 @@ namespace NewsMauiCVT
         protected override void OnStart()
         {
             // Handle when your app starts
+            Console.WriteLine("OnStart");
         }
         protected override void OnSleep()
         {
-
+            Console.WriteLine("OnSleep");
         }
         protected override void OnResume()
         {
-
+            Console.WriteLine("OnResume");
         }
     }
 }

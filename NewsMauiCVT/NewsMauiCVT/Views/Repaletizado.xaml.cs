@@ -69,6 +69,12 @@ public partial class Repaletizado : ContentPage
                         lblError.Text = "N° de pallet no existe o no posicionado ";
                         txtPosicion.Focus();
                         txtPosicion.Text = string.Empty;
+
+                        lblBodega.IsVisible = false;
+                        lbl_lote.IsVisible = false;
+                        lbl_cantidad.IsVisible = false;
+                        lbl_codproducto.IsVisible = false;
+                        lbl_producto.IsVisible = false;
                     }
                     else
                     {

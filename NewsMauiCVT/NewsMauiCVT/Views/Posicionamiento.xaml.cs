@@ -54,6 +54,16 @@ public partial class Posicionamiento : ContentPage
                         txt_origen.Text = string.Empty;
                         lblError.Text = "N° de pallet no existe";
                         lblError.IsVisible = true;
+
+                        txt_destino.IsVisible = false;
+                        lbl_fechaProducto.IsVisible = false;
+                        lbl_lote.IsVisible = false;
+                        lbl_cantidad.IsVisible = false;
+                        lbl_sitio.IsVisible = false;
+                        lbl_codproducto.IsVisible = false;
+                        lbl_ubicacion.IsVisible = false;
+                        lbl_producto.IsVisible = false;
+
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                         _ = Task.Delay(300).ContinueWith(t => {
                             txt_origen.Focus();
@@ -110,6 +120,14 @@ public partial class Posicionamiento : ContentPage
                                 lbl_cantidad.Text = "Cantidad: " + p.Package_Quantity.ToString();
                                 lblError.IsVisible = false;
                                 lblError.Text = string.Empty;
+
+                                lbl_fechaProducto.IsVisible = true;
+                                lbl_lote.IsVisible = true;
+                                lbl_cantidad.IsVisible = true;
+                                lbl_sitio.IsVisible = true;
+                                lbl_codproducto.IsVisible = true;
+                                lbl_ubicacion.IsVisible = true;
+                                lbl_producto.IsVisible = true;
                             }
                         }
                         txt_destino.Focus();

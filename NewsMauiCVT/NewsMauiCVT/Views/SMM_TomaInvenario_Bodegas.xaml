@@ -18,6 +18,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboFolio"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DisplayMember="FolioInvSMM"

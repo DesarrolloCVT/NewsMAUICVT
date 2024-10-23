@@ -17,6 +17,7 @@
             <StackLayout Margin="25,0">
                 <dxe:ComboBoxEdit
                     x:Name="cboFolio"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="folioInventario"
@@ -24,7 +25,7 @@
                     FilterComparisonType="CurrentCultureIgnoreCase"
                     FilterCondition="Contains"
                     IsFilterEnabled="False"
-                    IsLabelFloating="False"
+                    IsLabelFloating="True"
                     ItemsSource="{Binding}"
                     LabelColor="Green"
                     LabelText="Folio"
@@ -48,6 +49,7 @@
             <StackLayout Margin="25,0">
                 <dxe:ComboBoxEdit
                     x:Name="cboTipoPallet"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="Supportive_Description"
@@ -55,7 +57,7 @@
                     FilterComparisonType="CurrentCultureIgnoreCase"
                     FilterCondition="Contains"
                     IsFilterEnabled="False"
-                    IsLabelFloating="False"
+                    IsLabelFloating="True"
                     ItemsSource="{Binding}"
                     LabelColor="Green"
                     LabelText="Tipo Pallet"

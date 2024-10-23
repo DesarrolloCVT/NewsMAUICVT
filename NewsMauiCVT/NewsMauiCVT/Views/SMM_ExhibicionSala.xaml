@@ -17,6 +17,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboPasillo"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DropDownSelectedItemBackgroundColor="GreenYellow"
@@ -59,6 +60,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboColumna"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DropDownSelectedItemBackgroundColor="GreenYellow"
@@ -96,6 +98,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboNivel"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DropDownSelectedItemBackgroundColor="GreenYellow"
@@ -148,6 +151,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboCantCaras"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DropDownSelectedItemBackgroundColor="GreenYellow"

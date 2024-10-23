@@ -21,7 +21,7 @@ public partial class Transferencias : ContentPage
         LogUsabilidad("Ingreso");
     }
     private void LoadData()
-    {
+    {   
         int value = 20;
         try
         {
@@ -47,6 +47,9 @@ public partial class Transferencias : ContentPage
                     }
                     cboFolioTransfer.BindingContext = fl;
                 }
+
+                var cantidad = cboFolioTransfer.Height;
+                Console.WriteLine("cantidad de Folios: " + cantidad);
             }
             else
             {

@@ -32,6 +32,7 @@
                 <StackLayout Margin="25,0">
                     <dxe:ComboBoxEdit
                         x:Name="cboBodega"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DisplayMember="Supportive_Description"

@@ -23,6 +23,7 @@
             <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
                 <dxe:ComboBoxEdit
                     x:Name="cboNumGrua"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="numGrua"
@@ -54,6 +55,7 @@
             <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
                 <dxe:ComboBoxEdit
                     x:Name="cboAreaTrabajo"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="area"
@@ -85,6 +87,7 @@
             <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
                 <dxe:ComboBoxEdit
                     x:Name="cboTipoMaquina"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="tipoGrua"
@@ -116,6 +119,7 @@
             <StackLayout Margin="20,0,20,0" Padding="20,0,20,0">
                 <dxe:ComboBoxEdit
                     x:Name="cboTurno"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="turnos"

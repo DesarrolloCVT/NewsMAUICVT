@@ -74,6 +74,7 @@
             <StackLayout Margin="25,0">
                 <dxe:ComboBoxEdit
                     x:Name="picker"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DropDownSelectedItemBackgroundColor="GreenYellow"

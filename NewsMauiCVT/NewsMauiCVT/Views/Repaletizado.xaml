@@ -51,14 +51,16 @@
             </StackLayout>
             <StackLayout Margin="25,0" >
                 <dxe:ComboBoxEdit x:Name="picker"
+                                  PickerShowMode="Popup"
                                   LabelColor="Green"                
                                   BorderColor="Green"             
-                                  LabelText="TIPO REPALETIZADO"
+                                  LabelText="Tipo Repaletizado"
                                   IsLabelFloating="True"             
                                   IsFilterEnabled="False"
                                   FilterCondition="Contains"
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"          
+                                  LabelFontSize="14"
                                   TextFontSize="15"
                                   ClearIconVisibility="Auto"
                                   ReserveBottomTextLine="True"  ReturnType="Done"               
@@ -85,10 +87,12 @@
                     FilterComparisonType="CurrentCultureIgnoreCase"
                     DropDownSelectedItemBackgroundColor="GreenYellow"            
                     ValueMember="Supportive_Description"
+                    LabelFontSize="14"
                     TextFontSize="15"
                     ClearIconVisibility="Auto"
                     ReserveBottomTextLine="True"  ReturnType="Next"
                     x:Name="cboTipoPallet"
+                    PickerShowMode="Popup"
                     SelectionChanged="CboTipoPallet_SelectedIndexChanged">
                     <dxe:ComboBoxEdit.ItemTemplate>
                         <DataTemplate>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             x:Class="NewsMauiCVT.LoginPage"
+                 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
+
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout Padding="0,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        x:Name="txt_version"
+                        FlexLayout.AlignSelf="End"
+                        FontAttributes="Bold"
+                        FontSize="10"
+                        Text="versión 2.7.6.2023"
+                        TextColor="#3399ff" />
+                </Grid>
+                <StackLayout Margin="0,0,0,0">
+                    <Image        
+                        BackgroundColor="Transparent"
+                        FlexLayout.AlignSelf="Center"
+                        Source="logocvt.png" />
+                </StackLayout>
+                <StackLayout x:Name="SlStackLayout">
+                    <StackLayout HorizontalOptions="Center">
+                        <Label
+                            x:Name="txtIniciarSesion"
+                            FlexLayout.AlignSelf="Center"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Text="Iniciar Sesión"
+                            TextColor="#3399ff" />
+                    </StackLayout>
+                    <StackLayout Margin="25,0" Padding="10,0,0,20">
+                        <dxe:TextEdit
+                            x:Name="txtUsuario"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            EndIcon="user"
+                            IsLabelFloating="False"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            TextFontSize="20"
+                            LabelText="USUARIO"
+                            ReturnType="Next"/>
+                    </StackLayout>
+                    <StackLayout Margin="25,0" Padding="10,0,0,20">
+                        <dxe:PasswordEdit
+                            x:Name="txtContraseña"
+                            BorderColor="Green"
+                            BoxHeight="50"
+                            ClearIconVisibility="Auto"
+                            IsLabelFloating="False"
+                            LabelColor="Green"
+                            LabelFontSize="15"
+                            LabelText="CONTRASEÑA"
+                            MaxCharacterCount="6"
+                            MaxCharacterCountOverflowMode="LimitInput"
+                            ReturnType="Send"/>
+                    </StackLayout>
+                    <StackLayout Margin="25,0" Padding="10,0,0,20">
+                        <dxc:DXButton  
+                            Content="INICIAR" 
+                            CornerRadius="20" 
+                            FontAttributes="Bold" 
+                            x:Name="loging" 
+                            HeightRequest="50"  
+                            Clicked="Loging_ClickedAsync" 
+                            PressedBackgroundColor="MediumSeaGreen"
+                            BackgroundColor="#3399ff"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            PressedBorderColor="DarkOrange"
+                            Icon="enter" 
+                            ShowIcon="True">
+                        </dxc:DXButton>
+                        <Label Padding="0,10,0,10" 
+                               Text="OR"
+                               TextColor="Black"
+                               HorizontalTextAlignment="Center"
+                               FontAttributes="Bold"
+                            />
+                        <dxc:DXButton  
+                            Content="INICAR CON QR" 
+                            CornerRadius="20" 
+                            FontAttributes="Bold" 
+                            x:Name="logingQR" 
+                            HeightRequest="50"  
+                            Clicked="LogingQR_ClickedAsync" 
+                            PressedBackgroundColor="MediumSeaGreen"
+                            BackgroundColor="#3399ff"
+                            BorderColor="Black"
+                            BorderThickness="2"
+                            PressedBorderColor="DarkOrange"
+                            Icon="qrlogin" 
+                            ShowIcon="True">
+                        </dxc:DXButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

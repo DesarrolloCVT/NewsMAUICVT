@@ -38,6 +38,7 @@ namespace NewsMauiCVT
 
             builder.Services.AddSingleton(AudioManager.Current);
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<LoginPage>();
             return builder.Build();
         }
     }

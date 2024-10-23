@@ -16,6 +16,7 @@
             <StackLayout Margin="20,100,20,0" Padding="20,0,20,0">
                 <de:ComboBoxEdit 
                     x:Name="cboMP"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="data"

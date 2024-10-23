@@ -150,8 +150,6 @@ public partial class TomaInventario : ContentPage
                             txt_producto.Text = t.ArticleProvider_CodClient;
                             txt_lote.Text = t.Package_Lot;
                             v_lay = t.Site_Id;
-
-
                         }
                         //txt_producto.Focus();
                         //txt_producto.IsEnabled = true;

@@ -24,6 +24,7 @@ public partial class TestCapturaCodeCam : ContentPage
     }
     void ClearComponent()
     {
+        txtCodigo.Text = string.Empty;
         lblProducto.Text = string.Empty;
         lblCodPro.Text = string.Empty;
     }

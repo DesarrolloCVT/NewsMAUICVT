@@ -22,6 +22,7 @@
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"                
                                   x:Name="cboMonitor"
+                                  PickerShowMode="Popup"
                                   ValueMember="Id_Personal"
                                   TextFontSize="20"
                                   ClearIconVisibility="Auto"
@@ -48,6 +49,7 @@
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"                
                                   x:Name="cboArea"
+                                  PickerShowMode="Popup"
                                   ValueMember="Id_Area"
                                   TextFontSize="20"
                                   ClearIconVisibility="Auto"
@@ -74,6 +76,7 @@
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"                
                                   x:Name="cboTipoContraro"
+                                  PickerShowMode="Popup"
                                   ValueMember="tipoCont"
                                   TextFontSize="20"
                                   ClearIconVisibility="Auto"
@@ -100,6 +103,7 @@
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"                
                                   x:Name="cboPersona"
+                                  PickerShowMode="Popup"
                                   ValueMember="Id_Personal"
                                   TextFontSize="20"
                                   ClearIconVisibility="Auto"
@@ -136,6 +140,7 @@
                             ClearIconVisibility="Auto"
                             ReserveBottomTextLine="True"             
                             x:Name="cboLimpUniforme"
+                            PickerShowMode="Popup"
                             SelectionChanged="cboLimpUniforme_SelectionChanged">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -158,7 +163,8 @@
                             ClearIconVisibility="Auto"
                             ReserveBottomTextLine="True"  
                             SelectionChanged="CboEstUniforme_SelectionChanged"
-                            x:Name="CboEstUniforme">
+                            x:Name="CboEstUniforme"
+                            PickerShowMode="Popup">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>1</x:String>
@@ -180,6 +186,7 @@
                             ClearIconVisibility="Auto"
                             ReserveBottomTextLine="True"                  
                             x:Name="cboAfeitadoCorto"
+                            PickerShowMode="Popup"
                             SelectionChanged="cboAfeitadoCorto_SelectionChanged">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -202,6 +209,7 @@
                             ClearIconVisibility="Auto"
                             ReserveBottomTextLine="True" 
                             x:Name="cboUnas"
+                            PickerShowMode="Popup"
                             SelectionChanged="cboUnas_SelectionChanged">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -236,6 +244,7 @@
                             ClearIconVisibility="Auto"
                             ReserveBottomTextLine="True"             
                             x:Name="cboJoyas"
+                            PickerShowMode="Popup"
                             SelectionChanged="cboJoyas_SelectionChanged">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -257,7 +266,8 @@
                             TextFontSize="20"
                             ClearIconVisibility="Auto"
                             ReserveBottomTextLine="True"  
-                            x:Name="cboHigiene">
+                            x:Name="cboHigiene"
+                            PickerShowMode="Popup">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>1</x:String>
@@ -279,6 +289,7 @@
                             ClearIconVisibility="Auto"
                             ReserveBottomTextLine="True"                  
                             x:Name="cboHeridaExpuesta"
+                            PickerShowMode="Popup"
                             SelectionChanged="cboHeridaExpuesta_SelectionChanged">
                             <dxe:ComboBoxEdit.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">

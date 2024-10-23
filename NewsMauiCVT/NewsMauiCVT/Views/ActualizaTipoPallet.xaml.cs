@@ -62,7 +62,10 @@ public partial class ActualizaTipoPallet : ContentPage
                     var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                     int NumPallet = JsonConvert.DeserializeObject<int>(resultadoStr);
 
-                    if (NumPallet == 0)
+                    DatosPallets dp = new DatosPallets();
+                    List<PalletClass> list = dp.ObtieneInfoPallet(txt_pallet.Text);
+
+                    if(list.Count <= 0)
                     {
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                         lblError.Text = "N° de pallet no existe";
@@ -72,7 +75,6 @@ public partial class ActualizaTipoPallet : ContentPage
                     }
                     else
                     {
-
                         DatosTipoPallet dti = new DatosTipoPallet();
                         List<TipoPalletClass> dt2 = dti.ListaTipoPallet();
 
@@ -84,14 +86,11 @@ public partial class ActualizaTipoPallet : ContentPage
                         {
                             lPro.Add(new TipoPall { Supportive_Description = s.Supportive_Description });
                         }
-
-
                         cboTipoPallet.BindingContext = lPro;
                         lblError.IsVisible = true;
                         lblError.Text = "Pallet Actual = " + dti.TraeNombreTipo(NumPallet).ToString();
                         cboTipoPallet.IsVisible = true;
                         cboTipoPallet.Focus();
-
                     }
                 }
             }

@@ -20,6 +20,7 @@
                 <StackLayout VerticalOptions="End">
                     <dxe:ComboBoxEdit
                         x:Name="cboFolioTransfer"
+                        PickerShowMode="Popup"
                         BorderColor="Green"
                         ClearIconVisibility="Auto"
                         DisplayMember="folioTransfer"
