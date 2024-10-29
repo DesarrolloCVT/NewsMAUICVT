@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:de="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              xmlns:xdc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
+             xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
              x:Class="NewsMauiCVT.Views.AsignacionMateriaPrimaDetalle">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
@@ -24,6 +25,30 @@
                     LabelColor="Green" 
                     MaxCharacterCount="15"
                     Completed="txtPallet_Completed"/>
+            </StackLayout>
+            <StackLayout>
+                <Label x:Name="lblCantPallets" HorizontalOptions="Center" FontSize="Medium"/>
+                <StackLayout Padding="0,15,0,0">
+                    <dxg:DataGridView x:Name="GvData">
+                        <dxg:DataGridView.ColumnHeaderAppearance>
+                            <dxg:ColumnHeaderAppearance 
+                                BackgroundColor="#3399ff"
+                                FontSize="12"
+                                FontColor="White"
+                                FontAttributes="Bold" />
+                        </dxg:DataGridView.ColumnHeaderAppearance>
+                        <dxg:DataGridView.CellAppearance>
+                            <dxg:CellAppearance 
+                                Padding="5"
+                                BackgroundColor="#333333"
+                                BorderColor="#515151"
+                                FontSize="14"
+                                FontColor="White" 
+                                SelectionColor="#f78a09"
+                                SelectionFontColor="Black"/>
+                        </dxg:DataGridView.CellAppearance>
+                    </dxg:DataGridView>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ScrollView>

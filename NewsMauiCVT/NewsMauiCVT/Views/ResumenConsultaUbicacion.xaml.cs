@@ -25,12 +25,16 @@ public partial class ResumenConsultaUbicacion : ContentPage
             GvData.Columns["Layout_Id"].IsVisible = false;
             GvData.Columns["ArticleProvider_CodClient"].Caption = "Cod.Producto";
             GvData.Columns["ArticleProvider_CodClient"].Width = 110;
+            GvData.Columns["ArticleProvider_CodClient"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["ArticleProvider_Description"].Caption = "Producto";
             GvData.Columns["ArticleProvider_Description"].Width = 110;
+            GvData.Columns["ArticleProvider_Description"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["Cantidad"].Caption = "Cantidad";
             GvData.Columns["Cantidad"].Width = 110;
+            GvData.Columns["Cantidad"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["Bultos"].Caption = "Bultos";
             GvData.Columns["Bultos"].Width = 110;
+            GvData.Columns["Bultos"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["Cantidad_Pedidos"].IsVisible = false;
         }
         else

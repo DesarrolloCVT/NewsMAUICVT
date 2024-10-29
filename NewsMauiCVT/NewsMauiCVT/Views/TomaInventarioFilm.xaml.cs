@@ -59,8 +59,6 @@ public partial class TomaInventarioFilm : ContentPage
 
 
                 //cboTipoPallet.BindingContext = lPro;
-
-
             }
         }
         else

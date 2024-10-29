@@ -82,7 +82,7 @@ public partial class Transferencias : ContentPage
         }
     }
     private async void Btn_seleccionar_Clicked(object sender, EventArgs e)
-    {
+    {   
         try
         {
             var ACC = Connectivity.NetworkAccess;
@@ -91,7 +91,8 @@ public partial class Transferencias : ContentPage
                 if (cboFolioTransfer.SelectedIndex != -1)
                 {
                     LogUsabilidad("Selccion folio tranferencias");
-                    await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
+                    //await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
+                    await Navigation.PushAsync(new AsignacionPedidos());
                 }   
                 else
                     await DisplayAlert("Aviso", "Selecciona un Folio", "Ok");

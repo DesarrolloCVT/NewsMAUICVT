@@ -12,7 +12,7 @@
                     <Label Text="Bienvenido!" HorizontalTextAlignment="Center" FontSize="Large"/>
                     <Label HorizontalTextAlignment="Center" FontSize="Large" x:Name="lblNombre" FontAttributes="Bold"></Label>
                 </StackLayout>
-                <Grid ColumnSpacing="6" RowSpacing="6" Margin="10,0,10,0" x:Name="GvGrid">
+                <Grid ColumnSpacing="10" RowSpacing="30" Margin="10,0,10,0" x:Name="GvGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>

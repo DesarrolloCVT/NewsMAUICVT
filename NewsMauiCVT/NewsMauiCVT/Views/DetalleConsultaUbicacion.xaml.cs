@@ -40,16 +40,22 @@ public partial class DetalleConsultaUbicacion : ContentPage
             GvData.ItemsSource = dt;
             GvData.Columns["Package_SSCC"].Caption = "N° de Pallet";
             GvData.Columns["Package_SSCC"].Width = 110;
+            GvData.Columns["Package_SSCC"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["ArticleProvider_CodClient"].Caption = "Cod. Producto";
             GvData.Columns["ArticleProvider_CodClient"].Width = 110;
+            GvData.Columns["ArticleProvider_CodClient"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["Package_Quantity"].Caption = "Cantidad";
             GvData.Columns["Package_Quantity"].Width = 110;
+            GvData.Columns["Package_Quantity"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["ArticleProvider_Description"].Caption = "Producto";
             GvData.Columns["ArticleProvider_Description"].Width = 110;
+            GvData.Columns["ArticleProvider_Description"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["Staff_Name"].Caption = "Usuario";
             GvData.Columns["Staff_Name"].Width = 110;
+            GvData.Columns["Staff_Name"].HorizontalContentAlignment = TextAlignment.Center;
             GvData.Columns["Package_ProductionDate"].Caption = "Fecha Producción";
             GvData.Columns["Package_ProductionDate"].Width = 110;
+            GvData.Columns["Package_ProductionDate"].HorizontalContentAlignment = TextAlignment.Center;
             string totalcoun = GvData.VisibleRowCount.ToString();
             lblCantPallets.Text = "Cantidad Pallets: " + totalcoun;
         }

@@ -88,15 +88,25 @@ public partial class TrazabilidadPallet : ContentPage
 
                                     GvData.Columns["FECHA"].Caption = "Fecha";
                                     GvData.Columns["FECHA"].Width = 110;
+                                    GvData.Columns["FECHA"].HorizontalContentAlignment = TextAlignment.Center;
+                                    GvData.Columns["FECHA"].VerticalContentAlignment = TextAlignment.Center;
                                     GvData.Columns["Entidad"].Caption = "Entidad";
-                                    GvData.Columns["Entidad"].Width = 110;
+                                    GvData.Columns["Entidad"].Width = 120;
+                                    GvData.Columns["Entidad"].HorizontalContentAlignment = TextAlignment.Center;
+                                    GvData.Columns["Entidad"].VerticalContentAlignment = TextAlignment.Center;
                                     GvData.Columns["Operacion"].Caption = "Operacion";
                                     GvData.Columns["Operacion"].Width = 110;
-                                    GvData.RowHeight = 200;
+                                    GvData.Columns["Operacion"].HorizontalContentAlignment = TextAlignment.Center;
+                                    GvData.Columns["Operacion"].VerticalContentAlignment = TextAlignment.Center;
+                                    GvData.RowHeight = 250;
                                     GvData.Columns["Cantidad"].Caption = "Cantidad";
                                     GvData.Columns["Cantidad"].Width = 110;
+                                    GvData.Columns["Cantidad"].HorizontalContentAlignment = TextAlignment.Center;
+                                    GvData.Columns["Cantidad"].VerticalContentAlignment = TextAlignment.Center;
                                     GvData.Columns["Staff_Name"].Caption = "Usuario";
                                     GvData.Columns["Staff_Name"].Width = 110;
+                                    GvData.Columns["Staff_Name"].HorizontalContentAlignment = TextAlignment.Center;
+                                    GvData.Columns["Staff_Name"].VerticalContentAlignment = TextAlignment.Center;
                                     GvData.Columns["Package_SSCC"].IsVisible = false;
                                 }
                                 txtNPallet.Text = string.Empty;

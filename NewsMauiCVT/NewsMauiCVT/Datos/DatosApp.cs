@@ -79,7 +79,6 @@ namespace NewsMauiCVT.Datos
             , string valorAntiguo, string valorNuevo)
         {
             bool resp = false;
-
             var Entidad = entidad;
             var Entidad_Id = entidad_id;
             var IdUsuario = App.Iduser;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsMauiCVT.Views.AsignacionPedidos"
+             xmlns:xde="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:xdc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="0,25">
+                <Label 
+                    Text="ASIGNACION DE PEDIDOS"
+                    HorizontalTextAlignment="Center"
+                    FontAttributes="Bold"
+                    FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Padding="15,0,15,0">
+                <Label Text="Ingrese Filtro: "
+                       HorizontalTextAlignment="Center"
+                       FontSize="Small"/>
+                <xde:TextEdit 
+                    x:Name="txtEdit"
+                    LabelText="Filtro"
+                    MaxCharacterCount="5"
+                    BorderColor="Green"
+                    IsLabelFloating="True"
+                    Completed="txtEdit_Completed"
+                    Keyboard="Numeric"/>
+                <xde:ComboBoxEdit 
+                    x:Name="cboEleccion"
+                    ValueMember="Filtros"
+                    PickerShowMode="Popup">
+                </xde:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout Padding="35,50,35,0">
+                <xdc:DXButton
+                    x:Name="buttonAceptar"
+                    Content="Seleccionar"
+                    BackgroundColor="Green"
+                    BorderColor="Black"
+                    BorderThickness=".5"
+                    HeightRequest="60"
+                    Clicked="buttonAceptar_Clicked"
+                    CornerRadius="25"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

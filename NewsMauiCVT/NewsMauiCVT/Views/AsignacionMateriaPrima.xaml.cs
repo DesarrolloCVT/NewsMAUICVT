@@ -58,4 +58,9 @@ public partial class AsignacionMateriaPrima : ContentPage
         DatosApp datosApp = new DatosApp();
         datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
+    protected override bool OnBackButtonPressed()
+    {
+        //return true to prevent back, return false to just do something before going back. 
+        return true;
+    }
 }
