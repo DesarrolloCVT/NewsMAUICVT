@@ -20,7 +20,8 @@ public partial class AsignacionMateriaPrima : ContentPage
     {
         if (cboMP.SelectedIndex != -1) 
         {
-            await Navigation.PushAsync(new AsignacionMateriaPrimaDetalle());
+            //await Navigation.PushAsync(new AsignacionMateriaPrimaDetalle());
+            await Navigation.PushAsync(new AsignacionPedidos());
         }
         else
         {

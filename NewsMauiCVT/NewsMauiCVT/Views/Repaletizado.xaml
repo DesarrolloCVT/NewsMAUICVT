@@ -76,7 +76,8 @@
             </StackLayout>
             <StackLayout Margin="25,0">
                 <dxe:ComboBoxEdit 
-                    ItemsSource="{Binding}"   
+                    ItemsSource="{Binding}"
+                    PickerShowMode="Popup"
                     LabelColor="Green"                
                     BorderColor="Green"             
                     LabelText="Tipo Pallet"
@@ -92,7 +93,6 @@
                     ClearIconVisibility="Auto"
                     ReserveBottomTextLine="True"  ReturnType="Next"
                     x:Name="cboTipoPallet"
-                    PickerShowMode="Popup"
                     SelectionChanged="CboTipoPallet_SelectedIndexChanged">
                     <dxe:ComboBoxEdit.ItemTemplate>
                         <DataTemplate>

@@ -18,6 +18,7 @@
             <StackLayout Padding="50,5,50,5">
                 <dxe:ComboBoxEdit
                     x:Name="cboBodega"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="NombreBodega"
@@ -46,6 +47,7 @@
             <StackLayout Padding="50,5,50,5">
                 <dxe:ComboBoxEdit
                     x:Name="cboBodegaDestino"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="NombreBodega"
@@ -74,6 +76,7 @@
             <StackLayout Padding="20,5,20,5">
                 <dxe:ComboBoxEdit
                     x:Name="cboEntidad"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="NomEntidad"
@@ -113,6 +116,7 @@
             <StackLayout Padding="20,5,20,5">
                 <dxe:ComboBoxEdit
                     x:Name="cboFolioSoli"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="folioSoli"

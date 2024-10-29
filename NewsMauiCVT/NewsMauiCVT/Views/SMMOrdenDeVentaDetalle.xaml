@@ -19,6 +19,7 @@
             <StackLayout Margin="10,0,10,15">
                 <dxe:ComboBoxEdit
                     x:Name="cboProducto"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="NombrePro"

@@ -449,39 +449,6 @@ public partial class Repaletizado : ContentPage
     private void Cbo_tipoRepaletizado_Completed(object sender, EventArgs e)
     {
     }
-    private async void ValidatePreviewData()
-    {
-        try {
-            if(picker.SelectedIndex == 1 && txt_destino.IsEnabled == true)
-            {
-                var result = await DisplayAlert("Confirmar", "Se han detectado datos previamente ingresados, ¿Desea continuar con el registro?", "SI", "NO");
-                if (result)
-                {
-                    Console.WriteLine("Se mantienen los datos");
-                }
-                else
-                {
-                    txt_destino.IsVisible = false;
-                    picker.SelectedIndex = -1;
-                    lblError.Text = string.Empty;
-                    lblError2.Text = string.Empty;
-                    lblError3.Text = string.Empty;
-                    txtPosicion.Text = string.Empty;
-                    lbl_codproducto.Text = string.Empty;
-                    lbl_producto.Text = string.Empty;
-                    lbl_lote.Text = string.Empty;
-                    lbl_cantidad.Text = string.Empty;
-                    lblBodega.Text = string.Empty;
-                    txt_destino.Text = string.Empty;
-                    lbl_dproducto.Text = string.Empty;
-                    lbl_dlote.Text = string.Empty;
-                    lbl_dBodega.Text = string.Empty;
-                    lbl_dcantidad.Text = string.Empty;
-                    txt_cantidad.Text = string.Empty;
-                }
-            }
-        } catch (Exception ex) { Console.WriteLine(ex.Message); }
-    }
     private void ClearComponent()
     {
         cboTipoPallet.IsEnabled = false;

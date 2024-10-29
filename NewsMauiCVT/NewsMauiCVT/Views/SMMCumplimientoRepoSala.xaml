@@ -48,6 +48,7 @@
             <StackLayout Padding="5,5,5,5">
                 <dxe:ComboBoxEdit
                     x:Name="cboNombreRepo"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="Nombre"
@@ -146,6 +147,7 @@
                     <StackLayout Grid.Row="0" Grid.Column="0">
                         <dxe:ComboBoxEdit
                             x:Name="cboDispo"
+                            PickerShowMode="Popup"
                             BorderColor="Green"
                             ClearIconVisibility="Auto"
                             DropDownSelectedItemBackgroundColor="GreenYellow"
@@ -167,6 +169,7 @@
                     <StackLayout Grid.Row="0" Grid.Column="1">
                         <dxe:ComboBoxEdit
                             x:Name="cboLimpieza"
+                            PickerShowMode="Popup"
                             BorderColor="Green"
                             ClearIconVisibility="Auto"
                             DropDownSelectedItemBackgroundColor="GreenYellow"
@@ -188,6 +191,7 @@
                     <StackLayout Grid.Row="1" Grid.Column="0">
                         <dxe:ComboBoxEdit
                             x:Name="CboFefo"
+                            PickerShowMode="Popup"
                             BorderColor="Green"
                             ClearIconVisibility="Auto"
                             DropDownSelectedItemBackgroundColor="GreenYellow"
@@ -209,6 +213,7 @@
                     <StackLayout Grid.Row="1" Grid.Column="1">
                         <dxe:ComboBoxEdit
                             x:Name="CboFleje"
+                            PickerShowMode="Popup"
                             BorderColor="Green"
                             ClearIconVisibility="Auto"
                             DropDownSelectedItemBackgroundColor="GreenYellow"

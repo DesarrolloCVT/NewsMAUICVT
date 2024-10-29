@@ -28,7 +28,7 @@ public partial class MenuPruebas : ContentPage
             default:
                 break;
         }
-        SetMobileScreen();
+        //SetMobileScreen();
         DatosApp dpp = new DatosApp();
         List<MenuClass> mn = dpp.TraeMenu(App.idPerfil);
 
@@ -49,7 +49,7 @@ public partial class MenuPruebas : ContentPage
             }
         }
     }
-    private void SetMobileScreen()
+    /*private void SetMobileScreen()
     {
         if (DeviceInfo.Model != "MC33" && DeviceInfo.Model != "MC3300x" && DeviceInfo.Model != "RFD0020")
         {
@@ -57,7 +57,7 @@ public partial class MenuPruebas : ContentPage
             GvGrid.VerticalOptions = LayoutOptions.CenterAndExpand;
 #pragma warning restore CS0618 // Type or member is obsolete
         }
-    }
+    }*/
     private void BntConsultaUbicacion_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new ConsultaUbicacion() { Title = "Volver" });

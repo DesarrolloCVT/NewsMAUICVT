@@ -18,6 +18,7 @@
             <StackLayout Margin="10,0,10,15">
                 <dxe:ComboBoxEdit
                     x:Name="cboCliente"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="NombreCliente"
@@ -53,6 +54,7 @@
             <StackLayout Margin="10,0,10,15">
                 <dxe:ComboBoxEdit
                     x:Name="cboDirDespacho"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="Direccion"
@@ -84,6 +86,7 @@
             <StackLayout Margin="10,0,10,15">
                 <dxe:ComboBoxEdit
                     x:Name="cboDirFact"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="DireccionFac"

@@ -91,8 +91,11 @@ public partial class Transferencias : ContentPage
                 if (cboFolioTransfer.SelectedIndex != -1)
                 {
                     LogUsabilidad("Selccion folio tranferencias");
-                    //await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
-                    await Navigation.PushAsync(new AsignacionPedidos());
+                    await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
+                    /*Test:
+                        //await Navigation.PushAsync(new AsignacionPedidos());
+                        //await Navigation.PushAsync(new SMM_Recepcion());
+                    */
                 }   
                 else
                     await DisplayAlert("Aviso", "Selecciona un Folio", "Ok");

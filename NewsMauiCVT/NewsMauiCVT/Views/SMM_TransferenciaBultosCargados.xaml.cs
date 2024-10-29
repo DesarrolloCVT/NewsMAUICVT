@@ -29,7 +29,6 @@ public partial class SMM_TransferenciaBultosCargados : ContentPage
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                     DisplayAlert("Alerta", "bulto Quitado", "Aceptar");
-
                     cargadatos(_fol);
                     GvData.RefreshData();
                 }
@@ -91,9 +90,6 @@ public partial class SMM_TransferenciaBultosCargados : ContentPage
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                 DisplayAlert("Alerta", "no se encontraron datos", "Aceptar");
             }
-
-
-
         }
         else
         {

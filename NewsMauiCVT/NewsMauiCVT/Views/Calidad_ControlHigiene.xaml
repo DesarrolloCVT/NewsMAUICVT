@@ -11,6 +11,7 @@
             </StackLayout>
             <StackLayout Padding="5,5,5,0">
                 <dxe:ComboBoxEdit ItemsSource="{Binding}"
+                                  PickerShowMode="Popup"
                                   LabelFontSize="20"
                                   LabelColor="Green"                
                                   BorderColor="Green"             
@@ -22,7 +23,6 @@
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"                
                                   x:Name="cboMonitor"
-                                  PickerShowMode="Popup"
                                   ValueMember="Id_Personal"
                                   TextFontSize="20"
                                   ClearIconVisibility="Auto"
@@ -65,6 +65,7 @@
             </StackLayout>
             <StackLayout Padding="5,0,5,0">
                 <dxe:ComboBoxEdit ItemsSource="{Binding}"
+                                  PickerShowMode="Popup"
                                   LabelFontSize="20"
                                   LabelColor="Green"                
                                   BorderColor="Green"             
@@ -76,7 +77,6 @@
                                   FilterComparisonType="CurrentCultureIgnoreCase"
                                   DropDownSelectedItemBackgroundColor="GreenYellow"                
                                   x:Name="cboTipoContraro"
-                                  PickerShowMode="Popup"
                                   ValueMember="tipoCont"
                                   TextFontSize="20"
                                   ClearIconVisibility="Auto"

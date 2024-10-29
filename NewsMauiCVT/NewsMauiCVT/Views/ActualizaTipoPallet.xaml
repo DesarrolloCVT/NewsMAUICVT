@@ -37,6 +37,7 @@
             <StackLayout Margin="25,0">
                 <dxe:ComboBoxEdit
                     x:Name="cboTipoPallet"
+                    PickerShowMode="Popup"
                     BorderColor="Green"
                     ClearIconVisibility="Auto"
                     DisplayMember="Supportive_Description"
