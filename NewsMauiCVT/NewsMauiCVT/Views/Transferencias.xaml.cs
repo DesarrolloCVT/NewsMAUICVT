@@ -90,7 +90,7 @@ public partial class Transferencias : ContentPage
             {
                 if (cboFolioTransfer.SelectedIndex != -1)
                 {
-                    LogUsabilidad("Selccion folio tranferencias");
+                    LogUsabilidad("Seleccion folio tranferencias");
                     await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
                     /*Test:
                         //await Navigation.PushAsync(new AsignacionPedidos());

@@ -15,10 +15,11 @@ public partial class AsignacionMateriaPrimaDetalle : ContentPage
         base.OnAppearing();
         ClearComponent();
         LogUsabilidad("Ingreso");
+        LoadData(111130);
     }
     private void ClearComponent()
     {
-        txtPallet.Text = string.Empty;
+
     }
     private async void LoadData(int folio)
     {
@@ -67,23 +68,6 @@ public partial class AsignacionMateriaPrimaDetalle : ContentPage
         {
             Console.WriteLine("LoadData: " + ex.ToString());
         }
-    }
-    private void txtPallet_Completed(object sender, EventArgs e)
-    {
-        DatosPallets dp = new DatosPallets();
-        List<PalletClass> list = dp.ObtieneInfoPallet(txtPallet.Text);
-
-        if (list.Count > 0)
-        {
-            LoadData(111130);
-            Console.WriteLine("txtPallet_Completed: Pallet valido");
-            DisplayAlert("Alerta", "El pallet es: \n" + txtPallet.Text, "OK");
-        }
-        else
-        {
-            Console.WriteLine("txtPallet_Completed: Pallet invalido");
-            DisplayAlert("Alerta", "El número de pallet ingresado no es válido: \n" + txtPallet.Text, "OK");
-        }   
     }
     private void LogUsabilidad(string accion)
     {

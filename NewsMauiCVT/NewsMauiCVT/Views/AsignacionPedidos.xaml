@@ -13,35 +13,21 @@
                     FontAttributes="Bold"
                     FontSize="Medium"/>
             </StackLayout>
-            <StackLayout Padding="15,0,15,0">
-                <Label Text="Ingrese Filtro: "
-                       HorizontalTextAlignment="Center"
-                       FontSize="Small"/>
+            <StackLayout Padding="15,50,15,0">
                 <xde:TextEdit 
-                    x:Name="txtEdit"
-                    LabelText="Filtro"
-                    MaxCharacterCount="5"
+                    x:Name="txtPallet"
+                    LabelText="N° de Pallet"
+                    MaxCharacterCount="9"
                     BorderColor="Green"
                     IsLabelFloating="True"
                     Completed="txtEdit_Completed"
                     Keyboard="Numeric"/>
-                <xde:ComboBoxEdit 
-                    x:Name="cboEleccion"
-                    ValueMember="Filtros"
-                    PickerShowMode="Popup">
-                </xde:ComboBoxEdit>
+                <Label 
+                    Text=""
+                    x:Name="lblError"
+                    TextColor="Red"
+                    HorizontalTextAlignment="Center"/>
             </StackLayout>
-            <StackLayout Padding="35,50,35,0">
-                <xdc:DXButton
-                    x:Name="buttonAceptar"
-                    Content="Seleccionar"
-                    BackgroundColor="Green"
-                    BorderColor="Black"
-                    BorderThickness=".5"
-                    HeightRequest="60"
-                    Clicked="buttonAceptar_Clicked"
-                    CornerRadius="25"/>
             </StackLayout>
-        </StackLayout>
     </ScrollView>
 </ContentPage>

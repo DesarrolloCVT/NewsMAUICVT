@@ -1,4 +1,5 @@
 using NewsMauiCVT.Datos;
+using NewsMauiCVT.Model;
 
 namespace NewsMauiCVT.Views;
 
@@ -8,42 +9,24 @@ public partial class AsignacionMateriaPrima : ContentPage
 	{
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        LoadDatos();
 
     }
     protected override void OnAppearing()
     {
         base.OnAppearing();
         ClearComponent();
+        SetFocusText();
     }
-    private async void DXButton_Clicked(object sender, EventArgs e)
+    private void SetFocusText()
     {
-        if (cboMP.SelectedIndex != -1) 
-        {
-            //await Navigation.PushAsync(new AsignacionMateriaPrimaDetalle());
-            await Navigation.PushAsync(new AsignacionPedidos());
-        }
-        else
-        {
-            await DisplayAlert("Alerta", "Ingrese una opción válida ", "OK");
-        }
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtPallet.Focus();
+        });
     }
     private void ClearComponent()
     {
-        cboMP.SelectedIndex = -1;
-    }
-    private void LoadDatos()
-    {
-        List<Datos> dataInfo = [];
-
-        dataInfo.Add(new Datos { data = "Dato1" });
-        dataInfo.Add(new Datos { data = "Dato2" });
-        dataInfo.Add(new Datos { data = "Dato3" });
-        dataInfo.Add(new Datos { data = "Dato4" });
-        dataInfo.Add(new Datos { data = "Dato5" });
-        dataInfo.Add(new Datos { data = "Dato6" });
-
-        cboMP.BindingContext = dataInfo;
+        txtPallet.Text = string.Empty;
+        lblResultado.Text = string.Empty;
     }
     public class Datos
     {
@@ -63,5 +46,25 @@ public partial class AsignacionMateriaPrima : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private async void txtPallet_Completed(object sender, EventArgs e)
+    {
+        DatosPallets dp = new DatosPallets();
+        List<PalletClass> list = dp.ObtieneInfoPallet(txtPallet.Text);
+
+        if (list.Count > 0)
+        {
+            Console.WriteLine("txtPallet_Completed: Pallet valido");
+            await Navigation.PushAsync(new AsignacionMateriaPrimaDetalle());
+        }
+        else
+        {
+            Console.WriteLine("txtPallet_Completed: Pallet invalido");
+            txtPallet.Text = string.Empty;
+            lblResultado.TextColor = Colors.Red;
+            lblResultado.Text = "El Pallet ingresado no es válido";
+            lblResultado.IsVisible = true;
+        }
+
     }
 }

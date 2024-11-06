@@ -188,6 +188,9 @@
 	  <MauiXaml Update="Views\AsignacionPedidos.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AsignacionPedidosDetalle.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CheckListGrua.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

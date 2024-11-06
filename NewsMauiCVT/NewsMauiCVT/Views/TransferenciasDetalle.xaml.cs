@@ -128,6 +128,7 @@ public partial class TransferenciasDetalle : ContentPage
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
             lblError.Text = "Seleccione un N° de Pallet válido ";
             lblError.IsVisible = true;
+            LoadData(transferId);
             _ = Task.Delay(100).ContinueWith(t => {
                 txt_pallet.Focus();
             });

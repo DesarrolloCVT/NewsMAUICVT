@@ -1,4 +1,5 @@
 using NewsMauiCVT.Datos;
+using NewsMauiCVT.Model;
 
 namespace NewsMauiCVT.Views;
 
@@ -15,14 +16,18 @@ public partial class AsignacionPedidos : ContentPage
         base.OnAppearing();
         ClearComponent();
         LogUsabilidad("Ingreso");
+        SetFocusText();
     }
-    private void buttonAceptar_Clicked(object sender, EventArgs e)
+    private void SetFocusText()
     {
-        DisplayAlert("Alerta", "Texto escrito: " + txtEdit.Text, "Ok");
+        _ = Task.Delay(200).ContinueWith(t => {
+            txtPallet.Focus();
+        });
     }
     private void ClearComponent()
     {
-        txtEdit.Text = string.Empty;
+        txtPallet.Text = string.Empty;
+        lblError.Text = string.Empty;
     }
     private void LogUsabilidad(string accion)
     {
@@ -39,8 +44,20 @@ public partial class AsignacionPedidos : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-    private void txtEdit_Completed(object sender, EventArgs e)
+    private async void txtEdit_Completed(object sender, EventArgs e)
     {
-        DisplayAlert("Alerta", "Texto escrito: " + txtEdit.Text, "Ok");
+        DatosPallets dp = new DatosPallets();
+        List<PalletClass> list = dp.ObtieneInfoPallet(txtPallet.Text);
+
+        if (list.Count > 0)
+        {
+            await Navigation.PushAsync(new AsignacionPedidosDetalle());
+        }
+        else
+        {
+            lblError.Text = "El pallet ingresado no existe";
+            txtPallet.Text = string.Empty;
+            SetFocusText();
+        }
     }
 }

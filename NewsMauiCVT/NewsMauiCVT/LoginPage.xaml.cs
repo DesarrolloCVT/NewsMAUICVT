@@ -207,8 +207,10 @@ namespace NewsMauiCVT
                 var IP = GetIPAddress();
                 var entidad = "LOGIN MOBILE";
                 var entidadId = 0;
-                var valorAntiguo = IP.ToString();
+                var valorAntiguo = IP[0].ToString();
                 var valorNuevo = "INGRESO A SISTEMA MBILE";
+
+                Console.WriteLine("valorAntiguo: " + valorAntiguo);
 
                 DatosApp datosApp = new DatosApp();
                 datosApp.InsertaRegistroLog(entidad, entidadId, valorAntiguo, valorNuevo);

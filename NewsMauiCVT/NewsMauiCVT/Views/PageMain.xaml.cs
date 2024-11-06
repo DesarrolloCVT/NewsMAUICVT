@@ -49,7 +49,8 @@ public partial class PageMain : FlyoutPage
                 new Option{ page=new Calidad_ControlHigiene(){Title="Menú"},title="Control Higiene", detail="Registro Control Higiene Personal"},
                 new Option{ page=new Transferencias(){Title="Menú"},title="Transferencias", detail="Transferencia de Pallets"},
                 new Option{ page=new CheckListGrua(){Title="Menú"},title="Checklist Grua", detail="Chequeo de gruas"},
-                new Option{ page=new AsignacionMateriaPrima(){Title="Menú"},title="Asignacion Materia Prima", detail="Materia Prima"}
+                new Option{ page=new AsignacionMateriaPrima(){Title="Menú"},title="Asignacion Materia Prima", detail="Materia Prima"},
+                new Option{ page=new AsignacionPedidos(){Title="Menú"},title="Asignacion de Pedidos", detail="Pedidos"}
         };  
         List<Option> options1 = new List<Option>();
 

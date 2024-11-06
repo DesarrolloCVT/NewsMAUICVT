@@ -14,18 +14,6 @@
                     HorizontalTextAlignment="Center"
                     FontSize="Large"/>
             </StackLayout>
-            <StackLayout Margin="20,100,20,0" Padding="20,0,20,0">
-                <de:TextEdit 
-                    x:Name="txtPallet" 
-                    Text=""
-                    Keyboard="Numeric"
-                    TextHorizontalAlignment="Start"
-                    LabelText="Pallet"
-                    BorderColor="Green"
-                    LabelColor="Green" 
-                    MaxCharacterCount="15"
-                    Completed="txtPallet_Completed"/>
-            </StackLayout>
             <StackLayout>
                 <Label x:Name="lblCantPallets" HorizontalOptions="Center" FontSize="Medium"/>
                 <StackLayout Padding="0,15,0,0">
