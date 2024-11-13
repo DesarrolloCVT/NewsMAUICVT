@@ -24,7 +24,7 @@ public partial class SMM_Repaletizado : ContentPage
         });
     }
     private void TxtPosicion_Completed(object sender, EventArgs e)
-    {
+    {   
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {

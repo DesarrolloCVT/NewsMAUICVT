@@ -49,7 +49,7 @@ public partial class SMM_Posicionamiento : ContentPage
         btn_generar.IsEnabled = false;
     }
     private void Txt_origen_Completed(object sender, EventArgs e)
-    {
+    {   
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {

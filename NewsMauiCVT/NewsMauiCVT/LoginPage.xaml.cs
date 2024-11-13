@@ -208,12 +208,21 @@ namespace NewsMauiCVT
                 var entidad = "LOGIN MOBILE";
                 var entidadId = 0;
                 var valorAntiguo = IP[0].ToString();
-                var valorNuevo = "INGRESO A SISTEMA MBILE";
+                var valorNuevo = "INGRESO A SISTEMA MOBILE";
 
                 Console.WriteLine("valorAntiguo: " + valorAntiguo);
 
                 DatosApp datosApp = new DatosApp();
-                datosApp.InsertaRegistroLog(entidad, entidadId, valorAntiguo, valorNuevo);
+                bool respuesta =  datosApp.InsertaRegistroLog(entidad, entidadId, valorAntiguo, valorNuevo);
+
+                if (respuesta) 
+                {
+                    Console.WriteLine("Registro exitoso");
+                }
+                else
+                {
+                    Console.WriteLine("No se ha realizado el registro");
+                }
             }
             catch (Exception ex)
             {

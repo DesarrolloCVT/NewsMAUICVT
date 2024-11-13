@@ -28,7 +28,7 @@ public partial class ActualizaTipoPallet : ContentPage
         });
     }
     private async void TxtNPallet_Completed(object sender, EventArgs e)
-    {
+    {   
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {

@@ -1,11 +1,13 @@
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
+using Newtonsoft.Json;
 
 namespace NewsMauiCVT.Views;
 
 public partial class AsignacionMateriaPrima : ContentPage
 {
-	public AsignacionMateriaPrima()
+    public int folioSelected;
+    public AsignacionMateriaPrima()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
@@ -15,18 +17,12 @@ public partial class AsignacionMateriaPrima : ContentPage
     {
         base.OnAppearing();
         ClearComponent();
-        SetFocusText();
-    }
-    private void SetFocusText()
-    {
-        _ = Task.Delay(200).ContinueWith(t => {
-            txtPallet.Focus();
-        });
+        LoadData();
+        LogUsabilidad("ingreso");
     }
     private void ClearComponent()
     {
-        txtPallet.Text = string.Empty;
-        lblResultado.Text = string.Empty;
+        cboFolioTransfer.SelectedIndex = -1;
     }
     public class Datos
     {
@@ -42,29 +38,76 @@ public partial class AsignacionMateriaPrima : ContentPage
         DatosApp datosApp = new DatosApp();
         datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
+    private void LoadData()
+    {
+        int value = 20;
+        try
+        {
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet)
+            {
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
+                };
+                var rest = ClientHttp.GetAsync("api/Bodega?tranferencias=" + value).Result;
+
+                if (rest.IsSuccessStatusCode)
+                {
+                    var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                    List<TransferenciasClass> dt = JsonConvert.DeserializeObject<List<TransferenciasClass>>(resultadoStr) ??
+                                    throw new InvalidOperationException();
+                    List<FolTransfer> fl = [];
+
+                    foreach (var t in dt)
+                    {
+                        fl.Add(new FolTransfer { folioTransfer = t.Transfer_Id });
+                    }
+                    cboFolioTransfer.BindingContext = fl;
+                }
+
+                var cantidad = cboFolioTransfer.Height;
+                Console.WriteLine("cantidad de Folios: " + cantidad);
+            }
+            else
+            {
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("LoadData: " + ex.ToString());
+        }
+    }
+    public class FolTransfer
+    {   public string folioTransfer { get; set; }
+    }
     protected override bool OnBackButtonPressed()
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-    private async void txtPallet_Completed(object sender, EventArgs e)
+    private void CboFolio_SelectedIndexChanged(object sender, EventArgs e)
     {
-        DatosPallets dp = new DatosPallets();
-        List<PalletClass> list = dp.ObtieneInfoPallet(txtPallet.Text);
-
-        if (list.Count > 0)
+        try
         {
-            Console.WriteLine("txtPallet_Completed: Pallet valido");
-            await Navigation.PushAsync(new AsignacionMateriaPrimaDetalle());
+            folioSelected = cboFolioTransfer.SelectedIndex == -1 ? 0 : int.Parse(cboFolioTransfer.SelectedValue.ToString());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"CboFolio_SelectedIndexChanged: {ex.Message}");
+        }
+    }
+    private async void Btn_seleccionar_Clicked(object sender, EventArgs e)
+    {   
+        if (cboFolioTransfer.SelectedIndex != -1)
+        {
+            await Navigation.PushAsync(new AsignacionMateriaPrimaDetalle(folioSelected));
         }
         else
         {
-            Console.WriteLine("txtPallet_Completed: Pallet invalido");
-            txtPallet.Text = string.Empty;
-            lblResultado.TextColor = Colors.Red;
-            lblResultado.Text = "El Pallet ingresado no es válido";
-            lblResultado.IsVisible = true;
+            DisplayAlert("Alerta", "Seleccione un folio válido", "OK");
         }
-
     }
 }

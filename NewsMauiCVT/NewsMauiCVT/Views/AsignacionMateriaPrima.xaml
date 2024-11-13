@@ -6,29 +6,61 @@
              x:Class="NewsMauiCVT.Views.AsignacionMateriaPrima">
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
-            <StackLayout Margin="0,50,0,0">
-                <Label
-                    Text="ASIGNACION DE MATERIA PRIMA"
-                    TextColor="Black"
-                    HorizontalTextAlignment="Center"
-                    FontSize="Large"/>
-            </StackLayout>
-            <StackLayout Padding="25,100,25,0">
-                <de:TextEdit 
-                    LabelText="N° de Pallet"
-                    x:Name="txtPallet"
-                    Keyboard="Numeric"
-                    IsLabelFloating="True"
-                    BorderColor="Green"
-                    Completed="txtPallet_Completed"
-                    MaxCharacterCount="9">
-                </de:TextEdit>
-                <Label 
-                    x:Name="lblResultado"
-                    Text=""
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="Medium"
-                    IsVisible="False"/>
+            <StackLayout Margin="25,0" Padding="10">
+                <StackLayout Padding="20">
+                    <Label
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Center"
+                        Text="ASIGNACION DE MATERIA PRIMA"
+                        TextColor="Black"
+                        FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Padding="0,75,0,0">
+                    <de:ComboBoxEdit
+                        x:Name="cboFolioTransfer"
+                        PickerShowMode="Popup"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DisplayMember="folioTransfer"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="False"
+                        IsLabelFloating="True"
+                        ItemsSource="{Binding}"
+                        LabelColor="Green"
+                        LabelText="Folio Materia Prima"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionChanged="CboFolio_SelectedIndexChanged"
+                        TextFontSize="20"
+                        ValueMember="folioTransfer">
+                        <de:ComboBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Padding="10"
+                                        Text="{Binding folioTransfer}" />
+                                </Grid>
+                            </DataTemplate>
+                        </de:ComboBoxEdit.ItemTemplate>
+                    </de:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout Margin="25,100,25,0">
+                    <xdc:DXButton
+                        x:Name="btn_seleccionar"
+                        BackgroundColor="Green"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="Btn_seleccionar_Clicked"
+                        CornerRadius="30"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="SELECCIONAR" />
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ScrollView>

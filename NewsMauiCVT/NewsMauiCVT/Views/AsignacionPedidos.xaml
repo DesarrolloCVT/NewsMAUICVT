@@ -6,28 +6,62 @@
              xmlns:xdc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core">
     <ScrollView>
         <StackLayout>
-            <StackLayout Padding="0,25">
-                <Label 
-                    Text="ASIGNACION DE PEDIDOS"
-                    HorizontalTextAlignment="Center"
-                    FontAttributes="Bold"
-                    FontSize="Medium"/>
+            <StackLayout Margin="25,0" Padding="10">
+                <StackLayout Padding="20">
+                    <Label
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Center"
+                        Text="ASIGNACION DE PEDIDOS"
+                        TextColor="Black"
+                        FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Padding="0,75,0,0">
+                    <xde:ComboBoxEdit
+                        x:Name="cboFolioOrder"
+                        PickerShowMode="Popup"
+                        BorderColor="Green"
+                        ClearIconVisibility="Auto"
+                        DisplayMember="folioOrder"
+                        DropDownSelectedItemBackgroundColor="GreenYellow"
+                        FilterComparisonType="CurrentCultureIgnoreCase"
+                        FilterCondition="Contains"
+                        IsFilterEnabled="False"
+                        IsLabelFloating="True"
+                        ItemsSource="{Binding}"
+                        LabelColor="Green"
+                        LabelText="Folio Pedidos"
+                        ReserveBottomTextLine="True"
+                        ReturnType="Next"
+                        SelectionChanged="CboFolio_SelectedIndexChanged"
+                        TextFontSize="20"
+                        ValueMember="folioOrder">
+                        <xde:ComboBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Padding="10"
+                                        Text="{Binding folioOrder}" />
+                                </Grid>
+                            </DataTemplate>
+                        </xde:ComboBoxEdit.ItemTemplate>
+                    </xde:ComboBoxEdit>
+                </StackLayout>
+                <StackLayout Margin="25,100,25,0">
+                    <xdc:DXButton
+                        x:Name="btn_seleccionar"
+                        BackgroundColor="Green"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="Btn_seleccionar_Clicked"
+                        CornerRadius="30"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="SELECCIONAR" />
+                </StackLayout>
             </StackLayout>
-            <StackLayout Padding="15,50,15,0">
-                <xde:TextEdit 
-                    x:Name="txtPallet"
-                    LabelText="N° de Pallet"
-                    MaxCharacterCount="9"
-                    BorderColor="Green"
-                    IsLabelFloating="True"
-                    Completed="txtEdit_Completed"
-                    Keyboard="Numeric"/>
-                <Label 
-                    Text=""
-                    x:Name="lblError"
-                    TextColor="Red"
-                    HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            </StackLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>

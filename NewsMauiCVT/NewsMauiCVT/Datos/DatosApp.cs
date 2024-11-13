@@ -64,8 +64,8 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient HttpClient = new HttpClient();
-                HttpClient.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-                var rest2 = HttpClient.GetAsync("api/LogUsabilidad?idUsuario=" + IdUsuario + "&submenu=" + SubMenu + "&tipoRegistro=" + Tipo).Result;
+                HttpClient.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
+                var rest2 = HttpClient.GetAsync("LogUsabilidad?idUsuario=" + IdUsuario + "&submenu=" + SubMenu + "&tipoRegistro=" + Tipo).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 resp = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }
@@ -79,17 +79,17 @@ namespace NewsMauiCVT.Datos
             , string valorAntiguo, string valorNuevo)
         {
             bool resp = false;
-            var Entidad = entidad;
-            var Entidad_Id = entidad_id;
-            var IdUsuario = App.Iduser;
-            var Valor_Antiguo = valorAntiguo;
-            var Valor_Nuevo = valorNuevo;
+            string Entidad = entidad;
+            int Entidad_Id = entidad_id;
+            string IdUsuario = App.Iduser.ToString();
+            string Valor_Antiguo = valorAntiguo;
+            string Valor_Nuevo = valorNuevo;
 
             try
             {
                 HttpClient HttpClient = new HttpClient();
-                HttpClient.BaseAddress = new Uri("http://wsintranet.cvt.local/");
-                var rest2 = HttpClient.GetAsync("api/RegistroLog?Entidad=" + Entidad + "&Entidad_Id=" + Entidad_Id + "&IdUsuario=" + IdUsuario + "&Valor_Antiguo=" + Valor_Antiguo + "&Valor_Nuevo=" + Valor_Nuevo).Result;
+                HttpClient.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
+                var rest2 = HttpClient.GetAsync("RegistroLog?Entidad=" + Entidad + "&Entidad_Id=" + Entidad_Id + "&Usuario_Id=" + IdUsuario + "&Valor_Antiguo=" + Valor_Antiguo + "&Valor_Nuevo=" + Valor_Nuevo).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 resp = JsonConvert.DeserializeObject<bool>(resultadoStr);
             }

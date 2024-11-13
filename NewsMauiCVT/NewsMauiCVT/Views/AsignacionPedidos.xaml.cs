@@ -1,33 +1,27 @@
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
+using Newtonsoft.Json;
 
 namespace NewsMauiCVT.Views;
 
 public partial class AsignacionPedidos : ContentPage
 {
+    int folioSelected;
 	public AsignacionPedidos()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
-        ClearComponent();   
 	}
     protected override void OnAppearing()
     {
         base.OnAppearing();
         ClearComponent();
+        LoadData();
         LogUsabilidad("Ingreso");
-        SetFocusText();
-    }
-    private void SetFocusText()
-    {
-        _ = Task.Delay(200).ContinueWith(t => {
-            txtPallet.Focus();
-        });
     }
     private void ClearComponent()
     {
-        txtPallet.Text = string.Empty;
-        lblError.Text = string.Empty;
+        cboFolioOrder.SelectedIndex = -1;
     }
     private void LogUsabilidad(string accion)
     {
@@ -44,20 +38,72 @@ public partial class AsignacionPedidos : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-    private async void txtEdit_Completed(object sender, EventArgs e)
+    private void LoadData()
     {
-        DatosPallets dp = new DatosPallets();
-        List<PalletClass> list = dp.ObtieneInfoPallet(txtPallet.Text);
-
-        if (list.Count > 0)
+        try
         {
-            await Navigation.PushAsync(new AsignacionPedidosDetalle());
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet)
+            {
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
+                };
+                var rest = ClientHttp.GetAsync("FoliosTransferenciasAsignadas").Result;
+
+                if (rest.IsSuccessStatusCode)
+                {
+                    var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+
+                    List<TransferenciasClass> dt = JsonConvert.DeserializeObject<List<TransferenciasClass>>(resultadoStr) ??
+                                    throw new InvalidOperationException();
+                    List<FolOrder> fo = [];
+
+                    foreach (var t in dt)
+                    {
+                        fo.Add(new FolOrder { folioOrder = t.Transfer_Id });
+                    }
+                    cboFolioOrder.BindingContext = fo;
+                }
+                var cantidad = cboFolioOrder.Height;
+                Console.WriteLine("cantidad de Folios: " + cantidad);
+            }
+            else
+            {
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("LoadData: " + ex.ToString());
+        }
+    }
+    public class FolOrder
+    {
+        public string folioOrder { get; set; }
+    }
+    private void CboFolio_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            folioSelected = cboFolioOrder.SelectedIndex == -1 ? 0 : int.Parse(cboFolioOrder.SelectedValue.ToString());
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"CboFolio_SelectedIndexChanged: {ex.Message}");
+        }
+    }
+    private async void Btn_seleccionar_Clicked(object sender, EventArgs e)
+    {   
+        if (cboFolioOrder.SelectedIndex != -1)
+        {
+            await Navigation.PushAsync(new AsignacionPedidosDetalle(folioSelected));
         }
         else
         {
-            lblError.Text = "El pallet ingresado no existe";
-            txtPallet.Text = string.Empty;
-            SetFocusText();
+            DisplayAlert("Alerta", "Seleccione un folio válido", "OK");
         }
+        
     }
 }

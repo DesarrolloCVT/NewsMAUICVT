@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xde="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
              x:Class="NewsMauiCVT.Views.AsignacionPedidosDetalle">
     <ScrollView>
         <StackLayout>
-            <StackLayout Padding="20,0,20,0">
+            <StackLayout Padding="20,50,20,0">
                 <Label
                     Text="ASIGNACION DE PEDIDOS DETALLE"
                     TextColor="Black"
                     HorizontalTextAlignment="Center"
                     FontSize="Large"/>
+            </StackLayout>
+            <StackLayout Padding="25,100,25,0">
+                <xde:TextEdit 
+                    x:Name="txtPallet"
+                    LabelText="N° de Pallet"
+                    MaxCharacterCount="9"
+                    BorderColor="Green"
+                    IsLabelFloating="True"
+                    Completed="txtEdit_Completed"
+                    Keyboard="Numeric"/>
+                <Label 
+                    Text=""
+                    x:Name="lblResultado"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="False"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

@@ -41,7 +41,7 @@ public partial class Repaletizado : ContentPage
         });
     }
     private async void TxtPosicion_Completed(object sender, EventArgs e)
-    {
+    {   
         try
         {
             //Realiza la validez del numero de pallet registrado.

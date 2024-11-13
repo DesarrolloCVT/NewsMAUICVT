@@ -95,7 +95,7 @@ public partial class TomaInventario : ContentPage
         }
     }
     private void Txt_pallet_Completed(object sender, EventArgs e)
-    {
+    {   
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {

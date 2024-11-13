@@ -42,7 +42,7 @@ public partial class SMMTrazabilidadPallet : ContentPage
         //GvDatos.IsVisible = false;
     }
     private async void txtNPallet_Completed(object sender, EventArgs e)
-    {
+    {   
         using (UserDialogs.Instance.Loading("Cargando"))
         {
             await Task.Delay(60);

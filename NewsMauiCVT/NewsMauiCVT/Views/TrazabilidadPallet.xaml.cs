@@ -16,7 +16,7 @@ public partial class TrazabilidadPallet : ContentPage
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
-        LogUsabilidad();
+        LogUsabilidad("Ingreso");
     }
     private void SetFocusText()
     {
@@ -42,7 +42,7 @@ public partial class TrazabilidadPallet : ContentPage
         txtNPallet.Text = string.Empty;
     }
     private void TxtNPallet_Completed(object sender, EventArgs e)
-    {
+    {   
         try
         {
             DatosTrazabilidadPallet tp = new DatosTrazabilidadPallet();
@@ -186,11 +186,11 @@ public partial class TrazabilidadPallet : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-    private void LogUsabilidad()
+    private void LogUsabilidad(string tipo)
     {
         var Usuario = App.Iduser;
         var Fecha = DateTime.Now;
-        var TipoRegistro = "Ingreso";
+        var TipoRegistro = tipo;
         var IdSubMenu = 87;
 
         DatosApp datosApp = new DatosApp();

@@ -118,6 +118,7 @@ public partial class SMM_TomaInventario : ContentPage
     }
     private async void Txt_pallet_Completed(object sender, EventArgs e)
     {
+        LogUsabilidad("Ingreso");
         DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)

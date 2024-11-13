@@ -46,8 +46,7 @@ public partial class Revision_Extintor_DatosCab : ContentPage
         btn_generar.IsEnabled = true;
     }
     private void Btn_generar_Clicked(object sender, EventArgs e)
-    {
-
+    {   
         if (txtNExtintor.Equals(string.Empty))
         {
             txtNExtintor.Focus();

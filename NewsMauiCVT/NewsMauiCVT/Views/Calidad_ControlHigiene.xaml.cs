@@ -15,7 +15,6 @@ public partial class Calidad_ControlHigiene : ContentPage
     {
         base.OnAppearing();
         ClearComponent();
-        LogUsabilidad("Ingreso");
     }
     void ClearComponent()
     {
@@ -87,7 +86,8 @@ public partial class Calidad_ControlHigiene : ContentPage
 
     }
     private async void btn_agregar_Clicked(object sender, EventArgs e)
-    {   
+    {
+        LogUsabilidad("Ingreso");
         int v_IdMonitor = cboMonitor.SelectedIndex == -1 ? 0 : Convert.ToInt32(cboMonitor.SelectedValue);
         int v_IdArea = cboArea.SelectedIndex == -1 ? 0 : Convert.ToInt32(cboArea.SelectedValue);
         string v_tipoContrato = cboTipoContraro.SelectedIndex == -1 ? "0" : cboTipoContraro.SelectedValue.ToString();

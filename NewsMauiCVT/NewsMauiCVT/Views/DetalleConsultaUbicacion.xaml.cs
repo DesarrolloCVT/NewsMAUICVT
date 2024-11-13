@@ -24,7 +24,6 @@ public partial class DetalleConsultaUbicacion : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LogUsabilidad("Detalle Ubicacion");
         //vCArga.IsVisible = false;
         //activity.IsEnabled = false;
         //activity.IsRunning = false;
@@ -67,6 +66,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
     }
     private async void BtnResumen_Clicked(object sender, EventArgs e)
     {
+        LogUsabilidad("Detalle Ubicacion");
         using (Controls.UserDialogs.Maui.UserDialogs.Instance.Loading("Cargando"))
         {
             await Task.Delay(10);

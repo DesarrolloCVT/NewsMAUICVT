@@ -18,6 +18,7 @@ public partial class TransferenciasDetalle : ContentPage
         base.OnAppearing();
         SetFocusText();
         ClearComponent();
+        LogUsabilidad("Ingreso");
     }
     private void ClearComponent()
     {
@@ -72,7 +73,7 @@ public partial class TransferenciasDetalle : ContentPage
         });
     }
     private void txt_pallet_Completed(object sender, EventArgs e)
-    {
+    {   
         DatosPallets dp = new DatosPallets();
         List<PalletClass> list = dp.ObtieneInfoPallet(txt_pallet.Text);
 

@@ -19,7 +19,6 @@ public partial class InformeStock : ContentPage
         ClearComponent();
         SetFocusText();
         //GvDatos.IsVisible = false;
-        LogUsabilidad("Ingreso");
     }
     private void SetFocusText()
     {
@@ -53,6 +52,7 @@ public partial class InformeStock : ContentPage
     public class bodeg { public string Supportive_Description { get; set; } }
     private async void BtnBuscar_Clicked(object sender, EventArgs e)
     {
+        LogUsabilidad("Ingreso");
         using (UserDialogs.Instance.Loading("Cargando"))
         {
             await Task.Delay(10);

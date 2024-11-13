@@ -8,34 +8,29 @@
     <ScrollView VerticalOptions="FillAndExpand">
         <StackLayout>
             <StackLayout>
-                <Label
-                    Text="ASIGNACION DE MATERIA PRIMA DETALLE"
-                    TextColor="Black"
-                    HorizontalTextAlignment="Center"
-                    FontSize="Large"/>
-            </StackLayout>
-            <StackLayout>
-                <Label x:Name="lblCantPallets" HorizontalOptions="Center" FontSize="Medium"/>
-                <StackLayout Padding="0,15,0,0">
-                    <dxg:DataGridView x:Name="GvData">
-                        <dxg:DataGridView.ColumnHeaderAppearance>
-                            <dxg:ColumnHeaderAppearance 
-                                BackgroundColor="#3399ff"
-                                FontSize="12"
-                                FontColor="White"
-                                FontAttributes="Bold" />
-                        </dxg:DataGridView.ColumnHeaderAppearance>
-                        <dxg:DataGridView.CellAppearance>
-                            <dxg:CellAppearance 
-                                Padding="5"
-                                BackgroundColor="#333333"
-                                BorderColor="#515151"
-                                FontSize="14"
-                                FontColor="White" 
-                                SelectionColor="#f78a09"
-                                SelectionFontColor="Black"/>
-                        </dxg:DataGridView.CellAppearance>
-                    </dxg:DataGridView>
+                <StackLayout Padding="20,50,20,0">
+                    <Label
+                        Text="ASIGNACION DE MATERIA PRIMA"
+                        TextColor="Black"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Large"/>
+                </StackLayout>
+                <StackLayout Padding="25,100,25,0">
+                    <de:TextEdit 
+                        LabelText="N° de Pallet"
+                        x:Name="txtPallet"
+                        Keyboard="Numeric"
+                        IsLabelFloating="True"
+                        BorderColor="Green"
+                        Completed="txtPallet_Completed"
+                        MaxCharacterCount="9">
+                    </de:TextEdit>
+                    <Label 
+                        Text=""
+                        x:Name="lblResultado"
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="False"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

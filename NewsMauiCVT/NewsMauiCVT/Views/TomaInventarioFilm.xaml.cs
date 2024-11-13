@@ -19,6 +19,7 @@ public partial class TomaInventarioFilm : ContentPage
         base.OnAppearing();
         ClearComponent();
         cboFolio.Focus();
+        LogUsabilidad("Ingreso");
     }
     void cargaDatos()
     {
@@ -89,7 +90,7 @@ public partial class TomaInventarioFilm : ContentPage
         }
     }
     private void Txt_pallet_Completed(object sender, EventArgs e)
-    {
+    {   
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
@@ -416,11 +417,11 @@ public partial class TomaInventarioFilm : ContentPage
         //return true to prevent back, return false to just do something before going back. 
         return true;
     }
-    private void LogUsabilidad()
+    private void LogUsabilidad(string tipo)
     {
         var Usuario = App.Iduser;
         var Fecha = DateTime.Now;
-        var TipoRegistro = "Ingreso";
+        var TipoRegistro = tipo;
         var IdSubMenu = 281;
 
         DatosApp datosApp = new DatosApp();

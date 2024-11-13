@@ -17,7 +17,6 @@ public partial class ConsultaUbicacion : ContentPage
         base.OnAppearing();
         ClearComponent();
         SetFocusText();
-        LogUsabilidad("Ingreso");
     }
     private void ClearComponent()
     {   
@@ -34,6 +33,7 @@ public partial class ConsultaUbicacion : ContentPage
     }
     private async void TxtPosicion_Completed(object sender, EventArgs e)
     {
+        LogUsabilidad("Ingreso");
         using (UserDialogs.Instance.Loading("Cargando"))
         {
             try

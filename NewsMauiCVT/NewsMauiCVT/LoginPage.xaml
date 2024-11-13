@@ -32,7 +32,7 @@
                         FlexLayout.AlignSelf="Center"
                         Source="logocvt.png" />
                 </StackLayout>
-                <StackLayout x:Name="SlStackLayout">
+                <StackLayout x:Name="SlStackLayout" Margin="0,25,0,0">
                     <StackLayout HorizontalOptions="Center">
                         <Label
                             x:Name="txtIniciarSesion"
@@ -75,7 +75,7 @@
                             CornerRadius="20" 
                             FontAttributes="Bold" 
                             x:Name="loging" 
-                            HeightRequest="50"  
+                            HeightRequest="40"  
                             Clicked="Loging_ClickedAsync" 
                             PressedBackgroundColor="MediumSeaGreen"
                             BackgroundColor="#3399ff"
@@ -89,14 +89,13 @@
                                Text="OR"
                                TextColor="Black"
                                HorizontalTextAlignment="Center"
-                               FontAttributes="Bold"
-                            />
+                               FontAttributes="Bold"/>
                         <dxc:DXButton  
                             Content="INICAR CON QR" 
                             CornerRadius="20" 
                             FontAttributes="Bold" 
                             x:Name="logingQR" 
-                            HeightRequest="50"  
+                            HeightRequest="40"  
                             Clicked="LogingQR_ClickedAsync" 
                             PressedBackgroundColor="MediumSeaGreen"
                             BackgroundColor="#3399ff"
