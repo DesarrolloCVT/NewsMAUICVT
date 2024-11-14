@@ -11,8 +11,12 @@ public partial class ResumenConsultaUbicacion : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargadatos(idPosicion);
-        LogUsabilidad("Resumen ubicacion");
         //string g = idpos;
+    }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LogUsabilidad("Resumen ubicacion");
     }
     void cargadatos(string idPosicion)
     {

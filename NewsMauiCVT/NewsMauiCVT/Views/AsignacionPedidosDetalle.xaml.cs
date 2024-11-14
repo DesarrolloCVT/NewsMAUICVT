@@ -78,6 +78,7 @@ public partial class AsignacionPedidosDetalle : ContentPage
                 lblResultado.Text = "Pallet agregado correctamente. ";
                 lblResultado.TextColor = Colors.Green;
                 lblResultado.IsVisible = true;
+                LogUsabilidad("Asigancion de pedido");
             }
             else
             {

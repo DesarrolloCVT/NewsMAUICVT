@@ -255,6 +255,7 @@ public partial class SMM_TomaInventario : ContentPage
                             bool rest = dTi.insertaInventario(idinv, dn14, codPro, cant, idBod, iduser, ubPasillo, fecha, CantxEmp, CantBs, TpEmpaq);
                             if (rest == true)
                             {
+                                LogUsabilidad("Inventario Registrado");
                                 DisplayAlert("Alerta", "Registrado", "Aceptar");
                                 txt_pallet.Text = string.Empty;
                                 txt_pallet.Focus();

@@ -19,6 +19,7 @@ public partial class InformeStock : ContentPage
         ClearComponent();
         SetFocusText();
         //GvDatos.IsVisible = false;
+        LogUsabilidad("Ingreso");
     }
     private void SetFocusText()
     {
@@ -52,7 +53,7 @@ public partial class InformeStock : ContentPage
     public class bodeg { public string Supportive_Description { get; set; } }
     private async void BtnBuscar_Clicked(object sender, EventArgs e)
     {
-        LogUsabilidad("Ingreso");
+        
         using (UserDialogs.Instance.Loading("Cargando"))
         {
             await Task.Delay(10);
@@ -100,6 +101,8 @@ public partial class InformeStock : ContentPage
                         GvData.Columns["FProduccion"].Width = 110;
                         GvData.Columns["FVencimiento"].DisplayFormat = "dd-MM-yyyy";
                         GvData.Columns["FVencimiento"].Width = 110;
+
+                        LogUsabilidad("Carga de Informe de Stock");
 
                         //GvData.Columns["Bultos"].Caption = "Bultos";
                         //GvData.Columns["Cantidad_Pedidos"].Caption = "Cant.Pedidos";

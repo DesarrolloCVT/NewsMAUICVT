@@ -20,6 +20,7 @@ public partial class Revision_Extintor_Entorno : ContentPage
         base.OnAppearing();
         cboRespEntorno.SelectedIndex = 0;
         _nPregunta = 0;
+        LogUsabilidad("Revision Extintor Entorno");
     }
     private void Btn_generarEntorno_Clicked(object sender, EventArgs e)
     {
@@ -73,6 +74,7 @@ public partial class Revision_Extintor_Entorno : ContentPage
 
         if (btn_generarEntorno.Text.Equals("Finalizar"))
         {
+            LogUsabilidad("Revision Extintor Entorno - Registro Finalizado");
             DisplayAlert("Alerta", "Registro Finalizado", "Aceptar");
             DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
 
@@ -83,5 +85,15 @@ public partial class Revision_Extintor_Entorno : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 321;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

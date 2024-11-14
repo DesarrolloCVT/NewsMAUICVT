@@ -18,11 +18,11 @@ public partial class Revision_Extintor_Detalle : ContentPage
     }
     protected override void OnAppearing()
     {
-
         base.OnAppearing();
         //btn_generar.IsEnabled = false;
         cboResp.SelectedIndex = 0;
         _nPreg = 0;
+        LogUsabilidad("Revision Extintor Detalle");
     }
     private void Btn_generar_Clicked(object sender, EventArgs e)
     {
@@ -96,6 +96,7 @@ public partial class Revision_Extintor_Detalle : ContentPage
                         Navigation.PushAsync(new Revision_Extintor_Entorno(_idReg));
                         break;
                 }
+                LogUsabilidad("Revision Extintor Detalle Cursado");
             }
         }
         else
@@ -108,5 +109,15 @@ public partial class Revision_Extintor_Detalle : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void LogUsabilidad(string accion)
+    {
+        var Usuario = App.Iduser;
+        var Fecha = DateTime.Now;
+        var TipoRegistro = accion;
+        var IdSubMenu = 321;
+
+        DatosApp datosApp = new DatosApp();
+        datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
 }

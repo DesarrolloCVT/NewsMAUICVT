@@ -391,6 +391,8 @@ public partial class TomaInventarioFilm : ContentPage
                         txt_ubicacion.IsEnabled = false;
                         txt_pallet.Focus();
 
+                        LogUsabilidad("Toma inventario Film Registrado");
+
                     }
                     else
                     {

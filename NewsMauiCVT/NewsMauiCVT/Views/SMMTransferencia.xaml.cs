@@ -28,7 +28,7 @@ public partial class SMMTransferencia : ContentPage
         txtFolioTransferencia.Text = string.Empty;
     }
     private void btn_Nuevo_Clicked(object sender, EventArgs e)
-    {   
+    {
         Navigation.PushAsync(new SMM_TransferenciaCabecera { Title = "Finalizar" });
     }
     private async void btn_Reanudar_Clicked(object sender, EventArgs e)

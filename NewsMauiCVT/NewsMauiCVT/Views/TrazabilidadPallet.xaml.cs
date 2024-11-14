@@ -113,6 +113,8 @@ public partial class TrazabilidadPallet : ContentPage
                                 _ = Task.Delay(150).ContinueWith(t => {
                                     txtNPallet.Focus();
                                 });
+
+                                LogUsabilidad("Trazabilidad de Pallet");
                             }
                         }
                         else

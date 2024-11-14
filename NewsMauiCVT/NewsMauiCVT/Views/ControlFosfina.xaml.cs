@@ -9,6 +9,11 @@ public partial class ControlFosfina : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LogUsabilidad("Ingreso");
+    }
     private void FFumi_DateSelected(object sender, DateChangedEventArgs e)
     {
         txt_Bodega.Focus();
@@ -33,7 +38,6 @@ public partial class ControlFosfina : ContentPage
     }
     private async void Btn_agregar_Clicked(object sender, EventArgs e)
     {
-        LogUsabilidad("Ingreso");
         string hr = hora.Time.ToString();
 
         if (hr.Equals("00:00:00"))
@@ -82,7 +86,7 @@ public partial class ControlFosfina : ContentPage
                 int rest = de.insertaRegistroFosfina(hr, fFumigacion, bod, mayor, a1, distancia);
                 if (rest != 0)
                 {
-                    LogUsabilidad("Ingresar registro de Fosfina ");
+                    LogUsabilidad("Ingreso de registro de Fosfina ");
                     await DisplayAlert("Alerta", "Registrado", "Aceptar");
                     txt_Bodega.Text = string.Empty;
                     txt_MayorPP.Text = string.Empty;

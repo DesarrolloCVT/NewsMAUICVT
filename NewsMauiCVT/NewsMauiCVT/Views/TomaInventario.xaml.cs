@@ -405,7 +405,6 @@ public partial class TomaInventario : ContentPage
 
                             dTip.ActualizaTipoPallet(numPall, IdTipoPal);
 
-
                             #endregion
                             DisplayAlert("Alerta", "Registrado", "Aceptar");
                             DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
@@ -421,7 +420,7 @@ public partial class TomaInventario : ContentPage
                             txt_ubicacion.IsEnabled = false;
                             txt_pallet.Focus();
 
-                            LogUsabilidad("Crea inventario");
+                            LogUsabilidad("Toma Inventario Registrado");
 
                         }
                         else

@@ -141,6 +141,8 @@ public partial class SMMTrazabilidadPallet : ContentPage
                             GvData.Columns["Estado"].IsVisible = false;
                             GvData.Columns["Bodega"].IsVisible = false;
                             GvData.RowHeight = 200;
+
+                            LogUsabilidad("SMM Trazabilidad Pallet");
                         }
                     }
                 }

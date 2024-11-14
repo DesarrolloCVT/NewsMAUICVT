@@ -179,6 +179,7 @@ public partial class SMM_Posicionamiento : ContentPage
                     if (addloc == true)
                     {
                         DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                        LogUsabilidad("Posicionamiento Registrado");
                         DisplayAlert("Alerta", "Registrado", "Aceptar");
                         ClearComponent();
                     }

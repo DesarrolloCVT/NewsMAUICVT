@@ -97,6 +97,7 @@ public partial class Revision_Extintor_DatosCab : ContentPage
                 }
                 else
                 {
+                    LogUsabilidad("Revision de Extintores");
                     Navigation.PushAsync(new Revision_Extintor_Detalle(res));
                 }
             }

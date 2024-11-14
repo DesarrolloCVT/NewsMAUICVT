@@ -335,6 +335,7 @@ public partial class Repaletizado : ContentPage
                                     {
                                         DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
                                         DisplayAlert("Alerta", "REPALETIZADO CON EXITO ", "Aceptar");
+                                        LogUsabilidad("Repaletizado");
                                         #region Limpia Componentes
                                         ClearComponent();
                                         #endregion

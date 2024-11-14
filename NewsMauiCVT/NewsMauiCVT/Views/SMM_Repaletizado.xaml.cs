@@ -218,6 +218,7 @@ public partial class SMM_Repaletizado : ContentPage
                                 if (Creado == true)
                                 {
                                     DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                                    LogUsabilidad("REPALETIZADO CON EXITO");
                                     DisplayAlert("Alerta", "REPALETIZADO CON EXITO ", "Aceptar");
                                     #region Limpia Componentes
                                     ClearComponent();

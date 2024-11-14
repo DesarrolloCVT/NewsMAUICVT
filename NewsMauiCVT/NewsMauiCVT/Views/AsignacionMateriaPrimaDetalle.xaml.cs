@@ -62,7 +62,6 @@ public partial class AsignacionMateriaPrimaDetalle : ContentPage
         DatosApp datosApp = new DatosApp();
         datosApp.LogUsabilidad(IdSubMenu, TipoRegistro);
     }
-
     private void txtPallet_Completed(object sender, EventArgs e)
     {   
         DatosPallets dp = new DatosPallets();
@@ -80,6 +79,7 @@ public partial class AsignacionMateriaPrimaDetalle : ContentPage
                 lblResultado.Text = "Pallet agregado correctamente. ";
                 lblResultado.TextColor = Colors.Green;
                 lblResultado.IsVisible = true;
+                LogUsabilidad("Se asigna Materia Prima");
             }
             else
             {

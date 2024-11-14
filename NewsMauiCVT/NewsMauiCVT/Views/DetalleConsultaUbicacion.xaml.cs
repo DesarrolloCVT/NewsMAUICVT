@@ -28,6 +28,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
         //activity.IsEnabled = false;
         //activity.IsRunning = false;
         //activity.IsVisible = false;
+        LogUsabilidad("Ingreso a Detalle de Ubicacion");
     }
     private async void Cargadatos(string idPosicion)
     {
@@ -65,8 +66,7 @@ public partial class DetalleConsultaUbicacion : ContentPage
         }
     }
     private async void BtnResumen_Clicked(object sender, EventArgs e)
-    {
-        LogUsabilidad("Detalle Ubicacion");
+    {   
         using (Controls.UserDialogs.Maui.UserDialogs.Instance.Loading("Cargando"))
         {
             await Task.Delay(10);

@@ -282,6 +282,7 @@ public partial class Posicionamiento : ContentPage
                     //  DisplayAlert("Alerta", "Registrado", "Aceptar");
                     lblConfirm.IsVisible = true;
                     lblConfirm.Text = "Registrado";
+                    LogUsabilidad("Posicionamiento registrado");
                     ClearComponent();
                     txt_origen.Focus();
 
