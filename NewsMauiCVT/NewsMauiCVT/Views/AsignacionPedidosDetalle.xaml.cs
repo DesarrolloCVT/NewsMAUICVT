@@ -1,5 +1,6 @@
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
+using System.Data;
 
 namespace NewsMauiCVT.Views;
 
@@ -9,10 +10,16 @@ public partial class AsignacionPedidosDetalle : ContentPage
     string ItemCode;
     string Lote;
     int Cantidad;
+    int CantidadXLote;
+    DatosPallets datos;
+    bool LoteValido;
+    DataTable tabla;
     public AsignacionPedidosDetalle(int folio)
 	{
 		InitializeComponent();
         folioRecibido = folio;
+        datos = new DatosPallets();
+        tabla = new DataTable();
     }
     protected override void OnAppearing()
     {
@@ -21,25 +28,43 @@ public partial class AsignacionPedidosDetalle : ContentPage
         ClearComponent();
         LogUsabilidad("Ingreso");
     }
+    private void CreateTable()
+    {
+        tabla = new("TablaAsignacionesRealizadas");
+        tabla.Columns.Add("Transfer_ID", typeof(string));
+        tabla.Columns.Add("ItemCode", typeof(string));
+        tabla.Columns.Add("Lote", typeof(string));
+        tabla.Columns.Add("Cantidad", typeof(string));
+    }
     private void SetFocusText()
     {
         _ = Task.Delay(200).ContinueWith(t => {
             txtPallet.Focus();
         });
     }
-    private void LoadData(int folioOrder)
+    private void LoadData()
     {
         try
         {
-            DatosPallets datos = new DatosPallets();
-            int NPallet = int.Parse(txtPallet.Text);
-            List<string> DatosPallet = datos.ObtieneDatos(NPallet);
-
+            DatosAsignacionPedidos dap = new DatosAsignacionPedidos();
+            List<PedidosAsignacion> transferAsignacion = dap.PedidosAsignados(folioRecibido);
+            List<string> LoteAsignado = new List<string>();
+            List<string> DatosPallet = datos.ObtieneDatos(txtPallet.Text);
+            
             Lote = DatosPallet[0];
             ItemCode = DatosPallet[1];
             Cantidad = int.Parse(DatosPallet[2]);
-        }
 
+            for (int i = 0; i < transferAsignacion.Count; i++)
+            {
+                LoteAsignado.Add(transferAsignacion[i].Lote);
+                if(transferAsignacion[i].Lote == Lote)
+                {
+                    CantidadXLote += transferAsignacion[i].Cantidad;
+                }
+            }
+            LoteValido = LoteAsignado.Contains(Lote);
+        }
         catch (Exception ex)
         {
             Console.WriteLine("LoadData: " + ex.Message);
@@ -63,39 +88,57 @@ public partial class AsignacionPedidosDetalle : ContentPage
     }
     private void txtEdit_Completed(object sender, EventArgs e)
     {   
-        DatosPallets dp = new DatosPallets();
-        List<PalletClass> list = dp.ObtieneInfoPallet(txtPallet.Text);
+        LoadData();
+        bool PalletValido = datos.ValidaPallet(txtPallet.Text);
 
-        if (list.Count > 0)
+        if (PalletValido)
         {
-            LoadData(folioRecibido);
-
-            DatosAsignacionPedidos asignacionPedidos = new DatosAsignacionPedidos();
-            bool Respuesta = asignacionPedidos.InsertarAsignacionPedidos(folioRecibido, ItemCode, Lote, Cantidad);
-
-            if (Respuesta)
+            txtPallet.Text = string.Empty;
+            SetFocusText();
+            if (LoteValido)
             {
-                lblResultado.Text = "Pallet agregado correctamente. ";
-                lblResultado.TextColor = Colors.Green;
-                lblResultado.IsVisible = true;
-                LogUsabilidad("Asigancion de pedido");
-            }
-            else
-            {
-                lblResultado.Text = "No ha sido posible agregar Pallet. ";
-                lblResultado.TextColor = Colors.Red;
-                lblResultado.IsVisible = true;
-                txtPallet.Text = string.Empty;
-                SetFocusText();
+                if(Cantidad < CantidadXLote)
+                {
+                    DatosAsignacionPedidos asignacionPedidos = new DatosAsignacionPedidos();
+                    bool Respuesta = asignacionPedidos.InsertarAsignacionPedidos(folioRecibido, ItemCode, Lote, Cantidad);
+
+                    if (Respuesta)
+                    {
+                        lblResultado.Text = "Asignación agregada correctamente. ";
+                        lblResultado.TextColor = Colors.Green;
+                        lblResultado.IsVisible = true;
+                        LogUsabilidad("Asigancion de pedido");
+                    }
+                    else
+                    {
+                        lblResultado.Text = "No ha sido posible agregar la asignación. ";
+                        lblResultado.TextColor = Colors.Red;
+                        lblResultado.IsVisible = true;
+                        txtPallet.Text = string.Empty;
+                        SetFocusText();
+                    }
+                }
+                else
+                {
+                    lblResultado.Text = "La cantidad requerida supera el stock dentro del Lote.";
+                    lblResultado.IsVisible = true;
+                    lblResultado.TextColor = Colors.Red;
+                    txtPallet.Text = string.Empty;
+                    SetFocusText();
+                }
             }
         }
         else
         {
+            lblResultado.Text = string.Empty;
             lblResultado.Text = "El pallet ingresado no existe";
             lblResultado.IsVisible= true;
             lblResultado.TextColor= Colors.Red;
-            txtPallet.Text = string.Empty;
             SetFocusText();
         }
+    }
+    private async void btn_asignaciones_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ResumenPedidosAsignacion(tabla));
     }
 }

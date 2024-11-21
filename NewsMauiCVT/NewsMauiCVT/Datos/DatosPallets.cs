@@ -39,7 +39,7 @@ namespace NewsMauiCVT.Datos
             return list;
         }
 
-        public List<string> ObtieneDatos(int NPallet) 
+        public List<string> ObtieneDatos(string NPallet) 
         {
             List<string> list = [];
 
@@ -49,7 +49,7 @@ namespace NewsMauiCVT.Datos
                 {
                     BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
-                var rest = ClientHttp.GetAsync("ObtieneDatos?packageSSCC=" + NPallet.ToString()).Result;
+                var rest = ClientHttp.GetAsync("ObtieneDatos?packageSSCC=" + NPallet).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
                 list = JsonConvert.DeserializeObject<List<string>>(resultadoStr) ??
                                 throw new InvalidOperationException();
@@ -59,6 +59,27 @@ namespace NewsMauiCVT.Datos
                 Console.WriteLine("ObtieneDatos: " + ex.ToString());
             }
             return list;
+        }
+
+        public bool ValidaPallet(string NPallet)
+        {
+            bool value = false;
+
+            try
+            {
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
+                };
+                var rest = ClientHttp.GetAsync("ValidaPallet?SSCC=" + NPallet).Result;
+                var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                value = JsonConvert.DeserializeObject<bool>(resultadoStr);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ObtieneDatos: " + ex.ToString());
+            }
+            return value;
         }
     }
 }

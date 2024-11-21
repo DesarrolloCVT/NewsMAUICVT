@@ -1,6 +1,7 @@
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using Newtonsoft.Json;
+using System.Data;
 
 namespace NewsMauiCVT.Views;
 
@@ -49,7 +50,7 @@ public partial class AsignacionPedidos : ContentPage
                 {
                     BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
-                var rest = ClientHttp.GetAsync("FoliosTransferenciasAsignadas").Result;
+                var rest = ClientHttp.GetAsync("FoliosAsignaciones").Result;
 
                 if (rest.IsSuccessStatusCode)
                 {
@@ -85,15 +86,24 @@ public partial class AsignacionPedidos : ContentPage
     }
     private void CboFolio_SelectedIndexChanged(object sender, EventArgs e)
     {
-        try
+        if (cboFolioOrder.SelectedIndex != -1)
         {
-            folioSelected = cboFolioOrder.SelectedIndex == -1 ? 0 : int.Parse(cboFolioOrder.SelectedValue.ToString());
+            try
+            {
+                folioSelected = cboFolioOrder.SelectedIndex == -1 ? 0 : int.Parse(cboFolioOrder.SelectedValue.ToString());
+                btn_asignado.IsVisible = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"CboFolio_SelectedIndexChanged: {ex.Message}");
+            }
         }
-        catch (Exception ex)
+        else
         {
-            Console.WriteLine($"CboFolio_SelectedIndexChanged: {ex.Message}");
+            btn_asignado.IsVisible = false;
         }
     }
+
     private async void Btn_seleccionar_Clicked(object sender, EventArgs e)
     {   
         if (cboFolioOrder.SelectedIndex != -1)
@@ -104,6 +114,9 @@ public partial class AsignacionPedidos : ContentPage
         {
             DisplayAlert("Alerta", "Seleccione un folio válido", "OK");
         }
-        
+    }
+    private async void btn_asignado_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ResumenPedidosAsignados(folioSelected));
     }
 }

@@ -15,7 +15,7 @@
                         TextColor="Black"
                         FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout Padding="0,75,0,0">
+                <StackLayout Padding="0,25,0,0">
                     <de:ComboBoxEdit
                         x:Name="cboFolioTransfer"
                         PickerShowMode="Popup"
@@ -47,7 +47,7 @@
                         </de:ComboBoxEdit.ItemTemplate>
                     </de:ComboBoxEdit>
                 </StackLayout>
-                <StackLayout Margin="25,100,25,0">
+                <StackLayout Margin="0,100,0,0">
                     <xdc:DXButton
                         x:Name="btn_seleccionar"
                         BackgroundColor="Green"
@@ -60,6 +60,22 @@
                         PressedBackgroundColor="MediumSeaGreen"
                         PressedBorderColor="DarkOrange"
                         Content="SELECCIONAR" />
+                </StackLayout>
+                <StackLayout Padding="0,50,0,0">
+                    <xdc:DXButton
+                        x:Name="btn_asignado"
+                        TextHorizontalAlignment="Center"
+                        BackgroundColor="Green"
+                        BorderColor="Black"
+                        BorderThickness="2"
+                        Clicked="btn_asignado_Clicked"
+                        CornerRadius="30"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        PressedBackgroundColor="MediumSeaGreen"
+                        PressedBorderColor="DarkOrange"
+                        Content="DETALLE DE LO ASIGNADO" 
+                        IsVisible="False"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

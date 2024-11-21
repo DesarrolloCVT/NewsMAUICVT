@@ -1,12 +1,13 @@
 using NewsMauiCVT.Datos;
 using NewsMauiCVT.Model;
 using Newtonsoft.Json;
+using System.Data;
 
 namespace NewsMauiCVT.Views;
 
 public partial class AsignacionMateriaPrima : ContentPage
 {
-    public int folioSelected;
+    public int folioSelected = 0;
     public AsignacionMateriaPrima()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
@@ -40,7 +41,6 @@ public partial class AsignacionMateriaPrima : ContentPage
     }
     private void LoadData()
     {
-        int value = 20;
         try
         {
             var ACC = Connectivity.NetworkAccess;
@@ -50,7 +50,7 @@ public partial class AsignacionMateriaPrima : ContentPage
                 {
                     BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
-                var rest = ClientHttp.GetAsync("api/Bodega?tranferencias=" + value).Result;
+                var rest = ClientHttp.GetAsync("FoliosAsignaciones").Result;
 
                 if (rest.IsSuccessStatusCode)
                 {
@@ -90,13 +90,21 @@ public partial class AsignacionMateriaPrima : ContentPage
     }
     private void CboFolio_SelectedIndexChanged(object sender, EventArgs e)
     {
-        try
+        if(cboFolioTransfer.SelectedIndex != -1)
         {
-            folioSelected = cboFolioTransfer.SelectedIndex == -1 ? 0 : int.Parse(cboFolioTransfer.SelectedValue.ToString());
+            try
+            {
+                folioSelected = cboFolioTransfer.SelectedIndex == -1 ? 0 : int.Parse(cboFolioTransfer.SelectedValue.ToString());
+                btn_asignado.IsVisible = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"CboFolio_SelectedIndexChanged: {ex.Message}");
+            }
         }
-        catch (Exception ex)
+        else
         {
-            Console.WriteLine($"CboFolio_SelectedIndexChanged: {ex.Message}");
+            btn_asignado.IsVisible = false;
         }
     }
     private async void Btn_seleccionar_Clicked(object sender, EventArgs e)
@@ -109,5 +117,9 @@ public partial class AsignacionMateriaPrima : ContentPage
         {
             DisplayAlert("Alerta", "Seleccione un folio válido", "OK");
         }
+    }
+    private async void btn_asignado_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ResumenAsignadosMP(folioSelected));
     }
 }

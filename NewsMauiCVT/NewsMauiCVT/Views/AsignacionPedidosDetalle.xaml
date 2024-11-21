@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xde="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:de="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:xdc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
              xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
              x:Class="NewsMauiCVT.Views.AsignacionPedidosDetalle">
     <ScrollView>
@@ -14,7 +15,7 @@
                     FontSize="Large"/>
             </StackLayout>
             <StackLayout Padding="25,100,25,0">
-                <xde:TextEdit 
+                <de:TextEdit 
                     x:Name="txtPallet"
                     LabelText="N° de Pallet"
                     MaxCharacterCount="9"
@@ -28,6 +29,48 @@
                     FontSize="Medium"
                     HorizontalTextAlignment="Center"
                     IsVisible="False"/>
+            </StackLayout>
+            <StackLayout Padding="0,50,0,0">
+                <xdc:DXButton
+                    x:Name="btn_asignaciones"
+                    TextHorizontalAlignment="Center"
+                    BackgroundColor="Green"
+                    BorderColor="Black"
+                    BorderThickness="2"
+                    Clicked="btn_asignaciones_Clicked"
+                    CornerRadius="30"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    PressedBackgroundColor="MediumSeaGreen"
+                    PressedBorderColor="DarkOrange"
+                    Content="DETALLE DE LAS ASIGNACIONES" 
+                    IsVisible="False"/>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout>
+                    <Label x:Name="lblCantPallets" HorizontalOptions="Center" FontSize="Medium"/>
+                    <StackLayout Padding="15,0,0,0">
+                        <dxg:DataGridView x:Name="GvData">
+                            <dxg:DataGridView.ColumnHeaderAppearance>
+                                <dxg:ColumnHeaderAppearance 
+                                    BackgroundColor="#3399ff"
+                                    FontSize="12"
+                                    FontColor="White"
+                                    FontAttributes="Bold" />
+                            </dxg:DataGridView.ColumnHeaderAppearance>
+                            <dxg:DataGridView.CellAppearance>
+                                <dxg:CellAppearance 
+                                    Padding="5"
+                                    BackgroundColor="#333333"
+                                    BorderColor="#515151"                        
+                                    FontSize="14"
+                                    FontColor="White" 
+                                    SelectionColor="#f78a09"
+                                    SelectionFontColor="Black"/>
+                            </dxg:DataGridView.CellAppearance>
+                        </dxg:DataGridView>
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ScrollView>
