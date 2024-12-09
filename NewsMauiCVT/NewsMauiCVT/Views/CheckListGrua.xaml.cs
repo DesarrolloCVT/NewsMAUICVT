@@ -6,6 +6,7 @@ namespace NewsMauiCVT.Views;
 
 public partial class CheckListGrua : ContentPage
 {
+    #region Variables Globales
     public Dictionary<string, string> CheckListData = new Dictionary<string, string>();  // = new Dictionary<string, string>();
     public string _horometro;
     public DateTime _fecha;
@@ -72,6 +73,7 @@ public partial class CheckListGrua : ContentPage
             OnPropertyChanged(nameof(TipoDeMaquinaria));
         }
     }
+    #endregion
     public CheckListGrua()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
@@ -82,41 +84,51 @@ public partial class CheckListGrua : ContentPage
     {
         base.OnAppearing();
         clearComponent();
+        LogUsabilidad("Ingreso a CheckList Grua");
     }
-    public void LoadDatos()
+    public async void LoadDatos()
     {
-        FechaCheckList.Date = DateTime.Now;
-
-        List<Turnos> dataTurnos = [];
-        List<AreaTrabajo> dataAreaTrabajo = [];
-        List<NumGrua> numeroGrua = [];
-        List<TipoGrua> tipoDeGrua = [];
-
-        dataTurnos.Add(new Turnos { turnos = "Primer Turno" });
-        dataTurnos.Add(new Turnos { turnos = "Segundo Turno" });
-
-        dataAreaTrabajo.Add(new AreaTrabajo { area = "BodegaPT" });
-        dataAreaTrabajo.Add(new AreaTrabajo { area = "Envasado" });
-        dataAreaTrabajo.Add(new AreaTrabajo { area = "Inventario" });
-        
-        cboTurno.BindingContext = dataTurnos;
-        cboAreaTrabajo.BindingContext = dataAreaTrabajo;
-
-        DatosCheckListGruas DatosGruas = new();
-        var ListadoTipoGruas = DatosGruas.TipoMaquinarias();
-        var ListadoNumeroGruas = DatosGruas.NumeroGruas();
-
-        foreach (var l in ListadoNumeroGruas)
+        var ACC = Connectivity.NetworkAccess;
+        if (ACC == NetworkAccess.Internet)
         {
-            numeroGrua.Add(new NumGrua { numGrua = l });
-        }
-        foreach (var t in ListadoTipoGruas)
-        {
-            tipoDeGrua.Add(new TipoGrua { tipoGrua = t });
-        }
+            FechaCheckList.Date = DateTime.Now;
 
-        cboNumGrua.BindingContext = numeroGrua;
-        cboTipoMaquina.BindingContext = tipoDeGrua;
+            List<Turnos> dataTurnos = [];
+            List<AreaTrabajo> dataAreaTrabajo = [];
+            List<NumGrua> numeroGrua = [];
+            List<TipoGrua> tipoDeGrua = [];
+
+            dataTurnos.Add(new Turnos { turnos = "Primer Turno" });
+            dataTurnos.Add(new Turnos { turnos = "Segundo Turno" });
+
+            dataAreaTrabajo.Add(new AreaTrabajo { area = "BodegaPT" });
+            dataAreaTrabajo.Add(new AreaTrabajo { area = "Envasado" });
+            dataAreaTrabajo.Add(new AreaTrabajo { area = "Inventario" });
+
+            cboTurno.BindingContext = dataTurnos;
+            cboAreaTrabajo.BindingContext = dataAreaTrabajo;
+
+            DatosCheckListGruas DatosGruas = new();
+            var ListadoTipoGruas = DatosGruas.TipoMaquinarias();
+            var ListadoNumeroGruas = DatosGruas.NumeroGruas();
+
+            foreach (var l in ListadoNumeroGruas)
+            {
+                numeroGrua.Add(new NumGrua { numGrua = l });
+            }
+            foreach (var t in ListadoTipoGruas)
+            {
+                tipoDeGrua.Add(new TipoGrua { tipoGrua = t });
+            }
+
+            cboNumGrua.BindingContext = numeroGrua;
+            cboTipoMaquina.BindingContext = tipoDeGrua;
+        }
+        else
+        {
+            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+        }
     }
     public class Turnos
     {

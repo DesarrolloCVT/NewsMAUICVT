@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace NewsMauiCVT.Model
 {
-    public class TransferenciasClass
+    internal class PedidosClass
     {
-        public string Transfer_Id { get; set; }
-        public int Site_Id { get; set; }
+        public string Order_Id { get; set; }
     }
 }

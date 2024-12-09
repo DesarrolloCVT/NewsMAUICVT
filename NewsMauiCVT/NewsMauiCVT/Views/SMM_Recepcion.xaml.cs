@@ -10,8 +10,10 @@ public partial class SMM_Recepcion : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
+        #region Inicializadores
         stNuevo.IsVisible = false;
         stReanudar.IsVisible = false;
+        #endregion
         cargaDatos();
     }
     protected override void OnAppearing()
@@ -41,7 +43,6 @@ public partial class SMM_Recepcion : ContentPage
             foreach (var t in lt)
             {
                 cboOC.Items.Add(t.OCProveedor.ToString());
-
             }
         }
         else
@@ -108,7 +109,7 @@ public partial class SMM_Recepcion : ContentPage
                     }
                     else
                     {
-                        await DisplayAlert("Alerta", "Error Al Crear Recepcion ,Contactar Con Administrador", "Aceptar");
+                        await DisplayAlert("Alerta", "Error Al Crear RecepcionPallet ,Contactar Con Administrador", "Aceptar");
                     }
                 }
                 else
@@ -128,7 +129,7 @@ public partial class SMM_Recepcion : ContentPage
         if (txtFolioRecepcion.Text.Equals(string.Empty))
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "ingrese un numero de Recepcion", "Aceptar");
+            DisplayAlert("Alerta", "ingrese un numero de RecepcionPallet", "Aceptar");
         }
         else
         {
@@ -147,7 +148,7 @@ public partial class SMM_Recepcion : ContentPage
                 }
                 else
                 {
-                    DisplayAlert("Alerta", "Recepcion no existe o se encuentra cerrada, Favor verificar", "Aceptar");
+                    DisplayAlert("Alerta", "RecepcionPallet no existe o se encuentra cerrada, Favor verificar", "Aceptar");
                 }
             }
             else

@@ -12,8 +12,6 @@ namespace NewsMauiCVT.Datos
     public class DatosConsultaUbicacion
     {
         public DatosConsultaUbicacion() { }
-
-
         public int EvaluaExistenDatosEnPosision(int idpos)
         {
             int Estado = 0;
@@ -21,7 +19,7 @@ namespace NewsMauiCVT.Datos
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
 
                 var rest2 = ClientHttp.GetAsync("api/Produccion?Idpos=" + idpos).Result;
@@ -47,7 +45,6 @@ namespace NewsMauiCVT.Datos
             }
             return Estado;
         }
-
         public DataTable DetalleConsultaUbicacion(int npallet)
         {
             DataTable dt = new();
@@ -55,7 +52,7 @@ namespace NewsMauiCVT.Datos
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
                 int idpos = Convert.ToInt32(npallet);
                 var rest2 = ClientHttp.GetAsync("api/Produccion?Idpos=" + idpos).Result;
@@ -68,14 +65,13 @@ namespace NewsMauiCVT.Datos
             }
             return dt;
         }
-
         public DataTable ResumenConsultaUbicacion(int npallet)
         {
             DataTable dt = new();
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 int idpos = Convert.ToInt32(npallet);
                 var rest2 = ClientHttp.GetAsync("api/Produccion?NumPosicion=" + idpos).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;

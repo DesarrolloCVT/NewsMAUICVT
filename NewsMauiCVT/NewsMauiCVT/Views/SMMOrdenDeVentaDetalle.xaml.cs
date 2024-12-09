@@ -6,7 +6,9 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMMOrdenDeVentaDetalle : ContentPage
 {
+    #region Variables Globales
     int _folio = 0;
+    #endregion
     public SMMOrdenDeVentaDetalle(int folio)
     {
         NavigationPage.SetHasNavigationBar(this, false);

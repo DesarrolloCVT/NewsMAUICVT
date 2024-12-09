@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Core;assembly=DevExpress.Maui.Core"
              x:Class="NewsMauiCVT.Views.ResumenPedidosAsignados">
     <ScrollView>
         <StackLayout>
             <StackLayout>
                 <Label x:Name="lblCantPallets" Text="Cantidad de Asignaciones: " HorizontalOptions="Center" FontSize="Medium"/>
                 <StackLayout Padding="0,30,0,0">
-                    <dxg:DataGridView x:Name="GvData">
+                    <dxg:DataGridView x:Name="GvData" HeightRequest="250">
                         <dxg:DataGridView.ColumnHeaderAppearance>
                             <dxg:ColumnHeaderAppearance 
                                 BackgroundColor="#3399ff"
@@ -28,6 +29,22 @@
                         </dxg:DataGridView.CellAppearance>
                     </dxg:DataGridView>
                 </StackLayout>
+            </StackLayout>
+            <StackLayout Padding="30,20,30,0">
+                <dxc:DXButton 
+                    x:Name="btn_UbicacionesPorLotre"
+                    TextHorizontalAlignment="Center"
+                    BackgroundColor="Green"
+                    BorderColor="Black"
+                    BorderThickness="2"
+                    Clicked="btn_UbicacionesPorLotre_Clicked"
+                    CornerRadius="30"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    PressedBackgroundColor="MediumSeaGreen"
+                    PressedBorderColor="DarkOrange"
+                    Content="Ver Ubicaciones"
+                    IsVisible="True"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

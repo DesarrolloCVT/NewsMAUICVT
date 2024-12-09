@@ -34,7 +34,6 @@ public partial class SMM_Picking_Consolidado_Cabecera : ContentPage
             foreach (var t in lt)
             {
                 cboDpto.Items.Add(t.GroupName.ToString());
-
             }
         }
         else

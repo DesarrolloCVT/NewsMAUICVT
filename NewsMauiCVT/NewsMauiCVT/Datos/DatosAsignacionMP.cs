@@ -11,26 +11,6 @@ namespace NewsMauiCVT.Datos
 {
     internal class DatosAsignacionMP
     {
-        public bool InsertarAsignacionMP(int transferID, string itemCode, string lote)
-        {
-            bool resp = false;
-            try
-            {
-                HttpClient ClientHttp = new()
-                {
-                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
-                };
-                var rest2 = ClientHttp.GetAsync("InsertaMP?transferID=" + transferID + "&itemCode=" + itemCode + "&Lote=" + lote).Result;
-                var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
-                resp = JsonConvert.DeserializeObject<bool>(resultadoStr);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("InsertarAsignacionMP: " + ex.ToString());
-            }
-            return resp;
-        }
-
         public List<TransferenciaAsignacion> TransferenciasAsignadas(int transferID)
         {
             List<TransferenciaAsignacion> rest = new List<TransferenciaAsignacion>();
@@ -59,7 +39,7 @@ namespace NewsMauiCVT.Datos
                 {
                     BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
-                var rest2 = ClientHttp.GetAsync("DetalleTransferenciasAsignadas?transferId=" + transferId).Result;
+                var rest2 = ClientHttp.GetAsync("DetalleTransferenciasAsignadas?TransferID=" + transferId).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
                                 throw new InvalidOperationException();
@@ -67,6 +47,26 @@ namespace NewsMauiCVT.Datos
             catch (Exception ex)
             {
                 Console.WriteLine("DetalleTransferenciasAsignadas: " + ex.ToString());
+            }
+            return dt;
+        }
+        public DataTable UbicacionMPAsignacion(string itemCode, string lote)
+        {
+            DataTable dt = new();
+            try
+            {
+                HttpClient ClientHttp = new()
+                {
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
+                };
+                var rest2 = ClientHttp.GetAsync("UbicacionMPAsignacion?itemCode=" + itemCode + "&lote=" + lote).Result;
+                var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
+                dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
+                                throw new InvalidOperationException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("UbicacionMPAsignacion: " + ex.ToString());
             }
             return dt;
         }

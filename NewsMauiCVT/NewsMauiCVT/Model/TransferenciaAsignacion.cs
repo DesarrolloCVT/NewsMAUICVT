@@ -11,5 +11,6 @@ namespace NewsMauiCVT.Model
         public int Transfer_ID { get; set; }
         public string ItemCode { get; set; }
         public string Lote { get; set; }
+        public string Recepcion { get; set; }
     }
 }

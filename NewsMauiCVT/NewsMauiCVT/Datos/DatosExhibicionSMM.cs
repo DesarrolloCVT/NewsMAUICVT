@@ -17,7 +17,7 @@ namespace NewsMauiCVT.Datos
             {
                 //string Fvenc = Fvencimiento + " " + "00:00:00.000";
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/ExhibicionSalaSMM?pasillo=" + pasillo + "&columna=" + columna + "&nivel=" + nivel + "&CodBar=" + CodBar + "&codProd=" + codProd + "&CantCaras=" + CantCaras).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);

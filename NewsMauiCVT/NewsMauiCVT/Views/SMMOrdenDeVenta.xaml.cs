@@ -29,7 +29,6 @@ public partial class SMMOrdenDeVenta : ContentPage
     private void btnCreaCliente_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SMMCreaCliente { Title = "Finalizar" });
-
     }
     private void btnOrdenCab_Clicked(object sender, EventArgs e)
     {
@@ -47,8 +46,6 @@ public partial class SMMOrdenDeVenta : ContentPage
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
-
-
                 DatosSMMOrdenDeVenta rc = new DatosSMMOrdenDeVenta();
 
                 int FolioOrden = rc.ValidaFolioOrden(Convert.ToInt32(txtFolio.Text));

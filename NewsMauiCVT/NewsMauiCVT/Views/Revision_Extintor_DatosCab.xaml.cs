@@ -78,7 +78,6 @@ public partial class Revision_Extintor_DatosCab : ContentPage
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
-
                 DatosExtintores dEx = new DatosExtintores();
 
                 int usuario = App.Iduser;

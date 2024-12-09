@@ -34,7 +34,6 @@ public partial class ControlFosfina : ContentPage
     {
         btn_agregar.Focus();
         btn_agregar.IsEnabled = true;
-
     }
     private async void Btn_agregar_Clicked(object sender, EventArgs e)
     {

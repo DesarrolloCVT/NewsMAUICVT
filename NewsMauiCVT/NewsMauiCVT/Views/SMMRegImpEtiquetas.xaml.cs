@@ -5,7 +5,9 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMMRegImpEtiquetas : ContentPage
 {
+    #region Variables Globales
     string v_CodigoProducto = "";
+    #endregion
     public SMMRegImpEtiquetas()
     {
         NavigationPage.SetHasNavigationBar(this, false);

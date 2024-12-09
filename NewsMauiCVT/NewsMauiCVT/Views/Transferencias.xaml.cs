@@ -7,8 +7,10 @@ namespace NewsMauiCVT.Views;
 
 public partial class Transferencias : ContentPage
 {
+    #region Variables Globales
     public int folioSelected;
-	public Transferencias()
+    #endregion
+    public Transferencias()
 	{
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
@@ -92,10 +94,6 @@ public partial class Transferencias : ContentPage
                 {
                     LogUsabilidad("Seleccion folio tranferencias");
                     await Navigation.PushAsync(new TransferenciasDetalle(folioSelected));
-                    /*Test:
-                        //await Navigation.PushAsync(new AsignacionPedidos());
-                        //await Navigation.PushAsync(new SMM_Recepcion());
-                    */
                 }   
                 else
                     await DisplayAlert("Aviso", "Selecciona un Folio", "Ok");

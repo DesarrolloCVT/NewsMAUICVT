@@ -7,7 +7,9 @@ namespace NewsMauiCVT.Views;
 
 public partial class TomaInventario : ContentPage
 {
+    #region Variables Globales
     int v_lay = 0;
+    #endregion
     public TomaInventario()
     {
         NavigationPage.SetHasNavigationBar(this, false);
@@ -28,7 +30,7 @@ public partial class TomaInventario : ContentPage
         {
             HttpClient ClientHttp = new()
             {
-                BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                BaseAddress = new Uri("http://wsintranet2.cvt.local/")
             };
             var rest = ClientHttp.GetAsync("api/TomaInventario").Result;
 
@@ -119,7 +121,7 @@ public partial class TomaInventario : ContentPage
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
 
                 //verifica numero palllet
@@ -221,7 +223,7 @@ public partial class TomaInventario : ContentPage
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
 
                 //verifica ubicacion
@@ -358,7 +360,7 @@ public partial class TomaInventario : ContentPage
 
                     HttpClient ClientHttp = new()
                     {
-                        BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                        BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                     };
 
                     int Folio = Convert.ToInt32(cboFolio.SelectedValue);

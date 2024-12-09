@@ -6,7 +6,9 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMM_TransferenciaBultosCargados : ContentPage
 {
+    #region Variables Globales
     int _fol = 0;
+    #endregion
     public SMM_TransferenciaBultosCargados(int FolioTransFer)
     {
         NavigationPage.SetHasNavigationBar(this, false);

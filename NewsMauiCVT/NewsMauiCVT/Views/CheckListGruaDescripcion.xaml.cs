@@ -4,7 +4,9 @@ namespace NewsMauiCVT.Views;
 
 public partial class CheckListGruaDescripcion : ContentPage
 {
+    #region Variables Globales
     public Dictionary<string, string> CheckList;
+    #endregion
     public CheckListGruaDescripcion(Dictionary<string,string> keyValues)
 	{
 		InitializeComponent();
@@ -17,11 +19,6 @@ public partial class CheckListGruaDescripcion : ContentPage
     }
     private async void btnSiguiente_Clicked(object sender, EventArgs e)
     {
-        foreach (var check in CheckList) 
-        {
-            Console.WriteLine("Key: " + check.Key + " Value: " + check.Value);
-
-        }
         if (CheckList.Count >= 30)
         {
             await Navigation.PushAsync(new CheckListGruaObs(CheckList));

@@ -6,17 +6,21 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMMDetalleRecepcion : ContentPage
 {
+    #region Variables Globales
     int _folio = 0;
     string _CodProd = "";
     string _Proveedor = "";
     int _OC = 0;
     decimal _CantidadOC = 0;
+    #endregion
     public SMMDetalleRecepcion(int folio)
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
+        #region Inicializadores
         _folio = folio;
         lblFolioRecepcion.Text = Convert.ToString(_folio);
+        #endregion
     }
     protected override void OnAppearing()
     {
@@ -40,12 +44,9 @@ public partial class SMMDetalleRecepcion : ContentPage
     }
     private void Txt_CodProducto_Completed(object sender, EventArgs e)
     {
-
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-
-
             DatosRecepcionSMM rc = new DatosRecepcionSMM();
 
             int oc = rc.TraeOcRecepcion(Convert.ToInt32(lblFolioRecepcion.Text));
@@ -93,7 +94,6 @@ public partial class SMMDetalleRecepcion : ContentPage
     }
     private void Btn_Guardar_Clicked(object sender, EventArgs e)
     {
-
         if (txt_CodProducto.Text.Equals(string.Empty))
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
@@ -375,8 +375,6 @@ public partial class SMMDetalleRecepcion : ContentPage
             using (UserDialogs.Instance.Alert("ingrese dia correcto"))
             {
                 await Task.Delay(5);
-
-
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                 await DisplayAlert("Alerta", "ingrese dia", "Aceptar");
             }

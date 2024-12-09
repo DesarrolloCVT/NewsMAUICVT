@@ -9,7 +9,7 @@
             <StackLayout Padding="20">
                 <Label Text="TRANSFERENCIAS" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
             </StackLayout>
-            <StackLayout Margin="25,0" Padding="10">
+            <StackLayout Margin="0,0" Padding="10">
                 <StackLayout Padding="20">
                     <Label
                         FontSize="Medium"
@@ -49,7 +49,7 @@
                         </dxe:ComboBoxEdit.ItemTemplate>
                     </dxe:ComboBoxEdit>
                 </StackLayout>
-                <StackLayout Margin="25,10,25,50">
+                <StackLayout Margin="0,50,0,0">
                     <dxc:DXButton
                         x:Name="btn_seleccionar"
                         BackgroundColor="Green"

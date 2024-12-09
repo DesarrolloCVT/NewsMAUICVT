@@ -11,12 +11,14 @@ public partial class SMM_TomaInventario : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
+        #region Inicializadores
         lblError.Text = string.Empty;
         lblError.IsVisible = false;
         lblError2.Text = string.Empty;
         lblError2.IsVisible = false;
         lblError3.Text = string.Empty;
         lblError3.IsVisible = false;
+        #endregion
 
     }
     protected override void OnAppearing()

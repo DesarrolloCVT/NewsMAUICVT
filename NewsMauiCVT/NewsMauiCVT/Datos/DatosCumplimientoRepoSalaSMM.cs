@@ -12,15 +12,13 @@ namespace NewsMauiCVT.Datos
     public class DatosCumplimientoRepoSalaSMM
     {
         public DatosCumplimientoRepoSalaSMM() { }
-
-
         public List<SMMReponedoresClass> ListaReponedores()
         {
             List<SMMReponedoresClass> ls = new List<SMMReponedoresClass>();
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMCumplRepoSala").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<SMMReponedoresClass>>(resultadoStr) ??
@@ -32,7 +30,6 @@ namespace NewsMauiCVT.Datos
             }
             return ls;
         }
-
         public string insertaRegistroCumplimiento(int idNVerificado, int Verificador, string CodProd, string CodBar, string dispo, string limp, string fefo, string fleje, string fechVenc)
         {
             string ret = "";
@@ -40,7 +37,7 @@ namespace NewsMauiCVT.Datos
             {
                 string Fvenc = fechVenc + " " + "00:00:00.000";
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMCumplRepoSala?idNVerificado=" + idNVerificado + "&Verificador=" + Verificador + "&CodProd=" + CodProd + "&CodBar=" + CodBar + "&dispo=" + dispo + "&limp=" + limp + "&fefo=" + fefo + "&fleje=" + fleje + "&fechVenc=" + fechVenc).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
@@ -52,7 +49,5 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
-
     }
 }

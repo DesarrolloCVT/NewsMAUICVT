@@ -15,15 +15,13 @@ namespace NewsMauiCVT.Datos
     {
 
         public DatosCalidadControlHigiene() { }
-
-
         public List<PersonalClass> ListaPerdonal()
         {
             List<PersonalClass> ls = new List<PersonalClass>();
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/ControlHigiene/listaMonitor").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<PersonalClass>>(resultadoStr) ??
@@ -42,7 +40,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/ControlHigiene/listaPersonal").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<PersonalClass>>(resultadoStr) ??
@@ -54,7 +52,6 @@ namespace NewsMauiCVT.Datos
             }
             return ls;
         }
-
         public List<AreaClass> ListaAreas()
         {
             //int rs = 1;
@@ -62,7 +59,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/ControlHigiene/listaArea").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<AreaClass>>(resultadoStr) ??
@@ -74,12 +71,11 @@ namespace NewsMauiCVT.Datos
             }
             return ls;
         }
-
         public string CreaDatosControlHigiene(CVT_ControlHigieneClass c)
 
         {
             string res = "-1";
-            string url = "http://wsintranet.cvt.local/api/ControlHigiene/PostControl";
+            string url = "http://wsintranet2.cvt.local/api/ControlHigiene/PostControl";
             WebRequest oRequest = WebRequest.Create(url);
             oRequest.ContentType = "application/json; charset=utf-8";
             oRequest.Method = "POST";

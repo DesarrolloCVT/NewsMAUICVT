@@ -20,7 +20,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 var rest = ClientHttp.GetAsync("api/TrazabilidadPallet?NumPallet=" + npallet).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
@@ -40,7 +40,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 var rest = ClientHttp.GetAsync("api/TrazabilidadPallet?NPallet=" + npallet).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;

@@ -43,7 +43,6 @@ public partial class SMM_Repaletizado : ContentPage
             }
             else
             {
-
                 foreach (var p in ls)
                 {
                     LayoutOrigen.IsVisible = true;
@@ -64,7 +63,6 @@ public partial class SMM_Repaletizado : ContentPage
                     picker.Focus();
                 }
             }
-
         }
         else
         {
@@ -102,7 +100,6 @@ public partial class SMM_Repaletizado : ContentPage
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-
             int nPalletdes = Convert.ToInt32(txt_destino.Text);
             DatosRepaletizadoSMM dr = new DatosRepaletizadoSMM();
             List<SMMPackageClass> dt = dr.ObtieneDatosPaletSMM(nPalletdes);
@@ -154,7 +151,6 @@ public partial class SMM_Repaletizado : ContentPage
                         DisplayAlert("Alerta", "NO COMPATIBLE : Pallet en bodega diferente o N° de pallet son identicos ", "Aceptar");
                         btn_generar.IsEnabled = false;
                     }
-
                 }
                 else
                 {

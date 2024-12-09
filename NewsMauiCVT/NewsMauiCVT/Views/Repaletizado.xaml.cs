@@ -8,6 +8,7 @@ namespace NewsMauiCVT.Views;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class Repaletizado : ContentPage
 {
+    #region Variables Globales
     private int _lblCantidad;
     private int lblCantidad
     {
@@ -17,7 +18,8 @@ public partial class Repaletizado : ContentPage
             _lblCantidad = value;
             OnPropertyChanged(nameof(lblCantidad));
         }
-    }    
+    }
+    #endregion 
     public Repaletizado()
 	{   
         NavigationPage.SetHasNavigationBar(this, false);
@@ -50,7 +52,7 @@ public partial class Repaletizado : ContentPage
             {
                 string nPallet = txtPosicion.Text;
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 //Se realiza el call de a traves de metodo Get Uri. 
                 var rest2 = ClientHttp.GetAsync("api/Produccion?NumeroDePallet=" + nPallet).Result;
 
@@ -174,7 +176,7 @@ public partial class Repaletizado : ContentPage
         {
             string nPalletdes = txt_destino.Text;
             HttpClient ClientHttp = new HttpClient();
-            ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+            ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
             var rest2 = ClientHttp.GetAsync("api/Produccion?SSCC=" + nPalletdes).Result;
 
             if (rest2.IsSuccessStatusCode)
@@ -304,7 +306,7 @@ public partial class Repaletizado : ContentPage
             if (ACC == NetworkAccess.Internet)
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 //Verifica q exista pallet de origen
                 var rest = ClientHttp.GetAsync("api/Produccion?numPallet=" + txtPosicion).Result;

@@ -7,7 +7,9 @@ namespace NewsMauiCVT.Views;
 
 public partial class TomaInventarioFilm : ContentPage
 {
+    #region Variables Globales
     int v_lay = 0;
+    #endregion
     public TomaInventarioFilm()
     {
         NavigationPage.SetHasNavigationBar(this, false);
@@ -27,7 +29,7 @@ public partial class TomaInventarioFilm : ContentPage
         if (ACC == NetworkAccess.Internet)
         {
             HttpClient ClientHttp = new HttpClient();
-            ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+            ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
             var rest = ClientHttp.GetAsync("api/TomaInventario").Result;
 
             if (rest.IsSuccessStatusCode)
@@ -113,7 +115,7 @@ public partial class TomaInventarioFilm : ContentPage
             else
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 //verifica numero palllet
                 var rest = ClientHttp.GetAsync("api/TomaInventarioFilm?numBobina=" + Convert.ToInt32(txt_pallet.Text)).Result;
@@ -220,7 +222,7 @@ public partial class TomaInventarioFilm : ContentPage
             else
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 //verifica ubicacion
                 var rest = ClientHttp.GetAsync("api/TomaInventario?NumPosicion=" + Convert.ToInt32(txt_ubicacion.Text)).Result;
@@ -329,7 +331,7 @@ public partial class TomaInventarioFilm : ContentPage
             if (ACC == NetworkAccess.Internet)
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 int Folio = Convert.ToInt32(cboFolio.SelectedValue);
                 int numPall = Convert.ToInt32(txt_pallet.Text);

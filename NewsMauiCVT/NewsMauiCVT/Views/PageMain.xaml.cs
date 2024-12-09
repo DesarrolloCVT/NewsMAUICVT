@@ -31,7 +31,7 @@ public partial class PageMain : FlyoutPage
                 new Option{ page=new SMMTransferencia() { Title = "Menú" }, title = "Transferencia Mayorista", detail = "Transferencia Mayorista" /*image = "ic_ac_home.png" */},
                 new Option{ page=new SMM_Repaletizado(){Title="Menú"},title="Repaletizado Mayorista", detail="Repaletizado Supermercado Mayorista"},
                 new Option{ page=new SMM_ConsultaProducto(){Title="Menú"},title="Consulta Producto", detail="Consulta Producto Supermercado Mayorista"},
-                new Option{ page=new SMM_Recepcion(){Title="Menú"},title="Recepcion Mayorista", detail="Recepcion Supermerdado Mayorista"},
+                new Option{ page=new SMM_Recepcion(){Title="Menú"},title="RecepcionPallet Mayorista", detail="RecepcionPallet Supermerdado Mayorista"},
                 new Option{ page=new SMM_TomaInvenario_Bodegas(){Title="Menú"},title="Toma Inventario Bodega 02", detail="Toma inventario Bodega 02"},
                 new Option{ page=new SMM_Posicionamiento(){Title="Menú"},title="Posicionamiento Mayorista", detail="Posicionamiento Supermercado Mayorista"},
                 new Option{ page=new SMM_ExhibicionSala(){Title="Menú"},title="Exhibicion Sala", detail="Exhibicion en Sala Supermercado Mayorista"},

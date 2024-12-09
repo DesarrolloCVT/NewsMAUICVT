@@ -21,7 +21,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?NumPallet=" + nPallet).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 lt = JsonConvert.DeserializeObject<List<ListProdTranferSMMClass>>(resultadoStr) ??
@@ -46,7 +46,7 @@ namespace NewsMauiCVT.Datos
             {
 
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?siteOrig=" + siteOrig + "&siteDest=" + siteDest + "&Usuario=" + Usuario + "&pgID=" + pgID + "&lyID=" + lyID + "&cantidad=" + cantidad).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 resp = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -66,7 +66,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?TransferID=" + TransferID + "&stado=" + stado).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 resp = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -84,7 +84,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<SMMSite>>(resultadoStr) ??
@@ -103,7 +103,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?Estado=" + estado).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<SMMFolioSolicitud>>(resultadoStr) ??
@@ -122,7 +122,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?sOrigen=" + sOrigen + "&sDestino=" + sDestino + "&idUser=" + idUser + "&EntidadT=" + EntidadT + "&FolioEnt=" + FolioEnt + "&Coment=" + Coment + "&FolioSol=" + FolioSol).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -140,7 +140,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?NPallet=" + NPallet + "&TransferId=" + TransferId).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<FiltoTransferenciaSMM>>(resultadoStr) ??
@@ -159,7 +159,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?sitioid=" + sitioid + "&packageid=" + packageid + "&layoutid=" + layoutid + "&IdUsuario=" + IdUsuario + "&transferid=" + transferid + "&quantity=" + quantity).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
@@ -176,7 +176,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
 
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?folioTransferencia=" + folioTransferencia).Result;
@@ -199,7 +199,7 @@ namespace NewsMauiCVT.Datos
             {
 
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?SSCCPallet=" + SSCCPallet).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -218,7 +218,7 @@ namespace NewsMauiCVT.Datos
             {
 
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TransferenciaSMM?transferid=" + transferid + "&packageid=" + packageid).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);

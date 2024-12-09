@@ -5,16 +5,20 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMM_Picking_Consolidado : ContentPage
 {
+    #region
     string _CodigoProducto = "";
     int _CantidadConsoli = 0;
+    #endregion
     public SMM_Picking_Consolidado()
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
+        #region Incializadores 
         DateTime FConsolidado = Convert.ToDateTime(App.Fconsoli);
         string fecha = FConsolidado.Date.Day + " - " + FConsolidado.Date.Month + " - " + FConsolidado.Date.Year;
         lblPick.Text = "Fecha Consolidado: " + fecha;
         lblPick1.Text = "Departamento: " + App.DptoConsolidado.ToString();
+        #endregion
     }
     protected override void OnAppearing()
     {
@@ -136,7 +140,6 @@ public partial class SMM_Picking_Consolidado : ContentPage
         }
         else
         {
-
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
@@ -180,8 +183,6 @@ public partial class SMM_Picking_Consolidado : ContentPage
 #pragma warning disable CS8602 // Desreferencia de una referencia posiblemente NULL.
             Microsoft.Maui.Controls.Application.Current.Quit();
 #pragma warning restore CS8602 // Desreferencia de una referencia posiblemente NULL.
-
-
         }
         else
         {

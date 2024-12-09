@@ -17,7 +17,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Supportive").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<TipoPalletClass>>(resultadoStr) ??
@@ -35,7 +35,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Supportive?Desc=" + Decripcion).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -52,7 +52,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Supportive?nPallet=" + SSCC + "&TipoPallet=" + CodTipo).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
@@ -69,7 +69,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Supportive?Pk=" + pk).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??

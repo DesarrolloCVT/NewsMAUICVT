@@ -152,9 +152,6 @@ public partial class SMM_ExhibicionSala : ContentPage
                     DisplayAlert("Alerta", "Error Al Registar Contactar Con Administrador", "Aceptar");
                 }
             }
-
-
-
         }
         else
         {

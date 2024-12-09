@@ -5,8 +5,10 @@ namespace NewsMauiCVT.Views;
 
 public partial class CheckListGruaObs : ContentPage
 {
-	private Dictionary<string,string> checkList;
-	public CheckListGruaObs(Dictionary<string,string> keyValues)
+    #region Variables Globales
+    private Dictionary<string,string> checkList;
+    #endregion
+    public CheckListGruaObs(Dictionary<string,string> keyValues)
 	{
 		InitializeComponent();
 		checkList = keyValues;

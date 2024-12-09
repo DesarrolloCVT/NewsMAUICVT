@@ -17,7 +17,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMArmadoPedido?IdOrden=" + FolioPed).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -28,14 +28,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public List<SMMProductoArmadoPedido> DatosProductosArmadoPes(string CodBarraProd, int nOrden)
         {
             List<SMMProductoArmadoPedido> ret = new List<SMMProductoArmadoPedido>();
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMArmadoPedido?Orden=" + nOrden + "&bcdCode=" + CodBarraProd).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<List<SMMProductoArmadoPedido>>(resultadoStr) ??
@@ -47,7 +46,6 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public string insertaRegistroArmadoPedido(int nOrden, string CodProducto, string CodBar, string Umedida, int Cant, string fechIng, int IdVeri, string cantC, string VenC, string EtiqC, string EnfC, string EstC, string CondPC)
         {
             string ret = "";
@@ -55,7 +53,7 @@ namespace NewsMauiCVT.Datos
             {
                 string Fvenc = fechIng + " " + "00:00:00.000";
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/SMMArmadoPedido?nOrden=" + nOrden + "&CodProducto=" + CodProducto + "&CodBar=" + CodBar + "&Umedida=" + Umedida + "&Cant=" + Cant + "&fechIng=" + Fvenc + "&IdVeri=" + IdVeri + "&cantC=" + cantC + "&VenC=" + VenC + "&EtiqC=" + EtiqC + "&EnfC=" + EnfC + "&EstC=" + EstC + "&CondPC=" + CondPC).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??

@@ -19,7 +19,7 @@ public partial class AsignacionMateriaPrima : ContentPage
         base.OnAppearing();
         ClearComponent();
         LoadData();
-        LogUsabilidad("ingreso");
+        LogUsabilidad("ingreso a asignacion de MP");
     }
     private void ClearComponent()
     {
@@ -50,7 +50,7 @@ public partial class AsignacionMateriaPrima : ContentPage
                 {
                     BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
-                var rest = ClientHttp.GetAsync("FoliosAsignaciones").Result;
+                var rest = ClientHttp.GetAsync("FoliosTransferenciasAsignacion").Result;
 
                 if (rest.IsSuccessStatusCode)
                 {

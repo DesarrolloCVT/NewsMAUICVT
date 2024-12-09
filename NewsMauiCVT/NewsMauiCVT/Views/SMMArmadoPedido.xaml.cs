@@ -31,15 +31,13 @@ public partial class SMMArmadoPedido : ContentPage
         if (txtNPedido.Text.Equals(string.Empty))
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "ingrese un numero de Recepcion", "Aceptar");
+            DisplayAlert("Alerta", "ingrese un numero de RecepcionPallet", "Aceptar");
         }
         else
         {
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
-
-
                 DatosSMM_ArmadoPedido ar = new DatosSMM_ArmadoPedido();
 
                 int FolioPed = ar.ValidaFolioPrdido(Convert.ToInt32(txtNPedido.Text));

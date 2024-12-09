@@ -36,7 +36,6 @@ public partial class Calidad_ControlHigiene : ContentPage
     private async void CargaDatos()
     {
         var ACC = Connectivity.NetworkAccess;
-
         if (ACC == NetworkAccess.Internet)
         {
             DatosCalidadControlHigiene ti = new DatosCalidadControlHigiene();
@@ -84,7 +83,6 @@ public partial class Calidad_ControlHigiene : ContentPage
     {
         public string tipoCont { get; set; }
         public string NombreCont { get; set; }
-
     }
     private async void btn_agregar_Clicked(object sender, EventArgs e)
     {   
@@ -100,7 +98,6 @@ public partial class Calidad_ControlHigiene : ContentPage
         int v_higi = cboHigiene.SelectedIndex == -1 ? 0 : Convert.ToInt32(cboHigiene.SelectedValue);
         string v_heri = cboHeridaExpuesta.SelectedIndex == -1 ? "0" : cboHeridaExpuesta.SelectedValue.ToString();
         string v_accion = txtAccionCorrectiva.Text;
-
 
         if (v_IdMonitor == 0)
         {
@@ -215,7 +212,6 @@ public partial class Calidad_ControlHigiene : ContentPage
     private void cboLimpUniforme_SelectionChanged(object sender, EventArgs e)
     {
         CboEstUniforme.Focus();
-
     }
     private void CboEstUniforme_SelectionChanged(object sender, EventArgs e)
     {

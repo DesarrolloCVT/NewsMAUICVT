@@ -38,7 +38,7 @@ public partial class Posicionamiento : ContentPage
             string nPallet = txt_origen.Text;
 
             HttpClient ClientHttp = new HttpClient();
-            ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+            ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
             try
             {
                 //Obtiene Informacion del Pallet
@@ -151,7 +151,7 @@ public partial class Posicionamiento : ContentPage
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
 
                 //ObtieneInfoLayout
@@ -255,7 +255,7 @@ public partial class Posicionamiento : ContentPage
             if (ACC == NetworkAccess.Internet)
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 //busca staffid
                 var rest = ClientHttp.GetAsync("api/Usuario?usernameWMS=" + App.UserSistema).Result;
@@ -324,7 +324,7 @@ public partial class Posicionamiento : ContentPage
             if (ACC == NetworkAccess.Internet)
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
 
                 //busca staffid
                 var rest = ClientHttp.GetAsync("api/Usuario?usernameWMS=" + App.UserSistema).Result;

@@ -17,7 +17,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<TomaInventarioClass>>(resultadoStr) ??
@@ -37,7 +37,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?CodBodega=" + CodBodega).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -48,14 +48,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public string ValidaCodProducto(string codProd)
         {
             string ret = "";
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?CodBarraProd=" + codProd).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
@@ -73,7 +72,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?NumeroDePallet=" + NumPallet + "&Codpro=" + Codpro).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -90,7 +89,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?PalletVerifica=" + PalletVerifica).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -101,14 +100,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public string traeItemCodeProducto(string PalletProducto)
         {
             string ret = "0";
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?PalletProducto=" + PalletProducto).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
@@ -120,14 +118,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public string traeCodBarraProducto(string CodProductoBarra)
         {
             string ret = "0";
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?CodProductoBarra=" + CodProductoBarra).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
@@ -145,7 +142,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?NpalletBodega02=" + NpalletBodega02).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
@@ -163,7 +160,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?bodega=" + site + "&ubicacion=" + Ubicacion).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -180,7 +177,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?CodBarr=" + codBar).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr);
@@ -191,8 +188,6 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
-
         public bool insertaInventario(int Inventario_Id, string Dun14, string CodProducto, string Cantidad, int SiteID, int IdUsuario, string UbiPasillo, string Fvencimiento, string CantxEmp, int CantBase, string TipoEmpaque)
         {
             bool ret = false;
@@ -200,7 +195,7 @@ namespace NewsMauiCVT.Datos
             {
                 string Fvenc = Fvencimiento + " " + "00:00:00.000";
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?vInventario_Id=" + Inventario_Id + "&vDun14=" + Dun14 + "&vCodProducto=" + CodProducto + "&vCantidad=" + Cantidad + "&vSiteID=" + SiteID + "&vIdUsuario=" + IdUsuario + "&vUbiPasillo=" + UbiPasillo + "&Fvenc=" + Fvenc + "&vCantxEmp=" + CantxEmp + "&vCantBase=" + CantBase + "&vTipoEmpaque=" + TipoEmpaque).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
@@ -218,7 +213,7 @@ namespace NewsMauiCVT.Datos
             {
                 string Fvenc = Fvencimiento + " " + "00:00:00.000";
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/TomaInventarioSMM?vInventario_Id=" + Inventario_Id + "&vDun14=" + Dun14 + "&vCodProducto=" + CodProducto + "&vCantidad=" + Cantidad + "&vSiteID=" + SiteID + "&vIdUsuario=" + IdUsuario + "&vUbicacion=" + UbiPasillo + "&Fvenc=" + Fvenc + "&SSCC=" + SSCC + "&vCantxEmp=" + CantxEmp + "&vCantBase=" + CantBase + "&vTipoEmpaque=" + TipoEmpaque).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
@@ -229,14 +224,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public List<SMMDatoProductosRecepcion> ListaDatosProdRes(string itemcode, string codBar)
         {
             List<SMMDatoProductosRecepcion> ls = new List<SMMDatoProductosRecepcion>();
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync(" api/TomaInventarioSMM?itemcode=" + itemcode + "&codBar=" + codBar).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<SMMDatoProductosRecepcion>>(resultadoStr) ?? throw new InvalidOperationException();

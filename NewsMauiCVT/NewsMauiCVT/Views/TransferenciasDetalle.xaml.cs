@@ -30,11 +30,11 @@ public partial class TransferenciasDetalle : ContentPage
     {
         try
         {
-            DetalleConsultaTransferencia dct = new DetalleConsultaTransferencia();
+            DatosTransferencia dtr = new DatosTransferencia();
             var ACC = Connectivity.NetworkAccess;
             if (ACC == NetworkAccess.Internet)
             {
-                DataTable dt = dct.DetalleConsultaTransferencias(folio);
+                DataTable dt = dtr.DetalleConsultaTransferencias(folio);
                 GvData.ItemsSource = dt;
                 GvData.Columns["Transfer_Id"].Caption = "Folio";
                 GvData.Columns["Transfer_Id"].Width = 110;
@@ -79,45 +79,60 @@ public partial class TransferenciasDetalle : ContentPage
 
         if (list.Count > 0) 
         {
-            if (!string.IsNullOrEmpty(txt_pallet.Text))
+            bool PalletValido = dp.ValidaPallet(txt_pallet.Text);
+            if (PalletValido)
             {
-                var ACC = Connectivity.NetworkAccess;
-                if (ACC == NetworkAccess.Internet)
+                if (!string.IsNullOrEmpty(txt_pallet.Text))
                 {
-                    DatosTransferencia dt = new DatosTransferencia();
-                    int packageId = int.Parse(txt_pallet.Text);
-                    bool resp = dt.InsertaTransferencia(transferId, packageId);
-
-                    if (resp)
+                    var ACC = Connectivity.NetworkAccess;
+                    if (ACC == NetworkAccess.Internet)
                     {
-                        LogUsabilidad("Ingreso transferencia");
-                        lblConfirm.Text = "Pallet agregado correctamente ";
-                        lblConfirm.IsVisible = true;
-                        txt_pallet.Text = string.Empty;
-                        txt_pallet.Focus();
-                        LoadData(transferId);
+                        DatosTransferencia dt = new DatosTransferencia();
+                        int packageId = int.Parse(txt_pallet.Text);
+                        bool resp = dt.InsertaTransferencia(transferId, packageId);
+
+                        if (resp)
+                        {
+                            LogUsabilidad("Ingreso transferencia");
+                            lblConfirm.Text = "Transferencia registrada correctamente ";
+                            lblConfirm.IsVisible = true;
+                            txt_pallet.Text = string.Empty;
+                            txt_pallet.Focus();
+                            LoadData(transferId);
+                        }
+                        else
+                        {
+                            lblError.Text = "No ha sido posible registrar la transferencia ";
+                            lblError.IsVisible = true;
+                            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                            txt_pallet.Text = string.Empty;
+                            txt_pallet.Focus();
+                            LoadData(transferId);
+                        }
                     }
                     else
                     {
-                        lblError.Text = "No se ha agregado Pallet ";
-                        lblError.IsVisible = true;
                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                        txt_pallet.Text = string.Empty;
-                        txt_pallet.Focus();
-                        LoadData(transferId);
+                        DisplayAlert("Alerta", "Debe Conectarse a la Red Local ", "Aceptar");
                     }
                 }
                 else
                 {
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                    DisplayAlert("Alerta", "Debe Conectarse a la Red Local ", "Aceptar");
+                    lblError.Text = "Ingrese un N° de Pallet ";
+                    lblError.IsVisible = true;
+                    _ = Task.Delay(100).ContinueWith(t => {
+                        txt_pallet.Focus();
+                    });
                 }
             }
             else
             {
+                txt_pallet.Text = string.Empty;
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                lblError.Text = "Seleccione un N° de Pallet válido ";
+                lblError.Text = "El N° de Pallet ingresado no esta disponible ";
                 lblError.IsVisible = true;
+                LoadData(transferId);
                 _ = Task.Delay(100).ContinueWith(t => {
                     txt_pallet.Focus();
                 });

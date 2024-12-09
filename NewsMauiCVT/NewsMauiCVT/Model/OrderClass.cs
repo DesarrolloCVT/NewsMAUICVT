@@ -8,7 +8,8 @@ namespace NewsMauiCVT.Model
 {
     public class OrderClass
     {
-        public int Transfer_Id { get; set; }
+        public int Order_ID { get; set; }
+        public int OrderDetail_Quantity { get; set; }
     }
 
 }

@@ -106,7 +106,7 @@ namespace NewsMauiCVT
                             {
                                 HttpClient ClientHttp = new()
                                 {
-                                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                                 };
                                 try
                                 {

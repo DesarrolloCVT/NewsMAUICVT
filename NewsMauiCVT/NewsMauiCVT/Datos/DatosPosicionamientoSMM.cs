@@ -17,7 +17,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?NumeroPalletPos=" + SSCC).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<ListProdTranferSMMClass>>(resultadoStr) ??
@@ -35,7 +35,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?SSCC=" + SSCC).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ls = JsonConvert.DeserializeObject<List<SMMPackageClass>>(resultadoStr) ??
@@ -47,14 +47,13 @@ namespace NewsMauiCVT.Datos
             }
             return ls;
         }
-
         public int ObtienePackageIdPosicionamiento(string NumPallet)
         {
             int ret = 0;
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?NumPallet=" + NumPallet).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<int>(resultadoStr);
@@ -65,14 +64,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public string TraeLayoutDesc(int codLay)
         {
             string ret = "";
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?idLayout=" + codLay).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
@@ -84,14 +82,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public string TraeBodegaxLayout(int codLay)
         {
             string ret = "";
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?idPosicion=" + codLay).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<string>(resultadoStr) ??
@@ -103,14 +100,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public bool ActualizaLayoutPackage(int PackageId, int layoutid)
         {
             bool ret = false;
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?PackageId=" + PackageId + "&layoutid=" + layoutid).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);
@@ -121,14 +117,13 @@ namespace NewsMauiCVT.Datos
             }
             return ret;
         }
-
         public bool AddLocation(int PackageId, int LayoutDestinoId, int idUsuario)
         {
             bool ret = false;
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/PosicionamientoSMM?PackageId=" + PackageId + "&LayoutDestinoId=" + LayoutDestinoId + "&idUsuario=" + idUsuario).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 ret = JsonConvert.DeserializeObject<bool>(resultadoStr);

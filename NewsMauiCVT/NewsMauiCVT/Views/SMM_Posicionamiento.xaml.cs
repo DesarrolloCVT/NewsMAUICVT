@@ -9,9 +9,11 @@ public partial class SMM_Posicionamiento : ContentPage
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
+        #region Inicializadores
         btn_generar.IsEnabled = false;
         LayoutDestinoExistente.IsVisible = false;
         LayoutOrigen.IsVisible = false;
+        #endregion
         txt_origen.Focus();
     }
     protected override void OnAppearing()
@@ -70,7 +72,6 @@ public partial class SMM_Posicionamiento : ContentPage
             }
             else
             {
-
                 foreach (var p in lt)
                 {
                     LayoutOrigen.IsVisible = true;
@@ -135,11 +136,9 @@ public partial class SMM_Posicionamiento : ContentPage
                     lblError2.Text = "No se puede ingresar en este destino";
                     lblError2.IsVisible = true;
                 }
-
             }
             catch
             {
-
             }
         }
         else
@@ -194,8 +193,6 @@ public partial class SMM_Posicionamiento : ContentPage
                     DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                     DisplayAlert("Alerta", "No se puede Actualizar Posicion favor contactar con administrador", "Aceptar");
                 }
-
-
             }
             else
             {
@@ -203,8 +200,6 @@ public partial class SMM_Posicionamiento : ContentPage
                 DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
         }
-
-
     }
     protected override bool OnBackButtonPressed()
     {

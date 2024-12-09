@@ -16,7 +16,6 @@ namespace NewsMauiCVT.Datos
         {
 
         }
-
         public List<PalletClass> ObtieneInfoPallet(string NPallet)
         {
             List<PalletClass> list = [];
@@ -24,7 +23,7 @@ namespace NewsMauiCVT.Datos
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
                 var rest = ClientHttp.GetAsync("api/Produccion?SSCC=" + NPallet).Result;
                 var resultadoStr = rest.Content.ReadAsStringAsync().Result;
@@ -38,7 +37,6 @@ namespace NewsMauiCVT.Datos
             }
             return list;
         }
-
         public List<string> ObtieneDatos(string NPallet) 
         {
             List<string> list = [];
@@ -60,7 +58,6 @@ namespace NewsMauiCVT.Datos
             }
             return list;
         }
-
         public bool ValidaPallet(string NPallet)
         {
             bool value = false;

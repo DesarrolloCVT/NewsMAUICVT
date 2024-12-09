@@ -34,7 +34,7 @@ public partial class ActualizaTipoPallet : ContentPage
         {
             if (txt_pallet.Text.Equals(string.Empty))
             {
-                lblError.Text = "Ingrese un n° de Pallet";
+                lblError.Text = "Ingrese un N° de Pallet. ";
                 lblError.IsVisible = true;
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                 //DisplayAlert("Alerta",, "Aceptar");          
@@ -43,7 +43,7 @@ public partial class ActualizaTipoPallet : ContentPage
             else if (!txt_pallet.Text.ToCharArray().All(Char.IsDigit))
             {
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                lblError.Text = "Ingrese solo Numeros";
+                lblError.Text = "Ingrese solo Numeros. ";
                 lblError.IsVisible = true;
                 txt_pallet.Focus();
                 txt_pallet.Text = string.Empty;
@@ -52,7 +52,7 @@ public partial class ActualizaTipoPallet : ContentPage
             {
                 HttpClient ClientHttp = new()
                 {
-                    BaseAddress = new Uri("http://wsintranet.cvt.local/")
+                    BaseAddress = new Uri("http://wsintranet2.cvt.local/")
                 };
 
                 //verifica numero palllet

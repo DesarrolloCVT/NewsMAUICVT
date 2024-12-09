@@ -13,7 +13,6 @@ namespace NewsMauiCVT.Datos
     public class DatosFefoStock
     {
         public DatosFefoStock() { }
-
         public DataTable Sp_Fefo(int IdBodega, string CodProducto)
         {
             DataTable dt = new DataTable();
@@ -21,7 +20,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync(" api/Stock?IdBodega=" + IdBodega + "&CodProducto=" + CodProducto).Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 dt = JsonConvert.DeserializeObject<DataTable>(resultadoStr) ??
@@ -33,7 +32,6 @@ namespace NewsMauiCVT.Datos
             }
             return dt;
         }
-
         public int TraeIdBodega(string descrip)
         {
             int res = 0;
@@ -62,7 +60,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Bodega").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 lt = JsonConvert.DeserializeObject<List<Site>>(resultadoStr) ??
@@ -75,7 +73,6 @@ namespace NewsMauiCVT.Datos
 
             return lt;
         }
-
         public string TraeCodProd(string nompro)
         {
             string res = "";
@@ -104,7 +101,7 @@ namespace NewsMauiCVT.Datos
             try
             {
                 HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet.cvt.local/");
+                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
                 var rest2 = ClientHttp.GetAsync("api/Produccion").Result;
                 var resultadoStr = rest2.Content.ReadAsStringAsync().Result;
                 lt = JsonConvert.DeserializeObject<List<Productos>>(resultadoStr) ??

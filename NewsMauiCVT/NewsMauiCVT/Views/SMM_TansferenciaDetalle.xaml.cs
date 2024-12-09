@@ -28,8 +28,6 @@ public partial class SMM_TansferenciaDetalle : ContentPage
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
-
-
             DatosTransferenciaSMM rc = new DatosTransferenciaSMM();
 
             List<FiltoTransferenciaSMM> lt = rc.FiltroTransferencia(Convert.ToInt32(txtNPallet.Text), _foliTrans);

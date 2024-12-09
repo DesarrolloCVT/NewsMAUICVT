@@ -7,18 +7,22 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMMArmadoPedidoDetalle : ContentPage
 {
+    #region Variables Globales
     int _folio = 0;
     string _CodProd = "";
     string _Umedida = "";
     //int _OC = 0;
     int _CantidadOC = 0;
+    #endregion
     public SMMArmadoPedidoDetalle(int FolioArm)
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargaDatos();
+        #region Inicializadores
         _folio = FolioArm;
         lblPedido.Text = Convert.ToString(_folio);
+        #endregion
         txt_CodBarr.Focus();
     }
     protected override void OnAppearing()

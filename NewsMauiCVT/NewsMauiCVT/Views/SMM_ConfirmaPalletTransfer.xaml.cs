@@ -5,8 +5,9 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMM_ConfirmaPalletTransfer : ContentPage
 {
+    #region Variables Globales
     int _varPk = 0;
-
+    #endregion
     public SMM_ConfirmaPalletTransfer()
     {
         NavigationPage.SetHasNavigationBar(this, false);
@@ -31,7 +32,6 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
         btnSalir.IsEnabled = false;
         txtNPallet.Text = string.Empty;
         txtFolioTransfer.Text = string.Empty;
-
     }
     private async void txtFolioTransfer_Completed(object sender, EventArgs e)
     {

@@ -6,14 +6,18 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMMOrdenDeVentaRegistros : ContentPage
 {
+    #region Variables Globales
     int _folio = 0;
+    #endregion
     public SMMOrdenDeVentaRegistros(int folio)
     {
         NavigationPage.SetHasNavigationBar(this, false);
         InitializeComponent();
         cargadatos(folio);
+        #region Inicializadores
         lblFolioOrden.Text = "Orden N°:" + folio.ToString();
         _folio = folio;
+        #endregion
     }
     void cargadatos(int idFolio)
     {

@@ -52,8 +52,7 @@ public partial class InformeStock : ContentPage
     }
     public class bodeg { public string Supportive_Description { get; set; } }
     private async void BtnBuscar_Clicked(object sender, EventArgs e)
-    {
-        
+    {   
         using (UserDialogs.Instance.Loading("Cargando"))
         {
             await Task.Delay(10);
@@ -93,14 +92,24 @@ public partial class InformeStock : ContentPage
 
                         GvData.Columns["SSCC"].Caption = "N°Pallet";
                         GvData.Columns["SSCC"].Width = 110;
+                        GvData.Columns["SSCC"].HeaderFontSize = 15;
+                        GvData.Columns["SSCC"].HorizontalContentAlignment = TextAlignment.Center;
                         GvData.Columns["Cantidad"].Caption = "Cantidad";
                         GvData.Columns["Cantidad"].Width = 110;
+                        GvData.Columns["Cantidad"].HeaderFontSize = 15;
+                        GvData.Columns["Cantidad"].HorizontalContentAlignment = TextAlignment.Center;
                         GvData.Columns["Ubicacion"].Caption = "Ubicacion";
                         GvData.Columns["Ubicacion"].Width = 110;
+                        GvData.Columns["Ubicacion"].HeaderFontSize = 15;
+                        GvData.Columns["Ubicacion"].HorizontalContentAlignment = TextAlignment.Center;
                         GvData.Columns["FProduccion"].DisplayFormat = "dd-MM-yyyy";
-                        GvData.Columns["FProduccion"].Width = 110;
+                        GvData.Columns["FProduccion"].Width = 130;
+                        GvData.Columns["FProduccion"].HeaderFontSize = 15;
+                        GvData.Columns["FProduccion"].HorizontalContentAlignment = TextAlignment.Center;
                         GvData.Columns["FVencimiento"].DisplayFormat = "dd-MM-yyyy";
-                        GvData.Columns["FVencimiento"].Width = 110;
+                        GvData.Columns["FVencimiento"].Width = 130;
+                        GvData.Columns["FVencimiento"].HeaderFontSize = 15;
+                        GvData.Columns["FVencimiento"].HorizontalContentAlignment = TextAlignment.Center;
 
                         LogUsabilidad("Carga de Informe de Stock");
 
@@ -114,10 +123,7 @@ public partial class InformeStock : ContentPage
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                 await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
-
         }
-
-
     }
     protected override bool OnBackButtonPressed()
     {

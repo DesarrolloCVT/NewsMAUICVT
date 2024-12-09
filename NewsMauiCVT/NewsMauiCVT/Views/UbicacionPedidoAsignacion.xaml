@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+             x:Class="NewsMauiCVT.Views.UbicacionPedidoAsignacion">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="10,0,0,15">
+                <Label 
+                    Text=""
+                    x:Name="lblTituloUbicacion"
+                    HorizontalTextAlignment="Center"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    />
+            </StackLayout>
+            <StackLayout Padding="10,0,0,35">
+                <Label
+                    Text="Cod. Cliente: "
+                    x:Name="lblItemCode"
+                    HorizontalTextAlignment="Start"
+                    FontSize="Small"
+                    FontAttributes="Bold"
+                    />
+                <Label
+                    Text="Lote: "
+                    x:Name="lblLote"
+                    HorizontalTextAlignment="Start"
+                    FontSize="Small"
+                    FontAttributes="Bold"
+                    />
+            </StackLayout>
+            <dxg:DataGridView x:Name="GvData" HeightRequest="250">
+                <dxg:DataGridView.ColumnHeaderAppearance>
+                    <dxg:ColumnHeaderAppearance 
+                        BackgroundColor="#3399ff"
+                        FontSize="12"
+                        FontColor="White"
+                        FontAttributes="Bold" />
+                </dxg:DataGridView.ColumnHeaderAppearance>
+                <dxg:DataGridView.CellAppearance>
+                    <dxg:CellAppearance 
+                        Padding="5"
+                        BackgroundColor="#333333"
+                        BorderColor="#515151"
+                        FontSize="14"
+                        FontColor="White" 
+                        SelectionColor="#f78a09"
+                        SelectionFontColor="Black"/>
+                </dxg:DataGridView.CellAppearance>
+            </dxg:DataGridView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
