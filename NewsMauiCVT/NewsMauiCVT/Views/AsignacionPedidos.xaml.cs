@@ -11,6 +11,7 @@ public partial class AsignacionPedidos : ContentPage
     DatosApp datosApp;
     int folioSelected;
     #endregion
+
     public AsignacionPedidos()
 	{
         NavigationPage.SetHasNavigationBar(this, false);

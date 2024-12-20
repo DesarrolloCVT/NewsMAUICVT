@@ -8,6 +8,7 @@ public partial class SMMRegImpEtiquetas : ContentPage
     #region Variables Globales
     string v_CodigoProducto = "";
     #endregion
+
     public SMMRegImpEtiquetas()
     {
         NavigationPage.SetHasNavigationBar(this, false);
@@ -30,31 +31,14 @@ public partial class SMMRegImpEtiquetas : ContentPage
         txt_pallet.Text = string.Empty;
         btn_agregar.IsEnabled = false;
     }
-    private async void txt_pallet_Completed(object sender, EventArgs e)
+    private async void Txt_pallet_Completed(object sender, EventArgs e)
     {
         DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
         var ACC = Connectivity.NetworkAccess;
         if (ACC == NetworkAccess.Internet)
         {
             string codpro = dti.ValidaCodProducto(txt_pallet.Text);
-
-            if (txt_pallet.Text.Equals(string.Empty))
-            {
-                lblError2.Text = "ingrese Codigo Producto";
-                lblError2.IsVisible = true;
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                txt_pallet.Focus();
-            }
-            else if (codpro.Equals(""))
-            {
-                lblError2.IsVisible = true;
-                await DisplayAlert("Alerta", "Codigo Producto no existe", "Aceptar");
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                txt_pallet.Text = string.Empty;
-                txt_pallet.Focus();
-
-            }
-            else
+            if(!txt_pallet.Text.Equals(string.Empty) && !codpro.Equals(""))
             {
                 string codiPro = dti.TraeCodProducti(txt_pallet.Text);
                 List<SMMDatoProductosRecepcion> ls = dti.ListaDatosProdRes(codiPro, txt_pallet.Text);
@@ -70,12 +54,29 @@ public partial class SMMRegImpEtiquetas : ContentPage
                 lblError2.Text = string.Empty;
                 lblError2.IsVisible = false;
                 btn_agregar.IsEnabled = true;
+
+            }
+            else if (txt_pallet.Text.Equals(string.Empty))
+            {
+                lblError2.Text = "ingrese Codigo Producto";
+                lblError2.IsVisible = true;
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                txt_pallet.Focus();
+            }
+            else if (codpro.Equals(""))
+            {
+                lblError2.IsVisible = true;
+                DisplayAlert("Alerta", "Codigo Producto no existe", "Aceptar");
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                txt_pallet.Text = string.Empty;
+                txt_pallet.Focus();
+
             }
         }
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
     private void btn_agregar_Clicked(object sender, EventArgs e)
@@ -139,5 +140,9 @@ public partial class SMMRegImpEtiquetas : ContentPage
     {
         //return true to prevent back, return false to just do something before going back. 
         return true;
+    }
+    private void txt_pallet_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

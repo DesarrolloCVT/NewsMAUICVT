@@ -112,7 +112,6 @@ public partial class InformeStock : ContentPage
                         GvData.Columns["FVencimiento"].HorizontalContentAlignment = TextAlignment.Center;
 
                         LogUsabilidad("Carga de Informe de Stock");
-
                         //GvData.Columns["Bultos"].Caption = "Bultos";
                         //GvData.Columns["Cantidad_Pedidos"].Caption = "Cant.Pedidos";
                     }

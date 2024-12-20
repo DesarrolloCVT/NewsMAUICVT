@@ -29,6 +29,7 @@ namespace NewsMauiCVT.Datos
             }
             return resp;
         }
+
         /*public List<Package> ListaInfoPallet(string Package) 
         {
             List<Package> ret = new List<Package>();

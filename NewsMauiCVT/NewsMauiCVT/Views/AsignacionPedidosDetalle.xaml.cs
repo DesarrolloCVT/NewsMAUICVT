@@ -25,7 +25,9 @@ public partial class AsignacionPedidosDetalle : ContentPage
     DatosProduccion datosProduccion;
     string username;
     int ordenCantidad;
+    bool PalletValido;
     #endregion
+
     public AsignacionPedidosDetalle(int folio)
 	{
 		InitializeComponent();
@@ -45,7 +47,7 @@ public partial class AsignacionPedidosDetalle : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        SetFocusText();
+        SetFocusText(txtPallet);
         ClearComponent();
         LogUsabilidad("Ingreso a Asignacion Pedido Detalle");
     }
@@ -57,10 +59,10 @@ public partial class AsignacionPedidosDetalle : ContentPage
         tabla.Columns.Add("Lote", typeof(string));
         tabla.Columns.Add("Cantidad", typeof(string));
     }
-    private void SetFocusText()
+    private void SetFocusText(DevExpress.Maui.Editors.TextEdit textEdit)
     {
         _ = Task.Delay(200).ContinueWith(t => {
-            txtPallet.Focus();
+            textEdit.Focus();
         });
     }
     private void LoadData()
@@ -103,7 +105,7 @@ public partial class AsignacionPedidosDetalle : ContentPage
                 lblResultado.Text = "Debe ingresar un valor. ";
                 lblResultado.IsVisible = true;
                 lblResultado.TextColor = Colors.Red;
-                SetFocusText();
+                SetFocusText(txtPallet);
             }
         }
         catch (Exception ex)
@@ -130,100 +132,36 @@ public partial class AsignacionPedidosDetalle : ContentPage
     {
         try
         {
-            if (!string.IsNullOrEmpty(txtPallet.Text))
-            {
-                var ACC = Connectivity.NetworkAccess;
-                if (ACC == NetworkAccess.Internet)
+            PalletValido = datos.ValidaPallet(txtPallet.Text);
+            if (string.IsNullOrEmpty(txtPalletDestino.Text)) 
+            {   
+                if (PalletValido)
                 {
-                    LoadData();
-                    if (!string.IsNullOrEmpty(txtPallet.Text))
-                    {
-                        bool PalletValido = datos.ValidaPallet(txtPallet.Text);
-                        bool UbicacionAgregada;
-                        int PackageID = 0;
-                        int LayoutID = 0;
-                        int StaffID = 0;
-
-                        List<PalletClass> pallets = datos.ObtieneInfoPallet(txtPallet.Text);
-
-                        pallets.ForEach(p => {
-                            if (p.Package_Id != 0 && p.Layout_Id != 0)
-                            {
-                                PackageID = p.Package_Id;
-                                LayoutID = p.Layout_Id;
-                            }
-                        });
-
-                        StaffID = datosUsuario.ObtenerUsuarioStaff(username);
-
-                        if (PalletValido) // Validacion de Pallet valido.
-                        {
-                            txtPallet.Text = string.Empty;
-                            SetFocusText();
-
-                            if (LoteValido && ItemCodeValido) // Validacion de LoteValido e ItemCode correspondiente.
-                            {
-                                // Cantidad: Es la cantidad registrada en la asignacion de transferencia.
-
-                                // Cantidad Total: Es la suma de las cantidades (Package_Quantity) de todas Pallet
-                                // que correspondan al Lote dentro de la order_id seleccionada.
-                                if (Cantidad < cantidadTotal) // Validacion de cantidad. 
-                                {
-                                    UbicacionAgregada = datosProduccion.AddLocation(PackageID, LayoutID, StaffID);
-                                    if (UbicacionAgregada) // Validacion de ubicacion agregada.
-                                    {
-                                        DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
-                                        lblResultado.Text = "Asignacion de pedido agregado correctamente. ";
-                                        lblResultado.TextColor = Colors.Green;
-                                        lblResultado.IsVisible = true;
-                                        LogUsabilidad("Asigancion de pedido");
-                                    }
-                                    else
-                                    {
-                                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                        DisplayAlert("Alerta", "La asignacion ya se encuentra registrada. ", "Aceptar");
-                                    }
-                                }
-                                else
-                                {
-                                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                    lblResultado.Text = "La cantidad requerida supera el stock dentro del Lote. ";
-                                    lblResultado.IsVisible = true;
-                                    lblResultado.TextColor = Colors.Red;
-                                    txtPallet.Text = string.Empty;
-                                    SetFocusText();
-                                }
-                            }
-                            else
-                            {
-                                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                lblResultado.Text = string.Empty;
-                                lblResultado.Text = "Lote asignado no es válido. ";
-                                lblResultado.IsVisible = true;
-                                lblResultado.TextColor = Colors.Red;
-                                SetFocusText();
-                            }
-                        }
-                        else
-                        {
-                            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                            lblResultado.Text = string.Empty;
-                            lblResultado.Text = "El pallet ingresado no existe. ";
-                            lblResultado.IsVisible = true;
-                            lblResultado.TextColor = Colors.Red;
-                            SetFocusText();
-                        }
-                    }
-                    else
-                    {
-                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                        lblResultado.Text = string.Empty;
-                        lblResultado.Text = "Debe ingresar un valor. ";
-                        lblResultado.IsVisible = true;
-                        lblResultado.TextColor = Colors.Red;
-                        SetFocusText();
-                    }
+                    txtPalletDestino.IsVisible = true;
+                    lblResultado.IsVisible = false;
+                    SetFocusText(txtPalletDestino);
                 }
+                else
+                {
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    lblResultado.Text = string.Empty;
+                    lblResultado.Text = "Ingrese un N° de Pallet valido. ";
+                    lblResultado.IsVisible = true;
+                    lblResultado.TextColor = Colors.Red;
+                    txtPallet.Text = string.Empty;
+                    txtPalletDestino.Text = string.Empty;
+                    txtPalletDestino.IsVisible = false;
+                    SetFocusText(txtPallet);
+                }
+            }
+            else
+            {
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                lblResultado.Text = string.Empty;
+                lblResultado.Text = "Ingrese un valor. ";
+                lblResultado.IsVisible = true;
+                lblResultado.TextColor = Colors.Red;
+                SetFocusText(txtPallet);
             }
         }
         catch (Exception ex) 
@@ -234,5 +172,121 @@ public partial class AsignacionPedidosDetalle : ContentPage
     private async void btn_asignaciones_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new ResumenPedidosAsignacion(tabla));
+    }
+    private void txtPalletDestino_Completed(object sender, EventArgs e)
+    {
+        try
+        {
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet)
+            {
+                LoadData();
+                if (!string.IsNullOrEmpty(txtPallet.Text) && !string.IsNullOrEmpty(txtPalletDestino.Text))
+                {   
+                    bool UbicacionAgregada;
+                    int PackageID = 0;
+                    int LayoutID = 0;
+                    int StaffID = 0;
+
+                    List<PalletClass> pallets = datos.ObtieneInfoPallet(txtPallet.Text);
+
+                    pallets.ForEach(p => {
+                        if (p.Package_Id != 0 /*&& p.Layout_Id != 0*/)
+                        {
+                            PackageID = p.Package_Id;
+                            //LayoutID = p.Layout_Id;
+                        }
+                    });
+
+                    StaffID = datosUsuario.ObtenerUsuarioStaff(username);
+
+                    if (PalletValido) // Validacion de Pallet valido.
+                    {
+                        txtPallet.Text = string.Empty;
+                        SetFocusText(txtPallet);
+                        LayoutID = int.Parse(txtPalletDestino.Text);
+
+                        if (LoteValido && ItemCodeValido) // Validacion de LoteValido e ItemCode correspondiente.
+                        {
+                            // Cantidad: Es la cantidad registrada en la asignacion de transferencia.
+                            // Cantidad Total: Es la suma de las cantidades (Package_Quantity) de todas Pallet
+                            // que correspondan al Lote dentro de la order_id seleccionada.
+                            if (Cantidad < cantidadTotal) // Validacion de cantidad. 
+                            {
+                                // Definir origen de dato LayoutID.
+                                UbicacionAgregada = datosProduccion.AddLocation(PackageID, LayoutID, StaffID);
+
+                                if (UbicacionAgregada) // Validacion de ubicacion agregada.
+                                {
+                                    //Actualizar en BD la nueva ubicacionAsignada.
+                                    DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                                    lblResultado.Text = "Asignacion de pedido agregado correctamente. ";
+                                    lblResultado.TextColor = Colors.Green;
+                                    lblResultado.IsVisible = true;
+                                    LogUsabilidad("Asigancion de pedido");
+                                }
+                                else
+                                {
+                                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                    DisplayAlert("Alerta", "La asignacion ya se encuentra registrada. ", "Aceptar");
+                                }
+                            }
+                            else
+                            {
+                                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                lblResultado.Text = "La cantidad requerida supera el stock dentro del Lote. ";
+                                lblResultado.IsVisible = true;
+                                lblResultado.TextColor = Colors.Red;
+                                txtPallet.Text = string.Empty;
+                                SetFocusText(txtPallet);
+                            }
+                        }
+                        else
+                        {
+                            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                            lblResultado.Text = string.Empty;
+                            lblResultado.Text = "Lote asignado no es válido. ";
+                            lblResultado.IsVisible = true;
+                            lblResultado.TextColor = Colors.Red;
+
+                            txtPallet.Text = string.Empty;
+                            txtPalletDestino.Text = string.Empty;
+                            txtPalletDestino.IsVisible = false;
+                            SetFocusText(txtPallet);
+                        }
+                    }
+                    else
+                    {
+                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                        lblResultado.Text = string.Empty;
+                        lblResultado.Text = "El pallet ingresado no existe. ";
+                        lblResultado.IsVisible = true;
+                        lblResultado.TextColor = Colors.Red;
+                        txtPallet.Text = string.Empty;
+                        SetFocusText(txtPallet);
+                    }
+                }
+                else
+                {
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    lblResultado.Text = string.Empty;
+                    lblResultado.Text = "Debe ingresar un valor. ";
+                    lblResultado.IsVisible = true;
+                    lblResultado.TextColor = Colors.Red;
+                    SetFocusText(txtPallet);
+                }
+            }
+        }
+        catch (Exception ex) 
+        {
+            Console.WriteLine(ex.ToString());
+        }
+    }
+    private void txtPallet_ClearIconClicked(object sender, System.ComponentModel.HandledEventArgs e)
+    {
+        txtPallet.Text = string.Empty;
+        txtPalletDestino.Text= string.Empty;
+        txtPalletDestino.IsVisible = false;
+        SetFocusText(txtPallet) ;
     }
 }

@@ -7,7 +7,7 @@
         <StackLayout>
             <StackLayout>
                 <Label x:Name="lblCantPallets" HorizontalOptions="Center" FontSize="Medium"/>
-                <StackLayout Padding="0,30,0,0">
+                <StackLayout HorizontalOptions="Center">
                     <dxg:DataGridView x:Name="GvData">
                         <dxg:DataGridView.ColumnHeaderAppearance>
                             <dxg:ColumnHeaderAppearance 

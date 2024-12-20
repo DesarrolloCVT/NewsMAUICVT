@@ -21,6 +21,7 @@
                     MaxCharacterCount="9"
                     BorderColor="Green"
                     IsLabelFloating="True"
+                    ClearIconClicked="txtPallet_ClearIconClicked"
                     Completed="txtEdit_Completed"
                     Keyboard="Numeric"/>
                 <Label 
@@ -29,6 +30,15 @@
                     FontSize="Medium"
                     HorizontalTextAlignment="Center"
                     IsVisible="False"/>
+                <de:TextEdit 
+                    x:Name="txtPalletDestino"
+                    LabelText="Destino"
+                    IsVisible="False"
+                    MaxCharacterCount="9"
+                    BorderColor="Green"
+                    IsLabelFloating="True"
+                    Completed="txtPalletDestino_Completed"
+                    Keyboard="Numeric"/>
             </StackLayout>
             <StackLayout Padding="0,50,0,0">
                 <xdc:DXButton

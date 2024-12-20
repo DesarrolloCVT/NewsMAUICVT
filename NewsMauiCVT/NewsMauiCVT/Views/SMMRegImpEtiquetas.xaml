@@ -20,13 +20,13 @@
                         x:Name="txt_pallet"
                         BorderColor="Green"
                         BoxHeight="50"
-                        ClearIconVisibility="Never"
-                        Completed="txt_pallet_Completed"
+                        ClearIconVisibility="Always"
+                        Completed="Txt_pallet_Completed"
                         IsLabelFloating="False"
                         LabelColor="Green"
                         LabelFontSize="20"
                         TextFontSize="20"
-                        LabelText="Codigo" />
+                        LabelText="Codigo"/>
                     <Label
                         x:Name="lblError2"
                         IsVisible="False"
