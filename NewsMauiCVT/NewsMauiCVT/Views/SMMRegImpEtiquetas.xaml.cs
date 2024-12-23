@@ -30,6 +30,7 @@ public partial class SMMRegImpEtiquetas : ContentPage
     {
         txt_pallet.Text = string.Empty;
         btn_agregar.IsEnabled = false;
+        lblProducto.Text = string.Empty;
     }
     private async void Txt_pallet_Completed(object sender, EventArgs e)
     {
@@ -66,7 +67,7 @@ public partial class SMMRegImpEtiquetas : ContentPage
             else if (codpro.Equals(""))
             {
                 lblError2.IsVisible = true;
-                DisplayAlert("Alerta", "Codigo Producto no existe", "Aceptar");
+                await DisplayAlert("Alerta", "Codigo Producto no existe", "Aceptar");
                 DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                 txt_pallet.Text = string.Empty;
                 txt_pallet.Focus();
@@ -76,7 +77,7 @@ public partial class SMMRegImpEtiquetas : ContentPage
         else
         {
             DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
         }
     }
     private void btn_agregar_Clicked(object sender, EventArgs e)

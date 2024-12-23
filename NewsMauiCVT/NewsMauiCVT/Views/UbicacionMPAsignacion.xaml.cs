@@ -11,6 +11,7 @@ public partial class UbicacionMPAsignacion : ContentPage
     string Lote;
     DataTable dt;
     #endregion
+
     public UbicacionMPAsignacion(string itemcode, string lote)
 	{
 		InitializeComponent();
