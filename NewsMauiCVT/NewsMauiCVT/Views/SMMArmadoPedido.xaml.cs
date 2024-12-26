@@ -28,34 +28,41 @@ public partial class SMMArmadoPedido : ContentPage
     }
     private void btn_Crear_Clicked(object sender, EventArgs e)
     {
-        if (txtNPedido.Text.Equals(string.Empty))
+        try
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "ingrese un numero de RecepcionPallet", "Aceptar");
-        }
-        else
-        {
-            var ACC = Connectivity.NetworkAccess;
-            if (ACC == NetworkAccess.Internet)
+            if (txtNPedido.Text.Equals(string.Empty))
             {
-                DatosSMM_ArmadoPedido ar = new DatosSMM_ArmadoPedido();
-
-                int FolioPed = ar.ValidaFolioPrdido(Convert.ToInt32(txtNPedido.Text));
-
-                if (FolioPed != 0)
-                {
-                    Navigation.PushAsync(new SMMArmadoPedidoDetalle(FolioPed) { Title = "Finalizar" });
-                }
-                else
-                {
-                    DisplayAlert("Alerta", "Pedido no existe o se encuentra cerrada, Favor verificar", "Aceptar");
-                }
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                DisplayAlert("Alerta", "ingrese un numero de RecepcionPallet", "Aceptar");
             }
             else
             {
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+                var ACC = Connectivity.NetworkAccess;
+                if (ACC == NetworkAccess.Internet)
+                {
+                    DatosSMM_ArmadoPedido ar = new DatosSMM_ArmadoPedido();
+
+                    int FolioPed = ar.ValidaFolioPrdido(Convert.ToInt32(txtNPedido.Text));
+
+                    if (FolioPed != 0)
+                    {
+                        Navigation.PushAsync(new SMMArmadoPedidoDetalle(FolioPed) { Title = "Finalizar" });
+                    }
+                    else
+                    {
+                        DisplayAlert("Alerta", "Pedido no existe o se encuentra cerrada, Favor verificar", "Aceptar");
+                    }
+                }
+                else
+                {
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+                }
             }
+        }
+        catch (Exception ex) 
+        {
+            Console.WriteLine("btn_Crear_Clicked: " + ex.ToString());
         }
     }
     protected override bool OnBackButtonPressed()

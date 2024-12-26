@@ -221,6 +221,7 @@ public partial class AsignacionMateriaPrimaDetalle : ContentPage
                         }
 
                         //Validacion de Pallet valido
+                        
                         if (PalletValido)
                         {
                             //Valdiacion de Lote de Pallet pistoleado coincide con Lote asignado en transferencia
@@ -229,7 +230,46 @@ public partial class AsignacionMateriaPrimaDetalle : ContentPage
                             {
                                 //Validacion de RecepcionTransfer obtenido de tabla TransferAsignacion
                                 //se compara con campo Recepcion Pallet obtenido del pistoleado del Pallet.
-                                if (RecepcionTransfer == RecepcionPallet)
+                                if (!string.IsNullOrEmpty(RecepcionTransfer))
+                                {
+                                    if (RecepcionTransfer == RecepcionPallet)
+                                    {
+                                        //Actualizar en BD la nueva ubicacionAsignada.
+                                        //Validacion de resultao de AddLocation. Bool con respuesta de asignacion.  
+                                        UbicacionAgregada = datosProduccion.AddLocation(PackageID, LayoutID, StaffID); // Que LayoutID es el que pasa el método AddLocation.
+                                        if (UbicacionAgregada)
+                                        {
+                                            try
+                                            {
+                                                tabla.Rows.Add(folioRecibido.ToString(), ItemCode, Lote);
+
+                                                DependencyService.Get<IAudio>().PlayAudioFile("Correcto.mp3");
+                                                btn_asignaciones.IsVisible = true;
+                                                lblResultado.Text = "Asignacion correcta. ";
+                                                lblResultado.TextColor = Colors.Green;
+                                                lblResultado.IsVisible = true;
+                                                LogUsabilidad("Se asigna Materia Prima. ");
+                                                txtPallet.Text = string.Empty;
+                                                SetFocusText(txtPallet);
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Console.WriteLine("Catch_txtPallet_Completed/UbicacionAgregada: " + ex.ToString());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                            DisplayAlert("Alerta", "La asignacion ya se encuentra registrada. ", "Aceptar");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                                        DisplayAlert("Alerta", "Codigo de Recepcion no coincide. ", "Aceptar");
+                                    }
+                                }
+                                else
                                 {
                                     //Actualizar en BD la nueva ubicacionAsignada.
                                     //Validacion de resultao de AddLocation. Bool con respuesta de asignacion.  
@@ -259,11 +299,6 @@ public partial class AsignacionMateriaPrimaDetalle : ContentPage
                                         DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
                                         DisplayAlert("Alerta", "La asignacion ya se encuentra registrada. ", "Aceptar");
                                     }
-                                }
-                                else
-                                {
-                                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                                    DisplayAlert("Alerta", "Codigo de Recepcion no coincide. ", "Aceptar");
                                 }
                             }
                             else

@@ -249,122 +249,150 @@ public partial class Posicionamiento : ContentPage
     }
     private void Txt_ConfirmaDestino_Completed(object sender, EventArgs e)
     {
-        if(!txt_origen.Text.Equals(string.Empty) &&  txt_destino.Text == txt_ConfirmaDestino.Text && !txt_destino.Text.Equals(string.Empty))
+        try
         {
-            var ACC = Connectivity.NetworkAccess;
-            if (ACC == NetworkAccess.Internet)
+            if (!txt_origen.Text.Equals(string.Empty) && txt_destino.Text == txt_ConfirmaDestino.Text && !txt_destino.Text.Equals(string.Empty))
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
-
-                //busca staffid
-                var rest = ClientHttp.GetAsync("api/Usuario?usernameWMS=" + App.UserSistema).Result;
-                var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                int staffID = JsonConvert.DeserializeObject<int>(resultadoStr);
-
-                //ObtienePackageIdPosicionamiento
-                var rest2 = ClientHttp.GetAsync("api/Posicionamiento?NumPallet=" + txt_origen.Text).Result;
-                var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
-                int Package_Id = JsonConvert.DeserializeObject<int>(resultadoStr2);
-
-                //ActualizaLayoutPackage
-                var rest3 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&layoutid=" + Convert.ToInt32(txt_destino.Text)).Result;
-                var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
-
-                //AddLocation
-                var rest4 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&LayoutDestinoId=" + Convert.ToInt32(txt_destino.Text) + "&StaffId=" + staffID).Result;
-                var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
-                bool oks = JsonConvert.DeserializeObject<bool>(resultadoStr4);
-
-                if (oks == true)
+                var ACC = Connectivity.NetworkAccess;
+                if (ACC == NetworkAccess.Internet)
                 {
-                    DependencyService.Get<Model.IAudio>().PlayAudioFile("Correcto.mp3");
-                    //  DisplayAlert("Alerta", "Registrado", "Aceptar");
-                    lblConfirm.IsVisible = true;
-                    lblConfirm.Text = "Registrado";
-                    LogUsabilidad("Posicionamiento registrado");
-                    ClearComponent();
-                    txt_origen.Focus();
 
+                    HttpClient ClientHttp = new HttpClient();
+                    ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
+
+                    /*
+                     * Valdiación para verificar que el nuevo destino ingresado sea válido.
+                     */
+
+                    var LayoutIdValido = txt_ConfirmaDestino.Text;
+                    var resp = ClientHttp.GetAsync("ValidaLayout?LayoutID=" + LayoutIdValido).Result;
+                    var resultado = resp.Content.ReadAsStringAsync().Result;
+                    bool layoutValido = JsonConvert.DeserializeObject<bool>(resultado);
+
+                    if (layoutValido)
+                    {
+                        //busca staffid
+                        var rest = ClientHttp.GetAsync("api/Usuario?usernameWMS=" + App.UserSistema).Result;
+                        var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                        int staffID = JsonConvert.DeserializeObject<int>(resultadoStr);
+
+                        //ObtienePackageIdPosicionamiento
+                        var rest2 = ClientHttp.GetAsync("api/Posicionamiento?NumPallet=" + txt_origen.Text).Result;
+                        var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
+                        int Package_Id = JsonConvert.DeserializeObject<int>(resultadoStr2);
+
+                        //ActualizaLayoutPackage
+                        var rest3 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&layoutid=" + Convert.ToInt32(txt_destino.Text)).Result;
+                        var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
+
+                        //AddLocation
+                        var rest4 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&LayoutDestinoId=" + Convert.ToInt32(txt_destino.Text) + "&StaffId=" + staffID).Result;
+                        var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
+                        bool oks = JsonConvert.DeserializeObject<bool>(resultadoStr4);
+
+                        if (oks == true)
+                        {
+                            DependencyService.Get<Model.IAudio>().PlayAudioFile("Correcto.mp3");
+                            //  DisplayAlert("Alerta", "Registrado", "Aceptar");
+                            lblConfirm.IsVisible = true;
+                            lblConfirm.Text = "Registrado";
+                            LogUsabilidad("Posicionamiento registrado");
+                            ClearComponent();
+                            txt_origen.Focus();
+
+                        }
+                        else
+                        {
+                            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                            DisplayAlert("Alerta", "Error al Registrar Verificar", "Aceptar");
+                        }
+                    }
+                    else
+                    {
+                        DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                        DisplayAlert("Alerta", "Error al Registrar Verificar destino valido ", "Aceptar");
+                        txt_destino.Text = string.Empty;
+                        txt_ConfirmaDestino.Text = string.Empty;
+                        txt_destino.Focus();
+                    }
                 }
                 else
                 {
                     DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
-                    DisplayAlert("Alerta", "Error al Registrar Verificar", "Aceptar");
+                    DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
                 }
             }
-            else
+            else if (txt_destino.Text != txt_ConfirmaDestino.Text)
             {
                 DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
-                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+                DisplayAlert("Alerta", "Destinos no son iguales favor verificar", "Aceptar");
+                txt_ConfirmaDestino.Focus();
+                txt_ConfirmaDestino.Text = string.Empty;
             }
-        }
-        else if (txt_destino.Text != txt_ConfirmaDestino.Text)
-        {
-            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Destinos no son iguales favor verificar", "Aceptar");
-            txt_ConfirmaDestino.Focus();
-            txt_ConfirmaDestino.Text = string.Empty;
-        }
-        else if (txt_origen.Text.Equals(string.Empty))
-        {
-            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Ingrese un n° de Pallet", "Aceptar");
-            txt_origen.Focus();
-        }
-        else if (txt_destino.Text.Equals(string.Empty))
-        {
-            DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
-            DisplayAlert("Alerta", "Ingrese Destino", "Aceptar");
-            txt_destino.Focus();
-        }
-        /*else
-        {
-            var ACC = Connectivity.NetworkAccess;
-            if (ACC == NetworkAccess.Internet)
+            else if (txt_origen.Text.Equals(string.Empty))
             {
-                HttpClient ClientHttp = new HttpClient();
-                ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
-
-                //busca staffid
-                var rest = ClientHttp.GetAsync("api/Usuario?usernameWMS=" + App.UserSistema).Result;
-                var resultadoStr = rest.Content.ReadAsStringAsync().Result;
-                int staffID = JsonConvert.DeserializeObject<int>(resultadoStr);
-
-                //ObtienePackageIdPosicionamiento
-                var rest2 = ClientHttp.GetAsync("api/Posicionamiento?NumPallet=" + txt_origen.Text).Result;
-                var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
-                int Package_Id = JsonConvert.DeserializeObject<int>(resultadoStr2);
-
-                //ActualizaLayoutPackage
-                var rest3 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&layoutid=" + Convert.ToInt32(txt_destino.Text)).Result;
-                var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
-
-                //AddLocation
-                var rest4 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&LayoutDestinoId=" + Convert.ToInt32(txt_destino.Text) + "&StaffId=" + staffID).Result;
-                var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
-                bool oks = JsonConvert.DeserializeObject<bool>(resultadoStr4);
-
-                if (oks == true)
+                DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                DisplayAlert("Alerta", "Ingrese un n° de Pallet", "Aceptar");
+                txt_origen.Focus();
+            }
+            else if (txt_destino.Text.Equals(string.Empty))
+            {
+                DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                DisplayAlert("Alerta", "Ingrese Destino", "Aceptar");
+                txt_destino.Focus();
+            }
+            /*else
+            {
+                var ACC = Connectivity.NetworkAccess;
+                if (ACC == NetworkAccess.Internet)
                 {
-                    DependencyService.Get<Model.IAudio>().PlayAudioFile("Correcto.mp3");
-                    //  DisplayAlert("Alerta", "Registrado", "Aceptar");
-                    lblConfirm.IsVisible = true;
-                    lblConfirm.Text = "Registrado";
-                    ClearComponent();
+                    HttpClient ClientHttp = new HttpClient();
+                    ClientHttp.BaseAddress = new Uri("http://wsintranet2.cvt.local/");
+
+                    //busca staffid
+                    var rest = ClientHttp.GetAsync("api/Usuario?usernameWMS=" + App.UserSistema).Result;
+                    var resultadoStr = rest.Content.ReadAsStringAsync().Result;
+                    int staffID = JsonConvert.DeserializeObject<int>(resultadoStr);
+
+                    //ObtienePackageIdPosicionamiento
+                    var rest2 = ClientHttp.GetAsync("api/Posicionamiento?NumPallet=" + txt_origen.Text).Result;
+                    var resultadoStr2 = rest2.Content.ReadAsStringAsync().Result;
+                    int Package_Id = JsonConvert.DeserializeObject<int>(resultadoStr2);
+
+                    //ActualizaLayoutPackage
+                    var rest3 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&layoutid=" + Convert.ToInt32(txt_destino.Text)).Result;
+                    var resultadoStr3 = rest3.Content.ReadAsStringAsync().Result;
+
+                    //AddLocation
+                    var rest4 = ClientHttp.GetAsync("api/Produccion?PackageId=" + Package_Id + "&LayoutDestinoId=" + Convert.ToInt32(txt_destino.Text) + "&StaffId=" + staffID).Result;
+                    var resultadoStr4 = rest4.Content.ReadAsStringAsync().Result;
+                    bool oks = JsonConvert.DeserializeObject<bool>(resultadoStr4);
+
+                    if (oks == true)
+                    {
+                        DependencyService.Get<Model.IAudio>().PlayAudioFile("Correcto.mp3");
+                        //  DisplayAlert("Alerta", "Registrado", "Aceptar");
+                        lblConfirm.IsVisible = true;
+                        lblConfirm.Text = "Registrado";
+                        ClearComponent();
+                    }
+                    else
+                    {
+                        DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
+                        DisplayAlert("Alerta", "Error al Registrar Verificar", "Aceptar");
+                    }
                 }
                 else
                 {
                     DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
-                    DisplayAlert("Alerta", "Error al Registrar Verificar", "Aceptar");
+                    DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
                 }
-            }
-            else
-            {
-                DependencyService.Get<Model.IAudio>().PlayAudioFile("terran-error.mp3");
-                DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
-            }
-        }*/
+            }*/
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Exception - Txt_ConfirmaDestino_Completed: " + ex.Message);
+        }
     }
     protected override bool OnBackButtonPressed()
     {

@@ -79,11 +79,7 @@ public partial class AsignacionPedidosDetalle : ContentPage
 
                     Lote = DatosPallet[0];
                     ItemCode = DatosPallet[1];
-
-
                     Cantidad = pedidoAsignacion.First().Cantidad; //int.Parse(DatosPallet[2]);
-
-
                     //Limpieza de listado:
                     LoteAsignado.Clear();
                     ItemCodeAsignado.Clear();

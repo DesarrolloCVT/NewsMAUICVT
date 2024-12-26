@@ -118,8 +118,7 @@
                     Completed="Txt_ConfirmaDestino_Completed" 
                     IsLabelFloating="False" 
                     BorderColor="Green" 
-                    LabelColor="Green" 
-                    Keyboard="{Null}"
+                    LabelColor="Green"
                     ClearIconVisibility="Never">
                 </dxe:TextEdit>
             </StackLayout>

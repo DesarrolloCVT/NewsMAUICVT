@@ -10,6 +10,7 @@ public partial class TomaInventario : ContentPage
     #region Variables Globales
     int v_lay = 0;
     #endregion
+
     public TomaInventario()
     {
         NavigationPage.SetHasNavigationBar(this, false);

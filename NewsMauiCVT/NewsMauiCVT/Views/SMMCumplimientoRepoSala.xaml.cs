@@ -66,45 +66,52 @@ public partial class SMMCumplimientoRepoSala : ContentPage
     }
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
-        var ACC = Connectivity.NetworkAccess;
-        if (ACC == NetworkAccess.Internet)
+        try
         {
-            string codpro = dti.ValidaCodProducto(txtCodigo.Text);
-            if (txtCodigo.Text.Equals(string.Empty))
+            DatosSMM_TomaInventario dti = new DatosSMM_TomaInventario();
+            var ACC = Connectivity.NetworkAccess;
+            if (ACC == NetworkAccess.Internet)
             {
-                lblError2.Text = "ingrese Codigo Producto";
-                lblError2.IsVisible = true;
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                //txt_pallet.Focus();
-            }
-            else if (codpro.Equals(""))
-            {
-                lblError2.IsVisible = true;
-                await DisplayAlert("Alerta", "Codigo Producto no existe", "Aceptar");
-                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-                txtCodigo.Text = string.Empty;
-                txtCodigo.Focus();
+                string codpro = dti.ValidaCodProducto(txtCodigo.Text);
+                if (txtCodigo.Text.Equals(string.Empty))
+                {
+                    lblError2.Text = "ingrese Codigo Producto";
+                    lblError2.IsVisible = true;
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    //txt_pallet.Focus();
+                }
+                else if (codpro.Equals(""))
+                {
+                    lblError2.IsVisible = true;
+                    await DisplayAlert("Alerta", "Codigo Producto no existe", "Aceptar");
+                    DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                    txtCodigo.Text = string.Empty;
+                    txtCodigo.Focus();
+                }
+                else
+                {
+                    string codiPro = dti.TraeCodProducti(txtCodigo.Text);
+                    List<SMMDatoProductosRecepcion> ls = dti.ListaDatosProdRes(codiPro, txtCodigo.Text);
+
+                    string Umd = "";
+                    foreach (var t in ls)
+                    {
+                        Umd = t.UomCode;
+                    }
+                    lblProducto.Text = codpro.ToString() + " //  " + Umd.ToString();
+                    lblError2.Text = string.Empty;
+                    lblError2.IsVisible = false;
+                }
             }
             else
             {
-                string codiPro = dti.TraeCodProducti(txtCodigo.Text);
-                List<SMMDatoProductosRecepcion> ls = dti.ListaDatosProdRes(codiPro, txtCodigo.Text);
-
-                string Umd = "";
-                foreach (var t in ls)
-                {
-                    Umd = t.UomCode;
-                }
-                lblProducto.Text = codpro.ToString() + " //  " + Umd.ToString();
-                lblError2.Text = string.Empty;
-                lblError2.IsVisible = false;
+                DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
+                await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
             }
         }
-        else
+        catch (Exception ex) 
         {
-            DependencyService.Get<IAudio>().PlayAudioFile("terran-error.mp3");
-            await DisplayAlert("Alerta", "Debe Conectarse a la Red Local", "Aceptar");
+            Console.WriteLine("Exception Button_Clicked: " + ex.ToString());
         }
     }
     private async void txtCodigo_Completed(object sender, EventArgs e)
