@@ -8,6 +8,7 @@ public partial class CheckListGruaObs : ContentPage
     #region Variables Globales
     private Dictionary<string,string> checkList;
     #endregion
+
     public CheckListGruaObs(Dictionary<string,string> keyValues)
 	{
 		InitializeComponent();

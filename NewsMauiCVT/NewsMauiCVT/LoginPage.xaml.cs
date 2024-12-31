@@ -142,7 +142,6 @@ namespace NewsMauiCVT
                                                 await Navigation.PushAsync(new PageMain());
                                                 txtUsuario.Text = string.Empty;
                                                 txtContraseña.Text = string.Empty;
-
                                             }
                                             catch
                                             {

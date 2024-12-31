@@ -7,6 +7,7 @@ public partial class CheckListGruaDescripcion : ContentPage
     #region Variables Globales
     public Dictionary<string, string> CheckList;
     #endregion
+
     public CheckListGruaDescripcion(Dictionary<string,string> keyValues)
 	{
 		InitializeComponent();

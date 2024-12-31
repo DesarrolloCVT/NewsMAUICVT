@@ -74,6 +74,7 @@ public partial class CheckListGrua : ContentPage
         }
     }
     #endregion
+
     public CheckListGrua()
 	{
         NavigationPage.SetHasNavigationBar(this, false);

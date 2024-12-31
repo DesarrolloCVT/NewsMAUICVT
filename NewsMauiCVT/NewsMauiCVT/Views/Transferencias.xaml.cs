@@ -10,6 +10,7 @@ public partial class Transferencias : ContentPage
     #region Variables Globales
     public int folioSelected;
     #endregion
+
     public Transferencias()
 	{
         NavigationPage.SetHasNavigationBar(this, false);

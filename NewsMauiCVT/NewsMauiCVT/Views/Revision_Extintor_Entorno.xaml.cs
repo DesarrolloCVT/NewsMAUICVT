@@ -9,6 +9,7 @@ public partial class Revision_Extintor_Entorno : ContentPage
     int _idRegistro = 0;
     int _nPregunta = 0;
     #endregion
+
     public Revision_Extintor_Entorno(int idRegExtintor)
     {
         NavigationPage.SetHasNavigationBar(this, false);

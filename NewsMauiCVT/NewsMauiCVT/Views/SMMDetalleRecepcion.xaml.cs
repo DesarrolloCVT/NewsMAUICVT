@@ -13,6 +13,7 @@ public partial class SMMDetalleRecepcion : ContentPage
     int _OC = 0;
     decimal _CantidadOC = 0;
     #endregion
+
     public SMMDetalleRecepcion(int folio)
     {
         NavigationPage.SetHasNavigationBar(this, false);

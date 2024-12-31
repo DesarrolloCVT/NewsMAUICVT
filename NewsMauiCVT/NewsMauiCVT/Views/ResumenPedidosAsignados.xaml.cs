@@ -11,6 +11,7 @@ public partial class ResumenPedidosAsignados : ContentPage
     DatosAsignacionPedidos dap;
     DataTable dt;
     #endregion
+
     public ResumenPedidosAsignados(int folioRecibido)
 	{
 		InitializeComponent();

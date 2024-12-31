@@ -5,10 +5,11 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMM_Picking_Consolidado : ContentPage
 {
-    #region
+    #region Variables 
     string _CodigoProducto = "";
     int _CantidadConsoli = 0;
-    #endregion
+    #endregion 
+
     public SMM_Picking_Consolidado()
     {
         NavigationPage.SetHasNavigationBar(this, false);

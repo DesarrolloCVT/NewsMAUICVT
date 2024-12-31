@@ -9,6 +9,7 @@ public partial class SMMOrdenDeVentaRegistros : ContentPage
     #region Variables Globales
     int _folio = 0;
     #endregion
+
     public SMMOrdenDeVentaRegistros(int folio)
     {
         NavigationPage.SetHasNavigationBar(this, false);

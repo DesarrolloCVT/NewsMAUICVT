@@ -6,7 +6,7 @@
              x:Class="NewsMauiCVT.Views.CheckListGrua">
     <ScrollView>
         <StackLayout>
-            <StackLayout Padding="20,0,0,0">
+            <StackLayout>
                 <Label
                     Text="CHECK LIST DE GRUA"
                     TextColor="Black"

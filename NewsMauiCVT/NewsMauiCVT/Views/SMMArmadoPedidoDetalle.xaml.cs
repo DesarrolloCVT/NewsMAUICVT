@@ -14,6 +14,7 @@ public partial class SMMArmadoPedidoDetalle : ContentPage
     //int _OC = 0;
     int _CantidadOC = 0;
     #endregion
+
     public SMMArmadoPedidoDetalle(int FolioArm)
     {
         NavigationPage.SetHasNavigationBar(this, false);

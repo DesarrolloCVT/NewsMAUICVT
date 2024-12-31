@@ -8,6 +8,7 @@ public partial class SMM_ConfirmaPalletTransfer : ContentPage
     #region Variables Globales
     int _varPk = 0;
     #endregion
+
     public SMM_ConfirmaPalletTransfer()
     {
         NavigationPage.SetHasNavigationBar(this, false);

@@ -6,9 +6,10 @@ namespace NewsMauiCVT.Views;
 
 public partial class SMMRegEtiqSala : ContentPage
 {
-    #region 
+    #region Variables
     string v_nomProd = "";
     #endregion
+
     public SMMRegEtiqSala()
     {
         NavigationPage.SetHasNavigationBar(this, false);

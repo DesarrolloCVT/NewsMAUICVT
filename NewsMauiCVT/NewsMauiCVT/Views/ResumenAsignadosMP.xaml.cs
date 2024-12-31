@@ -13,6 +13,7 @@ public partial class ResumenAsignadosMP : ContentPage
     DatosAsignacionMP dct;
     DataTable dataTable;
     #endregion
+
     public ResumenAsignadosMP(int folioRecibido)
     {
         #region Inicializacion

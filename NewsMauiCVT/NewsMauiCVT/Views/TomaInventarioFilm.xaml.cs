@@ -10,6 +10,7 @@ public partial class TomaInventarioFilm : ContentPage
     #region Variables Globales
     int v_lay = 0;
     #endregion
+
     public TomaInventarioFilm()
     {
         NavigationPage.SetHasNavigationBar(this, false);
