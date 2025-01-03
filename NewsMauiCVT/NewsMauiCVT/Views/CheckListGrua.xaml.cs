@@ -157,6 +157,7 @@ public partial class CheckListGrua : ContentPage
         {
             Fecha = DateTime.Now;
         }
+        Console.WriteLine("Fecha: " + Fecha.ToString("yyyy-MM-dd HH:mm:ss"));
         Horometro = txtHorometro.Text;
 
         if (cboNumGrua.SelectedIndex != -1 && cboAreaTrabajo.SelectedIndex != -1
@@ -168,8 +169,7 @@ public partial class CheckListGrua : ContentPage
             CheckListData.Add("TipoMaquinaria", TipoDeMaquinaria);
             CheckListData.Add("Turno", Turno);
             CheckListData.Add("Horometro", Horometro.ToString());
-            CheckListData.Add("Fecha", Fecha.ToString("yyyy-MM-dd"));
-
+            CheckListData.Add("Fecha", Fecha.ToString("yyyy-MM-dd HH:mm:ss"));
 
             foreach (var item in CheckListData)
             {
